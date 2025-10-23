@@ -16,11 +16,5 @@ enum EntTypeList
   E_ETL_NUM
 };
 
-struct SelectedType
-{
-  EntTypeList type;
-  std::string prefab;
-};
-
 struct SelectedEntity {};
 

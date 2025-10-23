@@ -152,9 +152,9 @@ using vec4i = vec4<int>;
 #define ASSIGN_OP_3f(Cls)\
     Cls() = default;\
     Cls(const Cls& rhs) = default;\
-    Cls(const Cls&& rhs) = default;\
+    Cls(Cls&& rhs) = default;\
     Cls& operator=(const Cls& rhs) = default;\
-    Cls& operator=(const Cls&& rhs) = default;\
+    Cls& operator=(Cls&& rhs) = default;\
     Cls& operator=(const vec3f& rhs) { *(vec3f*)this = rhs; return *this; }\
     Cls(float _x, float _y, float _z) : vec3f(_x, _y, _z) {}\
     Cls(const vec3f& rhs) : vec3f(rhs) {}

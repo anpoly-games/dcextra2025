@@ -18,14 +18,14 @@
 #else   // PLATFORM_ANDROID, PLATFORM_WEB
     #define GLSL_VERSION            100
 #endif
+static Shader lightingShader;
+static Light lights[MAX_LIGHTS];
 
 struct renderer
 {
-  Shader lightingShader;
   Shader instancingShader;
   Material instancingMaterial;
   Mesh cube;
-  Light lights[MAX_LIGHTS];
   std::random_device rd;
   std::mt19937 gen;
   std::uniform_real_distribution<> dis;
@@ -79,11 +79,16 @@ struct renderer
     SetShaderValue(lightingShader, ambientLoc, ambient, SHADER_UNIFORM_VEC4);
 
     memset(lights, 0, sizeof(Light) * MAX_LIGHTS);
+  }
+};
 
+void register_renderer(flecs::world& ecs)
+{
+    ecs.import<renderer>();
     // Move to render actually!
     ecs.system<const Camera>()
-      .each([&](const Camera& cam)
-      {
+    .each([&](const Camera& cam)
+    {
         float cameraPos[3] = { cam.position.x, cam.position.y, cam.position.z };
         SetShaderValue(lightingShader, lightingShader.locs[SHADER_LOC_VECTOR_VIEW], cameraPos, SHADER_UNIFORM_VEC3);
 
@@ -92,116 +97,21 @@ struct renderer
         int nl = 0;
         lightQ.each([&](const LightStrength& light, const Position& lpos)
         {
-          if (nl >= MAX_LIGHTS)
-            return;
-          lights[nl] = CreateLight(LIGHT_POINT, toRLVec3(lpos), Vector3Zero(), Vector4{1.f, 1.f, 1.f, light.val}, lightingShader);
-          nl++;
+            if (nl >= MAX_LIGHTS)
+                return;
+            lights[nl] = CreateLight(LIGHT_POINT, toRLVec3(lpos), Vector3Zero(), Vector4{1.f, 1.f, 1.f, light.val}, lightingShader);
+            nl++;
         });
         ecs.query<const Model, const Position, const Rotation*>()
-          .each([&](const Model& model, const Position& position, const Rotation* rot)
-          {
+        .each([&](const Model& model, const Position& position, const Rotation* rot)
+        {
             model.materials[0].shader = lightingShader;
             DrawModelEx(model, toRLVec3(position), Vector3{0.f, 1.f, 0.f}, rot ? rot->val : 0.f, Vector3{1.f, 1.f, 1.f}, WHITE);
-          });
-      });
-    ecs.system<const NumParticles>()
-      .without<Particles>()
-      .each([&](flecs::entity e, const NumParticles& np)
-      {
-        e.set(Particles());
-      });
-    ecs.system<Particles, const NumParticles, const Position>()
-      .each([&](Particles& particles, const NumParticles& num, const Position& pos)
-      {
-        // spawn random particles in the zone
-        while (particles.particles.size() < num.val)
-        {
-          const float px = dis(gen) - 0.5f;
-          const float py = dis(gen);
-          const float pz = dis(gen) - 0.5f;
-          particles.particles.push_back(vec3f{pos.x + px, pos.y + py, pos.z + pz});
-        }
-        const float spd = 5.f;
-        for (vec3f& part : particles.particles)
-        {
-          part.y += get_game_dt(ecs) * spd;
-          while (part.y > 1.f)
-          {
-            part.y -= 1.f;
-            part.x = pos.x + dis(gen) - 0.5f;
-            part.z = pos.z + dis(gen) - 0.5f;
-          }
-        }
-      });
-    ecs.system()
-      .each([&]()
-      {
-        size_t numParticles = 0;
-        ecs.query<const Particles>().each([&](const Particles& particles) { numParticles += particles.particles.size(); } );
-        if (numParticles == 0)
-          return;
-        std::vector<Matrix> matrices;
-        matrices.resize(numParticles);
-        Matrix* mats = matrices.data();
-        auto partQ = ecs.query<const Particles, const ParticleColor, const ParticleSize>();
-        size_t i = 0;
-        partQ.each([&](const Particles& particles, const ParticleColor& col, const ParticleSize& sz)
-        {
-          for (const vec3f& part : particles.particles)
-          {
-            Matrix translation = MatrixTranslate(part.x, part.y, part.z);
-            Matrix scale = MatrixScale(sz.val, sz.val * 3.f, sz.val);
-            mats[i] = MatrixMultiply(scale, translation);
-            mats[i].m3 = col.x;
-            mats[i].m7 = col.y;
-            mats[i].m11 = col.z;
-            mats[i].m15 = col.w;
-            i++;
-          }
         });
-        DrawMeshInstanced(cube, instancingMaterial, mats, numParticles);
-      });
-  }
-};
-
-void register_renderer(flecs::world& ecs)
-{
-  ecs.import<renderer>();
+    });
 }
 
 void pre_draw_call(eecs::Registry& reg, flecs::world& ecs)
 {
-  const renderer& rend = ecs.import<renderer>().get<renderer>();
-  flecs::entity player = ecs.lookup("player");
-  if (!player)
-    return;
-  flecs::entity inv = player.lookup("inventory");
-  if (!inv)
-    return;
-  ecs.defer_begin();
-  inv.children([&](flecs::entity e)
-  {
-    lightsCount = 0;
-    Light light;
-    memset(&light, 0, sizeof(Light));
-    light = CreateLight(LIGHT_POINT, Vector3{0.f, 0.f, -1.f}, Vector3Zero(), Vector4{1.f, 1.f, 1.f, 1.f}, rend.lightingShader);
-    UpdateLightValues(rend.lightingShader, light);
-    e.insert([&](RenderTexture2D& target, const Model& model)
-    {
-      const float fovy = 90.f;
-      BoundingBox bb = GetModelBoundingBox(model);
-      const float bbhh = std::max(bb.max.y, -bb.min.y);
-      const float bbhw = std::max(std::max(bb.max.z, -bb.min.z), std::max(bb.max.x, -bb.min.x));
-      const float dist = std::max(bbhh * 1.2f / tanf(fovy * 0.5f * DEG2RAD), bbhw * 1.2f) * 2.f;
-      BeginTextureMode(target);
-        ClearBackground(Color{0, 0, 0, 0});
-        Camera3D modelCam = { {cosf(GetTime()) * dist, 0.f, sinf(GetTime()) * dist}, {0.f, 0.f, 0.f}, {0.f, 1.f, 0.f}, fovy, 0 };
-        BeginMode3D(modelCam);
-          DrawModel(model, Vector3Zero(), 1.f, WHITE);
-        EndMode3D();
-      EndTextureMode();
-    });
-  });
-  ecs.defer_end();
 }
 

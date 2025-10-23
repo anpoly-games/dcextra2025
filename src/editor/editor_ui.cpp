@@ -27,7 +27,7 @@ static std::string editorLevelName = "";
 static std::string editorLevelToLoad = "";
 
 
-static void draw_right_editor_panel(flecs::world& ecs, float width, float height, float scaleFactor)
+static void draw_right_editor_panel(eecs::Registry& reg, flecs::world& ecs, float width, float height, float scaleFactor)
 {
   if (editorState != E_WORLD)
     return;
@@ -56,11 +56,10 @@ static void draw_right_editor_panel(flecs::world& ecs, float width, float height
       {
         if (entType != i)
         {
-          ecs.query<SelectedType>()
-            .each([&](SelectedType& st)
+            eecs::query_entities(reg, [&](eecs::EntityId, EntTypeList& selectedType, std::string& selectedPrefab)
             {
-              st.prefab = ""; st.type = (EntTypeList)i;
-            });
+                selectedPrefab = ""; selectedType = (EntTypeList)i;
+            }, COMPID(EntTypeList, selectedType), COMPID(std::string, selectedPrefab));
         }
         entType = (EntTypeList)i;
       }
@@ -80,7 +79,6 @@ static void draw_right_editor_panel(flecs::world& ecs, float width, float height
 
   float ypos = ytabpos + 16 * scaleFactor + vpad * 2;
   const float fontSz = 16 * scaleFactor;
-  auto squery = ecs.query<SelectedType>();
   ecs.lookup(types[entType]).children([&](flecs::entity e)
   {
     if (e.name()[0] == '_')
@@ -105,7 +103,7 @@ static void draw_right_editor_panel(flecs::world& ecs, float width, float height
       }
       DrawRectangleRec(rect, col);
     };
-    squery.each([&](SelectedType& st) { procSelection(st.prefab); });
+    eecs::query_entities(reg, [&](eecs::EntityId, std::string& selectedPrefab) { procSelection(selectedPrefab); }, COMPID(std::string, selectedPrefab));
     int sw = MeasureText(TextFormat("%s", e.name().c_str()), fontSz);
     DrawText(TextFormat("%s", e.name().c_str()), left + lpad, ypos, fontSz, WHITE);
     e.get([&](const Texture2D& tex)
@@ -406,7 +404,7 @@ static void draw_dialogs(eecs::Registry& reg, flecs::world& ecs, float width, fl
 
 void draw_editor_ui(eecs::Registry& reg, flecs::world& ecs, float width, float height, float scaleFactor)
 {
-  draw_right_editor_panel(ecs, width, height, scaleFactor);
+  draw_right_editor_panel(reg, ecs, width, height, scaleFactor);
   draw_top_editor_panel(ecs, width, height, scaleFactor);
   draw_dialogs(reg, ecs, width, height, scaleFactor);
 }

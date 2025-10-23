@@ -167,7 +167,7 @@ void expand_box(BoundingBox& bbox, float amt)
 void register_editor(eecs::Registry& reg, flecs::world& ecs)
 {
     eecs::reg_system(reg, [&](eecs::EntityId eid, const Camera& camera)
-      {
+    {
         const vec3f cpos = tov3(camera.position);
         const vec3i pivot = vec3i(cpos.x, 0, cpos.z);
         const int numTiles = 10;
@@ -175,17 +175,17 @@ void register_editor(eecs::Registry& reg, flecs::world& ecs)
         const vec3f maxP(pivot.x + numTiles - 0.5f, 0.f, pivot.z + numTiles - 0.5f);
         for (int y = pivot.z - numTiles; y <= pivot.z + numTiles; ++y)
         {
-          DrawLine3D(Vector3{minP.x, -0.01f, y - 0.5f}, Vector3{maxP.x, -0.01f, y - 0.5f}, WHITE);
-          DrawLine3D(Vector3{minP.x, 1.01f, y - 0.5f}, Vector3{maxP.x, 1.01f, y - 0.5f}, WHITE);
+            DrawLine3D(Vector3{minP.x, -0.01f, y - 0.5f}, Vector3{maxP.x, -0.01f, y - 0.5f}, WHITE);
+            DrawLine3D(Vector3{minP.x, 1.01f, y - 0.5f}, Vector3{maxP.x, 1.01f, y - 0.5f}, WHITE);
         }
         for (int x = pivot.x - numTiles; x <= pivot.x + numTiles; ++x)
         {
-          DrawLine3D(Vector3{x - 0.5f, -0.01f, minP.z}, Vector3{x - 0.5f, -0.01f, maxP.z}, WHITE);
-          DrawLine3D(Vector3{x - 0.5f, 1.01f, minP.z}, Vector3{x - 0.5f, 1.01f, maxP.z}, WHITE);
+            DrawLine3D(Vector3{x - 0.5f, -0.01f, minP.z}, Vector3{x - 0.5f, -0.01f, maxP.z}, WHITE);
+            DrawLine3D(Vector3{x - 0.5f, 1.01f, minP.z}, Vector3{x - 0.5f, 1.01f, maxP.z}, WHITE);
         }
 
         if (is_cursor_over_ui(ecs))
-          return;
+            return;
         Ray r = GetScreenToWorldRay(GetMousePosition(), camera);
         const vec3f rp = tov3(r.position);
         const vec3f rd = tov3(r.direction);
@@ -195,288 +195,286 @@ void register_editor(eecs::Registry& reg, flecs::world& ecs)
 
         // TODO: Go through all level geometry first
         // find floor intersection
-        auto selectedQ = ecs.query<const SelectedType>();
-        selectedQ.each([&](flecs::entity ent, const SelectedType& st)
+        eecs::query_entities(reg, [&](eecs::EntityId eid, eecs::EntityId& selectedEntity)
         {
-          flecs::entity sel = ent.target<SelectedEntity>();
-          if (!sel)
-            return;
-          if (IsMouseButtonReleased(1))
-            ent.remove<SelectedEntity>(sel);
-          if (sel.has<Door>() || sel.has<Wall>())
-            return;
-          // Draw gizmos
-          const Rotation* rot = sel.try_get<Rotation>();
-          sel.get([&](Position& pos)
-          {
-            Matrix matRotation = MatrixRotate(Vector3{0.f, 1.f, 0.f}, (rot ? rot->val : 0.f)*DEG2RAD);
-            Matrix matTranslation = MatrixTranslate(pos.x, pos.y, pos.z);
-
-            Matrix matTransform = MatrixMultiply(matRotation, matTranslation);
-            Vector3 pivot = Vector3{0.f, 0.f, 0.f} * matTransform;
-            EndMode3D();
-            Vector3 axes[3] = { Vector3{0.5f, 0.f, 0.f} * matTransform, Vector3{0.f, 0.5f, 0.f} * matTransform, Vector3{0.f, 0.f, 0.5f} * matTransform };
-            vec2f p2d = tov2(GetWorldToScreen(pivot, camera));
-            vec2f x2d = tov2(GetWorldToScreen(axes[0], camera));
-            vec2f y2d = tov2(GetWorldToScreen(axes[1], camera));
-            vec2f z2d = tov2(GetWorldToScreen(axes[2], camera));
-            vec2f mp = tov2(GetMousePosition());
-            float d2x = point_to_segm_dist(mp, p2d, x2d);
-            float d2y = point_to_segm_dist(mp, p2d, y2d);
-            float d2z = point_to_segm_dist(mp, p2d, z2d);
-            float minDist = std::min(d2x, std::min(d2y, d2z));
-            constexpr float distToDrag = 5.f;
-            const bool canDrag = minDist < distToDrag;
-            DrawLineEx(toRLVec2(p2d), toRLVec2(x2d), canDrag && minDist == d2x ? 4.f : 2.f, RED);
-            DrawLineEx(toRLVec2(p2d), toRLVec2(y2d), canDrag && minDist == d2y ? 4.f : 2.f, GREEN);
-            DrawLineEx(toRLVec2(p2d), toRLVec2(z2d), canDrag && minDist == d2z ? 4.f : 2.f, BLUE);
-            BeginMode3D(camera);
-
-            // TODO: move to editor state
-            static bool isDragging = false;
-            static int dragAxis = -1;
-            static float dragAxisMua = 0.f;
-            static float deltaMoved = 0.f;
-
-            if (IsMouseButtonDown(0))
-            {
-              if (canDrag && !isDragging)
-              {
-                isDragging = true;
-                deltaMoved = 0.f;
-                dragAxis = minDist == d2x ? 0 : minDist == d2y ? 1 : 2;
-                float mub;
-                line_ray_closest(tov3(pivot), tov3(axes[dragAxis]), rp, rd, dragAxisMua, mub);
-              }
-              else if (isDragging)
-              {
-                float mua, mub;
-                line_ray_closest(tov3(pivot), tov3(axes[dragAxis]), rp, rd, mua, mub);
-                vec3f axis = tov3(axes[dragAxis]) - tov3(pivot);
-                float mag = axis.mag();
-                deltaMoved += mua - dragAxisMua;
-                pos += axis * (mua - dragAxisMua);
-              }
-            }
-            else
-            {
-              if (isDragging)
-                printf("delta moved %.2f\n", deltaMoved * 0.5f);
-              isDragging = false;
-            }
-
-            if (IsKeyPressed(KEY_R) && rot)
-            {
-              sel.insert([&](Rotation& rot)
-              {
-                rot.val += 90.f;
-                if (rot.val >= 360.f)
-                  rot.val -= 360.f;
-              });
-            }
-          });
-        });
-        selectedQ.each([&](flecs::entity ent, const SelectedType& st)
-        {
-          if (!st.prefab.empty())
-            return;
-          if (ent.target<SelectedEntity>())
-            return;
-          // Select stuff in world
-          auto modelQ = ecs.query<const Position, const Model, const Rotation*>();
-          flecs::entity bestEntity;
-          float bestT = 1e12f;
-          modelQ.each([&](flecs::entity e, const Position& pos, const Model& model, const Rotation* rot)
-          {
-            Matrix matRotation = MatrixRotate(Vector3{0.f, 1.f, 0.f}, rot ? rot->val*DEG2RAD : 0.f);
-            Matrix matTranslation = MatrixTranslate(pos.x, pos.y, pos.z);
-
-            Matrix matTransform = MatrixMultiply(matRotation, matTranslation);
-            RayCollision coll = GetRayCollisionMesh(r, model.meshes[0], matTransform);
-            if (!coll.hit)
-              return;
-            if (coll.distance < bestT)
-            {
-              bestT = coll.distance;
-              bestEntity = e;
-            }
-          });
-          auto dboxQ = ecs.query<const Position, const Rotation, const DebugBox>();
-          dboxQ.each([&](flecs::entity e, const Position& pos, const Rotation& rot, const DebugBox& dbox)
-          {
-            Matrix matRotation = MatrixRotate(Vector3{0.f, 1.f, 0.f},  rot.val*DEG2RAD);
-            Matrix matTranslation = MatrixTranslate(pos.x, pos.y, pos.z);
-
-            Matrix matTransform = MatrixMultiply(matRotation, matTranslation);
-            Matrix invTransform = MatrixInvert(matTransform);
-            Ray localRay{r.position * invTransform, Vector3Rotate(r.direction, invTransform)};
-
-            BoundingBox bbox;
-            bbox.min = toRLVec3(dbox.offset - dbox.sz * 0.5f);
-            bbox.max = toRLVec3(dbox.offset + dbox.sz * 0.5f);
-            RayCollision coll = GetRayCollisionBox(localRay, bbox);
-            if (!coll.hit)
-              return;
-            if (coll.distance < bestT)
-            {
-              bestT = coll.distance;
-              bestEntity = e;
-            }
-          });
-          auto trigQ = ecs.query<const Position, const TriggerVolume>();
-          trigQ.each([&](flecs::entity e, const Position& pos, const TriggerVolume& vol)
-          {
-            BoundingBox box = {Vector3{pos.x - vol.sz.x * 0.5f, pos.y - 0.1f, pos.z - vol.sz.y * 0.5f}, Vector3{pos.x + vol.sz.x * 0.5f, pos.y + 0.1f, pos.z + vol.sz.y * 0.5f}};
-            RayCollision coll = GetRayCollisionBox(r, box);
-            if (!coll.hit)
-              return;
-            if (coll.distance < bestT)
-            {
-              bestT = coll.distance;
-              bestEntity = e;
-            }
-          });
-          if (bestEntity)
-          {
-            {
-              const Rotation* rot = bestEntity.try_get<Rotation>();
-              bestEntity.get([&](const Model& model, const Position& pos)
-              {
-                BoundingBox bbox = GetModelBoundingBox(model);
-                expand_box(bbox, 0.02f);
-                draw_cube_matrix(bbox, pos, rot ? rot->val : 0.f, Color{255, 255, 0, 100});
-              });
-            }
-            bestEntity.get([&](const Position& pos, const Rotation& rot, const DebugBox& dbox)
-            {
-              BoundingBox bbox;
-              expand_box(bbox, 0.02f);
-              bbox.min = toRLVec3(dbox.offset - dbox.sz * 0.5f);
-              bbox.max = toRLVec3(dbox.offset + dbox.sz * 0.5f);
-              draw_cube_matrix(bbox, pos, rot.val, Color{uint8_t(dbox.color.x * 255), uint8_t(dbox.color.y * 255), uint8_t(dbox.color.z * 255), 100});
-            });
-            bestEntity.get([&](const Position& pos, const TriggerVolume& vol)
-            {
-              DrawCube(toRLVec3(pos), vol.sz.x + 0.02f, 0.2f + 0.02f, vol.sz.y + 0.02f, Color{255, 255, 0, 150});
-            });
-            if (IsMouseButtonReleased(0) && !bestEntity.has<Door>() && !bestEntity.has<Wall>())
-              ent.add<SelectedEntity>(bestEntity);
+            if (selectedEntity == eecs::invalid_eid)
+                return;
             if (IsMouseButtonReleased(1))
-              bestEntity.destruct();
-          }
-        });
-        selectedQ.each([&](const SelectedType& st)
-        {
-          if (st.prefab.empty())
-            return;
-          const float floorT = -rp.y / rd.y;
-          const float ceilingT = (1.f - rp.y) / rd.y;
-          if (floorT > 0.f && floorT < 10.f)
-          {
-            const vec3f intersection = rp + rd * floorT;
-            int wx = floorf(intersection.x + 0.5f);
-            int wy = floorf(intersection.z + 0.5f);
-            vec3f tilePos = vec3f(floorf(intersection.x + 0.5f), 0.f, floorf(intersection.z + 0.5f));
-            const vec3f insideTilePos = intersection - tilePos;
-            constexpr float threshold = 0.3f;
-            static int dirAtPress = -1;
-            if ((st.type == E_WALLS || st.type == E_DOORS) && (fabsf(insideTilePos.x) > threshold || fabsf(insideTilePos.z) > threshold))
+                selectedEntity = eecs::invalid_eid;
+            eecs::EntityWrap sel = eecs::wrap_entity(reg, selectedEntity);
+            if (sel.has(COMPID(Tag, Door)) || sel.has(COMPID(Tag, Wall)))
+                return;
+            // Draw gizmos
+            const float rot = sel.get_or(COMPID(float, rotation), 0.f);
+            sel.query_comp([&](vec3f& position)
             {
-              int dir = fabsf(insideTilePos.x) > threshold ? 1 : 0;
-              if (dir == 1)
-              {
-                DrawCube(castRLVec3(tilePos + vec3f(sign(insideTilePos.x) * 0.5f, 0.5f, 0)), 0.065f, 1.f, 1.f, Color{255, 255, 0, 150});
-                if (insideTilePos.x > 0.f)
-                  wx++;
-              }
-              else
-              {
-                DrawCube(castRLVec3(tilePos + vec3f(0, 0.5f, sign(insideTilePos.z) * 0.5f)), 1.f, 1.f, 0.065f, Color{255, 255, 0, 150});
-                if (insideTilePos.z > 0.f)
-                  wy++;
-              }
-              if (IsMouseButtonPressed(0))
-              {
-                dirAtPress = dir;
-              }
-              if (IsMouseButtonReleased(0))
-              {
-                delete_wall(ecs, wx, wy, dir);
-                delete_door(ecs, wx, wy, dir);
-                if (st.type == E_WALLS)
+                Matrix matRotation = MatrixRotate(Vector3{0.f, 1.f, 0.f}, rot * DEG2RAD);
+                Matrix matTranslation = MatrixTranslate(position.x, position.y, position.z);
+
+                Matrix matTransform = MatrixMultiply(matRotation, matTranslation);
+                Vector3 pivot = Vector3{0.f, 0.f, 0.f} * matTransform;
+                EndMode3D();
+                Vector3 axes[3] = { Vector3{0.5f, 0.f, 0.f} * matTransform, Vector3{0.f, 0.5f, 0.f} * matTransform, Vector3{0.f, 0.f, 0.5f} * matTransform };
+                vec2f p2d = tov2(GetWorldToScreen(pivot, camera));
+                vec2f x2d = tov2(GetWorldToScreen(axes[0], camera));
+                vec2f y2d = tov2(GetWorldToScreen(axes[1], camera));
+                vec2f z2d = tov2(GetWorldToScreen(axes[2], camera));
+                vec2f mp = tov2(GetMousePosition());
+                float d2x = point_to_segm_dist(mp, p2d, x2d);
+                float d2y = point_to_segm_dist(mp, p2d, y2d);
+                float d2z = point_to_segm_dist(mp, p2d, z2d);
+                float minDist = std::min(d2x, std::min(d2y, d2z));
+                constexpr float distToDrag = 5.f;
+                const bool canDrag = minDist < distToDrag;
+                DrawLineEx(toRLVec2(p2d), toRLVec2(x2d), canDrag && minDist == d2x ? 4.f : 2.f, RED);
+                DrawLineEx(toRLVec2(p2d), toRLVec2(y2d), canDrag && minDist == d2y ? 4.f : 2.f, GREEN);
+                DrawLineEx(toRLVec2(p2d), toRLVec2(z2d), canDrag && minDist == d2z ? 4.f : 2.f, BLUE);
+                BeginMode3D(camera);
+
+                // TODO: move to editor state
+                static bool isDragging = false;
+                static int dragAxis = -1;
+                static float dragAxisMua = 0.f;
+                static float deltaMoved = 0.f;
+
+                if (IsMouseButtonDown(0))
                 {
-                  vec2f hzDir = vec2f(sinf(dir * PI / 2), cosf(dir * PI / 2));
-                  vec2f pos2d = vec2f(wx - (dir ? 0.5f : 0.f), wy - (dir ? 0.f : 0.5f));
-                  vec2f cam2dDir = pos2d - vec2f(camera.position.x, camera.position.z);
-                  create_wall(ecs, wx, wy, dir, hzDir.dot(cam2dDir) < 0, st.prefab.c_str());
+                    if (canDrag && !isDragging)
+                    {
+                        isDragging = true;
+                        deltaMoved = 0.f;
+                        dragAxis = minDist == d2x ? 0 : minDist == d2y ? 1 : 2;
+                        float mub;
+                        line_ray_closest(tov3(pivot), tov3(axes[dragAxis]), rp, rd, dragAxisMua, mub);
+                    }
+                    else if (isDragging)
+                    {
+                        float mua, mub;
+                        line_ray_closest(tov3(pivot), tov3(axes[dragAxis]), rp, rd, mua, mub);
+                        vec3f axis = tov3(axes[dragAxis]) - tov3(pivot);
+                        float mag = axis.mag();
+                        deltaMoved += mua - dragAxisMua;
+                        position += axis * (mua - dragAxisMua);
+                    }
                 }
-                else if (st.type == E_DOORS)
-                  create_door(ecs, wx, wy, dir, st.prefab.c_str());
-              }
-              if (IsMouseButtonReleased(1))
-              {
-                delete_wall(ecs, wx, wy, dir);
-                delete_door(ecs, wx, wy, dir);
-              }
-            }
-            if (st.type == E_FLOORS)
+                else
+                {
+                    if (isDragging)
+                        printf("delta moved %.2f\n", deltaMoved * 0.5f);
+                    isDragging = false;
+                }
+
+                if (IsKeyPressed(KEY_R))
+                {
+                    sel.query_comp([&](float& rotation)
+                    {
+                        rotation += 90.f;
+                        if (rotation >= 360.f)
+                            rotation -= 360.f;
+                    }, COMPID(float, rotation));
+                }
+            }, COMPID(vec3f, position));
+        }, COMPID(eecs::EntityId, selectedEntity));
+
+        eecs::query_entities(reg, [&](eecs::EntityId, eecs::EntityId& selectedEntity, const std::string& selectedPrefab)
+        {
+            if (!selectedPrefab.empty())
+                return;
+            if (selectedEntity != eecs::invalid_eid)
+                return;
+            // Select stuff in world
+            auto modelQ = ecs.query<const Position, const Model, const Rotation*>();
+            eecs::EntityId bestEntity = eecs::invalid_eid;
+            float bestT = 1e12f;
+            eecs::query_entities(reg, [&](eecs::EntityId eid, const vec3f& position, const Model& model)
             {
-              DrawCube(castRLVec3(tilePos), 1.f, 0.05f, 1.f, Color{255, 255, 0, 150});
-              if (IsMouseButtonDown(0))
-              {
-                delete_floor(ecs, tilePos.x, tilePos.z);
-                create_floor(ecs, tilePos.x, tilePos.z, camRot, st.prefab.c_str());
-              }
-              if (IsMouseButtonReleased(1))
-                delete_floor(ecs, tilePos.x, tilePos.z);
-            }
-            if (st.type == E_ENTITIES)
+                Matrix matRotation = MatrixRotate(Vector3{0.f, 1.f, 0.f}, eecs::get_comp_or(reg, eid, COMPID(float, rotation), 0.f)*DEG2RAD);
+                Matrix matTranslation = MatrixTranslate(position.x, position.y, position.z);
+
+                Matrix matTransform = MatrixMultiply(matRotation, matTranslation);
+                RayCollision coll = GetRayCollisionMesh(r, model.meshes[0], matTransform);
+                if (!coll.hit)
+                    return;
+                if (coll.distance < bestT)
+                {
+                    bestT = coll.distance;
+                    bestEntity = eid;
+                }
+            }, COMPID(const vec3f, position), COMPID(const Model, model));
+            eecs::query_entities(reg, [&](eecs::EntityId eid, const vec3f& position, float rotation, const vec3f& dbox_offset, const vec3f& dbox_size)
             {
-              DrawCube(castRLVec3(tilePos), 1.f, 0.05f, 1.f, Color{255, 255, 0, 150});
-              if (IsMouseButtonReleased(0))
-                create_entity(ecs, tilePos.x, tilePos.z, camRot, st.prefab.c_str());
-            }
-            if (st.type == E_LOGIC)
+                Matrix matRotation = MatrixRotate(Vector3{0.f, 1.f, 0.f}, rotation*DEG2RAD);
+                Matrix matTranslation = MatrixTranslate(position.x, position.y, position.z);
+
+                Matrix matTransform = MatrixMultiply(matRotation, matTranslation);
+                Matrix invTransform = MatrixInvert(matTransform);
+                Ray localRay{r.position * invTransform, Vector3Rotate(r.direction, invTransform)};
+
+                BoundingBox bbox;
+                bbox.min = toRLVec3(dbox_offset - dbox_size * 0.5f);
+                bbox.max = toRLVec3(dbox_offset + dbox_size * 0.5f);
+                RayCollision coll = GetRayCollisionBox(localRay, bbox);
+                if (!coll.hit)
+                    return;
+                if (coll.distance < bestT)
+                {
+                    bestT = coll.distance;
+                    bestEntity = eid;
+                }
+            }, COMPID(const vec3f, position), COMPID(const float, rotation), COMPID(const vec3f, dbox_offset), COMPID(const vec3f, dbox_size));
+            auto trigQ = ecs.query<const Position, const TriggerVolume>();
+            trigQ.each([&](flecs::entity e, const Position& pos, const TriggerVolume& vol)
             {
-              DrawCube(castRLVec3(tilePos), 1.f, 0.05f, 1.f, Color{255, 255, 0, 150});
-              if (IsMouseButtonReleased(0))
-                create_logic(ecs, tilePos.x, tilePos.z, camRot, st.prefab.c_str());
-            }
-            if (st.type == E_COLUMNS)
+                BoundingBox box = {Vector3{pos.x - vol.sz.x * 0.5f, pos.y - 0.1f, pos.z - vol.sz.y * 0.5f}, Vector3{pos.x + vol.sz.x * 0.5f, pos.y + 0.1f, pos.z + vol.sz.y * 0.5f}};
+                RayCollision coll = GetRayCollisionBox(r, box);
+                if (!coll.hit)
+                    return;
+                if (coll.distance < bestT)
+                {
+                    bestT = coll.distance;
+                    bestEntity = e;
+                }
+            });
+            if (bestEntity != eecs::invalid_eid)
             {
-              vec3f tpos = tilePos + vec3f(sign(insideTilePos.x) * 0.5f, 0.5f, sign(insideTilePos.z) * 0.5f);
-              DrawCube(castRLVec3(tpos), 0.13f, 1.f, 0.13f, Color{255, 255, 0, 150});
-              int cx = tilePos.x + (insideTilePos.x > 0 ? 1 : 0);
-              int cy = tilePos.z + (insideTilePos.z > 0 ? 1 : 0);
-              if (IsMouseButtonReleased(0))
-              {
-                delete_column(ecs, cx, cy);
-                create_column(ecs, cx, cy, st.prefab.c_str());
-              }
-              if (IsMouseButtonReleased(1))
-                delete_column(ecs, cx, cy);
+                eecs::EntityWrap best = eecs::wrap_entity(reg, bestEntity);
+                best.query_comps([&](const Model& model, const vec3f& position)
+                {
+                    const float rot = eecs::get_comp_or(reg, bestEntity, COMPID(float, rotation), 0.f);
+                    BoundingBox bbox = GetModelBoundingBox(model);
+                    expand_box(bbox, 0.02f);
+                    draw_cube_matrix(bbox, position, rot, Color{255, 255, 0, 100});
+                }, COMPID(const Model, model), COMPID(const vec3f, position));
+                best.query_comps([&](const vec3f& position, float rotation, const vec3f& dbox_offset, const vec3f& dbox_size, const vec3f& dbox_color)
+                {
+                    BoundingBox bbox;
+                    expand_box(bbox, 0.02f);
+                    bbox.min = toRLVec3(dbox_offset - dbox_size * 0.5f);
+                    bbox.max = toRLVec3(dbox_offset + dbox_size * 0.5f);
+                    draw_cube_matrix(bbox, position, rotation, Color{uint8_t(dbox_color.x * 255), uint8_t(dbox_color.y * 255), uint8_t(dbox_color.z * 255), 100});
+                }, COMPID(const vec3f, position), COMPID(const float, rotation), COMPID(const vec3f, dbox_offset), COMPID(const vec3f, dbox_size), COMPID(const vec3f, dbox_color));
+                best.query_comps([&](const vec3f& position, const vec2i& trigger_volume)
+                {
+                    DrawCube(toRLVec3(position), trigger_volume.x + 0.02f, 0.2f + 0.02f, trigger_volume.y + 0.02f, Color{255, 255, 0, 150});
+                }, COMPID(const vec3f, position), COMPID(const vec2i, trigger_volume));
+                if (IsMouseButtonReleased(0) && !best.has(COMPID(Tag, Door)) && !best.has(COMPID(Tag, Wall)))
+                    selectedEntity = bestEntity;
+                if (IsMouseButtonReleased(1))
+                    eecs::del_entity(reg, bestEntity);
             }
-          }
-          if (ceilingT > 0.f && ceilingT < 10.f)
-          {
-            const vec3f intersection = rp + rd * ceilingT;
-            int wx = floorf(intersection.x + 0.5f);
-            int wy = floorf(intersection.z + 0.5f);
-            vec3f tilePos = vec3f(floorf(intersection.x + 0.5f), 1.f, floorf(intersection.z + 0.5f));
-            if (st.type == E_CEILINGS)
+        }, COMPID(eecs::EntityId, selectedEntity), COMPID(const std::string, selectedPrefab));
+        eecs::query_entities(reg, [&](eecs::EntityId eid, EntTypeList selectedType, const std::string& selectedPrefab)
+        {
+            if (selectedPrefab.empty())
+                return;
+            const float floorT = -rp.y / rd.y;
+            const float ceilingT = (1.f - rp.y) / rd.y;
+            if (floorT > 0.f && floorT < 10.f)
             {
-              DrawCube(castRLVec3(tilePos), 1.f, 0.05f, 1.f, Color{255, 255, 0, 150});
-              if (IsMouseButtonDown(0))
-              {
-                delete_ceiling(ecs, tilePos.x, tilePos.z);
-                create_ceiling(ecs, tilePos.x, tilePos.z, camRot, st.prefab.c_str());
-              }
-              if (IsMouseButtonReleased(1))
-                delete_ceiling(ecs, tilePos.x, tilePos.z);
+                const vec3f intersection = rp + rd * floorT;
+                int wx = floorf(intersection.x + 0.5f);
+                int wy = floorf(intersection.z + 0.5f);
+                vec3f tilePos = vec3f(floorf(intersection.x + 0.5f), 0.f, floorf(intersection.z + 0.5f));
+                const vec3f insideTilePos = intersection - tilePos;
+                constexpr float threshold = 0.3f;
+                static int dirAtPress = -1;
+                if ((selectedType == E_WALLS || selectedType == E_DOORS) && (fabsf(insideTilePos.x) > threshold || fabsf(insideTilePos.z) > threshold))
+                {
+                    int dir = fabsf(insideTilePos.x) > threshold ? 1 : 0;
+                    if (dir == 1)
+                    {
+                        DrawCube(castRLVec3(tilePos + vec3f(sign(insideTilePos.x) * 0.5f, 0.5f, 0)), 0.065f, 1.f, 1.f, Color{255, 255, 0, 150});
+                        if (insideTilePos.x > 0.f)
+                            wx++;
+                    }
+                    else
+                    {
+                        DrawCube(castRLVec3(tilePos + vec3f(0, 0.5f, sign(insideTilePos.z) * 0.5f)), 1.f, 1.f, 0.065f, Color{255, 255, 0, 150});
+                        if (insideTilePos.z > 0.f)
+                            wy++;
+                    }
+                    if (IsMouseButtonPressed(0))
+                    {
+                        dirAtPress = dir;
+                    }
+                    if (IsMouseButtonReleased(0))
+                    {
+                        delete_wall(ecs, wx, wy, dir);
+                        delete_door(ecs, wx, wy, dir);
+                        if (selectedType == E_WALLS)
+                        {
+                            vec2f hzDir = vec2f(sinf(dir * PI / 2), cosf(dir * PI / 2));
+                            vec2f pos2d = vec2f(wx - (dir ? 0.5f : 0.f), wy - (dir ? 0.f : 0.5f));
+                            vec2f cam2dDir = pos2d - vec2f(camera.position.x, camera.position.z);
+                            create_wall(ecs, wx, wy, dir, hzDir.dot(cam2dDir) < 0, selectedPrefab.c_str());
+                        }
+                        else if (selectedType == E_DOORS)
+                            create_door(ecs, wx, wy, dir, selectedPrefab.c_str());
+                    }
+                    if (IsMouseButtonReleased(1))
+                    {
+                        delete_wall(ecs, wx, wy, dir);
+                        delete_door(ecs, wx, wy, dir);
+                    }
+                }
+                if (selectedType == E_FLOORS)
+                {
+                    DrawCube(castRLVec3(tilePos), 1.f, 0.05f, 1.f, Color{255, 255, 0, 150});
+                    if (IsMouseButtonDown(0))
+                    {
+                        delete_floor(ecs, tilePos.x, tilePos.z);
+                        create_floor(ecs, tilePos.x, tilePos.z, camRot, selectedPrefab.c_str());
+                    }
+                    if (IsMouseButtonReleased(1))
+                        delete_floor(ecs, tilePos.x, tilePos.z);
+                }
+                if (selectedType == E_ENTITIES)
+                {
+                    DrawCube(castRLVec3(tilePos), 1.f, 0.05f, 1.f, Color{255, 255, 0, 150});
+                    if (IsMouseButtonReleased(0))
+                        create_entity(ecs, tilePos.x, tilePos.z, camRot, selectedPrefab.c_str());
+                }
+                if (selectedType == E_LOGIC)
+                {
+                    DrawCube(castRLVec3(tilePos), 1.f, 0.05f, 1.f, Color{255, 255, 0, 150});
+                    if (IsMouseButtonReleased(0))
+                        create_logic(ecs, tilePos.x, tilePos.z, camRot, selectedPrefab.c_str());
+                }
+                if (selectedType == E_COLUMNS)
+                {
+                    vec3f tpos = tilePos + vec3f(sign(insideTilePos.x) * 0.5f, 0.5f, sign(insideTilePos.z) * 0.5f);
+                    DrawCube(castRLVec3(tpos), 0.13f, 1.f, 0.13f, Color{255, 255, 0, 150});
+                    int cx = tilePos.x + (insideTilePos.x > 0 ? 1 : 0);
+                    int cy = tilePos.z + (insideTilePos.z > 0 ? 1 : 0);
+                    if (IsMouseButtonReleased(0))
+                    {
+                        delete_column(ecs, cx, cy);
+                        create_column(ecs, cx, cy, selectedPrefab.c_str());
+                    }
+                    if (IsMouseButtonReleased(1))
+                        delete_column(ecs, cx, cy);
+                }
             }
-          }
-        });
-      }, COMPID(const Camera, camera));
+            if (ceilingT > 0.f && ceilingT < 10.f)
+            {
+                const vec3f intersection = rp + rd * ceilingT;
+                int wx = floorf(intersection.x + 0.5f);
+                int wy = floorf(intersection.z + 0.5f);
+                vec3f tilePos = vec3f(floorf(intersection.x + 0.5f), 1.f, floorf(intersection.z + 0.5f));
+                if (selectedType == E_CEILINGS)
+                {
+                    DrawCube(castRLVec3(tilePos), 1.f, 0.05f, 1.f, Color{255, 255, 0, 150});
+                    if (IsMouseButtonDown(0))
+                    {
+                        delete_ceiling(ecs, tilePos.x, tilePos.z);
+                        create_ceiling(ecs, tilePos.x, tilePos.z, camRot, selectedPrefab.c_str());
+                    }
+                    if (IsMouseButtonReleased(1))
+                        delete_ceiling(ecs, tilePos.x, tilePos.z);
+                }
+            }
+        }, COMPID(const EntTypeList, selectedType), COMPID(const std::string, selectedPrefab));
+    }, COMPID(const Camera, camera));
     eecs::reg_system(reg, [&](eecs::EntityId eid, const Camera& camera)
       {
         ecs.query<const Position, const Rotation, const DebugBox>()
@@ -514,8 +512,10 @@ void register_editor(eecs::Registry& reg, flecs::world& ecs)
         });
       }, COMPID(const Camera, camera));
 
-    ecs.entity()
-      .set(SelectedType{E_FLOORS, ""});
+    eecs::create_entity_wrap(reg)
+        .set(COMPID(EntTypeList, selectedType), E_FLOORS)
+        .set(COMPID(std::string, selectedPrefab), std::string())
+        .set(COMPID(eecs::EntityId, selectedEntity), eecs::invalid_eid);
 }
 
 
