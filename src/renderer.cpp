@@ -82,33 +82,30 @@ struct renderer
   }
 };
 
-void register_renderer(flecs::world& ecs)
+void register_renderer(eecs::Registry& reg, flecs::world& ecs)
 {
     ecs.import<renderer>();
     // Move to render actually!
-    ecs.system<const Camera>()
-    .each([&](const Camera& cam)
+    eecs::reg_system(reg, [&](eecs::EntityId, const Camera& camera)
     {
-        float cameraPos[3] = { cam.position.x, cam.position.y, cam.position.z };
+        float cameraPos[3] = { camera.position.x, camera.position.y, camera.position.z };
         SetShaderValue(lightingShader, lightingShader.locs[SHADER_LOC_VECTOR_VIEW], cameraPos, SHADER_UNIFORM_VEC3);
 
         lightsCount = 0;
-        auto lightQ = ecs.query<const LightStrength, const Position>();
         int nl = 0;
-        lightQ.each([&](const LightStrength& light, const Position& lpos)
+        eecs::query_entities(reg, [&](eecs::EntityId, float light_strength, const vec3f& position)
         {
             if (nl >= MAX_LIGHTS)
                 return;
-            lights[nl] = CreateLight(LIGHT_POINT, toRLVec3(lpos), Vector3Zero(), Vector4{1.f, 1.f, 1.f, light.val}, lightingShader);
+            lights[nl] = CreateLight(LIGHT_POINT, toRLVec3(position), Vector3Zero(), Vector4{1.f, 1.f, 1.f, light_strength}, lightingShader);
             nl++;
-        });
-        ecs.query<const Model, const Position, const Rotation*>()
-        .each([&](const Model& model, const Position& position, const Rotation* rot)
+        }, COMPID(const float, light_strength), COMPID(const vec3f, position));
+        eecs::query_entities(reg, [&](eecs::EntityId eid, Model& model, const vec3f& position)
         {
             model.materials[0].shader = lightingShader;
-            DrawModelEx(model, toRLVec3(position), Vector3{0.f, 1.f, 0.f}, rot ? rot->val : 0.f, Vector3{1.f, 1.f, 1.f}, WHITE);
-        });
-    });
+            DrawModelEx(model, toRLVec3(position), Vector3{0.f, 1.f, 0.f}, eecs::get_comp_or(reg, eid, COMPID(float, rotation), 0.f), Vector3{1.f, 1.f, 1.f}, WHITE);
+        }, COMPID(Model, model), COMPID(const vec3f, position));
+    }, COMPID(const Camera, camera));
 }
 
 void pre_draw_call(eecs::Registry& reg, flecs::world& ecs)

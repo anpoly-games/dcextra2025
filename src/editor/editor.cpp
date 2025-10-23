@@ -31,7 +31,7 @@ void register_systems(eecs::Registry& reg, flecs::world& ecs)
   register_primitives(ecs);
   register_player(reg, ecs);
   register_audio(ecs);
-  register_renderer(ecs);
+  register_renderer(reg, ecs);
   register_cam(reg, ecs);
   register_level(ecs);
   register_editor(reg, ecs);
