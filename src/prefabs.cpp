@@ -1,0 +1,65 @@
+#include <flecs.h>
+#include <eecs.h>
+#include <edat.h>
+#include <parsers.h>
+#include "prefabs.h"
+#include "tags.h"
+#include "math.h"
+
+namespace fs = std::filesystem;
+
+std::vector<eecs::EntityId> load_prefabs_from_file(eecs::Registry& reg, const std::string_view& filename)
+{
+    std::vector<eecs::EntityId> res;
+    edat::ParserSuite psuite;
+    psuite.addLambdaParser<int>("int", [](const std::string_view& str) -> int { return std::stoi(std::string(str)); });
+    psuite.addLambdaParser<float>("float", [](const std::string_view& str) -> float { return std::stof(std::string(str)); });
+    psuite.addLambdaParser<std::string>("str", [](const std::string_view& str) -> std::string { return std::string(str); });
+    psuite.addLambdaParser<Tag>("Tag", [](const std::string_view& str) -> Tag { return Tag(); });
+    psuite.addLambdaParser<bool>("bool", [](const std::string_view& str) -> bool { return str == "true"; });
+    psuite.addLambdaParser<eecs::EntityId>("eid", [&](const std::string_view& str) -> eecs::EntityId
+    {
+        return eecs::find_entity(reg, std::string(str).c_str());
+    });
+
+    fs::path enemies = filename;
+    fs::path fullPath = fs::current_path() / enemies;
+    edat::Table prefabsTable = edat::parseFile(fullPath, psuite);
+
+    prefabsTable.getAll<edat::Table>([&](const std::string& name, const edat::Table& tbl)
+    {
+        eecs::EntityWrap prefab = eecs::create_prefab_wrap(reg, name.c_str());
+        tbl.getAll<float>([&](const std::string& compName, float val)
+        {
+            prefab.set(eecs::comp_id<float>(compName.c_str()), val);
+        });
+        tbl.getAll<int>([&](const std::string& compName, int val)
+        {
+            prefab.set(eecs::comp_id<int>(compName.c_str()), val);
+        });
+        tbl.getAll<bool>([&](const std::string& compName, bool val)
+        {
+            prefab.set(eecs::comp_id<bool>(compName.c_str()), val);
+        });
+        tbl.getAll<std::vector<float>>([&](const std::string& compName, const std::vector<float>& val)
+        {
+            if (val.size() == 2) // Vector2
+                prefab.set(eecs::comp_id<vec2f>(compName.c_str()), vec2f{val[0], val[1]});
+            else if (val.size() == 3) // Vector3
+                prefab.set(eecs::comp_id<vec3f>(compName.c_str()), vec3f{val[0], val[1], val[2]});
+            else if (val.size() == 4) // Vector4
+                prefab.set(eecs::comp_id<vec4f>(compName.c_str()), vec4f{val[0], val[1], val[2], val[3]});
+        });
+        tbl.getAll<Tag>([&](const std::string& compName, Tag)
+        {
+            prefab.tag(eecs::comp_id<Tag>(compName.c_str()));
+        });
+        tbl.getAll<eecs::EntityId>([&](const std::string& compName, eecs::EntityId val)
+        {
+            prefab.set(eecs::comp_id<eecs::EntityId>(compName.c_str()), val);
+        });
+        res.push_back(prefab.eid);
+    });
+    return res;
+}
+

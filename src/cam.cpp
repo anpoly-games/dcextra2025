@@ -1,0 +1,105 @@
+#include <raylib.h>
+#include <raymath.h>
+#include <rlgl.h>
+#include <flecs.h>
+#include <eecs.h>
+#include <edat.h>
+#include <parsers.h>
+#include <float.h>
+
+#include "cam.h"
+#include "movement.h"
+#include "tags.h"
+#include "renderer.h"
+#include "prefabs.h"
+
+void register_cam(eecs::Registry& reg, flecs::world& ecs)
+{
+    eecs::reg_system(reg, [&](eecs::EntityId eid, vec3f& position, vec3f& direction, const Camera&)
+    {
+        eecs::query_entities(reg, [&](eecs::EntityId, const vec3f& ppos, const vec3f& pdir, Tag player)
+        {
+            position = move_to_vec<vec3f>(position, ppos + vec3f{0.f, 0.4f, 0.f}, GetFrameTime(), eecs::get_comp_or(reg, eid, COMPID(float, cam_moveSpeed), FLT_MAX));
+            float curAngle = atan2f(direction.x, direction.z);
+            const float targAngle = atan2f(pdir.x, pdir.z);
+            if (fabsf(targAngle - curAngle) > PI)
+                curAngle += sign(targAngle - curAngle) * PI * 2.f;
+            curAngle = move_to(curAngle, targAngle, ecs.delta_time(), eecs::get_comp_or(reg, eid, COMPID(float, cam_rotSpeed), FLT_MAX));
+            direction = vec3f{sinf(curAngle), 0.f, cosf(curAngle)};
+        }, COMPID(const vec3f, position), COMPID(const vec3f, direction), COMPID(const Tag, player));
+    }, COMPID(vec3f, position), COMPID(vec3f, direction), COMPID(const Camera, camera));
+
+
+    eecs::reg_system(reg, [&](eecs::EntityId eid, Camera& camera, const vec3f& position, const vec3f& direction, float cam_backOffset)
+    {
+        camera.position = toRLVec3(position - direction * cam_backOffset);
+        camera.target = toRLVec3(position + direction);
+        camera.up = Vector3{0.f, 1.f, 0.f};
+    }, COMPID(Camera, camera), COMPID(const vec3f, position), COMPID(const vec3f, direction), COMPID(const float, cam_backOffset));
+    eecs::reg_system(reg, [&](eecs::EntityId eid, Camera& camera, float cam_wideAngle, float cam_normalAngle)
+    {
+        if (IsKeyPressed(KEY_C))
+        {
+            if (camera.fovy == cam_normalAngle)
+                camera.fovy = cam_wideAngle;
+            else
+                camera.fovy = cam_normalAngle;
+        }
+    }, COMPID(Camera, camera), COMPID(const float, cam_wideAngle), COMPID(const float, cam_normalAngle));
+
+    load_prefabs_from_file(reg, "res/prefabs/cam.edat");
+}
+
+void update_cam(eecs::Registry& reg)
+{
+    eecs::query_entities(reg, [&](eecs::EntityId eid, const Camera& camera)
+    {
+        BeginMode3D(camera);
+    }, COMPID(const Camera, camera));
+}
+
+Vector3 GetWorldToScreen3dEx(Vector3 position, Camera camera)
+{
+    int width = GetScreenWidth();
+    int height = GetScreenHeight();
+    // Calculate projection matrix (from perspective instead of frustum
+    Matrix matProj = MatrixIdentity();
+
+    if (camera.projection == CAMERA_PERSPECTIVE)
+    {
+        // Calculate projection matrix from perspective
+        matProj = MatrixPerspective(camera.fovy*DEG2RAD, ((double)width/(double)height), rlGetCullDistanceNear(), rlGetCullDistanceFar());
+    }
+    else if (camera.projection == CAMERA_ORTHOGRAPHIC)
+    {
+        double aspect = (double)width/(double)height;
+        double top = camera.fovy/2.0;
+        double right = top*aspect;
+
+        // Calculate projection matrix from orthographic
+        matProj = MatrixOrtho(-right, right, -top, top, rlGetCullDistanceNear(), rlGetCullDistanceFar());
+    }
+
+    // Calculate view matrix from camera look at (and transpose it)
+    Matrix matView = MatrixLookAt(camera.position, camera.target, camera.up);
+
+    // TODO: Why not use Vector3Transform(Vector3 v, Matrix mat)?
+
+    // Convert world position vector to quaternion
+    Quaternion worldPos = { position.x, position.y, position.z, 1.0f };
+
+    // Transform world position to view
+    worldPos = QuaternionTransform(worldPos, matView);
+
+    // Transform result to projection (clip space position)
+    worldPos = QuaternionTransform(worldPos, matProj);
+
+    // Calculate normalized device coordinates (inverted y)
+    Vector3 ndcPos = { worldPos.x/worldPos.w, -worldPos.y/worldPos.w, worldPos.z/worldPos.w };
+
+    // Calculate 2d screen position vector
+    Vector2 screenPosition = { (ndcPos.x + 1.0f)/2.0f*(float)width, (ndcPos.y + 1.0f)/2.0f*(float)height };
+
+    return Vector3{screenPosition.x, screenPosition.y, worldPos.w};
+}
+

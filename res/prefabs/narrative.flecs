@@ -1,0 +1,214 @@
+using textures
+using level
+using battles
+using audio
+
+audio {
+  L1SVO {
+    SoundFile: {filename: "res/audio/vo/l1st2.ogg"}
+  }
+  L1EVO {
+    SoundFile: {filename: "res/audio/vo/l1e.ogg"}
+  }
+  L2SVO {
+    SoundFile: {filename: "res/audio/vo/l2s.ogg"}
+  }
+  L2EVO {
+    SoundFile: {filename: "res/audio/vo/l2e.ogg"}
+  }
+  L3SVO {
+    SoundFile: {filename: "res/audio/vo/l3s.ogg"}
+  }
+  L3EVO {
+    SoundFile: {filename: "res/audio/vo/l3e.ogg"}
+  }
+  TEEVO {
+    SoundFile: {filename: "res/audio/vo/theend.ogg"}
+  }
+}
+
+narrative {
+  prefab StartGame {
+    BlockingDialog
+    (DialogSound, audio.L1SVO)
+    Intro0 {
+      TextureFile: {filename: "res/textures/sprites/Player_Portrait.png"}
+      SpriteFps: {2.0}
+      SpriteFrame: {0}
+      SpriteCurTime: {0.0}
+      IconStatic: {val: {2.0, 10.0}}
+      NarrativeLine: {text: "You've been scanning this system for days, chasing whispers of salvage. Then, finally, a faint distress signal. It's weak, almost gone. You throw everything into triangulating it... just before it vanishes."}
+    }
+    Intro1 {
+      NarrativeLine: {text: "The signature is strange. Alien. Non-humanoid. If that's true, it could be the score of a lifetime."}
+    }
+    Intro2 {
+      NarrativeLine: {text: "You burn hard toward the coordinates, using the last of your high-density fuel. Days pass. Tension builds. Then - contact. Orbiting a gas giant, you find it: a derelict ship, bleeding heat and static."}
+    }
+    Intro3 {
+      NarrativeLine: {text: "Non-humanoid. Alone. Vulnerable."}
+    }
+    Intro4 {
+      NarrativeLine: {text: "Its orbit is decaying fast. You won't get a second chance."}
+    }
+    Intro5 {
+      NarrativeLine: {text: "You latch onto the forward armored hull and force your way in."}
+    }
+    Intro6 {
+      NarrativeLine: {text: "Inside, the silence is almost too perfect. No movement. No resistance."}
+    }
+    Intro7 {
+      NarrativeLine: {text: "Easy looting... maybe."}
+    }
+    Intro8 {
+      NarrativeLine: {text: "But you've only got 45 minutes before this ship burns up in the atmosphere. Time to move."}
+    }
+  }
+  prefab MeetChicken {
+    BlockingDialog
+    (DialogSound, L1EVO)
+    Meet0 {
+      TextureFile: {filename: "res/textures/sprites/Chicken_bawk.png"}
+      SpriteFps: {6.0}
+      SpriteFrame: {0}
+      SpriteCurTime: {0.0}
+      IconStatic: {val: {2.0, 50.0}}
+      NarrativeLine: {text: "SGV5IHlvdSwgZ2V0IGhlcmUgZmFzdA=="}
+    }
+    Meet1 {
+      NarrativeLine: {text: "Shit, I have to use a transcoder and talk to you the primitive way - your primate brain can't handle our advanced language..."}
+    }
+    Meet2 {
+      NarrativeLine: {text: "Here's the deal. The orbit's deteriorating, as you already know. I happen to know where you can score some fancy weapons - and trust me, you're gonna need them if you want to make it out of this ship alive."}
+    }
+    Meet3 {
+      NarrativeLine: {text: "Follow my instructions, and you might survive. There's no turning back. The only way out is through."}
+    }
+    Meet4 {
+      NarrativeLine: {text: "Now go - I've unlocked this door for you."}
+    }
+  }
+  prefab SecondStart {
+    BlockingDialog
+    (DialogSound, L2SVO)
+    Dia0 {
+      TextureFile: {filename: "res/textures/sprites/Chicken_bawk.png"}
+      SpriteFps: {6.0}
+      SpriteFrame: {0}
+      SpriteCurTime: {0.0}
+      IconStatic: {val: {2.0, 50.0}}
+      NarrativeLine: {text: "You might be wondering why this ship is deorbiting? Well, here's the catch - we were attacked by interstellar gray goo. Nasty swarm of nanobots that turn flesh into more of themselves. Self - replicating nightmares."}
+    }
+    Dia1 {
+      NarrativeLine: {text: "You'll run into them in this section of the ship. Count on it."}
+    }
+    Dia2 {
+      NarrativeLine: {text: "No time to waste - slap that weapon attachment you found onto your gear and make it count!"}
+    }
+  }
+  prefab SecondExit {
+    BlockingDialog
+    (DialogSound, L2EVO)
+    Dia0 {
+      TextureFile: {filename: "res/textures/sprites/Chicken_bawk.png"}
+      SpriteFps: {6.0}
+      SpriteFrame: {0}
+      SpriteCurTime: {0.0}
+      IconStatic: {val: {2.0, 50.0}}
+      NarrativeLine: {text: "I might've underestimated your abilities. Good for you."}
+    }
+    Dia1 {
+      NarrativeLine: {text: "I've unlocked the airlock to the next section. Go on - don't slow down now."}
+    }
+  }
+  prefab ThirdStart {
+    BlockingDialog
+    (DialogSound, L3SVO)
+    Dia0 {
+      TextureFile: {filename: "res/textures/sprites/Chicken_bawk.png"}
+      SpriteFps: {6.0}
+      SpriteFrame: {0}
+      SpriteCurTime: {0.0}
+      IconStatic: {val: {2.0, 50.0}}
+      NarrativeLine: {text: "This section used to be an engineering bay - now it's just twisted metal and wreckage. Heavily damaged. Charged particles from the reactor are still active here, so try not to fry that soft body of yours."}
+    }
+    Dia1 {
+      NarrativeLine: {text: "I've heard you primates love mazes, so hey... you might actually enjoy this part."}
+    }
+    Dia2 {
+      NarrativeLine: {text: "You're getting close to me. Keep going, and you'll be rewarded."}
+    }
+  }
+  prefab ThirdExit {
+    BlockingDialog
+    (DialogSound, L3EVO)
+    Dia0 {
+      TextureFile: {filename: "res/textures/sprites/Chicken_Transform.png"}
+      SpriteFps: {6.0}
+      SpriteFrame: {0}
+      SpriteCurTime: {0.0}
+      IconStatic: {val: {2.0, 10.0}}
+      NarrativeLine: {text: "Thanks for bringing those weapons - now I'm complete! Hahaha! I can finally continue my quest and wipe out more of that gray goo myself!"}
+    }
+    Dia1 {
+      NarrativeLine: {text: "You can keep whatever fancy crystals you've picked up - I've got no use for them."}
+    }
+    Dia2 {
+      NarrativeLine: {text: "So long, meat sack!"}
+    }
+  }
+  prefab TheEnd {
+    BlockingDialog
+    (DialogSound, TEEVO)
+    Dia0 {
+      TextureFile: {filename: "res/textures/sprites/Player_Portrait.png"}
+      SpriteFps: {2.0}
+      SpriteFrame: {0}
+      SpriteCurTime: {0.0}
+      IconStatic: {val: {2.0, 10.0}}
+      NarrativeLine: {text: "You're caught off guard for a moment - but time is ticking."}
+    }
+    Dia1 {
+      NarrativeLine: {text: "You quickly gather your possessions and head for the nearest airlock. A spacewalk would be too slow, so you take the risk: leap off the hull and put your trust in those unreliable thrusters."}
+    }
+    Dia2 {
+      NarrativeLine: {text: "As you pass the final section of the ship, your eyes lock onto your tiny vessel, still clamped to the hull. You guide your thrusters toward it, barely managing a controlled landing."}
+    }
+    Dia3 {
+      NarrativeLine: {text: "You throw yourself into the cabin, fire up the engines, and disengage the maglock."}
+    }
+    Dia4 {
+      NarrativeLine: {text: "As you pull away from the derelict and begin the long battle against the gas giant's gravity, reality sets in - you're nearly out of high-density fuel. It'll be months before you reach anywhere remotely safe."}
+    }
+    Dia5 {
+      NarrativeLine: {text: "Still... it looks like it was worth it."}
+    }
+    OperateOnRemove
+    TheEndScene
+  }
+  prefab FoundGun {
+    BlockingDialog
+    Gun0 {
+      TextureFile: {filename: "res/textures/sprites/Weapons/bullet_generator.png"}
+      SpriteFrame: {0}
+      NarrativeLine: {text: "You have found a strange device, which instantly attached itself to your gun"}
+    }
+  }
+  prefab FoundSniper {
+    BlockingDialog
+    Gun0 {
+      TextureFile: {filename: "res/textures/sprites/Weapons/sniper_generator.png"}
+      SpriteFrame: {0}
+      NarrativeLine: {text: "You have found another strange device, which looks like some kind of sniper rifle attachment."}
+    }
+  }
+  prefab FoundGrenade {
+    BlockingDialog
+    Gun0 {
+      TextureFile: {filename: "res/textures/sprites/Weapons/ExplosiveBox.png"}
+      SpriteFrame: {0}
+      NarrativeLine: {text: "You have found another strange device, which looks like some kind of explosive launcher."}
+    }
+  }
+}
+

@@ -1,0 +1,465 @@
+using primitives
+using textures
+using math
+using level
+using renderer
+using battles
+using audio
+
+level {
+  RedKeyCard {} // tag
+  RotTeleOp {} // tag
+  RotTeleOp2 {} // tag
+  CageOpenOp {} // tag
+  CageOpenOp2 {} // tag
+  CageOpenOp3 {} // tag
+  GateOpenOp {} // tag
+}
+
+audio {
+  DoorSnd {
+    SoundFile: {filename: "res/audio/sfx/door.ogg"}
+  }
+  ClickSnd {
+    SoundFile: {filename: "res/audio/sfx/click.ogg"}
+  }
+  TeleportSnd {
+    SoundFile: {filename: "res/audio/sfx/teleport.ogg"}
+  }
+  AccessDenied {
+    SoundFile: {filename: "res/audio/sfx/denied.ogg"}
+  }
+  Pickup {
+    SoundFile: {filename: "res/audio/sfx/pickup.ogg"}
+  }
+}
+
+walls {
+  prefab _WallText {
+    HoverText: {text: "Wall"}
+  }
+  prefab _WindowText {
+    HoverText: {text: "Window"}
+  }
+  prefab Gray : _WallText {
+    ModelFile: {filename: "res/meshes/Door.glb"}
+    TextureFile: {filename: "res/textures/tiles/Walls_gray.png"}
+  }
+  prefab Gray2 : _WallText {
+    ModelFile: {filename: "res/meshes/Door.glb"}
+    TextureFile: {filename: "res/textures/tiles/Walls_gray2.png"}
+  }
+  prefab GrayAquarium : _WindowText {
+    ModelFile: {filename: "res/meshes/Door.glb"}
+    TextureFile: {filename: "res/textures/tiles/Walls_gray_aquarium.png"}
+  }
+  prefab GrayAquariumFull : _WindowText {
+    ModelFile: {filename: "res/meshes/Door.glb"}
+    TextureFile: {filename: "res/textures/tiles/Walls_gray_aquarium_fullwall.png"}
+  }
+  prefab Cage {
+    HoverText: {text: "Cage"}
+    ModelFile: {filename: "res/meshes/Door.glb"}
+    TextureFile: {filename: "res/textures/tiles/cage.png"}
+  }
+  prefab WallBendIn : _WallText {
+    ModelFile: {filename: "res/meshes/WallBendIn.glb"}
+    TextureFile: {filename: "res/meshes/WallBendIn.png"}
+  }
+  prefab WallStorage : _WallText {
+    ModelFile: {filename: "res/meshes/WallStorage.glb"}
+    TextureFile: {filename: "res/meshes/WallStorage.png"}
+  }
+}
+floors {
+  prefab _FloorText {
+    HoverText: {text: "Floor"}
+  }
+  prefab _FloorMesh {
+    Cube: {sz: {1.0, 0.05, 1.0}}
+    Rotation: {0}
+  }
+  prefab MetalTwoPads : _FloorMesh, _FloorText {
+    TextureFile: {filename: "res/textures/tiles/Floor_metal_twopads.png"}
+  }
+  prefab MetalCross : _FloorMesh, _FloorText {
+    TextureFile: {filename: "res/textures/tiles/Floor_metal_cross.png"}
+  }
+  prefab Metal : _FloorMesh, _FloorText {
+    TextureFile: {filename: "res/textures/tiles/Floor_metal.png"}
+  }
+  prefab MetalTwoPads_trap : _FloorMesh, _FloorText {
+    TextureFile: {filename: "res/textures/tiles/Floor_metal_twopads_trap.png"}
+  }
+  prefab MetalTwoPads_Broken : _FloorMesh, _FloorText {
+    TextureFile: {filename: "res/textures/tiles/Floor_twopads_broken.png"}
+  }
+  prefab Metal_Broken : _FloorMesh, _FloorText {
+    TextureFile: {filename: "res/textures/tiles/Floor_tiled_broken.png"}
+  }
+}
+columns {
+  prefab _WallText {
+    HoverText: {text: "Wall"}
+  }
+  prefab _ColumnMesh : _WallText {
+    Cube: {sz: {0.125, 1.0, 0.125}}
+    Rotation: {0.0}
+  }
+  prefab BlackColumn : _ColumnMesh {
+    TextureFile: {filename: "res/textures/tiles/column_black.png"}
+  }
+  prefab GrayColumn : _ColumnMesh {
+    TextureFile: {filename: "res/textures/tiles/Column_Gray.png"}
+  }
+  prefab WallConnector : _WallText {
+    Rotation: {0.0}
+    ModelFile: {filename: "res/meshes/WallConnector.glb"}
+    TextureFile: {filename: "res/meshes/WallConnector.png"}
+  }
+}
+ceilings {
+  prefab _CeilingText {
+    HoverText: {text: "Ceiling"}
+  }
+  prefab _CeilingMesh : _CeilingText {
+    Cube: {sz: {1.0, 0.05, 1.0}}
+    Rotation: {0}
+  }
+  prefab GrayLamp : _CeilingMesh {
+    TextureFile: {filename: "res/textures/tiles/Celling_Gray_lamp.png"}
+  }
+  prefab GrayLampX : _CeilingMesh {
+    TextureFile: {filename: "res/textures/tiles/Celling_Gray_lampX.png"}
+  }
+  prefab GrayLampL : _CeilingMesh {
+    TextureFile: {filename: "res/textures/tiles/Celling_Gray_lampL.png"}
+  }
+  prefab Gray : _CeilingMesh {
+    TextureFile: {filename: "res/textures/tiles/Celling_Gray.png"}
+  }
+}
+doors {
+  prefab _DoorMesh {
+    Cube: {sz: {1.0, 1.0, 0.0625}}
+  }
+  prefab _OpeningDoor {
+    Clickable
+    Closed
+    OpenOffset: {val: {0.0, 0.75, 0.0}}
+    OpenTime: {1.0}
+    OpenProgress: {0.0}
+    WishOpenPosition: {0.0}
+    InitialPosition: {val: {0.0, 0.0, 0.0}}
+    (DoorSound, audio.DoorSnd)
+  }
+  prefab DoorGray : _OpeningDoor  {
+    ModelFile: {filename: "res/meshes/Door.glb"}
+    HoverText: {text: "Door"}
+    TextureFile: {filename: "res/textures/tiles/Door_gray.png"}
+  }
+  prefab DoorGrayRed : _OpeningDoor {
+    ModelFile: {filename: "res/meshes/Door.glb"}
+    HoverText: {text: "Red keycard door"}
+    (UnlockedBy, RedKeyCard)
+    Locked
+    TextureFile: {filename: "res/textures/tiles/Door_grayRED.png"}
+    (LockedSound, audio.AccessDenied)
+  }
+  prefab LevelStartDoor {
+    ModelFile: {filename: "res/meshes/Door.glb"}
+    HoverText: {text: "Gate"}
+    Closed
+    Locked
+    TextureFile: {filename: "res/textures/tiles/LevelStartDoor.png"}
+  }
+  prefab _Cage {
+    Closed
+    OpenOffset: {val: {0.0, 0.75, 0.0}}
+    OpenTime: {1.0}
+    OpenProgress: {0.0}
+    WishOpenPosition: {0.0}
+    InitialPosition: {val: {0.0, 0.0, 0.0}}
+    ModelFile: {filename: "res/meshes/Door.glb"}
+    HoverText: {text: "Cage"}
+    TextureFile: {filename: "res/textures/tiles/cage.png"}
+    Locked
+    (DoorSound, audio.DoorSnd)
+  }
+  prefab CageButtonOperated : _Cage {
+    Operational
+    OpenOnOp
+    (LinkedBy, CageOpenOp)
+  }
+
+  prefab CageButtonOperated2 : _Cage {
+    Operational
+    OpenOnOp
+    (LinkedBy, CageOpenOp2)
+  }
+  prefab CageButtonOperated3 : _Cage {
+    Operational
+    OpenOnOp
+    (LinkedBy, CageOpenOp3)
+  }
+  prefab LevelExitDoor {
+    Closed
+    OpenOffset: {val: {0.0, 0.75, 0.0}}
+    OpenTime: {1.0}
+    OpenProgress: {0.0}
+    WishOpenPosition: {0.0}
+    InitialPosition: {val: {0.0, 0.0, 0.0}}
+    ModelFile: {filename: "res/meshes/Door.glb"}
+    ModelFile: {filename: "res/meshes/Door.glb"}
+    HoverText: {text: "Gate"}
+    Locked
+    TextureFile: {filename: "res/textures/tiles/LevelStartDoor.png"}
+    Operational
+    OpenOnOp
+    (LinkedBy, GateOpenOp)
+    (DoorSound, audio.DoorSnd)
+  }
+}
+
+enemies {
+  prefab _EnemyBillboard {
+    Billboard: {sz: {0.7, 0.7}}
+  }
+  prefab SnakeBlob : _EnemyBillboard {
+    TextureFile: {filename: "res/textures/sprites/SnakeBlob.png"}
+  }
+}
+
+pickups {
+}
+
+clickables {
+}
+
+entities {
+  prefab Console {
+    HoverText: {text: "Console"}
+    ModelFile: {filename: "res/meshes/Console.glb"}
+    TextureFile: {filename: "res/meshes/console.png"}
+    RelativePos: {val: {0.0, 0.2, -0.4375}}
+  }
+  prefab Bench {
+    HoverText: {text: "Bench"}
+    ModelFile: {filename: "res/meshes/Bench.glb"}
+    TextureFile: {filename: "res/meshes/Bench.png"}
+    RelativePos: {val: {0.0, 0.09, -0.2775}}
+  }
+  prefab Chair {
+    HoverText: {text: "Chair"}
+    ModelFile: {filename: "res/meshes/Chair.glb"}
+    TextureFile: {filename: "res/meshes/Bench.png"}
+    RelativePos: {val: {0.0, 0.09, -0.2775}}
+  }
+  prefab KeyRed {
+    HoverText: {text: "Red keycard"}
+    Clickable
+    Pickable
+    RedKeyCard
+    ModelFile: {filename: "res/meshes/KeyCard.glb"}
+    TextureFile: {filename: "res/meshes/KeyCard_red.png"}
+    RelativePos: {val: {0.0, 0.09, -0.2775}}
+    (ClickSound, audio.Pickup)
+  }
+  prefab Treasure {
+    HoverText: {text: "Treasure"}
+    Clickable
+    Pickable
+    TreasureItem
+    ModelFile: {filename: "res/meshes/treasure.glb"}
+    TextureFile: {filename: "res/meshes/treasure.png"}
+    RelativePos: {val: {0.0, 0.09, -0.2775}}
+    (ClickSound, audio.Pickup)
+  }
+  prefab Crystal {
+    HoverText: {text: "Treasure"}
+    Clickable
+    Pickable
+    TreasureItem
+    ModelFile: {filename: "res/meshes/crystals_test.glb"}
+    TextureFile: {filename: "res/meshes/treasure.png"}
+    RelativePos: {val: {0.0, 0.09, -0.2775}}
+    (ClickSound, audio.Pickup)
+  }
+
+  prefab _Teleporter {
+    HoverText: {text: "Teleporter"}
+    ModelFile: {filename: "res/meshes/teleporter.glb"}
+    TextureFile: {filename: "res/meshes/Teleporter.png"}
+    RelativePos: {val: {0.0, 0.03, 0.0}}
+    TeleportOffset: {val: {0.0, 0.0, 2.0}}
+    TriggerVolume: { sz: {1, 1}, debugName: "tele +2 fwd" }
+    (TriggerSound, TeleportSnd)
+  }
+
+  prefab TeleRot2FwdOperational : _Teleporter {
+    Operational
+    RotateOnOp: {90.0}
+    (LinkedBy, RotTeleOp)
+  }
+
+  prefab TeleRot2FwdOperational180 : _Teleporter {
+    Operational
+    RotateOnOp: {180.0}
+    (LinkedBy, RotTeleOp2)
+  }
+
+  prefab _Button {
+    HoverText: {text: "Button"}
+    Clickable
+    Cube: {sz: {0.1, 0.1, 0.05}}
+    TextureFile: {filename: "res/textures/tiles/white.png"}
+    Rotation: {0}
+    RelativePos: {val: {0.0, 0.5, -0.45}}
+    (ClickSound, audio.ClickSnd)
+  }
+
+  prefab RotTeleButton : _Button {
+    (LinkedBy, RotTeleOp)
+  }
+  prefab RotTeleButton180 : _Button {
+    (LinkedBy, RotTeleOp2)
+  }
+
+  prefab CageOpenButton : _Button {
+    (LinkedBy, CageOpenOp)
+  }
+  prefab CageOpenButton2 : _Button {
+    (LinkedBy, CageOpenOp2)
+  }
+  prefab CageOpenButton3 : _Button {
+    (LinkedBy, CageOpenOp3)
+  }
+  prefab Gray {
+    HoverText: {text: "Wall..?"}
+    ModelFile: {filename: "res/meshes/Door.glb"}
+    TextureFile: {filename: "res/textures/tiles/Walls_gray.png"}
+    RelativePos: {val: {0.0, 0.5, -0.5}}
+  }
+  prefab Gray2 {
+    HoverText: {text: "Wall..?"}
+    ModelFile: {filename: "res/meshes/Door.glb"}
+    TextureFile: {filename: "res/textures/tiles/Walls_gray2.png"}
+    RelativePos: {val: {0.0, 0.5, -0.5}}
+  }
+  prefab GunPickup {
+    TriggerVolume: { sz: {1, 1}, debugName: "gun pickup" }
+    GrantsGun
+    (SpawnDialog, narrative.FoundGun)
+    ModelFile: {filename: "res/meshes/pickupbox.glb"}
+    TextureFile: {filename: "res/meshes/pickupbox.png"}
+    (TriggerSound, audio.Pickup)
+  }
+  prefab SniperPickup {
+    TriggerVolume: { sz: {1, 1}, debugName: "sniper pickup" }
+    GrantsSniper
+    (SpawnDialog, narrative.FoundSniper)
+    ModelFile: {filename: "res/meshes/pickupbox.glb"}
+    TextureFile: {filename: "res/meshes/pickupbox.png"}
+    (TriggerSound, audio.Pickup)
+  }
+  prefab GrenadePickup {
+    TriggerVolume: { sz: {1, 1}, debugName: "grenade pickup" }
+    GrantsGrenade
+    (SpawnDialog, narrative.FoundGrenade)
+    ModelFile: {filename: "res/meshes/pickupbox.glb"}
+    TextureFile: {filename: "res/meshes/pickupbox.png"}
+    (TriggerSound, audio.Pickup)
+  }
+  prefab ParticleDangerZone {
+    TriggerVolume: { sz: {1, 1}, debugName: "danger" }
+    Damage: {50.0}
+    ParticleColor: { val: {1.0, 0.2, 0.2, 0.8} }
+    NumParticles: {100}
+    ParticleSize: {0.01}
+  }
+}
+
+logic {
+  prefab SpawnPoint {
+    SpawnPoint
+    DebugBox: {color: {0.0, 1.0, 0.0}, sz: {0.25, 0.25, 0.25}, offset: {0.0, 0.125, 0.0}, name: "spawn"}
+  }
+  prefab SwitchToLevel2 {
+    TriggerVolume: { sz: {1, 1}, debugName: "exit" }
+    SwitchLevel: { levelName: "Level2" }
+  }
+  prefab SwitchToLevel3 {
+    TriggerVolume: { sz: {1, 1}, debugName: "exit" }
+    SwitchLevel: { levelName: "level3" }
+  }
+  prefab SwitchToLevel4 {
+    TriggerVolume: { sz: {1, 1}, debugName: "exit" }
+    SwitchLevel: { levelName: "Level4" }
+  }
+  prefab SwitchToLevel5 {
+    TriggerVolume: { sz: {1, 1}, debugName: "exit" }
+    SwitchLevel: { levelName: "Level5" }
+  }
+  prefab RotateLeft {
+    TriggerVolume: { sz: {1, 1}, debugName: "rotleft" }
+    Rotator: {val: 1}
+  }
+  prefab RotateRight {
+    TriggerVolume: { sz: {1, 1}, debugName: "rotright" }
+    Rotator: {val: -1}
+  }
+  prefab RotateBackward {
+    TriggerVolume: { sz: {1, 1}, debugName: "rotback" }
+    Rotator: {val: -2}
+  }
+  prefab FirstBattle {
+    TriggerVolume: { sz: {1, 1}, debugName: "first battle" }
+    (Battle, battles.FirstBattle)
+  }
+  prefab SecondBattle {
+    TriggerVolume: { sz: {1, 1}, debugName: "second battle" }
+    (Battle, battles.SecondBattle)
+  }
+  prefab ThirdBattle {
+    TriggerVolume: { sz: {1, 1}, debugName: "third battle" }
+    (Battle, battles.ThirdBattle)
+  }
+  prefab BossBattle {
+    TriggerVolume: { sz: {1, 1}, debugName: "boss battle" }
+    (Battle, battles.BossBattle)
+  }
+  prefab IntroNarrative {
+    TriggerVolume: { sz: {1, 1}, debugName: "intro narrative" }
+    (SpawnDialog, narrative.StartGame)
+  }
+  prefab MeetNarrative {
+    TriggerVolume: { sz: {1, 1}, debugName: "meet narrative" }
+    (SpawnDialog, narrative.MeetChicken)
+    OperateOnRemove
+    (LinkedBy, GateOpenOp)
+  }
+  prefab SecondLevelStartNarrative {
+    TriggerVolume: { sz: {1, 1}, debugName: "second start" }
+    (SpawnDialog, narrative.SecondStart)
+  }
+  prefab SecondLevelExitNarrative {
+    TriggerVolume: { sz: {1, 1}, debugName: "second exit" }
+    (SpawnDialog, narrative.SecondExit)
+    OperateOnRemove
+    (LinkedBy, GateOpenOp)
+  }
+  prefab ThirdLevelStartNarrative {
+    TriggerVolume: { sz: {1, 1}, debugName: "third start" }
+    (SpawnDialog, narrative.ThirdStart)
+  }
+  prefab ThirdLevelExitNarrative {
+    TriggerVolume: { sz: {1, 1}, debugName: "third exit" }
+    (SpawnDialog, narrative.ThirdExit)
+    OperateOnRemove
+    (LinkedBy, GateOpenOp)
+  }
+  prefab TheEndNarrative {
+    TriggerVolume: { sz: {1, 1}, debugName: "the end" }
+    (SpawnDialog, narrative.TheEnd)
+  }
+}

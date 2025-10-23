@@ -1,0 +1,688 @@
+#include <raylib.h>
+#include <flecs.h>
+#include <eecs.h>
+#include <string>
+#include <fstream>
+#include <filesystem>
+#include <raymath.h>
+#include <rlgl.h>
+
+#include "editor.h"
+#include "editor_ui.h"
+#include "../game.h"
+#include "../math.h"
+#include "../renderer.h"
+#include "../primitives.h"
+#include "../player.h"
+#include "../level.h"
+#include "../ui.h"
+#include "../cam.h"
+#include "../movement.h"
+#include "../textures.h"
+#include "../tags.h"
+#include "../audio.h"
+
+namespace fs = std::filesystem;
+
+void register_systems(eecs::Registry& reg, flecs::world& ecs)
+{
+  register_math(ecs);
+  register_textures(ecs);
+  register_primitives(ecs);
+  register_player(reg, ecs);
+  register_audio(ecs);
+  register_renderer(ecs);
+  register_cam(reg, ecs);
+  register_level(ecs);
+  register_editor(reg, ecs);
+  register_ui(ecs);
+}
+
+eecs::EntityId init_new_world(eecs::Registry& reg)
+{
+  create_cam(reg);
+  return create_player(reg);
+}
+
+void restart_world(eecs::Registry& reg, flecs::world& ecs)
+{
+  float width, height, scaleFactor;
+  ecs.query<const WindowWidth, const WindowHeight, const WindowScaleFactor>()
+    .each([&](const WindowWidth& ww, const WindowHeight& wh, const WindowScaleFactor& ws)
+    {
+      width = ww.val;
+      height = wh.val;
+      scaleFactor = ws.val;
+    });
+  ecs.reset();
+  register_systems(reg, ecs);
+  init_new_world(reg);
+  create_ui_helper(reg, ecs, width, height, scaleFactor);
+}
+
+
+void create_floor(flecs::world& ecs, int x, int y, float rot, const char* name);
+void create_ceiling(flecs::world& ecs, int x, int y, float rot, const char* name);
+void create_wall(flecs::world& ecs, int x, int y, int dir, bool flip, const char* name);
+void create_door(flecs::world& ecs, int x, int y, int dir, const char* name);
+void create_column(flecs::world& ecs, int x, int y, const char* name);
+void create_entity(flecs::world& ecs, int x, int y, float rot, const char* name);
+void create_logic(flecs::world& ecs, int x, int y, float rot, const char* name);
+
+void delete_floor(flecs::world& ecs, int x, int y);
+void delete_ceiling(flecs::world& ecs, int x, int y);
+void delete_wall(flecs::world& ecs, int x, int y, int dir);
+void delete_door(flecs::world& ecs, int x, int y, int dir);
+void delete_column(flecs::world& ecs, int x, int y);
+
+static void draw_cube_matrix(const BoundingBox& bbox, const vec3f& pos, float rotation, Color col)
+{
+  Matrix matRotation = MatrixRotate(Vector3{0.f, 1.f, 0.f}, rotation*DEG2RAD);
+  Matrix matTranslation = MatrixTranslate(pos.x, pos.y, pos.z);
+
+  Matrix matTransform = MatrixMultiply(matRotation, matTranslation);
+  Vector3 vertices[8];
+  int idx = 0;
+  for (float z : {bbox.min.z, bbox.max.z})
+    for (float y : {bbox.min.y, bbox.max.y})
+      for (float x : {bbox.min.x, bbox.max.x})
+        vertices[idx++] = Vector3{x, y, z} * matTransform;
+  /*
+       3+----+7
+       /|   /|
+      / |  / |
+    2+----+6 |
+     | 1+-|--+5
+     | /  | /
+     |/   |/
+    0+----+4
+
+     y
+     ^ /z
+     |/
+     o-->x
+  */
+  const int indices[] =
+  {
+    0, 4, 6,
+    0, 6, 2,
+    1, 0, 2,
+    1, 2, 3,
+    4, 5, 7,
+    4, 7, 6,
+    0, 1, 5,
+    0, 5, 4,
+    1, 3, 7,
+    1, 7, 5,
+    2, 6, 7,
+    2, 7, 3
+  };
+  for (size_t i = 0; i < sizeof(indices) / sizeof(indices[0]); i += 3)
+    DrawTriangle3D(vertices[indices[i]], vertices[indices[i+1]], vertices[indices[i+2]], col);
+
+  const int lineIndices[] =
+  {
+    0, 4,
+    4, 6,
+    6, 2,
+    2, 0,
+    4, 5,
+    5, 7,
+    7, 6,
+    7, 3,
+    3, 1,
+    1, 5,
+    3, 2,
+    1, 0
+  };
+  for (size_t i = 0; i < sizeof(lineIndices) / sizeof(lineIndices[0]); i += 2)
+    DrawLine3D(vertices[lineIndices[i]], vertices[lineIndices[i+1]], Color{col.r, col.g, col.b, 255});
+}
+
+Vector3 Vector3Rotate(Vector3 v, Matrix mat)
+{
+    Vector3 result = { 0 };
+
+    float x = v.x;
+    float y = v.y;
+    float z = v.z;
+
+    result.x = mat.m0*x + mat.m4*y + mat.m8*z;
+    result.y = mat.m1*x + mat.m5*y + mat.m9*z;
+    result.z = mat.m2*x + mat.m6*y + mat.m10*z;
+
+    return result;
+}
+
+void expand_box(BoundingBox& bbox, float amt)
+{
+  bbox.min.x -= amt;
+  bbox.min.y -= amt;
+  bbox.min.z -= amt;
+  bbox.max.x += amt;
+  bbox.max.y += amt;
+  bbox.max.z += amt;
+}
+
+void register_editor(eecs::Registry& reg, flecs::world& ecs)
+{
+    eecs::reg_system(reg, [&](eecs::EntityId eid, const Camera& camera)
+      {
+        const vec3f cpos = tov3(camera.position);
+        const vec3i pivot = vec3i(cpos.x, 0, cpos.z);
+        const int numTiles = 10;
+        const vec3f minP(pivot.x - numTiles - 0.5f, 0.f, pivot.z - numTiles - 0.5f);
+        const vec3f maxP(pivot.x + numTiles - 0.5f, 0.f, pivot.z + numTiles - 0.5f);
+        for (int y = pivot.z - numTiles; y <= pivot.z + numTiles; ++y)
+        {
+          DrawLine3D(Vector3{minP.x, -0.01f, y - 0.5f}, Vector3{maxP.x, -0.01f, y - 0.5f}, WHITE);
+          DrawLine3D(Vector3{minP.x, 1.01f, y - 0.5f}, Vector3{maxP.x, 1.01f, y - 0.5f}, WHITE);
+        }
+        for (int x = pivot.x - numTiles; x <= pivot.x + numTiles; ++x)
+        {
+          DrawLine3D(Vector3{x - 0.5f, -0.01f, minP.z}, Vector3{x - 0.5f, -0.01f, maxP.z}, WHITE);
+          DrawLine3D(Vector3{x - 0.5f, 1.01f, minP.z}, Vector3{x - 0.5f, 1.01f, maxP.z}, WHITE);
+        }
+
+        if (is_cursor_over_ui(ecs))
+          return;
+        Ray r = GetScreenToWorldRay(GetMousePosition(), camera);
+        const vec3f rp = tov3(r.position);
+        const vec3f rd = tov3(r.direction);
+
+        const vec3f camDir = tov3(camera.target) - tov3(camera.position);
+        const float camRot = 270 - floorf((atan2f(camDir.z, camDir.x) * 180.f / PI) / 90.f + 0.5f) * 90.f;
+
+        // TODO: Go through all level geometry first
+        // find floor intersection
+        auto selectedQ = ecs.query<const SelectedType>();
+        selectedQ.each([&](flecs::entity ent, const SelectedType& st)
+        {
+          flecs::entity sel = ent.target<SelectedEntity>();
+          if (!sel)
+            return;
+          if (IsMouseButtonReleased(1))
+            ent.remove<SelectedEntity>(sel);
+          if (sel.has<Door>() || sel.has<Wall>())
+            return;
+          // Draw gizmos
+          const Rotation* rot = sel.try_get<Rotation>();
+          sel.get([&](Position& pos)
+          {
+            Matrix matRotation = MatrixRotate(Vector3{0.f, 1.f, 0.f}, (rot ? rot->val : 0.f)*DEG2RAD);
+            Matrix matTranslation = MatrixTranslate(pos.x, pos.y, pos.z);
+
+            Matrix matTransform = MatrixMultiply(matRotation, matTranslation);
+            Vector3 pivot = Vector3{0.f, 0.f, 0.f} * matTransform;
+            EndMode3D();
+            Vector3 axes[3] = { Vector3{0.5f, 0.f, 0.f} * matTransform, Vector3{0.f, 0.5f, 0.f} * matTransform, Vector3{0.f, 0.f, 0.5f} * matTransform };
+            vec2f p2d = tov2(GetWorldToScreen(pivot, camera));
+            vec2f x2d = tov2(GetWorldToScreen(axes[0], camera));
+            vec2f y2d = tov2(GetWorldToScreen(axes[1], camera));
+            vec2f z2d = tov2(GetWorldToScreen(axes[2], camera));
+            vec2f mp = tov2(GetMousePosition());
+            float d2x = point_to_segm_dist(mp, p2d, x2d);
+            float d2y = point_to_segm_dist(mp, p2d, y2d);
+            float d2z = point_to_segm_dist(mp, p2d, z2d);
+            float minDist = std::min(d2x, std::min(d2y, d2z));
+            constexpr float distToDrag = 5.f;
+            const bool canDrag = minDist < distToDrag;
+            DrawLineEx(toRLVec2(p2d), toRLVec2(x2d), canDrag && minDist == d2x ? 4.f : 2.f, RED);
+            DrawLineEx(toRLVec2(p2d), toRLVec2(y2d), canDrag && minDist == d2y ? 4.f : 2.f, GREEN);
+            DrawLineEx(toRLVec2(p2d), toRLVec2(z2d), canDrag && minDist == d2z ? 4.f : 2.f, BLUE);
+            BeginMode3D(camera);
+
+            // TODO: move to editor state
+            static bool isDragging = false;
+            static int dragAxis = -1;
+            static float dragAxisMua = 0.f;
+            static float deltaMoved = 0.f;
+
+            if (IsMouseButtonDown(0))
+            {
+              if (canDrag && !isDragging)
+              {
+                isDragging = true;
+                deltaMoved = 0.f;
+                dragAxis = minDist == d2x ? 0 : minDist == d2y ? 1 : 2;
+                float mub;
+                line_ray_closest(tov3(pivot), tov3(axes[dragAxis]), rp, rd, dragAxisMua, mub);
+              }
+              else if (isDragging)
+              {
+                float mua, mub;
+                line_ray_closest(tov3(pivot), tov3(axes[dragAxis]), rp, rd, mua, mub);
+                vec3f axis = tov3(axes[dragAxis]) - tov3(pivot);
+                float mag = axis.mag();
+                deltaMoved += mua - dragAxisMua;
+                pos += axis * (mua - dragAxisMua);
+              }
+            }
+            else
+            {
+              if (isDragging)
+                printf("delta moved %.2f\n", deltaMoved * 0.5f);
+              isDragging = false;
+            }
+
+            if (IsKeyPressed(KEY_R) && rot)
+            {
+              sel.insert([&](Rotation& rot)
+              {
+                rot.val += 90.f;
+                if (rot.val >= 360.f)
+                  rot.val -= 360.f;
+              });
+            }
+          });
+        });
+        selectedQ.each([&](flecs::entity ent, const SelectedType& st)
+        {
+          if (!st.prefab.empty())
+            return;
+          if (ent.target<SelectedEntity>())
+            return;
+          // Select stuff in world
+          auto modelQ = ecs.query<const Position, const Model, const Rotation*>();
+          flecs::entity bestEntity;
+          float bestT = 1e12f;
+          modelQ.each([&](flecs::entity e, const Position& pos, const Model& model, const Rotation* rot)
+          {
+            Matrix matRotation = MatrixRotate(Vector3{0.f, 1.f, 0.f}, rot ? rot->val*DEG2RAD : 0.f);
+            Matrix matTranslation = MatrixTranslate(pos.x, pos.y, pos.z);
+
+            Matrix matTransform = MatrixMultiply(matRotation, matTranslation);
+            RayCollision coll = GetRayCollisionMesh(r, model.meshes[0], matTransform);
+            if (!coll.hit)
+              return;
+            if (coll.distance < bestT)
+            {
+              bestT = coll.distance;
+              bestEntity = e;
+            }
+          });
+          auto dboxQ = ecs.query<const Position, const Rotation, const DebugBox>();
+          dboxQ.each([&](flecs::entity e, const Position& pos, const Rotation& rot, const DebugBox& dbox)
+          {
+            Matrix matRotation = MatrixRotate(Vector3{0.f, 1.f, 0.f},  rot.val*DEG2RAD);
+            Matrix matTranslation = MatrixTranslate(pos.x, pos.y, pos.z);
+
+            Matrix matTransform = MatrixMultiply(matRotation, matTranslation);
+            Matrix invTransform = MatrixInvert(matTransform);
+            Ray localRay{r.position * invTransform, Vector3Rotate(r.direction, invTransform)};
+
+            BoundingBox bbox;
+            bbox.min = toRLVec3(dbox.offset - dbox.sz * 0.5f);
+            bbox.max = toRLVec3(dbox.offset + dbox.sz * 0.5f);
+            RayCollision coll = GetRayCollisionBox(localRay, bbox);
+            if (!coll.hit)
+              return;
+            if (coll.distance < bestT)
+            {
+              bestT = coll.distance;
+              bestEntity = e;
+            }
+          });
+          auto trigQ = ecs.query<const Position, const TriggerVolume>();
+          trigQ.each([&](flecs::entity e, const Position& pos, const TriggerVolume& vol)
+          {
+            BoundingBox box = {Vector3{pos.x - vol.sz.x * 0.5f, pos.y - 0.1f, pos.z - vol.sz.y * 0.5f}, Vector3{pos.x + vol.sz.x * 0.5f, pos.y + 0.1f, pos.z + vol.sz.y * 0.5f}};
+            RayCollision coll = GetRayCollisionBox(r, box);
+            if (!coll.hit)
+              return;
+            if (coll.distance < bestT)
+            {
+              bestT = coll.distance;
+              bestEntity = e;
+            }
+          });
+          if (bestEntity)
+          {
+            {
+              const Rotation* rot = bestEntity.try_get<Rotation>();
+              bestEntity.get([&](const Model& model, const Position& pos)
+              {
+                BoundingBox bbox = GetModelBoundingBox(model);
+                expand_box(bbox, 0.02f);
+                draw_cube_matrix(bbox, pos, rot ? rot->val : 0.f, Color{255, 255, 0, 100});
+              });
+            }
+            bestEntity.get([&](const Position& pos, const Rotation& rot, const DebugBox& dbox)
+            {
+              BoundingBox bbox;
+              expand_box(bbox, 0.02f);
+              bbox.min = toRLVec3(dbox.offset - dbox.sz * 0.5f);
+              bbox.max = toRLVec3(dbox.offset + dbox.sz * 0.5f);
+              draw_cube_matrix(bbox, pos, rot.val, Color{uint8_t(dbox.color.x * 255), uint8_t(dbox.color.y * 255), uint8_t(dbox.color.z * 255), 100});
+            });
+            bestEntity.get([&](const Position& pos, const TriggerVolume& vol)
+            {
+              DrawCube(toRLVec3(pos), vol.sz.x + 0.02f, 0.2f + 0.02f, vol.sz.y + 0.02f, Color{255, 255, 0, 150});
+            });
+            if (IsMouseButtonReleased(0) && !bestEntity.has<Door>() && !bestEntity.has<Wall>())
+              ent.add<SelectedEntity>(bestEntity);
+            if (IsMouseButtonReleased(1))
+              bestEntity.destruct();
+          }
+        });
+        selectedQ.each([&](const SelectedType& st)
+        {
+          if (st.prefab.empty())
+            return;
+          const float floorT = -rp.y / rd.y;
+          const float ceilingT = (1.f - rp.y) / rd.y;
+          if (floorT > 0.f && floorT < 10.f)
+          {
+            const vec3f intersection = rp + rd * floorT;
+            int wx = floorf(intersection.x + 0.5f);
+            int wy = floorf(intersection.z + 0.5f);
+            vec3f tilePos = vec3f(floorf(intersection.x + 0.5f), 0.f, floorf(intersection.z + 0.5f));
+            const vec3f insideTilePos = intersection - tilePos;
+            constexpr float threshold = 0.3f;
+            static int dirAtPress = -1;
+            if ((st.type == E_WALLS || st.type == E_DOORS) && (fabsf(insideTilePos.x) > threshold || fabsf(insideTilePos.z) > threshold))
+            {
+              int dir = fabsf(insideTilePos.x) > threshold ? 1 : 0;
+              if (dir == 1)
+              {
+                DrawCube(castRLVec3(tilePos + vec3f(sign(insideTilePos.x) * 0.5f, 0.5f, 0)), 0.065f, 1.f, 1.f, Color{255, 255, 0, 150});
+                if (insideTilePos.x > 0.f)
+                  wx++;
+              }
+              else
+              {
+                DrawCube(castRLVec3(tilePos + vec3f(0, 0.5f, sign(insideTilePos.z) * 0.5f)), 1.f, 1.f, 0.065f, Color{255, 255, 0, 150});
+                if (insideTilePos.z > 0.f)
+                  wy++;
+              }
+              if (IsMouseButtonPressed(0))
+              {
+                dirAtPress = dir;
+              }
+              if (IsMouseButtonReleased(0))
+              {
+                delete_wall(ecs, wx, wy, dir);
+                delete_door(ecs, wx, wy, dir);
+                if (st.type == E_WALLS)
+                {
+                  vec2f hzDir = vec2f(sinf(dir * PI / 2), cosf(dir * PI / 2));
+                  vec2f pos2d = vec2f(wx - (dir ? 0.5f : 0.f), wy - (dir ? 0.f : 0.5f));
+                  vec2f cam2dDir = pos2d - vec2f(camera.position.x, camera.position.z);
+                  create_wall(ecs, wx, wy, dir, hzDir.dot(cam2dDir) < 0, st.prefab.c_str());
+                }
+                else if (st.type == E_DOORS)
+                  create_door(ecs, wx, wy, dir, st.prefab.c_str());
+              }
+              if (IsMouseButtonReleased(1))
+              {
+                delete_wall(ecs, wx, wy, dir);
+                delete_door(ecs, wx, wy, dir);
+              }
+            }
+            if (st.type == E_FLOORS)
+            {
+              DrawCube(castRLVec3(tilePos), 1.f, 0.05f, 1.f, Color{255, 255, 0, 150});
+              if (IsMouseButtonDown(0))
+              {
+                delete_floor(ecs, tilePos.x, tilePos.z);
+                create_floor(ecs, tilePos.x, tilePos.z, camRot, st.prefab.c_str());
+              }
+              if (IsMouseButtonReleased(1))
+                delete_floor(ecs, tilePos.x, tilePos.z);
+            }
+            if (st.type == E_ENTITIES)
+            {
+              DrawCube(castRLVec3(tilePos), 1.f, 0.05f, 1.f, Color{255, 255, 0, 150});
+              if (IsMouseButtonReleased(0))
+                create_entity(ecs, tilePos.x, tilePos.z, camRot, st.prefab.c_str());
+            }
+            if (st.type == E_LOGIC)
+            {
+              DrawCube(castRLVec3(tilePos), 1.f, 0.05f, 1.f, Color{255, 255, 0, 150});
+              if (IsMouseButtonReleased(0))
+                create_logic(ecs, tilePos.x, tilePos.z, camRot, st.prefab.c_str());
+            }
+            if (st.type == E_COLUMNS)
+            {
+              vec3f tpos = tilePos + vec3f(sign(insideTilePos.x) * 0.5f, 0.5f, sign(insideTilePos.z) * 0.5f);
+              DrawCube(castRLVec3(tpos), 0.13f, 1.f, 0.13f, Color{255, 255, 0, 150});
+              int cx = tilePos.x + (insideTilePos.x > 0 ? 1 : 0);
+              int cy = tilePos.z + (insideTilePos.z > 0 ? 1 : 0);
+              if (IsMouseButtonReleased(0))
+              {
+                delete_column(ecs, cx, cy);
+                create_column(ecs, cx, cy, st.prefab.c_str());
+              }
+              if (IsMouseButtonReleased(1))
+                delete_column(ecs, cx, cy);
+            }
+          }
+          if (ceilingT > 0.f && ceilingT < 10.f)
+          {
+            const vec3f intersection = rp + rd * ceilingT;
+            int wx = floorf(intersection.x + 0.5f);
+            int wy = floorf(intersection.z + 0.5f);
+            vec3f tilePos = vec3f(floorf(intersection.x + 0.5f), 1.f, floorf(intersection.z + 0.5f));
+            if (st.type == E_CEILINGS)
+            {
+              DrawCube(castRLVec3(tilePos), 1.f, 0.05f, 1.f, Color{255, 255, 0, 150});
+              if (IsMouseButtonDown(0))
+              {
+                delete_ceiling(ecs, tilePos.x, tilePos.z);
+                create_ceiling(ecs, tilePos.x, tilePos.z, camRot, st.prefab.c_str());
+              }
+              if (IsMouseButtonReleased(1))
+                delete_ceiling(ecs, tilePos.x, tilePos.z);
+            }
+          }
+        });
+      }, COMPID(const Camera, camera));
+    eecs::reg_system(reg, [&](eecs::EntityId eid, const Camera& camera)
+      {
+        ecs.query<const Position, const Rotation, const DebugBox>()
+          .each([&](const Position& pos, const Rotation& rot, const DebugBox& dbox)
+          {
+            BoundingBox bbox;
+            bbox.min = toRLVec3(dbox.offset - dbox.sz * 0.5f);
+            bbox.max = toRLVec3(dbox.offset + dbox.sz * 0.5f);
+            draw_cube_matrix(bbox, pos, rot.val, Color{uint8_t(dbox.color.x * 255), uint8_t(dbox.color.y * 255), uint8_t(dbox.color.z * 255), 150});
+            Matrix matRotation = MatrixRotate(Vector3{0.f, 1.f, 0.f}, rot.val*DEG2RAD);
+            Matrix matTranslation = MatrixTranslate(pos.x, pos.y, pos.z);
+
+            Matrix matTransform = MatrixMultiply(matRotation, matTranslation);
+            Vector3 topBox = (Vector3{(bbox.min.x + bbox.max.x) * 0.5f, bbox.max.y, (bbox.min.x + bbox.max.x) * 0.5f}) * matTransform;
+            Vector3 screenPos = GetWorldToScreen3dEx(topBox, camera);
+            if (screenPos.z >= 0.f)
+            {
+              EndMode3D();
+              draw_centered_font_with_shadow(GetFontDefault(), dbox.name.c_str(), torect(screenPos.x, screenPos.y, 0.f, 0.f), 12.f, WHITE);
+              BeginMode3D(camera);
+            }
+          });
+        auto trigQ = ecs.query<const Position, const TriggerVolume>();
+        trigQ.each([&](flecs::entity e, const Position& pos, const TriggerVolume& vol)
+        {
+          DrawCube(toRLVec3(pos), vol.sz.x, 0.2f, vol.sz.y, Color{255, 255, 255, 150});
+          Vector3 topBox = Vector3{pos.x, pos.y + 0.2f, pos.z};
+          Vector3 screenPos = GetWorldToScreen3dEx(topBox, camera);
+          if (screenPos.z >= 0.f)
+          {
+            EndMode3D();
+            draw_centered_font_with_shadow(GetFontDefault(), vol.debugName.c_str(), torect(screenPos.x, screenPos.y, 0.f, 0.f), 12.f, WHITE);
+            BeginMode3D(camera);
+          }
+        });
+      }, COMPID(const Camera, camera));
+
+    ecs.entity()
+      .set(SelectedType{E_FLOORS, ""});
+}
+
+
+void save_level(flecs::world& ecs, const char* filename)
+{
+  std::string fullPath = "res/levels/";
+  fullPath += filename;
+  std::string jsonish = "";
+  auto q = ecs.query_builder().with<Saveable>().build();
+  q.each([&](flecs::entity e)
+  {
+    jsonish += e.to_json();
+    jsonish += "\n";
+  });
+  if (!jsonish.empty())
+    jsonish.resize(jsonish.size() - 1);
+  std::ofstream file(fullPath);
+  file << jsonish;
+}
+
+void create_floor(flecs::world& ecs, int x, int y, float rot, const char* name)
+{
+  flecs::entity e = ecs.entity()
+    .is_a(ecs.lookup("floors").lookup(name))
+    .add<Floor>()
+    .add<Saveable>()
+    .set(Rotation{rot})
+    .set(Position{float(x), -0.025f, float(y)});
+}
+
+void create_entity(flecs::world& ecs, int x, int y, float rot, const char* name)
+{
+  flecs::entity pref = ecs.lookup("entities").lookup(name);
+  const RelativePos* relPosP = pref.try_get<RelativePos>();
+  const vec3f relPos = relPosP ? *(vec3f*)relPosP : vec3f(0, 0, 0);
+  const Matrix matRotation = MatrixRotate(tovec3(0, 1, 0), rot * DEG2RAD);
+  const vec3f tilePos = vec3f(x, 0, y);
+  const vec3f pos = tilePos + tov3(castRLVec3(relPos) * matRotation);
+  flecs::entity e = ecs.entity()
+    .is_a(pref)
+    .add<Saveable>()
+    .set(Rotation{rot + 180})
+    .set(Position{pos});
+}
+
+void create_logic(flecs::world& ecs, int x, int y, float rot, const char* name)
+{
+  flecs::entity pref = ecs.lookup("logic").lookup(name);
+  const vec3f tilePos = vec3f(x, 0, y);
+  const vec3f pos = tilePos;
+  flecs::entity e = ecs.entity()
+    .is_a(pref)
+    .add<Saveable>()
+    .set(Rotation{rot + 180})
+    .set(Position{pos});
+}
+
+
+void create_ceiling(flecs::world& ecs, int x, int y, float rot, const char* name)
+{
+  flecs::entity e = ecs.entity()
+    .is_a(ecs.lookup("ceilings").lookup(name))
+    .add<Ceiling>()
+    .add<Saveable>()
+    .set(Rotation{rot})
+    .set(Position(float(x), 1.025f, float(y)));
+}
+
+void create_wall(flecs::world& ecs, int x, int y, int dir, bool flip, const char* name)
+{
+  vec3f pos = vec3f(x - (dir ? 0.5f : 0.f), 0.5f, y - (dir ? 0.f : 0.5f));
+  flecs::entity e = ecs.entity()
+    .is_a(ecs.lookup("walls").lookup(name))
+    .add<Wall>()
+    .add<Saveable>()
+    .set(Rotation{dir * 90.f + (flip ? 180.f : 0.f)})
+    .set(Position{pos});
+}
+
+void create_door(flecs::world& ecs, int x, int y, int dir, const char* name)
+{
+  vec3f pos = vec3f(x - (dir ? 0.5f : 0.f), 0.5f, y - (dir ? 0.f : 0.5f));
+  flecs::entity e = ecs.entity()
+    .is_a(ecs.lookup("doors").lookup(name))
+    .add<Door>()
+    .add<Saveable>()
+    .set(Rotation{dir * 90.f})
+    .set(Position{pos});
+}
+
+
+void create_column(flecs::world& ecs, int x, int y, const char* name)
+{
+  flecs::entity e = ecs.entity()
+    .is_a(ecs.lookup("columns").lookup(name))
+    .add<Column>()
+    .add<Saveable>()
+    .set(Rotation{0.f})
+    .set(Position{float(x) - 0.5f, 0.5f, float(y) - 0.5f});
+}
+
+void delete_floor(flecs::world& ecs, int x, int y)
+{
+  ecs.query_builder<const Position>().with<Floor>().build()
+    .each([&](flecs::entity ent, const Position& pos)
+    {
+      if (int(pos.x) == x && int(pos.z) == y)
+        ent.destruct();
+    });
+}
+
+void delete_ceiling(flecs::world& ecs, int x, int y)
+{
+  ecs.query_builder<const Position>().with<Ceiling>().build()
+    .each([&](flecs::entity ent, const Position& pos)
+    {
+      if (int(pos.x) == x && int(pos.z) == y)
+        ent.destruct();
+    });
+}
+
+
+void delete_wall(flecs::world& ecs, int x, int y, int dir)
+{
+  ecs.query_builder<const Position, const Rotation>().with<Wall>().build()
+    .each([&](flecs::entity ent, const Position& pos, const Rotation& rot)
+    {
+      if (rot.val != dir * 90.f && rot.val != dir * 90.f + 180.f)
+        return;
+      if (pos.x == x - dir * 0.5f && pos.z == y - (1 - dir) * 0.5f)
+        ent.destruct();
+    });
+}
+
+void delete_door(flecs::world& ecs, int x, int y, int dir)
+{
+  ecs.query_builder<const Position, const Rotation>().with<Door>().build()
+    .each([&](flecs::entity ent, const Position& pos, const Rotation& rot)
+    {
+      if (rot.val != dir * 90.f)
+        return;
+      if (pos.x == x - dir * 0.5f && pos.z == y - (1 - dir) * 0.5f)
+        ent.destruct();
+    });
+}
+
+
+void delete_column(flecs::world& ecs, int x, int y)
+{
+  ecs.query_builder<const Position>().with<Column>().build()
+    .each([&](flecs::entity ent, const Position& pos)
+    {
+      if (pos.x == x - 0.5f && pos.z == y - 0.5f)
+        ent.destruct();
+    });
+}
+
+void init_app(eecs::Registry& reg, flecs::world& ecs) {}
+
+
+//void pre_draw_call(flecs::world& ecs) {}
+
+void load_state(flecs::world& ecs)
+{
+}
+
+void set_last_level(const char* level)
+{
+}
+
