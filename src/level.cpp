@@ -33,17 +33,21 @@ void register_level(eecs::Registry& reg)
         .set(COMPID(std::set<vec2i>, level_xWalls), {})
         .set(COMPID(std::set<vec2i>, level_zWalls), {});
 
+    std::vector<eecs::EntityId> floors = load_prefabs_from_file(reg, "res/prefabs/floors.edat");
     std::vector<eecs::EntityId> walls = load_prefabs_from_file(reg, "res/prefabs/walls.edat");
-    eecs::create_entity_wrap(reg, "floors");
+    std::vector<eecs::EntityId> doors = load_prefabs_from_file(reg, "res/prefabs/doors.edat");
+    std::vector<eecs::EntityId> columns = load_prefabs_from_file(reg, "res/prefabs/columns.edat");
+    std::vector<eecs::EntityId> ceilings = load_prefabs_from_file(reg, "res/prefabs/ceilings.edat");
+    std::vector<eecs::EntityId> entities = load_prefabs_from_file(reg, "res/prefabs/entities.edat");
+    std::vector<eecs::EntityId> logic = load_prefabs_from_file(reg, "res/prefabs/logic.edat");
 
-    eecs::create_entity_wrap(reg, "walls")
-        .set(COMPID(std::vector<eecs::EntityId>, children), walls);
-
-    eecs::create_entity_wrap(reg, "doors");
-    eecs::create_entity_wrap(reg, "columns");
-    eecs::create_entity_wrap(reg, "ceilings");
-    eecs::create_entity_wrap(reg, "entities");
-    eecs::create_entity_wrap(reg, "logic");
+    eecs::create_entity_wrap(reg, "floors").set(COMPID(std::vector<eecs::EntityId>, children), floors);
+    eecs::create_entity_wrap(reg, "walls").set(COMPID(std::vector<eecs::EntityId>, children), walls);
+    eecs::create_entity_wrap(reg, "doors").set(COMPID(std::vector<eecs::EntityId>, children), doors);
+    eecs::create_entity_wrap(reg, "columns").set(COMPID(std::vector<eecs::EntityId>, children), columns);
+    eecs::create_entity_wrap(reg, "ceilings").set(COMPID(std::vector<eecs::EntityId>, children), ceilings);
+    eecs::create_entity_wrap(reg, "entities").set(COMPID(std::vector<eecs::EntityId>, children), entities);
+    eecs::create_entity_wrap(reg, "logic").set(COMPID(std::vector<eecs::EntityId>, children), logic);
 
     static auto find_door_wall_coords = [](const vec3f& pos, float rot)
     {

@@ -205,7 +205,7 @@ void register_editor(eecs::Registry& reg)
             if (IsMouseButtonReleased(1))
                 selectedEntity = eecs::invalid_eid;
             eecs::EntityWrap sel = eecs::wrap_entity(reg, selectedEntity);
-            if (sel.has(COMPID(Tag, Door)) || sel.has(COMPID(Tag, Wall)))
+            if (sel.has(COMPID(Tag, Door)) || sel.has(COMPID(Tag, wall)))
                 return;
             // Draw gizmos
             const float rot = sel.get_or(COMPID(float, rotation), 0.f);
@@ -361,7 +361,7 @@ void register_editor(eecs::Registry& reg)
                 {
                     DrawCube(toRLVec3(position), trigger_volume.x + 0.02f, 0.2f + 0.02f, trigger_volume.y + 0.02f, Color{255, 255, 0, 150});
                 }, COMPID(const vec3f, position), COMPID(const vec2i, trigger_volume));
-                if (IsMouseButtonReleased(0) && !best.has(COMPID(Tag, Door)) && !best.has(COMPID(Tag, Wall)))
+                if (IsMouseButtonReleased(0) && !best.has(COMPID(Tag, Door)) && !best.has(COMPID(Tag, wall)))
                     selectedEntity = bestEntity;
                 if (IsMouseButtonReleased(1))
                     eecs::del_entity(reg, bestEntity);
@@ -567,7 +567,6 @@ void save_level(eecs::Registry& reg, const char* filename)
 void create_floor(eecs::Registry& reg, int x, int y, float rot, const char* name)
 {
     eecs::create_wrap_from_prefab(reg, eecs::find_entity(reg, name))
-        .tag(COMPID(Tag, Floor))
         .tag(COMPID(Tag, Saveable))
         .set(COMPID(float, rotation), rot)
         .set(COMPID(vec3f, position), {float(x), -0.025f, float(y)});
@@ -601,7 +600,6 @@ void create_logic(eecs::Registry& reg, int x, int y, float rot, const char* name
 void create_ceiling(eecs::Registry& reg, int x, int y, float rot, const char* name)
 {
     eecs::create_wrap_from_prefab(reg, eecs::find_entity(reg, name))
-        .tag(COMPID(Tag, Ceiling))
         .tag(COMPID(Tag, Saveable))
         .set(COMPID(float, rotation), rot)
         .set(COMPID(vec3f, position), {float(x), 1.025f, float(y)});
@@ -638,32 +636,32 @@ void create_column(eecs::Registry& reg, int x, int y, const char* name)
 
 void delete_floor(eecs::Registry& reg, int x, int y)
 {
-    eecs::query_entities(reg, [&](eecs::EntityId eid, const vec3f& position, Tag Floor)
+    eecs::query_entities(reg, [&](eecs::EntityId eid, const vec3f& position, Tag floor)
     {
         if (int(position.x) == x && int(position.z) == y)
             eecs::del_entity(reg, eid);
-    }, COMPID(const vec3f, position), COMPID(const Tag, Floor));
+    }, COMPID(const vec3f, position), COMPID(const Tag, floor));
 }
 
 void delete_ceiling(eecs::Registry& reg, int x, int y)
 {
-    eecs::query_entities(reg, [&](eecs::EntityId eid, const vec3f& position, Tag Ceiling)
+    eecs::query_entities(reg, [&](eecs::EntityId eid, const vec3f& position, Tag ceiling)
     {
         if (int(position.x) == x && int(position.z) == y)
             eecs::del_entity(reg, eid);
-    }, COMPID(const vec3f, position), COMPID(const Tag, Ceiling));
+    }, COMPID(const vec3f, position), COMPID(const Tag, ceiling));
 }
 
 
 void delete_wall(eecs::Registry& reg, int x, int y, int dir)
 {
-    eecs::query_entities(reg, [&](eecs::EntityId eid, const vec3f& position, float rotation, Tag Wall)
+    eecs::query_entities(reg, [&](eecs::EntityId eid, const vec3f& position, float rotation, Tag wall)
     {
         if (rotation != dir * 90.f && rotation != dir * 90.f + 180.f)
             return;
         if (position.x == x - dir * 0.5f && position.z == y - (1 - dir) * 0.5f)
             eecs::del_entity(reg, eid);
-    }, COMPID(const vec3f, position), COMPID(const float, rotation), COMPID(const Tag, Wall));
+    }, COMPID(const vec3f, position), COMPID(const float, rotation), COMPID(const Tag, wall));
 }
 
 void delete_door(eecs::Registry& reg, int x, int y, int dir)

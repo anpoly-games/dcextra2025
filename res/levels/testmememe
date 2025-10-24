@@ -1,24 +1,105 @@
-_19 = {
+_29 = {
     Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["0.000000", "-0.025000", "1.000000"]
+    floor : Tag = ""
     texture_filename : str = "res/textures/tiles/biomes-9.png"
-    rotation : float = "0.000000"
-    model_filename : str = "res/meshes/Door.glb"
-    position : float[3] = ["0.000000", "0.500000", "1.500000"]
-    wall : Tag = ""
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
 }
-_20 = {
+_30 = {
     Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["1.000000", "-0.025000", "1.000000"]
+    floor : Tag = ""
     texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+}
+_31 = {
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["0.000000", "-0.025000", "2.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+}
+_32 = {
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["1.000000", "-0.025000", "2.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+}
+_33 = {
+    Saveable : Tag = ""
     rotation : float = "90.000000"
+    position : float[3] = ["0.500000", "0.500000", "2.000000"]
     model_filename : str = "res/meshes/Door.glb"
-    position : float[3] = ["0.500000", "0.500000", "1.000000"]
     wall : Tag = ""
+    texture_filename : str = "res/textures/tiles/biomes-58.png"
 }
-_21 = {
+_34 = {
     Saveable : Tag = ""
-    texture_filename : str = "res/textures/tiles/biomes-9.png"
-    rotation : float = "270.000000"
+    rotation : float = "0.000000"
+    position : float[3] = ["1.000000", "0.500000", "1.500000"]
     model_filename : str = "res/meshes/Door.glb"
-    position : float[3] = ["-0.500000", "0.500000", "1.000000"]
     wall : Tag = ""
+    texture_filename : str = "res/textures/tiles/biomes-58.png"
+}
+_35 = {
+    Saveable : Tag = ""
+    rotation : float = "0.000000"
+    position : float[3] = ["0.000000", "0.500000", "1.500000"]
+    model_filename : str = "res/meshes/Door.glb"
+    wall : Tag = ""
+    texture_filename : str = "res/textures/tiles/biomes-58.png"
+}
+_36 = {
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    position : float[3] = ["0.500000", "0.500000", "1.000000"]
+    model_filename : str = "res/meshes/Door.glb"
+    wall : Tag = ""
+    texture_filename : str = "res/textures/tiles/biomes-58.png"
+}
+_37 = {
+    Saveable : Tag = ""
+    rotation : float = "0.000000"
+    position : float[3] = ["0.500000", "0.500000", "1.500000"]
+    Column : Tag = ""
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["0.125000", "1.000000", "0.125000"]
+    column : Tag = ""
+}
+_38 = {
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["0.000000", "1.025000", "1.000000"]
+    ceiling : Tag = ""
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+}
+_39 = {
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["1.000000", "1.025000", "1.000000"]
+    ceiling : Tag = ""
+    texture_filename : str = "res/textures/tiles/biomes-58.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+}
+_40 = {
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    position : float[3] = ["1.000000", "1.025000", "2.000000"]
+    ceiling : Tag = ""
+    texture_filename : str = "res/textures/tiles/frames2-6.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+}
+_41 = {
+    Saveable : Tag = ""
+    rotation : float = "360.000000"
+    position : float[3] = ["0.000000", "1.025000", "2.000000"]
+    ceiling : Tag = ""
+    texture_filename : str = "res/textures/tiles/frames2-6.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
 }

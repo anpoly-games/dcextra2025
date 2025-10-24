@@ -1,0 +1,9 @@
+_BaseColumn = {
+    primitiveBlock_size : float[3] = ["0.125", "1", "0.125"]
+    column : Tag = ""
+}
+
+StoneColumn <- _BaseColumn = {
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+}
+

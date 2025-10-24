@@ -1,0 +1,19 @@
+_BaseCeiling = {
+    primitiveBlock_size : float[3] = ["1", "0.05", "1"]
+    ceiling : Tag = ""
+}
+
+StoneCeiling <- _BaseCeiling= {
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+}
+
+MudCeiling <- _BaseCeiling = {
+    texture_filename : str = "res/textures/tiles/biomes-58.png"
+}
+
+SkeletalCeiling <- _BaseCeiling = {
+    texture_filename : str = "res/textures/tiles/frames2-6.png"
+}
+
+
+

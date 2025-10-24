@@ -1,0 +1,18 @@
+_BaseFloor = {
+    primitiveBlock_size : float[3] = ["1", "0.05", "1"]
+    floor : Tag = ""
+}
+
+StoneFloor <- _BaseFloor = {
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+}
+
+MudFloor <- _BaseFloor = {
+    texture_filename : str = "res/textures/tiles/biomes-58.png"
+}
+
+SkeletalFloor <- _BaseFloor = {
+    texture_filename : str = "res/textures/tiles/frames2-6.png"
+}
+
+

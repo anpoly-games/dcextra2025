@@ -93,18 +93,19 @@ struct primitives
 
 void register_primitives(eecs::Registry& reg)
 {
+    eecs::reg_enter(reg, [&](eecs::EntityId eid, const vec3f& primitiveBlock_size)
+    {
+        Mesh mesh = GenMeshCube(primitiveBlock_size.x, primitiveBlock_size.y, primitiveBlock_size.z);
+        fix_cube_coords(mesh);
+        eecs::EntityWrap ent = eecs::wrap_entity(reg, eid);
+        Model model = LoadModelFromMesh(mesh);
+        ent.set(COMPID(Model, model), model);
+    }, COMPID(const vec3f, primitiveBlock_size));
+
     eecs::reg_enter(reg, [&](eecs::EntityId eid, const std::string& model_filename)
     {
         Model model = LoadModel(model_filename.c_str());
         eecs::EntityWrap ent = eecs::wrap_entity(reg, eid);
-        /*
-        ent.get([&](const Texture2D& tex, const EmissiveTex& emissive)
-        {
-            printf("load model %d materials\n", model.materialCount);
-            SetMaterialTexture(&model.materials[0], MATERIAL_MAP_DIFFUSE, tex);
-            SetMaterialTexture(&model.materials[0], MATERIAL_MAP_EMISSION, emissive.tex);
-        });
-        */
         ent.set(COMPID(Model, model), model);
     }, COMPID(const std::string, model_filename));
 
@@ -112,8 +113,9 @@ void register_primitives(eecs::Registry& reg)
     {
         SetMaterialTexture(&model.materials[0], MATERIAL_MAP_DIFFUSE, texture_diff);
     }, COMPID(Model, model), COMPID(const Texture2D, texture_diff));
-  //ecs.import<primitives>();
-
-  //ecs_script_run_file(ecs, "res/prefabs/primitives.flecs");
+    eecs::reg_enter(reg, [&](eecs::EntityId eid, Model& model, const Texture2D& texture_emissive)
+    {
+        SetMaterialTexture(&model.materials[0], MATERIAL_MAP_EMISSION, texture_emissive);
+    }, COMPID(Model, model), COMPID(const Texture2D, texture_diff));
 }
 
