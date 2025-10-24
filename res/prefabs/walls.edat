@@ -1,0 +1,12 @@
+_BaseWall = {
+    model_filename : str = "res/meshes/Door.glb"
+}
+
+StoneWall <- _BaseWall = {
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+}
+
+MudWall <- _BaseWall = {
+    texture_filename : str = "res/textures/tiles/biomes-58.png"
+}
+

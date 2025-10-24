@@ -545,6 +545,13 @@ void save_level(eecs::Registry& reg, const char* filename)
             "\"" + std::to_string(val.z) + "\""
             "]\n";
     });
+    handlers.addTypeHandler<std::string>([&](const std::string_view& view, const std::string& val)
+    {
+        edat += std::string("    ") + std::string(view) + " : str = \"" + val + "\"\n";
+    });
+#define REG_EMPTY_HANDLER(type) handlers.addTypeHandler<type>([&](const std::string_view& view, const type& val) {});
+    REG_EMPTY_HANDLER(Model);
+    REG_EMPTY_HANDLER(Texture2D);
     eecs::query_entities(reg, [&](eecs::EntityId eid, Tag Saveable)
     {
         edat += "_" + std::to_string(eid) + " = {\n";

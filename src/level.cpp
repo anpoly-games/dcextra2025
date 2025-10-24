@@ -33,24 +33,31 @@ void register_level(eecs::Registry& reg)
         .set(COMPID(std::set<vec2i>, level_xWalls), {})
         .set(COMPID(std::set<vec2i>, level_zWalls), {});
 
-    /*
-    ecs_script_run_file(ecs, "res/prefabs/narrative.flecs");
-    ecs_script_run_file(ecs, "res/prefabs/levels.flecs");
-    */
+    std::vector<eecs::EntityId> walls = load_prefabs_from_file(reg, "res/prefabs/walls.edat");
+    eecs::create_entity_wrap(reg, "floors");
+
+    eecs::create_entity_wrap(reg, "walls")
+        .set(COMPID(std::vector<eecs::EntityId>, children), walls);
+
+    eecs::create_entity_wrap(reg, "doors");
+    eecs::create_entity_wrap(reg, "columns");
+    eecs::create_entity_wrap(reg, "ceilings");
+    eecs::create_entity_wrap(reg, "entities");
+    eecs::create_entity_wrap(reg, "logic");
 }
 
 void load_level(eecs::Registry& reg, const char* filename)
 {
-  std::filesystem::path fullPath{"res/levels/"};
-  fullPath += filename;
+    std::filesystem::path fullPath{"res/levels/"};
+    fullPath += filename;
 
-  if (!fs::exists(fullPath))
-    return;
+    if (!fs::exists(fullPath))
+        return;
 
-  restart_world(reg);
-  load_entities_from_file(reg, fullPath.string().c_str());
+    restart_world(reg);
+    load_entities_from_file(reg, fullPath.string().c_str());
 
-  set_last_level(filename);
+    set_last_level(filename);
 }
 
 

@@ -28,94 +28,100 @@ static std::string editorLevelToLoad = "";
 
 static void draw_right_editor_panel(eecs::Registry& reg, float width, float height, float scaleFactor)
 {
-  if (editorState != E_WORLD)
-    return;
-  const float left = width * 0.7f;
-  const float top = 0;
-  DrawRectangle(left, top, width * 0.3f, height, Color{100, 100, 100, 200});
-  const float lpad = 4 * scaleFactor;
-  const float vpad = lpad;
-  const char* types[E_ETL_NUM] = {"floors", "walls", "doors", "columns", "ceilings", "entities", "logic"};
+    if (editorState != E_WORLD)
+        return;
+    const float left = width * 0.7f;
+    const float top = 0;
+    DrawRectangle(left, top, width * 0.3f, height, Color{100, 100, 100, 200});
+    const float lpad = 4 * scaleFactor;
+    const float vpad = lpad;
+    const char* types[E_ETL_NUM] = {"floors", "walls", "doors", "columns", "ceilings", "entities", "logic"};
 
-  const Vector2 mp = GetMousePosition();
+    const Vector2 mp = GetMousePosition();
 
-  float xtabpos = left + lpad;
-  float ytabpos = top + vpad;
-  for (int i = 0; i < E_ETL_NUM; ++i)
-  {
-    const float hsize = 100 * scaleFactor;
-    const float hspacing = 4 * scaleFactor;
-    Color col = entType == i ? selectedColor : notSelectedColor;
-    Rectangle rect = torect(xtabpos, ytabpos, hsize, 16 * scaleFactor);
-    if (is_vec_in_rect(mp, rect))
+    float xtabpos = left + lpad;
+    float ytabpos = top + vpad;
+    for (int i = 0; i < E_ETL_NUM; ++i)
     {
-      Vector3 hsv = ColorToHSV(col);
-      col = ColorFromHSV(hsv.x, hsv.y, std::min(1.f, hsv.z + 0.3f));
-      if (IsMouseButtonReleased(0))
-      {
-        if (entType != i)
+        const float hsize = 100 * scaleFactor;
+        const float hspacing = 4 * scaleFactor;
+        Color col = entType == i ? selectedColor : notSelectedColor;
+        Rectangle rect = torect(xtabpos, ytabpos, hsize, 16 * scaleFactor);
+        if (is_vec_in_rect(mp, rect))
         {
-            eecs::query_entities(reg, [&](eecs::EntityId, EntTypeList& selectedType, std::string& selectedPrefab)
+            Vector3 hsv = ColorToHSV(col);
+            col = ColorFromHSV(hsv.x, hsv.y, std::min(1.f, hsv.z + 0.3f));
+            if (IsMouseButtonReleased(0))
             {
-                selectedPrefab = ""; selectedType = (EntTypeList)i;
-            }, COMPID(EntTypeList, selectedType), COMPID(std::string, selectedPrefab));
+                if (entType != i)
+                {
+                    eecs::query_entities(reg, [&](eecs::EntityId, EntTypeList& selectedType, std::string& selectedPrefab)
+                            {
+                                selectedPrefab = ""; selectedType = (EntTypeList)i;
+                            }, COMPID(EntTypeList, selectedType), COMPID(std::string, selectedPrefab));
+                }
+                entType = (EntTypeList)i;
+            }
         }
-        entType = (EntTypeList)i;
-      }
-    }
-    DrawRectangleRec(rect, col);
-    DrawText(types[i], rect.x + lpad, rect.y, 16 * scaleFactor, WHITE);
-    xtabpos += hsize + hspacing;
-    if (xtabpos > width - (hsize + hspacing))
-    {
-      xtabpos = left + lpad;
-      ytabpos += 16 * scaleFactor + hspacing;
-    }
-  }
-
-  const float vspacing = 2 * scaleFactor;
-  const float hspacing = 4 * scaleFactor;
-
-  /*
-  float ypos = ytabpos + 16 * scaleFactor + vpad * 2;
-  const float fontSz = 16 * scaleFactor;
-  ecs.lookup(types[entType]).children([&](flecs::entity e)
-  {
-    if (e.name()[0] == '_')
-      return;
-    Rectangle rect = torect(left, ypos, width * 0.3f, fontSz);
-    auto procSelection = [&](std::string& val)
-    {
-      Color col = notSelectedColor;
-      if (val == e.name().c_str())
-        col = selectedColor;
-      if (is_vec_in_rect(mp, rect))
-      {
-        Vector3 hsv = ColorToHSV(col);
-        col = ColorFromHSV(hsv.x, hsv.y, std::min(1.f, hsv.z + 0.3f));
-        if (IsMouseButtonReleased(0))
+        DrawRectangleRec(rect, col);
+        DrawText(types[i], rect.x + lpad, rect.y, 16 * scaleFactor, WHITE);
+        xtabpos += hsize + hspacing;
+        if (xtabpos > width - (hsize + hspacing))
         {
-          if (val != e.name().c_str())
-            val = e.name().c_str();
-          else
-            val = "";
+            xtabpos = left + lpad;
+            ytabpos += 16 * scaleFactor + hspacing;
         }
-      }
-      DrawRectangleRec(rect, col);
-    };
-    eecs::query_entities(reg, [&](eecs::EntityId, std::string& selectedPrefab) { procSelection(selectedPrefab); }, COMPID(std::string, selectedPrefab));
-    int sw = MeasureText(TextFormat("%s", e.name().c_str()), fontSz);
-    DrawText(TextFormat("%s", e.name().c_str()), left + lpad, ypos, fontSz, WHITE);
-    e.get([&](const Texture2D& tex)
+    }
+
+    const float vspacing = 2 * scaleFactor;
+    const float hspacing = 4 * scaleFactor;
+
+    float ypos = ytabpos + 16 * scaleFactor + vpad * 2;
+    const float fontSz = 16 * scaleFactor;
+
+    eecs::EntityWrap type = eecs::find_entity_wrap(reg, types[entType]);
+    eecs::query_component(reg, type.eid, [&](const std::vector<eecs::EntityId>& children)
     {
-      Rectangle texRect = torect(left + lpad + sw + hspacing, ypos, fontSz, fontSz);
-      DrawTexturePro(tex, torect(0, 0, tex.width, tex.height), texRect, tovec(0, 0), 0, WHITE);
-      if (is_vec_in_rect(mp, texRect))
-        DrawTextureEx(tex, Vector2{left - lpad - tex.width * scaleFactor * 2, ypos}, 0.f, scaleFactor * 2, WHITE);
-    });
-    ypos += fontSz + vspacing;
-  });
-  */
+        for (eecs::EntityId eid : children)
+            eecs::entity_name(reg, eid, [&](const std::string& name)
+            {
+                if (name[0] == '_')
+                    return;
+                Rectangle rect = torect(left, ypos, width * 0.3f, fontSz);
+                auto procSelection = [&](std::string& val)
+                {
+                    Color col = notSelectedColor;
+                    if (val == name.c_str())
+                        col = selectedColor;
+                    if (is_vec_in_rect(mp, rect))
+                    {
+                        Vector3 hsv = ColorToHSV(col);
+                        col = ColorFromHSV(hsv.x, hsv.y, std::min(1.f, hsv.z + 0.3f));
+                        if (IsMouseButtonReleased(0))
+                        {
+                            if (val != name.c_str())
+                                val = name.c_str();
+                            else
+                                val = "";
+                        }
+                    }
+                    DrawRectangleRec(rect, col);
+                };
+                eecs::query_entities(reg, [&](eecs::EntityId, std::string& selectedPrefab) { procSelection(selectedPrefab); }, COMPID(std::string, selectedPrefab));
+                int sw = MeasureText(TextFormat("%s", name.c_str()), fontSz);
+                DrawText(TextFormat("%s", name.c_str()), left + lpad, ypos, fontSz, WHITE);
+                /*
+                e.get([&](const Texture2D& tex)
+                        {
+                            Rectangle texRect = torect(left + lpad + sw + hspacing, ypos, fontSz, fontSz);
+                            DrawTexturePro(tex, torect(0, 0, tex.width, tex.height), texRect, tovec(0, 0), 0, WHITE);
+                            if (is_vec_in_rect(mp, texRect))
+                                DrawTextureEx(tex, Vector2{left - lpad - tex.width * scaleFactor * 2, ypos}, 0.f, scaleFactor * 2, WHITE);
+                        });
+                        */
+                ypos += fontSz + vspacing;
+            });
+    }, COMPID(const std::vector<eecs::EntityId>, children));
 }
 
 void draw_top_editor_panel(float width, float height, float scaleFactor)

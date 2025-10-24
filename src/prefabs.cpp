@@ -57,6 +57,10 @@ std::vector<eecs::EntityId> load_entities_from_file(eecs::Registry& reg, const s
         {
             entity.set(eecs::comp_id<eecs::EntityId>(compName.c_str()), val);
         });
+        tbl.getAll<std::string>([&](const std::string& compName, const std::string& val)
+        {
+            entity.set(eecs::comp_id<std::string>(compName.c_str()), val);
+        });
         res.push_back(entity.eid);
     });
     return res;
