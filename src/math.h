@@ -148,17 +148,6 @@ using vec3i = vec3<int>;
 using vec4f = vec4<float>;
 using vec4i = vec4<int>;
 
-#define ASSIGN_OP(Cls) Cls& operator=(const vec2f& rhs) { *(vec2f*)this = rhs; return *this; }
-#define ASSIGN_OP_3f(Cls)\
-    Cls() = default;\
-    Cls(const Cls& rhs) = default;\
-    Cls(Cls&& rhs) = default;\
-    Cls& operator=(const Cls& rhs) = default;\
-    Cls& operator=(Cls&& rhs) = default;\
-    Cls& operator=(const vec3f& rhs) { *(vec3f*)this = rhs; return *this; }\
-    Cls(float _x, float _y, float _z) : vec3f(_x, _y, _z) {}\
-    Cls(const vec3f& rhs) : vec3f(rhs) {}
-
 inline Vector2 toRLVec2(const vec2f& vec) { return Vector2{vec.x, vec.y}; }
 inline Vector3 toRLVec3(const vec3f& vec) { return Vector3{vec.x, vec.y, vec.z}; }
 inline Vector4 toRLVec4(const vec4f& vec) { return Vector4{vec.x, vec.y, vec.z, vec.w}; }

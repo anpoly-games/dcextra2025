@@ -2,7 +2,7 @@
 #include <raylib.h>
 
 #include "../cam.h"
-#include "../movement.h"
+#include "../math.h"
 
 eecs::EntityId create_cam(eecs::Registry& reg)
 {

@@ -1,5 +1,4 @@
 #pragma once
-#include "podval.h"
 #include <raylib.h>
 #include <array>
 
@@ -26,10 +25,6 @@ void draw_game_ui(eecs::Registry& reg);
 
 void register_ui(eecs::Registry& reg);
 void create_ui_helper(eecs::Registry& reg, float width, float height, float scaleFactor);
-
-struct WindowWidth : public FVal {};
-struct WindowHeight : public FVal {};
-struct WindowScaleFactor : public FVal {};
 
 template<typename Vec>
 inline bool is_vec_in_rect(const Vec& v, Rectangle r) { return v.x >= r.x && v.y >= r.y && v.x <= r.x + r.width && v.y <= r.y + r.height; }

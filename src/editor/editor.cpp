@@ -18,7 +18,6 @@
 #include "../level.h"
 #include "../ui.h"
 #include "../cam.h"
-#include "../movement.h"
 #include "../textures.h"
 #include "../tags.h"
 #include "../audio.h"

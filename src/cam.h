@@ -1,7 +1,5 @@
 #pragma once
 
-#include "podval.h"
-
 void register_cam(eecs::Registry& reg);
 eecs::EntityId create_cam(eecs::Registry& reg);
 

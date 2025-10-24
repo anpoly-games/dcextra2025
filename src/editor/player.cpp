@@ -2,7 +2,7 @@
 #include <raylib.h>
 
 #include "../player.h"
-#include "../movement.h"
+#include "../math.h"
 #include "../tags.h"
 
 eecs::EntityId create_player(eecs::Registry& reg, float x, float z, float rot)

@@ -7,10 +7,10 @@
 #include <float.h>
 
 #include "cam.h"
-#include "movement.h"
 #include "tags.h"
 #include "renderer.h"
 #include "prefabs.h"
+#include "math.h"
 
 void register_cam(eecs::Registry& reg)
 {

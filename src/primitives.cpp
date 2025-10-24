@@ -3,6 +3,7 @@
 
 #include "primitives.h"
 #include "textures.h"
+#include "math.h"
 
 static void fix_cube_coords(Mesh& mesh)
 {
