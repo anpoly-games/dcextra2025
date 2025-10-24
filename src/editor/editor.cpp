@@ -1,6 +1,8 @@
 #include <raylib.h>
 #include <flecs.h>
 #include <eecs.h>
+#include <edat.h>
+#include <reflection.h>
 #include <string>
 #include <fstream>
 #include <filesystem>
@@ -520,21 +522,38 @@ void register_editor(eecs::Registry& reg, flecs::world& ecs)
 }
 
 
-void save_level(flecs::world& ecs, const char* filename)
+void save_level(eecs::Registry& reg, const char* filename)
 {
-  std::string fullPath = "res/levels/";
-  fullPath += filename;
-  std::string jsonish = "";
-  auto q = ecs.query_builder().with<Saveable>().build();
-  q.each([&](flecs::entity e)
-  {
-    jsonish += e.to_json();
-    jsonish += "\n";
-  });
-  if (!jsonish.empty())
-    jsonish.resize(jsonish.size() - 1);
-  std::ofstream file(fullPath);
-  file << jsonish;
+    std::string fullPath = "res/levels/";
+    fullPath += filename;
+    std::string edat = "";
+    eecs::ComponentHandlers handlers;
+    handlers.addTypeHandler<float>([&](const std::string_view& view, float val)
+    {
+        edat += std::string("    ") + std::string(view) + " : float = \"" + std::to_string(val) + "\"\n";
+    });
+    handlers.addTypeHandler<Tag>([&](const std::string_view& view, Tag val)
+    {
+        edat += std::string("    ") + std::string(view) + " : Tag = \"\"\n";
+    });
+    handlers.addTypeHandler<vec3f>([&](const std::string_view& view, vec3f val)
+    {
+        edat += std::string("    ") + std::string(view) + " : float[3] = [" +
+            "\"" + std::to_string(val.x) + "\", "
+            "\"" + std::to_string(val.y) + "\", "
+            "\"" + std::to_string(val.z) + "\""
+            "]\n";
+    });
+    eecs::query_entities(reg, [&](eecs::EntityId eid, Tag Saveable)
+    {
+        edat += "_ = {\n";
+        eecs::handle_entity_components(reg, eid, handlers);
+        edat += "}\n";
+    }, COMPID(const Tag, Saveable));
+    if (!edat.empty())
+        edat.resize(edat.size() - 1);
+    std::ofstream file(fullPath);
+    file << edat;
 }
 
 void create_floor(eecs::Registry& reg, int x, int y, float rot, const char* name)

@@ -2,7 +2,7 @@
 
 void register_editor(eecs::Registry& reg, flecs::world& ecs);
 
-void save_level(flecs::world& ecs, const char* filename);
+void save_level(eecs::Registry& reg, const char* filename);
 
 enum EntTypeList
 {

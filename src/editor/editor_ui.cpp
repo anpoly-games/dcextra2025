@@ -142,7 +142,7 @@ void draw_top_editor_panel(flecs::world& ecs, float width, float height, float s
   draw_button(saveFile, "Save", scaleFactor, notSelectedColor);
   if (is_vec_in_rect(mp, saveFile) && IsMouseButtonReleased(0))
     editorState = E_SAVE_SELECT;
-    //save_level(ecs, editorLevelName.c_str());
+    //save_level(reg, editorLevelName.c_str());
 }
 
 static void draw_new_file(eecs::Registry& reg, flecs::world& ecs, Rectangle panelRect, float scaleFactor)
@@ -262,7 +262,7 @@ static void draw_load_select(eecs::Registry& reg, flecs::world& ecs, Rectangle p
     editorState = E_WORLD;
 }
 
-static void draw_save_select(flecs::world& ecs, Rectangle panelRect, float scaleFactor)
+static void draw_save_select(eecs::Registry& reg, Rectangle panelRect, float scaleFactor)
 {
   const float vpad = 4 * scaleFactor;
   const float textSize = 12.f * scaleFactor;
@@ -273,7 +273,7 @@ static void draw_save_select(flecs::world& ecs, Rectangle panelRect, float scale
   float ypos = promptRect.y + promptRect.height + vpad;
   ypos = draw_list_of_files(panelRect, ypos, scaleFactor, [&](const char* fname)
   {
-    save_level(ecs, fname);
+    save_level(reg, fname);
     editorLevelName = fname;
     editorState = E_WORLD;
   });
@@ -324,7 +324,7 @@ static void draw_save_select(flecs::world& ecs, Rectangle panelRect, float scale
   draw_button(cancelButtonRect, "Cancel", scaleFactor, notSelectedColor);
   if (is_vec_in_rect(mp, okButtonRect) && IsMouseButtonPressed(0) || IsKeyPressed(KEY_ENTER))
   {
-    save_level(ecs, newFileName.c_str());
+    save_level(reg, newFileName.c_str());
     editorLevelName = newFileName;
     newFileName = "";
     editorState = E_WORLD;
@@ -355,7 +355,7 @@ static void draw_save_prev(eecs::Registry& reg, flecs::world& ecs, Rectangle pan
   const Vector2 mp = GetMousePosition();
   if (is_vec_in_rect(mp, okButtonRect) && IsMouseButtonPressed(0) || IsKeyPressed(KEY_ENTER))
   {
-    save_level(ecs, editorLevelName.c_str());
+    save_level(reg, editorLevelName.c_str());
     if (editorState == E_SAVE_PREV_NEW)
       restart_world(reg, ecs);
     else if (editorState == E_SAVE_PREV_LOAD)
@@ -398,7 +398,7 @@ static void draw_dialogs(eecs::Registry& reg, flecs::world& ecs, float width, fl
   {
     Rectangle panelRect = torect(width * 0.2f, height * 0.1f, width * 0.6f, height * 0.8f);
     DrawRectangleRec(panelRect, Color{100, 100, 100, 200});
-    draw_save_select(ecs, panelRect, scaleFactor);
+    draw_save_select(reg, panelRect, scaleFactor);
   }
 }
 
