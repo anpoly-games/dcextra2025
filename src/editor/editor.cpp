@@ -1,5 +1,4 @@
 #include <raylib.h>
-#include <flecs.h>
 #include <eecs.h>
 #include <edat.h>
 #include <reflection.h>
@@ -683,13 +682,6 @@ void delete_column(eecs::Registry& reg, int x, int y)
 }
 
 void init_app(eecs::Registry& reg) {}
-
-
-//void pre_draw_call(flecs::world& ecs) {}
-
-void load_state(flecs::world& ecs)
-{
-}
 
 void set_last_level(const char* level)
 {

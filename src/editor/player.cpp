@@ -1,4 +1,3 @@
-#include <flecs.h>
 #include <eecs.h>
 #include <raylib.h>
 

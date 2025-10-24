@@ -1,5 +1,4 @@
 #include <raylib.h>
-#include <flecs.h>
 #include <eecs.h>
 
 #include "player.h"
