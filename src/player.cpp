@@ -10,7 +10,7 @@
 #include "game.h"
 #include "audio.h"
 
-void register_player(eecs::Registry& reg, flecs::world& ecs)
+void register_player(eecs::Registry& reg)
 {
     static Sound stepSnd = LoadSound("res/audio/sfx/step.ogg");
     eecs::reg_system(reg, [&](eecs::EntityId eid, vec3f& position, vec3f& direction, Tag player)
@@ -36,7 +36,7 @@ void register_player(eecs::Registry& reg, flecs::world& ecs)
             if (mdir2d.mag2() != 0)
             {
                 vec2i gridPos = pos_to_grid(position);
-                if (check_collision_dir(ecs, gridPos, mdir2d))
+                if (check_collision_dir(reg, gridPos, mdir2d))
                     return;
                 // align back to grid
                 PlaySound(stepSnd);

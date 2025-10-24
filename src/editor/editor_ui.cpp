@@ -437,15 +437,14 @@ static bool is_cursor_over_editor_ui(float width, float height, float scaleFacto
 }
 
 
-bool is_cursor_over_ui(flecs::world& ecs)
+bool is_cursor_over_ui(eecs::Registry& reg)
 {
-  bool res = false;
-  ecs.query<const WindowWidth, const WindowHeight, const WindowScaleFactor>()
-    .each([&](const WindowWidth& width, const WindowHeight& height, const WindowScaleFactor& scaleFactor)
+    bool res = false;
+    eecs::query_entities(reg, [&](eecs::EntityId, float window_width, float window_height, float window_scaleFactor)
     {
-      res |= is_cursor_over_editor_ui(width.val, height.val, scaleFactor.val);
-    });
-  return res;
+        res |= is_cursor_over_editor_ui(window_width, window_height, window_scaleFactor);
+    }, COMPID(const float, window_width), COMPID(const float, window_height), COMPID(const float, window_scaleFactor));
+    return res;
 }
 
 bool is_ui_blocks_input()

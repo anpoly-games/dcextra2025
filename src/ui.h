@@ -25,7 +25,7 @@ void draw_ui(eecs::Registry& reg, flecs::world& ecs, float width, float height, 
 void draw_game_ui(flecs::world& ecs);
 
 void register_ui(flecs::world& ecs);
-void create_ui_helper(eecs::Registry& reg, flecs::world& ecs, float width, float height, float scaleFactor);
+void create_ui_helper(eecs::Registry& reg, float width, float height, float scaleFactor);
 
 struct WindowWidth : public FVal {};
 struct WindowHeight : public FVal {};
@@ -34,7 +34,7 @@ struct WindowScaleFactor : public FVal {};
 template<typename Vec>
 inline bool is_vec_in_rect(const Vec& v, Rectangle r) { return v.x >= r.x && v.y >= r.y && v.x <= r.x + r.width && v.y <= r.y + r.height; }
 
-bool is_cursor_over_ui(flecs::world& ecs);
+bool is_cursor_over_ui(eecs::Registry& reg);
 bool is_ui_blocks_input();
 
 struct NineRect

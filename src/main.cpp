@@ -36,7 +36,7 @@ int main(int argc, const char** argv)
 
   register_systems(reg, ecs);
   init_new_world(reg);
-  create_ui_helper(reg, ecs, width * scaleFactor, height * scaleFactor, scaleFactor);
+  create_ui_helper(reg, width * scaleFactor, height * scaleFactor, scaleFactor);
   init_app(reg, ecs);
 
   while (!WindowShouldClose())

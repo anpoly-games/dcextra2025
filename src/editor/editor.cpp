@@ -29,11 +29,11 @@ void register_systems(eecs::Registry& reg, flecs::world& ecs)
   register_math(ecs);
   register_textures(ecs);
   register_primitives(ecs);
-  register_player(reg, ecs);
+  register_player(reg);
   register_audio(ecs);
-  register_renderer(reg, ecs);
+  register_renderer(reg);
   register_cam(reg, ecs);
-  register_level(ecs);
+  register_level(reg, ecs);
   register_editor(reg, ecs);
   register_ui(ecs);
 }
@@ -46,34 +46,34 @@ eecs::EntityId init_new_world(eecs::Registry& reg)
 
 void restart_world(eecs::Registry& reg, flecs::world& ecs)
 {
-  float width, height, scaleFactor;
-  ecs.query<const WindowWidth, const WindowHeight, const WindowScaleFactor>()
-    .each([&](const WindowWidth& ww, const WindowHeight& wh, const WindowScaleFactor& ws)
+    float width, height, scaleFactor;
+    eecs::query_entities(reg, [&](eecs::EntityId, float window_width, float window_height, float window_scaleFactor)
     {
-      width = ww.val;
-      height = wh.val;
-      scaleFactor = ws.val;
-    });
-  ecs.reset();
-  register_systems(reg, ecs);
-  init_new_world(reg);
-  create_ui_helper(reg, ecs, width, height, scaleFactor);
+        width = window_width;
+        height = window_height;
+        scaleFactor = window_scaleFactor;
+    }, COMPID(const float, window_width), COMPID(const float, window_height), COMPID(const float, window_scaleFactor));
+
+    ecs.reset();
+    register_systems(reg, ecs);
+    init_new_world(reg);
+    create_ui_helper(reg, width, height, scaleFactor);
 }
 
 
-void create_floor(flecs::world& ecs, int x, int y, float rot, const char* name);
-void create_ceiling(flecs::world& ecs, int x, int y, float rot, const char* name);
-void create_wall(flecs::world& ecs, int x, int y, int dir, bool flip, const char* name);
-void create_door(flecs::world& ecs, int x, int y, int dir, const char* name);
-void create_column(flecs::world& ecs, int x, int y, const char* name);
-void create_entity(flecs::world& ecs, int x, int y, float rot, const char* name);
-void create_logic(flecs::world& ecs, int x, int y, float rot, const char* name);
+void create_floor(eecs::Registry& reg, int x, int y, float rot, const char* name);
+void create_ceiling(eecs::Registry& reg, int x, int y, float rot, const char* name);
+void create_wall(eecs::Registry& reg, int x, int y, int dir, bool flip, const char* name);
+void create_door(eecs::Registry& reg, int x, int y, int dir, const char* name);
+void create_column(eecs::Registry& reg, int x, int y, const char* name);
+void create_entity(eecs::Registry& reg, int x, int y, float rot, const char* name);
+void create_logic(eecs::Registry& reg, int x, int y, float rot, const char* name);
 
-void delete_floor(flecs::world& ecs, int x, int y);
-void delete_ceiling(flecs::world& ecs, int x, int y);
-void delete_wall(flecs::world& ecs, int x, int y, int dir);
-void delete_door(flecs::world& ecs, int x, int y, int dir);
-void delete_column(flecs::world& ecs, int x, int y);
+void delete_floor(eecs::Registry& reg, int x, int y);
+void delete_ceiling(eecs::Registry& reg, int x, int y);
+void delete_wall(eecs::Registry& reg, int x, int y, int dir);
+void delete_door(eecs::Registry& reg, int x, int y, int dir);
+void delete_column(eecs::Registry& reg, int x, int y);
 
 static void draw_cube_matrix(const BoundingBox& bbox, const vec3f& pos, float rotation, Color col)
 {
@@ -184,7 +184,7 @@ void register_editor(eecs::Registry& reg, flecs::world& ecs)
             DrawLine3D(Vector3{x - 0.5f, 1.01f, minP.z}, Vector3{x - 0.5f, 1.01f, maxP.z}, WHITE);
         }
 
-        if (is_cursor_over_ui(ecs))
+        if (is_cursor_over_ui(reg))
             return;
         Ray r = GetScreenToWorldRay(GetMousePosition(), camera);
         const vec3f rp = tov3(r.position);
@@ -283,7 +283,6 @@ void register_editor(eecs::Registry& reg, flecs::world& ecs)
             if (selectedEntity != eecs::invalid_eid)
                 return;
             // Select stuff in world
-            auto modelQ = ecs.query<const Position, const Model, const Rotation*>();
             eecs::EntityId bestEntity = eecs::invalid_eid;
             float bestT = 1e12f;
             eecs::query_entities(reg, [&](eecs::EntityId eid, const vec3f& position, const Model& model)
@@ -322,19 +321,21 @@ void register_editor(eecs::Registry& reg, flecs::world& ecs)
                     bestEntity = eid;
                 }
             }, COMPID(const vec3f, position), COMPID(const float, rotation), COMPID(const vec3f, dbox_offset), COMPID(const vec3f, dbox_size));
-            auto trigQ = ecs.query<const Position, const TriggerVolume>();
-            trigQ.each([&](flecs::entity e, const Position& pos, const TriggerVolume& vol)
+            eecs::query_entities(reg, [&](eecs::EntityId eid, const vec3f& position, const vec2i& trigger_volume)
             {
-                BoundingBox box = {Vector3{pos.x - vol.sz.x * 0.5f, pos.y - 0.1f, pos.z - vol.sz.y * 0.5f}, Vector3{pos.x + vol.sz.x * 0.5f, pos.y + 0.1f, pos.z + vol.sz.y * 0.5f}};
+                BoundingBox box = {
+                    Vector3{position.x - trigger_volume.x * 0.5f, position.y - 0.1f, position.z - trigger_volume.y * 0.5f},
+                    Vector3{position.x + trigger_volume.x * 0.5f, position.y + 0.1f, position.z + trigger_volume.y * 0.5f}
+                };
                 RayCollision coll = GetRayCollisionBox(r, box);
                 if (!coll.hit)
                     return;
                 if (coll.distance < bestT)
                 {
                     bestT = coll.distance;
-                    bestEntity = e;
+                    bestEntity = eid;
                 }
-            });
+            }, COMPID(const vec3f, position), COMPID(const vec2i, trigger_volume));
             if (bestEntity != eecs::invalid_eid)
             {
                 eecs::EntityWrap best = eecs::wrap_entity(reg, bestEntity);
@@ -399,22 +400,22 @@ void register_editor(eecs::Registry& reg, flecs::world& ecs)
                     }
                     if (IsMouseButtonReleased(0))
                     {
-                        delete_wall(ecs, wx, wy, dir);
-                        delete_door(ecs, wx, wy, dir);
+                        delete_wall(reg, wx, wy, dir);
+                        delete_door(reg, wx, wy, dir);
                         if (selectedType == E_WALLS)
                         {
                             vec2f hzDir = vec2f(sinf(dir * PI / 2), cosf(dir * PI / 2));
                             vec2f pos2d = vec2f(wx - (dir ? 0.5f : 0.f), wy - (dir ? 0.f : 0.5f));
                             vec2f cam2dDir = pos2d - vec2f(camera.position.x, camera.position.z);
-                            create_wall(ecs, wx, wy, dir, hzDir.dot(cam2dDir) < 0, selectedPrefab.c_str());
+                            create_wall(reg, wx, wy, dir, hzDir.dot(cam2dDir) < 0, selectedPrefab.c_str());
                         }
                         else if (selectedType == E_DOORS)
-                            create_door(ecs, wx, wy, dir, selectedPrefab.c_str());
+                            create_door(reg, wx, wy, dir, selectedPrefab.c_str());
                     }
                     if (IsMouseButtonReleased(1))
                     {
-                        delete_wall(ecs, wx, wy, dir);
-                        delete_door(ecs, wx, wy, dir);
+                        delete_wall(reg, wx, wy, dir);
+                        delete_door(reg, wx, wy, dir);
                     }
                 }
                 if (selectedType == E_FLOORS)
@@ -422,23 +423,23 @@ void register_editor(eecs::Registry& reg, flecs::world& ecs)
                     DrawCube(castRLVec3(tilePos), 1.f, 0.05f, 1.f, Color{255, 255, 0, 150});
                     if (IsMouseButtonDown(0))
                     {
-                        delete_floor(ecs, tilePos.x, tilePos.z);
-                        create_floor(ecs, tilePos.x, tilePos.z, camRot, selectedPrefab.c_str());
+                        delete_floor(reg, tilePos.x, tilePos.z);
+                        create_floor(reg, tilePos.x, tilePos.z, camRot, selectedPrefab.c_str());
                     }
                     if (IsMouseButtonReleased(1))
-                        delete_floor(ecs, tilePos.x, tilePos.z);
+                        delete_floor(reg, tilePos.x, tilePos.z);
                 }
                 if (selectedType == E_ENTITIES)
                 {
                     DrawCube(castRLVec3(tilePos), 1.f, 0.05f, 1.f, Color{255, 255, 0, 150});
                     if (IsMouseButtonReleased(0))
-                        create_entity(ecs, tilePos.x, tilePos.z, camRot, selectedPrefab.c_str());
+                        create_entity(reg, tilePos.x, tilePos.z, camRot, selectedPrefab.c_str());
                 }
                 if (selectedType == E_LOGIC)
                 {
                     DrawCube(castRLVec3(tilePos), 1.f, 0.05f, 1.f, Color{255, 255, 0, 150});
                     if (IsMouseButtonReleased(0))
-                        create_logic(ecs, tilePos.x, tilePos.z, camRot, selectedPrefab.c_str());
+                        create_logic(reg, tilePos.x, tilePos.z, camRot, selectedPrefab.c_str());
                 }
                 if (selectedType == E_COLUMNS)
                 {
@@ -448,11 +449,11 @@ void register_editor(eecs::Registry& reg, flecs::world& ecs)
                     int cy = tilePos.z + (insideTilePos.z > 0 ? 1 : 0);
                     if (IsMouseButtonReleased(0))
                     {
-                        delete_column(ecs, cx, cy);
-                        create_column(ecs, cx, cy, selectedPrefab.c_str());
+                        delete_column(reg, cx, cy);
+                        create_column(reg, cx, cy, selectedPrefab.c_str());
                     }
                     if (IsMouseButtonReleased(1))
-                        delete_column(ecs, cx, cy);
+                        delete_column(reg, cx, cy);
                 }
             }
             if (ceilingT > 0.f && ceilingT < 10.f)
@@ -466,26 +467,26 @@ void register_editor(eecs::Registry& reg, flecs::world& ecs)
                     DrawCube(castRLVec3(tilePos), 1.f, 0.05f, 1.f, Color{255, 255, 0, 150});
                     if (IsMouseButtonDown(0))
                     {
-                        delete_ceiling(ecs, tilePos.x, tilePos.z);
-                        create_ceiling(ecs, tilePos.x, tilePos.z, camRot, selectedPrefab.c_str());
+                        delete_ceiling(reg, tilePos.x, tilePos.z);
+                        create_ceiling(reg, tilePos.x, tilePos.z, camRot, selectedPrefab.c_str());
                     }
                     if (IsMouseButtonReleased(1))
-                        delete_ceiling(ecs, tilePos.x, tilePos.z);
+                        delete_ceiling(reg, tilePos.x, tilePos.z);
                 }
             }
         }, COMPID(const EntTypeList, selectedType), COMPID(const std::string, selectedPrefab));
     }, COMPID(const Camera, camera));
     eecs::reg_system(reg, [&](eecs::EntityId eid, const Camera& camera)
       {
-        ecs.query<const Position, const Rotation, const DebugBox>()
-          .each([&](const Position& pos, const Rotation& rot, const DebugBox& dbox)
+          eecs::query_entities(reg, [&](eecs::EntityId, const vec3f& position, float rotation, const vec3f& dbox_offset, const vec3f& dbox_size, const vec3f& dbox_color,
+                                        const std::string& dbox_name)
           {
             BoundingBox bbox;
-            bbox.min = toRLVec3(dbox.offset - dbox.sz * 0.5f);
-            bbox.max = toRLVec3(dbox.offset + dbox.sz * 0.5f);
-            draw_cube_matrix(bbox, pos, rot.val, Color{uint8_t(dbox.color.x * 255), uint8_t(dbox.color.y * 255), uint8_t(dbox.color.z * 255), 150});
-            Matrix matRotation = MatrixRotate(Vector3{0.f, 1.f, 0.f}, rot.val*DEG2RAD);
-            Matrix matTranslation = MatrixTranslate(pos.x, pos.y, pos.z);
+            bbox.min = toRLVec3(dbox_offset - dbox_size * 0.5f);
+            bbox.max = toRLVec3(dbox_offset + dbox_size * 0.5f);
+            draw_cube_matrix(bbox, position, rotation, Color{uint8_t(dbox_color.x * 255), uint8_t(dbox_color.y * 255), uint8_t(dbox_color.z * 255), 150});
+            Matrix matRotation = MatrixRotate(Vector3{0.f, 1.f, 0.f}, rotation*DEG2RAD);
+            Matrix matTranslation = MatrixTranslate(position.x, position.y, position.z);
 
             Matrix matTransform = MatrixMultiply(matRotation, matTranslation);
             Vector3 topBox = (Vector3{(bbox.min.x + bbox.max.x) * 0.5f, bbox.max.y, (bbox.min.x + bbox.max.x) * 0.5f}) * matTransform;
@@ -493,23 +494,23 @@ void register_editor(eecs::Registry& reg, flecs::world& ecs)
             if (screenPos.z >= 0.f)
             {
               EndMode3D();
-              draw_centered_font_with_shadow(GetFontDefault(), dbox.name.c_str(), torect(screenPos.x, screenPos.y, 0.f, 0.f), 12.f, WHITE);
+              draw_centered_font_with_shadow(GetFontDefault(), dbox_name.c_str(), torect(screenPos.x, screenPos.y, 0.f, 0.f), 12.f, WHITE);
               BeginMode3D(camera);
             }
-          });
-        auto trigQ = ecs.query<const Position, const TriggerVolume>();
-        trigQ.each([&](flecs::entity e, const Position& pos, const TriggerVolume& vol)
-        {
-          DrawCube(toRLVec3(pos), vol.sz.x, 0.2f, vol.sz.y, Color{255, 255, 255, 150});
-          Vector3 topBox = Vector3{pos.x, pos.y + 0.2f, pos.z};
-          Vector3 screenPos = GetWorldToScreen3dEx(topBox, camera);
-          if (screenPos.z >= 0.f)
+          }, COMPID(const vec3f, position), COMPID(const float, rotation), COMPID(const vec3f, dbox_offset),
+              COMPID(const vec3f, dbox_size), COMPID(const vec3f, dbox_color), COMPID(const std::string, dbox_name));
+          eecs::query_entities(reg, [&](eecs::EntityId, const vec3f& position, const vec2i& trigger_volume, const std::string& trigger_debugName)
           {
-            EndMode3D();
-            draw_centered_font_with_shadow(GetFontDefault(), vol.debugName.c_str(), torect(screenPos.x, screenPos.y, 0.f, 0.f), 12.f, WHITE);
-            BeginMode3D(camera);
-          }
-        });
+              DrawCube(toRLVec3(position), trigger_volume.x, 0.2f, trigger_volume.y, Color{255, 255, 255, 150});
+              Vector3 topBox = Vector3{position.x, position.y + 0.2f, position.z};
+              Vector3 screenPos = GetWorldToScreen3dEx(topBox, camera);
+              if (screenPos.z >= 0.f)
+              {
+                  EndMode3D();
+                  draw_centered_font_with_shadow(GetFontDefault(), trigger_debugName.c_str(), torect(screenPos.x, screenPos.y, 0.f, 0.f), 12.f, WHITE);
+                  BeginMode3D(camera);
+              }
+          }, COMPID(const vec3f, position), COMPID(const vec2i, trigger_volume), COMPID(const std::string, trigger_debugName));
       }, COMPID(const Camera, camera));
 
     eecs::create_entity_wrap(reg)
@@ -536,141 +537,128 @@ void save_level(flecs::world& ecs, const char* filename)
   file << jsonish;
 }
 
-void create_floor(flecs::world& ecs, int x, int y, float rot, const char* name)
+void create_floor(eecs::Registry& reg, int x, int y, float rot, const char* name)
 {
-  flecs::entity e = ecs.entity()
-    .is_a(ecs.lookup("floors").lookup(name))
-    .add<Floor>()
-    .add<Saveable>()
-    .set(Rotation{rot})
-    .set(Position{float(x), -0.025f, float(y)});
+    eecs::create_wrap_from_prefab(reg, eecs::find_entity(reg, name))
+        .tag(COMPID(Tag, Floor))
+        .tag(COMPID(Tag, Saveable))
+        .set(COMPID(float, rotation), rot)
+        .set(COMPID(vec3f, position), {float(x), -0.025f, float(y)});
 }
 
-void create_entity(flecs::world& ecs, int x, int y, float rot, const char* name)
+void create_entity(eecs::Registry& reg, int x, int y, float rot, const char* name)
 {
-  flecs::entity pref = ecs.lookup("entities").lookup(name);
-  const RelativePos* relPosP = pref.try_get<RelativePos>();
-  const vec3f relPos = relPosP ? *(vec3f*)relPosP : vec3f(0, 0, 0);
-  const Matrix matRotation = MatrixRotate(tovec3(0, 1, 0), rot * DEG2RAD);
-  const vec3f tilePos = vec3f(x, 0, y);
-  const vec3f pos = tilePos + tov3(castRLVec3(relPos) * matRotation);
-  flecs::entity e = ecs.entity()
-    .is_a(pref)
-    .add<Saveable>()
-    .set(Rotation{rot + 180})
-    .set(Position{pos});
+    eecs::EntityWrap pref = eecs::find_entity_wrap(reg, name);
+    const vec3f relPos = pref.get_or(COMPID(vec3f, relativePos), vec3f(0, 0, 0));
+    const Matrix matRotation = MatrixRotate(tovec3(0, 1, 0), rot * DEG2RAD);
+    const vec3f tilePos = vec3f(x, 0, y);
+    const vec3f pos = tilePos + tov3(castRLVec3(relPos) * matRotation);
+    eecs::create_wrap_from_prefab(reg, pref)
+        .tag(COMPID(Tag, Saveable))
+        .set(COMPID(float, rotation), rot + 180)
+        .set(COMPID(vec3f, position), pos);
 }
 
-void create_logic(flecs::world& ecs, int x, int y, float rot, const char* name)
+void create_logic(eecs::Registry& reg, int x, int y, float rot, const char* name)
 {
-  flecs::entity pref = ecs.lookup("logic").lookup(name);
-  const vec3f tilePos = vec3f(x, 0, y);
-  const vec3f pos = tilePos;
-  flecs::entity e = ecs.entity()
-    .is_a(pref)
-    .add<Saveable>()
-    .set(Rotation{rot + 180})
-    .set(Position{pos});
+    eecs::EntityWrap pref = eecs::find_entity_wrap(reg, name);
+    const vec3f tilePos = vec3f(x, 0, y);
+    const vec3f pos = tilePos;
+    eecs::create_wrap_from_prefab(reg, pref)
+        .tag(COMPID(Tag, Saaveable))
+        .set(COMPID(float, rotation), rot + 180)
+        .set(COMPID(vec3f, position), pos);
 }
 
 
-void create_ceiling(flecs::world& ecs, int x, int y, float rot, const char* name)
+void create_ceiling(eecs::Registry& reg, int x, int y, float rot, const char* name)
 {
-  flecs::entity e = ecs.entity()
-    .is_a(ecs.lookup("ceilings").lookup(name))
-    .add<Ceiling>()
-    .add<Saveable>()
-    .set(Rotation{rot})
-    .set(Position(float(x), 1.025f, float(y)));
+    eecs::create_wrap_from_prefab(reg, eecs::find_entity(reg, name))
+        .tag(COMPID(Tag, Ceiling))
+        .tag(COMPID(Tag, Saveable))
+        .set(COMPID(float, rotation), rot)
+        .set(COMPID(vec3f, position), {float(x), 1.025f, float(y)});
 }
 
-void create_wall(flecs::world& ecs, int x, int y, int dir, bool flip, const char* name)
+void create_wall(eecs::Registry& reg, int x, int y, int dir, bool flip, const char* name)
 {
-  vec3f pos = vec3f(x - (dir ? 0.5f : 0.f), 0.5f, y - (dir ? 0.f : 0.5f));
-  flecs::entity e = ecs.entity()
-    .is_a(ecs.lookup("walls").lookup(name))
-    .add<Wall>()
-    .add<Saveable>()
-    .set(Rotation{dir * 90.f + (flip ? 180.f : 0.f)})
-    .set(Position{pos});
+    vec3f pos = vec3f(x - (dir ? 0.5f : 0.f), 0.5f, y - (dir ? 0.f : 0.5f));
+    eecs::create_wrap_from_prefab(reg, eecs::find_entity(reg, name))
+        .tag(COMPID(Tag, Wall))
+        .tag(COMPID(Tag, Saveable))
+        .set(COMPID(float, rotation), dir * 90.f + (flip ? 180.f : 0.f))
+        .set(COMPID(vec3f, position), pos);
 }
 
-void create_door(flecs::world& ecs, int x, int y, int dir, const char* name)
+void create_door(eecs::Registry& reg, int x, int y, int dir, const char* name)
 {
-  vec3f pos = vec3f(x - (dir ? 0.5f : 0.f), 0.5f, y - (dir ? 0.f : 0.5f));
-  flecs::entity e = ecs.entity()
-    .is_a(ecs.lookup("doors").lookup(name))
-    .add<Door>()
-    .add<Saveable>()
-    .set(Rotation{dir * 90.f})
-    .set(Position{pos});
+    vec3f pos = vec3f(x - (dir ? 0.5f : 0.f), 0.5f, y - (dir ? 0.f : 0.5f));
+    eecs::create_wrap_from_prefab(reg, eecs::find_entity(reg, name))
+        .tag(COMPID(Tag, Door))
+        .tag(COMPID(Tag, Saveable))
+        .set(COMPID(float, rotation), dir * 90.f)
+        .set(COMPID(vec3f, position), pos);
 }
 
 
-void create_column(flecs::world& ecs, int x, int y, const char* name)
+void create_column(eecs::Registry& reg, int x, int y, const char* name)
 {
-  flecs::entity e = ecs.entity()
-    .is_a(ecs.lookup("columns").lookup(name))
-    .add<Column>()
-    .add<Saveable>()
-    .set(Rotation{0.f})
-    .set(Position{float(x) - 0.5f, 0.5f, float(y) - 0.5f});
+    eecs::create_wrap_from_prefab(reg, eecs::find_entity(reg, name))
+        .tag(COMPID(Tag, Column))
+        .tag(COMPID(Tag, Saveable))
+        .set(COMPID(float, rotation), 0.f)
+        .set(COMPID(vec3f, position), {float(x) - 0.5f, 0.5f, float(y) - 0.5f});
 }
 
-void delete_floor(flecs::world& ecs, int x, int y)
+void delete_floor(eecs::Registry& reg, int x, int y)
 {
-  ecs.query_builder<const Position>().with<Floor>().build()
-    .each([&](flecs::entity ent, const Position& pos)
+    eecs::query_entities(reg, [&](eecs::EntityId eid, const vec3f& position, Tag Floor)
     {
-      if (int(pos.x) == x && int(pos.z) == y)
-        ent.destruct();
-    });
+        if (int(position.x) == x && int(position.z) == y)
+            eecs::del_entity(reg, eid);
+    }, COMPID(const vec3f, position), COMPID(const Tag, Floor));
 }
 
-void delete_ceiling(flecs::world& ecs, int x, int y)
+void delete_ceiling(eecs::Registry& reg, int x, int y)
 {
-  ecs.query_builder<const Position>().with<Ceiling>().build()
-    .each([&](flecs::entity ent, const Position& pos)
+    eecs::query_entities(reg, [&](eecs::EntityId eid, const vec3f& position, Tag Ceiling)
     {
-      if (int(pos.x) == x && int(pos.z) == y)
-        ent.destruct();
-    });
-}
-
-
-void delete_wall(flecs::world& ecs, int x, int y, int dir)
-{
-  ecs.query_builder<const Position, const Rotation>().with<Wall>().build()
-    .each([&](flecs::entity ent, const Position& pos, const Rotation& rot)
-    {
-      if (rot.val != dir * 90.f && rot.val != dir * 90.f + 180.f)
-        return;
-      if (pos.x == x - dir * 0.5f && pos.z == y - (1 - dir) * 0.5f)
-        ent.destruct();
-    });
-}
-
-void delete_door(flecs::world& ecs, int x, int y, int dir)
-{
-  ecs.query_builder<const Position, const Rotation>().with<Door>().build()
-    .each([&](flecs::entity ent, const Position& pos, const Rotation& rot)
-    {
-      if (rot.val != dir * 90.f)
-        return;
-      if (pos.x == x - dir * 0.5f && pos.z == y - (1 - dir) * 0.5f)
-        ent.destruct();
-    });
+        if (int(position.x) == x && int(position.z) == y)
+            eecs::del_entity(reg, eid);
+    }, COMPID(const vec3f, position), COMPID(const Tag, Ceiling));
 }
 
 
-void delete_column(flecs::world& ecs, int x, int y)
+void delete_wall(eecs::Registry& reg, int x, int y, int dir)
 {
-  ecs.query_builder<const Position>().with<Column>().build()
-    .each([&](flecs::entity ent, const Position& pos)
+    eecs::query_entities(reg, [&](eecs::EntityId eid, const vec3f& position, float rotation, Tag Wall)
     {
-      if (pos.x == x - 0.5f && pos.z == y - 0.5f)
-        ent.destruct();
-    });
+        if (rotation != dir * 90.f && rotation != dir * 90.f + 180.f)
+            return;
+        if (position.x == x - dir * 0.5f && position.z == y - (1 - dir) * 0.5f)
+            eecs::del_entity(reg, eid);
+    }, COMPID(const vec3f, position), COMPID(const float, rotation), COMPID(const Tag, Wall));
+}
+
+void delete_door(eecs::Registry& reg, int x, int y, int dir)
+{
+    eecs::query_entities(reg, [&](eecs::EntityId eid, const vec3f& position, float rotation, Tag Door)
+    {
+        if (rotation != dir * 90.f)
+            return;
+        if (position.x == x - dir * 0.5f && position.z == y - (1 - dir) * 0.5f)
+            eecs::del_entity(reg, eid);
+    }, COMPID(const vec3f, position), COMPID(const float, rotation), COMPID(const Tag, Door));
+}
+
+
+void delete_column(eecs::Registry& reg, int x, int y)
+{
+    eecs::query_entities(reg, [&](eecs::EntityId eid, const vec3f& position, Tag Column)
+    {
+        if (position.x == x - 0.5f && position.z == y - 0.5f)
+            eecs::del_entity(reg, eid);
+    }, COMPID(const vec3f, position), COMPID(const Tag, Column));
 }
 
 void init_app(eecs::Registry& reg, flecs::world& ecs) {}

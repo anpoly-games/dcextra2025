@@ -72,10 +72,6 @@ struct level
       .member<std::string>("text")
       .add(flecs::OnInstantiate, flecs::Inherit);
 
-    ecs.entity("level_walls")
-      .set(LevelWalls());
-
-
     ecs.component<NarrativeLine>()
       .member<std::string>("text");
     ecs.component<BlockingDialog>();
@@ -105,27 +101,30 @@ struct level
 
 static std::string savedState = "";
 
-bool check_collision_dir(flecs::world& ecs, const vec2i& pos, const vec2i& dir)
+bool check_collision_dir(eecs::Registry& reg, const vec2i& pos, const vec2i& dir)
 {
-  bool res = false;
-  auto lwQ = ecs.query<const LevelWalls>();
-  lwQ.each([&](const LevelWalls& lw)
-  {
-    // First figure out which walls to check
-    const std::set<vec2i>& toCheck = dir.x != 0 ? lw.xWalls : lw.zWalls;
-    const vec2i posCheck = vec2i{pos.x + (dir.x == 1 ? 1 : 0), pos.y + (dir.y == 1 ? 1 : 0)};
-    res = toCheck.contains(posCheck);
-  });
-  return res;
+    bool res = false;
+    eecs::query_entities(reg, [&](eecs::EntityId, const std::set<vec2i>& level_xWalls, const std::set<vec2i>& level_zWalls)
+    {
+        // First figure out which walls to check
+        const std::set<vec2i>& toCheck = dir.x != 0 ? level_xWalls : level_zWalls;
+        const vec2i posCheck = vec2i{pos.x + (dir.x == 1 ? 1 : 0), pos.y + (dir.y == 1 ? 1 : 0)};
+        res = toCheck.contains(posCheck);
+    }, COMPID(const std::set<vec2i>, level_xWalls), COMPID(const std::set<vec2i>, level_zWalls));
+    return res;
 }
 
 
-void register_level(flecs::world& ecs)
+void register_level(eecs::Registry& reg, flecs::world& ecs)
 {
-  ecs.import<level>();
+    ecs.import<level>();
 
-  ecs_script_run_file(ecs, "res/prefabs/narrative.flecs");
-  ecs_script_run_file(ecs, "res/prefabs/levels.flecs");
+    eecs::create_entity_wrap(reg, "level_walls")
+        .set(COMPID(std::set<vec2i>, level_xWalls), {})
+        .set(COMPID(std::set<vec2i>, level_zWalls), {});
+
+    ecs_script_run_file(ecs, "res/prefabs/narrative.flecs");
+    ecs_script_run_file(ecs, "res/prefabs/levels.flecs");
 }
 
 

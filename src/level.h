@@ -7,7 +7,7 @@
 #include "math.h"
 #include "podval.h"
 
-void register_level(flecs::world& ecs);
+void register_level(eecs::Registry& reg, flecs::world& ecs);
 
 void load_level(eecs::Registry& reg, flecs::world& ecs, const char* filename);
 void load_state(flecs::world& ecs);
@@ -43,12 +43,6 @@ struct SwitchLevel
 };
 
 struct SpawnPoint {};
-
-struct LevelWalls
-{
-  std::set<vec2i> xWalls;
-  std::set<vec2i> zWalls;
-};
 
 struct HoverText
 {
@@ -92,5 +86,5 @@ struct Particles
 //struct GateOpenOp {};
 
 // Only one step at a time, not a visibility check!
-bool check_collision_dir(flecs::world& ecs, const vec2i& pos, const vec2i& dir);
+bool check_collision_dir(eecs::Registry& reg, const vec2i& pos, const vec2i& dir);
 

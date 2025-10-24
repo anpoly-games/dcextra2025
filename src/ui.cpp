@@ -115,12 +115,12 @@ void register_ui(flecs::world& ecs)
   // do nothing yet
 }
 
-void create_ui_helper(eecs::Registry& reg, flecs::world& ecs, float width, float height, float scaleFactor)
+void create_ui_helper(eecs::Registry& reg, float width, float height, float scaleFactor)
 {
-  ecs.entity()
-    .set(WindowWidth{width})
-    .set(WindowHeight{height})
-    .set(WindowScaleFactor{scaleFactor});
+    eecs::create_entity_wrap(reg)
+        .set(COMPID(float, window_width), width)
+        .set(COMPID(float, window_height), height)
+        .set(COMPID(float, window_scaleFactor), scaleFactor);
 }
 
 NineRect create_9rect(Image img, int sz)

@@ -2,7 +2,7 @@
 
 #include "podval.h"
 
-void register_renderer(eecs::Registry& reg, flecs::world& ecs);
+void register_renderer(eecs::Registry& reg);
 
 struct LightStrength : public FVal {};
 
