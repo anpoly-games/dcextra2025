@@ -43,5 +43,5 @@ endif ()
     
 add_executable(editor ${SOURCES} ${EDITOR_SOURCES})
 #target_include_directories(dcjam2025 PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/../../src)
-target_link_libraries(editor PUBLIC raylib glfw flecs_static eecs edat)
+target_link_libraries(editor PUBLIC raylib glfw eecs edat)
 
