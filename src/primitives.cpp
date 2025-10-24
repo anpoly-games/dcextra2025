@@ -1,5 +1,5 @@
 #include <raylib.h>
-#include <flecs.h>
+#include <eecs.h>
 
 #include "primitives.h"
 #include "textures.h"
@@ -44,6 +44,7 @@ static void fix_cube_coords(Mesh& mesh)
   }
 }
 
+/*
 struct primitives
 {
   primitives(flecs::world& ecs)
@@ -72,12 +73,6 @@ struct primitives
     ecs.component<Billboard>()
       .member<vec2f>("sz");
 
-    /*
-    ecs.component<Model>()
-      .add(flecs::OnInstantiate, flecs::Inherit);
-    ecs.component<Mesh>()
-      .add(flecs::OnInstantiate, flecs::Inherit);
-      */
     ecs.component<ModelFile>()
       .on_set([&](flecs::entity ent, const ModelFile& mf)
       {
@@ -94,11 +89,12 @@ struct primitives
       .add(flecs::OnInstantiate, flecs::Inherit);
   }
 };
+*/
 
-void register_primitives(flecs::world& ecs)
+void register_primitives(eecs::Registry& reg)
 {
-  ecs.import<primitives>();
+  //ecs.import<primitives>();
 
-  ecs_script_run_file(ecs, "res/prefabs/primitives.flecs");
+  //ecs_script_run_file(ecs, "res/prefabs/primitives.flecs");
 }
 

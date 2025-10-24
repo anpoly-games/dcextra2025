@@ -12,5 +12,5 @@ struct EmissiveTex
   Texture2D tex;
 };
 
-void register_textures(flecs::world& ecs);
+void register_textures(eecs::Registry& reg);
 

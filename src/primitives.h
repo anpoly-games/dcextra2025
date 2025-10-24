@@ -3,7 +3,7 @@
 #include "math.h"
 #include <string>
 
-void register_primitives(flecs::world& ecs);
+void register_primitives(eecs::Registry& reg);
 
 struct Cube
 {

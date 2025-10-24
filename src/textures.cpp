@@ -1,4 +1,4 @@
-#include <flecs.h>
+#include <eecs.h>
 #include <raylib.h>
 #include <filesystem>
 
@@ -6,6 +6,7 @@
 
 namespace fs = std::filesystem;
 
+/*
 flecs::opaque<std::string> std_string_support(flecs::world&)
 {
   flecs::opaque<std::string> ts;
@@ -28,7 +29,9 @@ flecs::opaque<std::string> std_string_support(flecs::world&)
 
   return ts;
 }
+*/
 
+/*
 struct textures
 {
   textures(flecs::world& ecs)
@@ -37,10 +40,7 @@ struct textures
 
     ecs.component<std::string>("String")
       .opaque(std_string_support);
-    /*
-    ecs.component<Texture2D>()
-      .add(flecs::OnInstantiate, flecs::Inherit);
-    */
+
     ecs.component<TextureFile>()
       .on_set([&](flecs::entity ent, const TextureFile& tf)
       {
@@ -73,9 +73,10 @@ struct textures
       .add(flecs::OnInstantiate, flecs::Inherit);
   }
 };
+*/
 
-void register_textures(flecs::world& ecs)
+void register_textures(eecs::Registry& reg)
 {
-  ecs.import<textures>();
+  //ecs.import<textures>();
 }
 

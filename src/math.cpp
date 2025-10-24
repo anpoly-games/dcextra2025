@@ -1,9 +1,10 @@
-#include <flecs.h>
+#include <eecs.h>
 #include <raylib.h>
 
 #include "math.h"
 #include "movement.h"
 
+/*
 struct math
 {
   math(flecs::world& ecs)
@@ -31,9 +32,10 @@ struct math
       .member<float>("val");
   }
 };
+*/
 
-void register_math(flecs::world& ecs)
+void register_math(eecs::Registry& reg)
 {
-  ecs.import<math>();
+  //ecs.import<math>();
 }
 

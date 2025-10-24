@@ -1,4 +1,3 @@
-#include <flecs.h>
 #include <eecs.h>
 #include <edat.h>
 #include <parsers.h>
@@ -8,7 +7,7 @@
 
 namespace fs = std::filesystem;
 
-std::vector<eecs::EntityId> load_prefabs_from_file(eecs::Registry& reg, const std::string_view& filename)
+std::vector<eecs::EntityId> load_entities_from_file(eecs::Registry& reg, const std::string_view& filename)
 {
     std::vector<eecs::EntityId> res;
     edat::ParserSuite psuite;
@@ -24,42 +23,50 @@ std::vector<eecs::EntityId> load_prefabs_from_file(eecs::Registry& reg, const st
 
     fs::path enemies = filename;
     fs::path fullPath = fs::current_path() / enemies;
-    edat::Table prefabsTable = edat::parseFile(fullPath, psuite);
+    edat::Table entitiesTable = edat::parseFile(fullPath, psuite);
 
-    prefabsTable.getAll<edat::Table>([&](const std::string& name, const edat::Table& tbl)
+    entitiesTable.getAll<edat::Table>([&](const std::string& name, const edat::Table& tbl)
     {
-        eecs::EntityWrap prefab = eecs::create_prefab_wrap(reg, name.c_str());
+        eecs::EntityWrap entity = eecs::create_entity_wrap(reg, name.c_str());
         tbl.getAll<float>([&](const std::string& compName, float val)
         {
-            prefab.set(eecs::comp_id<float>(compName.c_str()), val);
+            entity.set(eecs::comp_id<float>(compName.c_str()), val);
         });
         tbl.getAll<int>([&](const std::string& compName, int val)
         {
-            prefab.set(eecs::comp_id<int>(compName.c_str()), val);
+            entity.set(eecs::comp_id<int>(compName.c_str()), val);
         });
         tbl.getAll<bool>([&](const std::string& compName, bool val)
         {
-            prefab.set(eecs::comp_id<bool>(compName.c_str()), val);
+            entity.set(eecs::comp_id<bool>(compName.c_str()), val);
         });
         tbl.getAll<std::vector<float>>([&](const std::string& compName, const std::vector<float>& val)
         {
             if (val.size() == 2) // Vector2
-                prefab.set(eecs::comp_id<vec2f>(compName.c_str()), vec2f{val[0], val[1]});
+                entity.set(eecs::comp_id<vec2f>(compName.c_str()), vec2f{val[0], val[1]});
             else if (val.size() == 3) // Vector3
-                prefab.set(eecs::comp_id<vec3f>(compName.c_str()), vec3f{val[0], val[1], val[2]});
+                entity.set(eecs::comp_id<vec3f>(compName.c_str()), vec3f{val[0], val[1], val[2]});
             else if (val.size() == 4) // Vector4
-                prefab.set(eecs::comp_id<vec4f>(compName.c_str()), vec4f{val[0], val[1], val[2], val[3]});
+                entity.set(eecs::comp_id<vec4f>(compName.c_str()), vec4f{val[0], val[1], val[2], val[3]});
         });
         tbl.getAll<Tag>([&](const std::string& compName, Tag)
         {
-            prefab.tag(eecs::comp_id<Tag>(compName.c_str()));
+            entity.tag(eecs::comp_id<Tag>(compName.c_str()));
         });
         tbl.getAll<eecs::EntityId>([&](const std::string& compName, eecs::EntityId val)
         {
-            prefab.set(eecs::comp_id<eecs::EntityId>(compName.c_str()), val);
+            entity.set(eecs::comp_id<eecs::EntityId>(compName.c_str()), val);
         });
-        res.push_back(prefab.eid);
+        res.push_back(entity.eid);
     });
+    return res;
+}
+
+std::vector<eecs::EntityId> load_prefabs_from_file(eecs::Registry& reg, const std::string_view& filename)
+{
+    std::vector<eecs::EntityId> res = load_entities_from_file(reg, filename);
+    for (eecs::EntityId eid : res)
+        eecs::make_prefab(reg, eid);
     return res;
 }
 

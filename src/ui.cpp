@@ -1,5 +1,4 @@
 #include <raylib.h>
-#include <flecs.h>
 #include <eecs.h>
 #include <algorithm>
 #include <string>
@@ -110,7 +109,7 @@ void draw_button_9rect(const NineRect& nr, Rectangle rect, Font font, const char
   draw_centered_font_with_shadow(font, text, rect, fontSize, Color{255, 255, 255, col.a});
 }
 
-void register_ui(flecs::world& ecs)
+void register_ui(eecs::Registry& reg)
 {
   // do nothing yet
 }

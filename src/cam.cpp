@@ -1,7 +1,6 @@
 #include <raylib.h>
 #include <raymath.h>
 #include <rlgl.h>
-#include <flecs.h>
 #include <eecs.h>
 #include <edat.h>
 #include <parsers.h>
@@ -13,7 +12,7 @@
 #include "renderer.h"
 #include "prefabs.h"
 
-void register_cam(eecs::Registry& reg, flecs::world& ecs)
+void register_cam(eecs::Registry& reg)
 {
     eecs::reg_system(reg, [&](eecs::EntityId eid, vec3f& position, vec3f& direction, const Camera&)
     {
@@ -24,7 +23,7 @@ void register_cam(eecs::Registry& reg, flecs::world& ecs)
             const float targAngle = atan2f(pdir.x, pdir.z);
             if (fabsf(targAngle - curAngle) > PI)
                 curAngle += sign(targAngle - curAngle) * PI * 2.f;
-            curAngle = move_to(curAngle, targAngle, ecs.delta_time(), eecs::get_comp_or(reg, eid, COMPID(float, cam_rotSpeed), FLT_MAX));
+            curAngle = move_to(curAngle, targAngle, GetFrameTime(), eecs::get_comp_or(reg, eid, COMPID(float, cam_rotSpeed), FLT_MAX));
             direction = vec3f{sinf(curAngle), 0.f, cosf(curAngle)};
         }, COMPID(const vec3f, position), COMPID(const vec3f, direction), COMPID(const Tag, player));
     }, COMPID(vec3f, position), COMPID(vec3f, direction), COMPID(const Camera, camera));

@@ -178,7 +178,7 @@ inline vec3f tov3(const Vector3& v) { return vec3f{v.x, v.y, v.z}; }
 inline float lerp(float a, float b, float t) { return a * (1.f - t) + b * t; }
 inline vec3f lerp(vec3f a, vec3f b, float t) { return a * (1.f - t) + b * t; }
 
-void register_math(flecs::world& ecs);
+void register_math(eecs::Registry& reg);
 
 template<typename T>
 T sign(T v) { return v > 0 ? 1 : v < 0 ? -1 : 0; }

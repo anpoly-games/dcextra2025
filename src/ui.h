@@ -20,11 +20,11 @@ void draw_centered_texture(Texture2D tex, Rectangle rect, float scale);
 
 void draw_button(Rectangle rect, const char* text, float scaleFactor, Color col);
 
-void draw_ui(eecs::Registry& reg, flecs::world& ecs, float width, float height, float scaleFactor);
+void draw_ui(eecs::Registry& reg, float width, float height, float scaleFactor);
 
-void draw_game_ui(flecs::world& ecs);
+void draw_game_ui(eecs::Registry& reg);
 
-void register_ui(flecs::world& ecs);
+void register_ui(eecs::Registry& reg);
 void create_ui_helper(eecs::Registry& reg, float width, float height, float scaleFactor);
 
 struct WindowWidth : public FVal {};

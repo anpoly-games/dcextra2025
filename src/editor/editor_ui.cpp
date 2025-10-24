@@ -27,7 +27,7 @@ static std::string editorLevelName = "";
 static std::string editorLevelToLoad = "";
 
 
-static void draw_right_editor_panel(eecs::Registry& reg, flecs::world& ecs, float width, float height, float scaleFactor)
+static void draw_right_editor_panel(eecs::Registry& reg, float width, float height, float scaleFactor)
 {
   if (editorState != E_WORLD)
     return;
@@ -77,6 +77,7 @@ static void draw_right_editor_panel(eecs::Registry& reg, flecs::world& ecs, floa
   const float vspacing = 2 * scaleFactor;
   const float hspacing = 4 * scaleFactor;
 
+  /*
   float ypos = ytabpos + 16 * scaleFactor + vpad * 2;
   const float fontSz = 16 * scaleFactor;
   ecs.lookup(types[entType]).children([&](flecs::entity e)
@@ -115,9 +116,10 @@ static void draw_right_editor_panel(eecs::Registry& reg, flecs::world& ecs, floa
     });
     ypos += fontSz + vspacing;
   });
+  */
 }
 
-void draw_top_editor_panel(flecs::world& ecs, float width, float height, float scaleFactor)
+void draw_top_editor_panel(float width, float height, float scaleFactor)
 {
   const float left = 0;
   const float top = 0;
@@ -145,7 +147,7 @@ void draw_top_editor_panel(flecs::world& ecs, float width, float height, float s
     //save_level(reg, editorLevelName.c_str());
 }
 
-static void draw_new_file(eecs::Registry& reg, flecs::world& ecs, Rectangle panelRect, float scaleFactor)
+static void draw_new_file(eecs::Registry& reg, Rectangle panelRect, float scaleFactor)
 {
   const float vpad = 4 * scaleFactor;
   const float textSize = 12.f * scaleFactor;
@@ -197,7 +199,7 @@ static void draw_new_file(eecs::Registry& reg, flecs::world& ecs, Rectangle pane
       newFileName = "";
       editorState = E_WORLD;
 
-      restart_world(reg, ecs);
+      restart_world(reg);
     }
   }
   if (is_vec_in_rect(mp, cancelButtonRect) && IsMouseButtonPressed(0) || IsKeyPressed(KEY_ESCAPE))
@@ -232,7 +234,7 @@ static float draw_list_of_files(Rectangle panelRect, float ypos, float scaleFact
   return ypos;
 }
 
-static void draw_load_select(eecs::Registry& reg, flecs::world& ecs, Rectangle panelRect, float scaleFactor)
+static void draw_load_select(eecs::Registry& reg, Rectangle panelRect, float scaleFactor)
 {
   const float vpad = 4 * scaleFactor;
   const float textSize = 12.f * scaleFactor;
@@ -243,7 +245,7 @@ static void draw_load_select(eecs::Registry& reg, flecs::world& ecs, Rectangle p
   float ypos = promptRect.y + promptRect.height + vpad;
   ypos = draw_list_of_files(panelRect, ypos, scaleFactor, [&](const char* fname)
   {
-    load_level(reg, ecs, fname);
+    load_level(reg, fname);
     editorLevelName = fname;
     editorState = E_WORLD;
   });
@@ -335,7 +337,7 @@ static void draw_save_select(eecs::Registry& reg, Rectangle panelRect, float sca
   }
 }
 
-static void draw_save_prev(eecs::Registry& reg, flecs::world& ecs, Rectangle panelRect, float scaleFactor)
+static void draw_save_prev(eecs::Registry& reg, Rectangle panelRect, float scaleFactor)
 {
   const float vpad = 4 * scaleFactor;
   const float textSize = 12.f * scaleFactor;
@@ -357,10 +359,10 @@ static void draw_save_prev(eecs::Registry& reg, flecs::world& ecs, Rectangle pan
   {
     save_level(reg, editorLevelName.c_str());
     if (editorState == E_SAVE_PREV_NEW)
-      restart_world(reg, ecs);
+      restart_world(reg);
     else if (editorState == E_SAVE_PREV_LOAD)
     {
-      load_level(reg, ecs, editorLevelToLoad.c_str());
+      load_level(reg, editorLevelToLoad.c_str());
       editorLevelToLoad = "";
     }
     editorState = E_WORLD;
@@ -371,7 +373,7 @@ static void draw_save_prev(eecs::Registry& reg, flecs::world& ecs, Rectangle pan
   }
 }
 
-static void draw_dialogs(eecs::Registry& reg, flecs::world& ecs, float width, float height, float scaleFactor)
+static void draw_dialogs(eecs::Registry& reg, float width, float height, float scaleFactor)
 {
   if (editorState == E_WORLD)
     return;
@@ -380,19 +382,19 @@ static void draw_dialogs(eecs::Registry& reg, flecs::world& ecs, float width, fl
   {
     Rectangle panelRect = torect(width * 0.2f, height * 0.3f, width * 0.6f, height * 0.4f);
     DrawRectangleRec(panelRect, Color{100, 100, 100, 200});
-    draw_new_file(reg, ecs, panelRect, scaleFactor);
+    draw_new_file(reg, panelRect, scaleFactor);
   }
   else if (editorState == E_SAVE_PREV_NEW || editorState == E_SAVE_PREV_LOAD)
   {
     Rectangle panelRect = torect(width * 0.2f, height * 0.3f, width * 0.6f, height * 0.4f);
     DrawRectangleRec(panelRect, Color{100, 100, 100, 200});
-    draw_save_prev(reg, ecs, panelRect, scaleFactor);
+    draw_save_prev(reg, panelRect, scaleFactor);
   }
   else if (editorState == E_LOAD_SELECT)
   {
     Rectangle panelRect = torect(width * 0.2f, height * 0.1f, width * 0.6f, height * 0.8f);
     DrawRectangleRec(panelRect, Color{100, 100, 100, 200});
-    draw_load_select(reg, ecs, panelRect, scaleFactor);
+    draw_load_select(reg, panelRect, scaleFactor);
   }
   else if (editorState == E_SAVE_SELECT)
   {
@@ -402,11 +404,11 @@ static void draw_dialogs(eecs::Registry& reg, flecs::world& ecs, float width, fl
   }
 }
 
-void draw_editor_ui(eecs::Registry& reg, flecs::world& ecs, float width, float height, float scaleFactor)
+void draw_editor_ui(eecs::Registry& reg, float width, float height, float scaleFactor)
 {
-  draw_right_editor_panel(reg, ecs, width, height, scaleFactor);
-  draw_top_editor_panel(ecs, width, height, scaleFactor);
-  draw_dialogs(reg, ecs, width, height, scaleFactor);
+  draw_right_editor_panel(reg, width, height, scaleFactor);
+  draw_top_editor_panel(width, height, scaleFactor);
+  draw_dialogs(reg, width, height, scaleFactor);
 }
 
 
@@ -454,9 +456,9 @@ bool is_ui_blocks_input()
   return false;
 }
 
-void draw_ui(eecs::Registry& reg, flecs::world& ecs, float width, float height, float scaleFactor)
+void draw_ui(eecs::Registry& reg, float width, float height, float scaleFactor)
 {
-  draw_editor_ui(reg, ecs, width, height, scaleFactor);
+  draw_editor_ui(reg, width, height, scaleFactor);
   DrawFPS(20, height - 40);
 }
 

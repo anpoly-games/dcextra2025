@@ -7,11 +7,9 @@
 #include "math.h"
 #include "podval.h"
 
-void register_level(eecs::Registry& reg, flecs::world& ecs);
+void register_level(eecs::Registry& reg);
 
-void load_level(eecs::Registry& reg, flecs::world& ecs, const char* filename);
-void load_state(flecs::world& ecs);
-void save_state(flecs::world& ecs);
+void load_level(eecs::Registry& reg, const char* filename);
 
 struct OpenOffset : public vec3f { ASSIGN_OP_3f(OpenOffset); };
 struct OpenTime : public FVal {};

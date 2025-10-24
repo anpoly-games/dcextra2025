@@ -26,18 +26,18 @@
 
 namespace fs = std::filesystem;
 
-void register_systems(eecs::Registry& reg, flecs::world& ecs)
+void register_systems(eecs::Registry& reg)
 {
-  register_math(ecs);
-  register_textures(ecs);
-  register_primitives(ecs);
+  //register_math(ecs);
+  register_textures(reg);
+  register_primitives(reg);
   register_player(reg);
-  register_audio(ecs);
+  register_audio(reg);
   register_renderer(reg);
-  register_cam(reg, ecs);
-  register_level(reg, ecs);
-  register_editor(reg, ecs);
-  register_ui(ecs);
+  register_cam(reg);
+  register_level(reg);
+  register_editor(reg);
+  register_ui(reg);
 }
 
 eecs::EntityId init_new_world(eecs::Registry& reg)
@@ -46,7 +46,7 @@ eecs::EntityId init_new_world(eecs::Registry& reg)
   return create_player(reg);
 }
 
-void restart_world(eecs::Registry& reg, flecs::world& ecs)
+void restart_world(eecs::Registry& reg)
 {
     float width, height, scaleFactor;
     eecs::query_entities(reg, [&](eecs::EntityId, float window_width, float window_height, float window_scaleFactor)
@@ -56,8 +56,10 @@ void restart_world(eecs::Registry& reg, flecs::world& ecs)
         scaleFactor = window_scaleFactor;
     }, COMPID(const float, window_width), COMPID(const float, window_height), COMPID(const float, window_scaleFactor));
 
-    ecs.reset();
-    register_systems(reg, ecs);
+    eecs::del_all_entities(reg);
+    eecs::del_all_systems(reg);
+    //ecs.reset();
+    register_systems(reg);
     init_new_world(reg);
     create_ui_helper(reg, width, height, scaleFactor);
 }
@@ -166,7 +168,7 @@ void expand_box(BoundingBox& bbox, float amt)
   bbox.max.z += amt;
 }
 
-void register_editor(eecs::Registry& reg, flecs::world& ecs)
+void register_editor(eecs::Registry& reg)
 {
     eecs::reg_system(reg, [&](eecs::EntityId eid, const Camera& camera)
     {
@@ -546,7 +548,7 @@ void save_level(eecs::Registry& reg, const char* filename)
     });
     eecs::query_entities(reg, [&](eecs::EntityId eid, Tag Saveable)
     {
-        edat += "_ = {\n";
+        edat += "_" + std::to_string(eid) + " = {\n";
         eecs::handle_entity_components(reg, eid, handlers);
         edat += "}\n";
     }, COMPID(const Tag, Saveable));
@@ -680,7 +682,7 @@ void delete_column(eecs::Registry& reg, int x, int y)
     }, COMPID(const vec3f, position), COMPID(const Tag, Column));
 }
 
-void init_app(eecs::Registry& reg, flecs::world& ecs) {}
+void init_app(eecs::Registry& reg) {}
 
 
 //void pre_draw_call(flecs::world& ecs) {}

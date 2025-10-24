@@ -57,7 +57,7 @@ void register_renderer(eecs::Registry& reg)
     }, COMPID(const Camera, camera));
 }
 
-void pre_draw_call(eecs::Registry& reg, flecs::world& ecs)
+void pre_draw_call(eecs::Registry& reg)
 {
 }
 

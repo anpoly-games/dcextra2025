@@ -1,77 +1,11 @@
 #include <raylib.h>
-#include <flecs.h>
+#include <eecs.h>
 #include <string>
 
 #include "audio.h"
 
-struct MusicFile
+void register_audio(eecs::Registry& reg)
 {
-  std::string fname;
-};
-
-struct SoundFile
-{
-  std::string fname;
-};
-
-
-struct audio
-{
-  audio(flecs::world& ecs)
-  {
-    ecs.module<audio>();
-
-    ecs.component<MusicFile>()
-      .on_set([&](flecs::entity ent, const MusicFile& tf)
-      {
-        Music mus = LoadMusicStream(tf.fname.c_str());
-        ent.set(mus);
-      })
-      .member<std::string>("filename")
-      .add(flecs::OnInstantiate, flecs::Inherit);
-
-    ecs.component<SoundFile>()
-      .on_set([&](flecs::entity ent, const SoundFile& tf)
-      {
-        Sound snd = LoadSound(tf.fname.c_str());
-        ent.set(snd);
-      })
-      .member<std::string>("filename")
-      .add(flecs::OnInstantiate, flecs::Inherit);
-
-      ecs.component<StepSound>();
-      ecs.component<DoorSound>();
-      ecs.component<ClickSound>();
-      ecs.component<ShootSound>();
-      ecs.component<HitSound>();
-      ecs.component<TriggerSound>();
-      ecs.component<LockedSound>();
-      ecs.component<DialogSound>();
-  }
-};
-
-void play_snd(flecs::entity e)
-{
-  if (e)
-    e.get([&](const Sound& snd)
-    {
-      PlaySound(snd);
-    });
-}
-
-void stop_snd(flecs::entity e)
-{
-  if (e)
-    e.get([&](const Sound& snd)
-    {
-      StopSound(snd);
-    });
-}
-
-
-void register_audio(flecs::world& ecs)
-{
-  ecs.import<audio>();
 }
 
 /*

@@ -1,5 +1,4 @@
 #include <raylib.h>
-#include <flecs.h>
 #include <eecs.h>
 #include <random>
 
@@ -31,26 +30,24 @@ int main(int argc, const char** argv)
   SetExitKey(KEY_NULL);
   InitAudioDevice();
 
-  flecs::world ecs;
   eecs::Registry reg;
 
-  register_systems(reg, ecs);
+  register_systems(reg);
   init_new_world(reg);
   create_ui_helper(reg, width * scaleFactor, height * scaleFactor, scaleFactor);
-  init_app(reg, ecs);
+  init_app(reg);
 
   while (!WindowShouldClose())
   {
-    pre_draw_call(reg, ecs);
+    pre_draw_call(reg);
     BeginDrawing();
       ClearBackground(BLACK);
       update_cam(reg);
-        ecs.progress();
         eecs::step(reg);
 
       EndMode3D();
       // TODO: editor switch
-      draw_ui(reg, ecs, width * scaleFactor, height * scaleFactor, scaleFactor);
+      draw_ui(reg, width * scaleFactor, height * scaleFactor, scaleFactor);
     EndDrawing();
   }
   CloseAudioDevice();

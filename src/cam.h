@@ -2,7 +2,7 @@
 
 #include "podval.h"
 
-void register_cam(eecs::Registry& reg, flecs::world& ecs);
+void register_cam(eecs::Registry& reg);
 eecs::EntityId create_cam(eecs::Registry& reg);
 
 void update_cam(eecs::Registry& reg);
