@@ -11,7 +11,7 @@
 
 void register_player(eecs::Registry& reg)
 {
-    static Sound stepSnd = LoadSound("res/audio/sfx/step.ogg");
+    static Sound stepSnd = LoadSound("res/audio/sfx/step_single_01.ogg");
     eecs::reg_system(reg, [&](eecs::EntityId eid, vec3f& position, vec3f& direction, Tag player)
     {
         if (is_ui_blocks_input())
