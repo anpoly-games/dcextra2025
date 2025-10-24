@@ -1,5 +1,6 @@
 #pragma once
 #include <raylib.h>
+#include <cmath>
 
 template<typename T>
 inline T sqr(T a) { return a * a; }
@@ -164,7 +165,7 @@ inline Vector3 tovec3(T x, U y, V z) { return Vector3{float(x), float(y), float(
 inline vec2f tov2(const Vector2& v) { return vec2f{v.x, v.y}; }
 inline vec3f tov3(const Vector3& v) { return vec3f{v.x, v.y, v.z}; }
 
-inline float lerp(float a, float b, float t) { return a * (1.f - t) + b * t; }
+// in cmath inline float lerp(float a, float b, float t) { return a * (1.f - t) + b * t; }
 inline vec3f lerp(vec3f a, vec3f b, float t) { return a * (1.f - t) + b * t; }
 
 void register_math(eecs::Registry& reg);

@@ -2,6 +2,7 @@
 #include <eecs.h>
 #include <algorithm>
 #include <random>
+#include <cstring>
 
 #include "renderer.h"
 #include "raymath.h"

@@ -1,5 +1,6 @@
 #include <raylib.h>
 #include <eecs.h>
+#include <cstring>
 
 #include "primitives.h"
 #include "textures.h"
