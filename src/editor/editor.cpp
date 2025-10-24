@@ -611,7 +611,6 @@ void create_wall(eecs::Registry& reg, int x, int y, int dir, bool flip, const ch
 {
     vec3f pos = vec3f(x - (dir ? 0.5f : 0.f), 0.5f, y - (dir ? 0.f : 0.5f));
     eecs::create_wrap_from_prefab(reg, eecs::find_entity(reg, name))
-        .tag(COMPID(Tag, Wall))
         .tag(COMPID(Tag, Saveable))
         .set(COMPID(float, rotation), dir * 90.f + (flip ? 180.f : 0.f))
         .set(COMPID(vec3f, position), pos);

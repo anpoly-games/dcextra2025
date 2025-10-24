@@ -110,15 +110,14 @@ static void draw_right_editor_panel(eecs::Registry& reg, float width, float heig
                 eecs::query_entities(reg, [&](eecs::EntityId, std::string& selectedPrefab) { procSelection(selectedPrefab); }, COMPID(std::string, selectedPrefab));
                 int sw = MeasureText(TextFormat("%s", name.c_str()), fontSz);
                 DrawText(TextFormat("%s", name.c_str()), left + lpad, ypos, fontSz, WHITE);
-                /*
-                e.get([&](const Texture2D& tex)
-                        {
-                            Rectangle texRect = torect(left + lpad + sw + hspacing, ypos, fontSz, fontSz);
-                            DrawTexturePro(tex, torect(0, 0, tex.width, tex.height), texRect, tovec(0, 0), 0, WHITE);
-                            if (is_vec_in_rect(mp, texRect))
-                                DrawTextureEx(tex, Vector2{left - lpad - tex.width * scaleFactor * 2, ypos}, 0.f, scaleFactor * 2, WHITE);
-                        });
-                        */
+                eecs::EntityWrap e = eecs::wrap_entity(reg, eid);
+                e.query_comp([&](const Texture2D& texture_diff)
+                {
+                    Rectangle texRect = torect(left + lpad + sw + hspacing, ypos, fontSz, fontSz);
+                    DrawTexturePro(texture_diff, torect(0, 0, texture_diff.width, texture_diff.height), texRect, tovec(0, 0), 0, WHITE);
+                    if (is_vec_in_rect(mp, texRect))
+                        DrawTextureEx(texture_diff, Vector2{left - lpad - texture_diff.width * scaleFactor * 10, ypos}, 0.f, scaleFactor * 10, WHITE);
+                }, COMPID(const Texture2D, texture_diff));
                 ypos += fontSz + vspacing;
             });
     }, COMPID(const std::vector<eecs::EntityId>, children));

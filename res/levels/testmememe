@@ -1,96 +1,24 @@
-_18 = {
-    Wall : Tag = ""
+_19 = {
     Saveable : Tag = ""
     texture_filename : str = "res/textures/tiles/biomes-9.png"
     rotation : float = "0.000000"
     model_filename : str = "res/meshes/Door.glb"
     position : float[3] = ["0.000000", "0.500000", "1.500000"]
-}
-_19 = {
-    Wall : Tag = ""
-    Saveable : Tag = ""
-    texture_filename : str = "res/textures/tiles/biomes-9.png"
-    rotation : float = "0.000000"
-    model_filename : str = "res/meshes/Door.glb"
-    position : float[3] = ["1.000000", "0.500000", "1.500000"]
+    wall : Tag = ""
 }
 _20 = {
-    Wall : Tag = ""
     Saveable : Tag = ""
     texture_filename : str = "res/textures/tiles/biomes-9.png"
-    rotation : float = "0.000000"
+    rotation : float = "90.000000"
     model_filename : str = "res/meshes/Door.glb"
-    position : float[3] = ["-1.000000", "0.500000", "1.500000"]
+    position : float[3] = ["0.500000", "0.500000", "1.000000"]
+    wall : Tag = ""
 }
 _21 = {
-    Wall : Tag = ""
     Saveable : Tag = ""
     texture_filename : str = "res/textures/tiles/biomes-9.png"
     rotation : float = "270.000000"
     model_filename : str = "res/meshes/Door.glb"
-    position : float[3] = ["-1.500000", "0.500000", "1.000000"]
-}
-_22 = {
-    Wall : Tag = ""
-    Saveable : Tag = ""
-    texture_filename : str = "res/textures/tiles/biomes-9.png"
-    rotation : float = "270.000000"
-    model_filename : str = "res/meshes/Door.glb"
-    position : float[3] = ["-1.500000", "0.500000", "0.000000"]
-}
-_23 = {
-    Wall : Tag = ""
-    Saveable : Tag = ""
-    texture_filename : str = "res/textures/tiles/biomes-58.png"
-    rotation : float = "180.000000"
-    model_filename : str = "res/meshes/Door.glb"
-    position : float[3] = ["-1.000000", "0.500000", "-0.500000"]
-}
-_24 = {
-    Wall : Tag = ""
-    Saveable : Tag = ""
-    texture_filename : str = "res/textures/tiles/biomes-58.png"
-    rotation : float = "180.000000"
-    model_filename : str = "res/meshes/Door.glb"
-    position : float[3] = ["0.000000", "0.500000", "-0.500000"]
-}
-_25 = {
-    Wall : Tag = ""
-    Saveable : Tag = ""
-    texture_filename : str = "res/textures/tiles/biomes-58.png"
-    rotation : float = "180.000000"
-    model_filename : str = "res/meshes/Door.glb"
-    position : float[3] = ["1.000000", "0.500000", "-0.500000"]
-}
-_26 = {
-    Wall : Tag = ""
-    Saveable : Tag = ""
-    texture_filename : str = "res/textures/tiles/biomes-58.png"
-    rotation : float = "90.000000"
-    model_filename : str = "res/meshes/Door.glb"
-    position : float[3] = ["1.500000", "0.500000", "1.000000"]
-}
-_27 = {
-    Wall : Tag = ""
-    Saveable : Tag = ""
-    texture_filename : str = "res/textures/tiles/biomes-58.png"
-    rotation : float = "90.000000"
-    model_filename : str = "res/meshes/Door.glb"
-    position : float[3] = ["1.500000", "0.500000", "0.000000"]
-}
-_28 = {
-    Wall : Tag = ""
-    Saveable : Tag = ""
-    texture_filename : str = "res/textures/tiles/biomes-58.png"
-    rotation : float = "180.000000"
-    model_filename : str = "res/meshes/Door.glb"
-    position : float[3] = ["1.000000", "0.500000", "0.500000"]
-}
-_29 = {
-    Wall : Tag = ""
-    Saveable : Tag = ""
-    texture_filename : str = "res/textures/tiles/biomes-58.png"
-    rotation : float = "180.000000"
-    model_filename : str = "res/meshes/Door.glb"
-    position : float[3] = ["-1.000000", "0.500000", "0.500000"]
+    position : float[3] = ["-0.500000", "0.500000", "1.000000"]
+    wall : Tag = ""
 }
