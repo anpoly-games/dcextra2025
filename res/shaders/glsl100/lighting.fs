@@ -1,17 +1,20 @@
-#version 100
+#version 300 es
 
 precision mediump float;
 
 // Input vertex attributes (from vertex shader)
-varying vec3 fragPosition;
-varying vec2 fragTexCoord;
-varying vec4 fragColor;
-varying vec3 fragNormal;
+in vec3 fragPosition;
+in vec2 fragTexCoord;
+in vec4 fragColor;
+in vec3 fragNormal;
 
 // Input uniform values
 uniform sampler2D texture0;
 uniform sampler2D emissiveMap;
 uniform vec4 colDiffuse;
+
+// Output fragment color
+out vec4 finalColor;
 
 // NOTE: Add your custom variables here
 
@@ -35,10 +38,23 @@ uniform vec3 viewPos;
 void main()
 {
     // Texel color fetching from texture sampler
-    vec4 texelColor = texture2D(texture0, fragTexCoord);
+    vec4 texelColor = texture(texture0, fragTexCoord);
     if (texelColor.a == 0.0)
       discard;
-    vec4 texelEmission = texture2D(emissiveMap, fragTexCoord);
+    vec4 texelEmission = texture(emissiveMap, fragTexCoord);
+
+    vec2 texelSz = vec2(12.0);
+    vec2 tcCenter = (floor(fragTexCoord * texelSz)) / texelSz + 0.5 / texelSz;
+    vec2 fragCoord = tcCenter - fragTexCoord;
+    vec2 dtc_dx = dFdx(fragTexCoord);
+    vec2 dtc_dy = dFdy(fragTexCoord);
+    mat2x2 dinv = mat2x2(dtc_dy.y, -dtc_dy.x, -dtc_dx.y, dtc_dx.x) * (1.0 / (dtc_dx.x * dtc_dy.y - dtc_dy.x * dtc_dx.y));
+    vec2 dst = fragCoord * dinv;
+    vec3 dp_dx = dFdx(fragPosition);
+    vec3 dp_dy = dFdy(fragPosition);
+    vec3 dp = clamp(dp_dx * dst.x + dp_dy * dst.y, -1.0, 1.0);
+    vec3 texelPosition = fragPosition + dp;
+
     vec3 lightDot = vec3(0.0);
     vec3 normal = normalize(fragNormal);
     vec3 viewD = normalize(viewPos - fragPosition);
@@ -54,7 +70,7 @@ void main()
         {
             vec3 light = vec3(0.0);
 
-            vec3 diff = lights[i].position - fragPosition;
+            vec3 diff = lights[i].position - texelPosition;
             float mag2 = diff.x * diff.x + diff.y * diff.y + diff.z * diff.z;
             //float mag = sqrt(mag2);
 
@@ -73,9 +89,12 @@ void main()
         }
     }
 
-    vec4 finalColor = (texelColor*(tint*vec4(min(lightDot, vec3(1.0, 1.0, 1.0)), 1.0))) + texelEmission * min(lightDot.r + 0.5, 1.0);
+    lightDot = floor(sqrt(lightDot) * 4.0) / 4.0;
+    lightDot *= lightDot;
+
+    finalColor = (texelColor*(tint*vec4(min(lightDot, vec3(1.0, 1.0, 1.0)), 1.0))) + texelEmission * min(lightDot.r + 0.5, 1.0);
     finalColor = vec4(finalColor.rgb, texelColor.a);
 
     // Gamma correction
-    gl_FragColor = finalColor;
+    //finalColor = finalColor;
 }

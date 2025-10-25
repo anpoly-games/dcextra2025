@@ -1,24 +1,25 @@
-#version 100
+#version 300 es
 
 // Input vertex attributes
-attribute vec3 vertexPosition;
-attribute vec2 vertexTexCoord;
-attribute vec3 vertexNormal;
-attribute vec4 vertexColor;
+in vec3 vertexPosition;
+in vec2 vertexTexCoord;
+in vec3 vertexNormal;
+in vec4 vertexColor;
 
 // Input uniform values
 uniform mat4 mvp;
 uniform mat4 matModel;
 
 // Output vertex attributes (to fragment shader)
-varying vec3 fragPosition;
-varying vec2 fragTexCoord;
-varying vec4 fragColor;
-varying vec3 fragNormal;
+out vec3 fragPosition;
+out vec2 fragTexCoord;
+out vec4 fragColor;
+out vec3 fragNormal;
 
 // NOTE: Add your custom variables here
 
 // https://github.com/glslify/glsl-inverse
+/*
 mat3 inverse(mat3 m)
 {
   float a00 = m[0][0], a01 = m[0][1], a02 = m[0][2];
@@ -43,6 +44,7 @@ mat3 transpose(mat3 m)
               m[0][1], m[1][1], m[2][1],
               m[0][2], m[1][2], m[2][2]);
 }
+*/
 
 void main()
 {
