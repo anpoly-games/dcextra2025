@@ -56,7 +56,6 @@ void restart_world(eecs::Registry& reg)
 
     eecs::del_all_entities(reg);
     eecs::del_all_systems(reg);
-    //ecs.reset();
     register_systems(reg);
     init_new_world(reg);
     create_ui_helper(reg, width, height, scaleFactor);

@@ -1,0 +1,9 @@
+_BaseFakeWall = {
+    model_filename : str = "res/meshes/Door.glb"
+    relativePos : float[3] = ["0", "0.5", "-0.5"]
+}
+
+StoneFakeWall <- _BaseFakeWall = {
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+}
+
