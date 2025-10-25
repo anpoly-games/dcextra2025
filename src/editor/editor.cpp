@@ -62,17 +62,17 @@ void restart_world(eecs::Registry& reg)
 }
 
 
-void create_floor(eecs::Registry& reg, int x, int y, float rot, const char* name);
+void create_floor(eecs::Registry& reg, vec3f tilePos, float rot, const char* name);
 void create_ceiling(eecs::Registry& reg, int x, int y, float rot, const char* name);
-void create_wall(eecs::Registry& reg, int x, int y, int dir, bool flip, const char* name);
+void create_wall(eecs::Registry& reg, vec3f tilePos, int dir, bool flip, const char* name);
 void create_door(eecs::Registry& reg, int x, int y, int dir, const char* name);
 void create_column(eecs::Registry& reg, int x, int y, const char* name);
 void create_entity(eecs::Registry& reg, int x, int y, float rot, const char* name);
 void create_logic(eecs::Registry& reg, int x, int y, float rot, const char* name);
 
-void delete_floor(eecs::Registry& reg, int x, int y);
+void delete_floor(eecs::Registry& reg, vec3f tilePos);
 void delete_ceiling(eecs::Registry& reg, int x, int y);
-void delete_wall(eecs::Registry& reg, int x, int y, int dir);
+void delete_wall(eecs::Registry& reg, vec3f tilePos, int dir);
 void delete_door(eecs::Registry& reg, int x, int y, int dir);
 void delete_column(eecs::Registry& reg, int x, int y);
 
@@ -174,6 +174,7 @@ void register_editor(eecs::Registry& reg)
         const int numTiles = 10;
         const vec3f minP(pivot.x - numTiles - 0.5f, 0.f, pivot.z - numTiles - 0.5f);
         const vec3f maxP(pivot.x + numTiles - 0.5f, 0.f, pivot.z + numTiles - 0.5f);
+        const float plFloor = float(floorf(cpos.y));
         for (int y = pivot.z - numTiles; y <= pivot.z + numTiles; ++y)
         {
             DrawLine3D(Vector3{minP.x, -0.01f, y - 0.5f}, Vector3{maxP.x, -0.01f, y - 0.5f}, WHITE);
@@ -369,14 +370,14 @@ void register_editor(eecs::Registry& reg)
         {
             if (selectedPrefab.empty())
                 return;
-            const float floorT = -rp.y / rd.y;
-            const float ceilingT = (1.f - rp.y) / rd.y;
+            const float floorT = (-rp.y + plFloor) / rd.y;
+            const float ceilingT = (1.f - rp.y + plFloor) / rd.y;
             if (floorT > 0.f && floorT < 10.f)
             {
                 const vec3f intersection = rp + rd * floorT;
                 int wx = floorf(intersection.x + 0.5f);
                 int wy = floorf(intersection.z + 0.5f);
-                vec3f tilePos = vec3f(floorf(intersection.x + 0.5f), 0.f, floorf(intersection.z + 0.5f));
+                vec3f tilePos = vec3f(floorf(intersection.x + 0.5f), plFloor, floorf(intersection.z + 0.5f));
                 const vec3f insideTilePos = intersection - tilePos;
                 constexpr float threshold = 0.3f;
                 static int dirAtPress = -1;
@@ -387,13 +388,19 @@ void register_editor(eecs::Registry& reg)
                     {
                         DrawCube(castRLVec3(tilePos + vec3f(sign(insideTilePos.x) * 0.5f, 0.5f, 0)), 0.065f, 1.f, 1.f, Color{255, 255, 0, 150});
                         if (insideTilePos.x > 0.f)
+                        {
                             wx++;
+                            tilePos.x += 1.f;
+                        }
                     }
                     else
                     {
                         DrawCube(castRLVec3(tilePos + vec3f(0, 0.5f, sign(insideTilePos.z) * 0.5f)), 1.f, 1.f, 0.065f, Color{255, 255, 0, 150});
                         if (insideTilePos.z > 0.f)
+                        {
                             wy++;
+                            tilePos.z += 1.f;
+                        }
                     }
                     if (IsMouseButtonPressed(0))
                     {
@@ -401,21 +408,21 @@ void register_editor(eecs::Registry& reg)
                     }
                     if (IsMouseButtonReleased(0))
                     {
-                        delete_wall(reg, wx, wy, dir);
+                        delete_wall(reg, tilePos, dir);
                         delete_door(reg, wx, wy, dir);
                         if (selectedType == E_WALLS)
                         {
                             vec2f hzDir = vec2f(sinf(dir * PI / 2), cosf(dir * PI / 2));
                             vec2f pos2d = vec2f(wx - (dir ? 0.5f : 0.f), wy - (dir ? 0.f : 0.5f));
                             vec2f cam2dDir = pos2d - vec2f(camera.position.x, camera.position.z);
-                            create_wall(reg, wx, wy, dir, hzDir.dot(cam2dDir) < 0, selectedPrefab.c_str());
+                            create_wall(reg, tilePos, dir, hzDir.dot(cam2dDir) < 0, selectedPrefab.c_str());
                         }
                         else if (selectedType == E_DOORS)
                             create_door(reg, wx, wy, dir, selectedPrefab.c_str());
                     }
                     if (IsMouseButtonReleased(1))
                     {
-                        delete_wall(reg, wx, wy, dir);
+                        delete_wall(reg, tilePos, dir);
                         delete_door(reg, wx, wy, dir);
                     }
                 }
@@ -424,11 +431,11 @@ void register_editor(eecs::Registry& reg)
                     DrawCube(castRLVec3(tilePos), 1.f, 0.05f, 1.f, Color{255, 255, 0, 150});
                     if (IsMouseButtonDown(0))
                     {
-                        delete_floor(reg, tilePos.x, tilePos.z);
-                        create_floor(reg, tilePos.x, tilePos.z, camRot, selectedPrefab.c_str());
+                        delete_floor(reg, tilePos);
+                        create_floor(reg, tilePos, camRot, selectedPrefab.c_str());
                     }
                     if (IsMouseButtonReleased(1))
-                        delete_floor(reg, tilePos.x, tilePos.z);
+                        delete_floor(reg, tilePos);
                 }
                 if (selectedType == E_ENTITIES)
                 {
@@ -562,12 +569,12 @@ void save_level(eecs::Registry& reg, const char* filename)
     file << edat;
 }
 
-void create_floor(eecs::Registry& reg, int x, int y, float rot, const char* name)
+void create_floor(eecs::Registry& reg, vec3f tilePos, float rot, const char* name)
 {
     eecs::create_wrap_from_prefab(reg, eecs::find_entity(reg, name))
         .tag(COMPID(Tag, Saveable))
         .set(COMPID(float, rotation), rot)
-        .set(COMPID(vec3f, position), {float(x), -0.025f, float(y)});
+        .set(COMPID(vec3f, position), {float(tilePos.x), tilePos.y-0.025f, float(tilePos.z)});
 }
 
 void create_entity(eecs::Registry& reg, int x, int y, float rot, const char* name)
@@ -603,9 +610,9 @@ void create_ceiling(eecs::Registry& reg, int x, int y, float rot, const char* na
         .set(COMPID(vec3f, position), {float(x), 1.025f, float(y)});
 }
 
-void create_wall(eecs::Registry& reg, int x, int y, int dir, bool flip, const char* name)
+void create_wall(eecs::Registry& reg, vec3f tilePos, int dir, bool flip, const char* name)
 {
-    vec3f pos = vec3f(x - (dir ? 0.5f : 0.f), 0.5f, y - (dir ? 0.f : 0.5f));
+    vec3f pos = vec3f(tilePos.x - (dir ? 0.5f : 0.f), tilePos.y + 0.5f, tilePos.z - (dir ? 0.f : 0.5f));
     eecs::create_wrap_from_prefab(reg, eecs::find_entity(reg, name))
         .tag(COMPID(Tag, Saveable))
         .set(COMPID(float, rotation), dir * 90.f + (flip ? 180.f : 0.f))
@@ -632,11 +639,11 @@ void create_column(eecs::Registry& reg, int x, int y, const char* name)
         .set(COMPID(vec3f, position), {float(x) - 0.5f, 0.5f, float(y) - 0.5f});
 }
 
-void delete_floor(eecs::Registry& reg, int x, int y)
+void delete_floor(eecs::Registry& reg, vec3f tilePos)
 {
     eecs::query_entities(reg, [&](eecs::EntityId eid, const vec3f& position, Tag floor)
     {
-        if (int(position.x) == x && int(position.z) == y)
+        if (int(position.x) == int(tilePos.x) && int(position.y) == int(tilePos.y) && int(position.z) == int(tilePos.z))
             eecs::del_entity(reg, eid);
     }, COMPID(const vec3f, position), COMPID(const Tag, floor));
 }
@@ -651,13 +658,13 @@ void delete_ceiling(eecs::Registry& reg, int x, int y)
 }
 
 
-void delete_wall(eecs::Registry& reg, int x, int y, int dir)
+void delete_wall(eecs::Registry& reg, vec3f tilePos, int dir)
 {
     eecs::query_entities(reg, [&](eecs::EntityId eid, const vec3f& position, float rotation, Tag wall)
     {
         if (rotation != dir * 90.f && rotation != dir * 90.f + 180.f)
             return;
-        if (position.x == x - dir * 0.5f && position.z == y - (1 - dir) * 0.5f)
+        if (position.x == tilePos.x - dir * 0.5f && position.z == tilePos.z - (1 - dir) * 0.5f && position.y == tilePos.y + 0.5f)
             eecs::del_entity(reg, eid);
     }, COMPID(const vec3f, position), COMPID(const float, rotation), COMPID(const Tag, wall));
 }

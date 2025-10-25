@@ -60,6 +60,8 @@ void register_level(eecs::Registry& reg)
         eecs::query_entities(reg, [&](eecs::EntityId, std::set<vec2i>& level_xWalls, std::set<vec2i>& level_zWalls)
         {
             vec3i xzd = find_door_wall_coords(position, rotation);
+            if (int(position.y) != 0)
+                return;
             std::set<vec2i>& toAdd = xzd.z == 0 ? level_zWalls : level_xWalls;
             toAdd.insert(xzd.xy());
         }, COMPID(std::set<vec2i>, level_xWalls), COMPID(std::set<vec2i>, level_zWalls));
