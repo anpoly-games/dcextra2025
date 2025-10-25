@@ -25,6 +25,11 @@ void register_player(eecs::Registry& reg)
                         (IsKeyPressed(KEY_S) || IsKeyPressed(KEY_DOWN) || IsKeyPressed(KEY_KP_2) ? -1.f  : 0.f);
         float right = (IsKeyPressed(KEY_A) || IsKeyPressed(KEY_LEFT) || IsKeyPressed(KEY_KP_4) ? -1.f : 0.f) +
                       (IsKeyPressed(KEY_D) || IsKeyPressed(KEY_RIGHT) || IsKeyPressed(KEY_KP_6) ? 1.f  : 0.f);
+        if (eecs::has_comp(reg, eid, COMPID(Tag, allowVerticalMove)))
+        {
+            float up = (IsKeyPressed(KEY_R) ? 1.f : 0.f) + (IsKeyPressed(KEY_F) ? -1.f : 0.f);
+            position.y += up;
+        }
         if (forward != 0 && right != 0)
             right = 0.f;
         if (!eecs::has_comp(reg, eid, COMPID(Tag, ignoresCollision)))
@@ -38,7 +43,7 @@ void register_player(eecs::Registry& reg)
                     return;
                 // align back to grid
                 PlaySound(stepSnd);
-                position = vec3f(gridPos.x, 0.f, gridPos.y);
+                position = vec3f(gridPos.x, int(position.y + 0.5f), gridPos.y);
             }
         }
         position += direction * forward;
