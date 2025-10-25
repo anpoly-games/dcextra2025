@@ -11,6 +11,8 @@
 #include "../cam.h"
 #include "../level.h"
 
+#include "spawn.h"
+
 void register_systems(eecs::Registry& reg)
 {
   register_textures(reg);
@@ -21,12 +23,14 @@ void register_systems(eecs::Registry& reg)
   register_cam(reg);
   register_level(reg);
   register_ui(reg);
+  register_spawn(reg);
 }
 
 eecs::EntityId init_new_world(eecs::Registry& reg)
 {
   create_cam(reg);
-  return create_player(reg);
+  eecs::EntityId playerEid = create_player(reg);
+  return playerEid;
 }
 
 void restart_world(eecs::Registry& reg)

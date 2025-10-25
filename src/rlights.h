@@ -117,6 +117,18 @@ static int lightsCount = 0;    // Current amount of created lights
 // Module Functions Definition
 //----------------------------------------------------------------------------------
 
+void InitDisabledLight(int index, Shader shader)
+{
+    Light light = {0};
+    light.enabledLoc = GetShaderLocation(shader, TextFormat("lights[%i].enabled", index));
+    light.typeLoc = GetShaderLocation(shader, TextFormat("lights[%i].type", index));
+    light.positionLoc = GetShaderLocation(shader, TextFormat("lights[%i].position", index));
+    light.targetLoc = GetShaderLocation(shader, TextFormat("lights[%i].target", index));
+    light.colorLoc = GetShaderLocation(shader, TextFormat("lights[%i].color", index));
+
+    UpdateLightValues(shader, light);
+}
+
 // Create a light and get shader locations
 Light CreateLight(int type, Vector3 position, Vector3 target, Vector4 color, Shader shader)
 {

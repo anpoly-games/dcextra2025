@@ -47,8 +47,6 @@ void main()
 
     vec4 tint = colDiffuse * fragColor;
 
-    // NOTE: Implement here your fragment shader code
-
     for (int i = 0; i < MAX_LIGHTS; i++)
     {
         if (lights[i].enabled == 1)
@@ -74,7 +72,7 @@ void main()
         }
     }
 
-    finalColor = (texelColor*(tint*vec4(min(lightDot, vec3(1.0, 1.0, 1.0)), 1.0))) + texelEmission * min(lightDot.r + 0.5, 1.0);
+    finalColor = (texelColor*(tint*max(vec4(min(lightDot, vec3(1.0, 1.0, 1.0)), 1.0), ambient))) + texelEmission * min(lightDot.r + 0.5, 1.0);
     finalColor = vec4(finalColor.rgb, texelColor.a);
 
     // Gamma correction

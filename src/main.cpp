@@ -32,9 +32,17 @@ int main(int argc, const char** argv)
 
   eecs::Registry reg;
 
-  register_systems(reg);
-  init_new_world(reg);
-  create_ui_helper(reg, width * scaleFactor, height * scaleFactor, scaleFactor);
+  const char* levelToLoad = nullptr;//"level1";
+  if (levelToLoad)
+  {
+      load_level(reg, "level1");
+  }
+  else
+  {
+      register_systems(reg);
+      init_new_world(reg);
+      create_ui_helper(reg, width * scaleFactor, height * scaleFactor, scaleFactor);
+  }
 
   while (!WindowShouldClose())
   {

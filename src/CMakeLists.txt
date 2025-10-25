@@ -28,13 +28,14 @@ set(EDITOR_SOURCES
     editor/editor_ui.cpp
     editor/cam.cpp
     editor/player.cpp
-  )
+    )
 
 set(GAME_SOURCES
     game/game.cpp
     game/game_ui.cpp
     game/cam.cpp
     game/player.cpp
+    game/spawn.cpp
     )
 
 

@@ -7,3 +7,13 @@ StoneFakeWall <- _BaseFakeWall = {
     texture_filename : str = "res/textures/tiles/biomes-9.png"
 }
 
+SpawnPoint = {
+    spawn : Tag = ""
+    position : float[3] = ["0", "0", "0"]
+    rotation : float = "0"
+    dbox_offset : float[3] = ["0", "0.125", "0"]
+    dbox_size : float[3] = ["0.25", "0.25", "0.25"]
+    dbox_color : float[3] = ["0", "1", "0"]
+    dbox_name : str = "spawn"
+}
+

@@ -46,6 +46,23 @@ void register_cam(eecs::Registry& reg)
         }
     }, COMPID(Camera, camera), COMPID(const float, cam_wideAngle), COMPID(const float, cam_normalAngle));
 
+    eecs::reg_system(reg, [&](eecs::EntityId eid, float& cam_ambientOverride, float cam_defLightStr)
+    {
+        if (IsKeyPressed(KEY_L))
+        {
+            if (eecs::has_comp(reg, eid, COMPID(float, light_strength)))
+            {
+                eecs::del_component(reg, eid, COMPID(float, light_strength));
+                cam_ambientOverride = 1.f;
+            }
+            else
+            {
+                eecs::set_component(reg, eid, COMPID(float, light_strength), cam_defLightStr);
+                cam_ambientOverride = 0.f;
+            }
+        }
+    }, COMPID(float, cam_ambientOverride), COMPID(const float, cam_defLightStr));
+
     load_prefabs_from_file(reg, "res/prefabs/cam.edat");
 }
 

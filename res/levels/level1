@@ -1,0 +1,605 @@
+_32 = {
+    prefab : str = "SpawnPoint"
+    Saveable : Tag = ""
+    dbox_name : str = "spawn"
+    spawn : Tag = ""
+    dbox_color : float[3] = ["0.000000", "1.000000", "0.000000"]
+    dbox_size : float[3] = ["0.250000", "0.250000", "0.250000"]
+    dbox_offset : float[3] = ["0.000000", "0.125000", "0.000000"]
+    rotation : float = "360.000000"
+    position : float[3] = ["0.000000", "0.000000", "1.000000"]
+}
+_33 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "90.000000"
+    position : float[3] = ["0.500000", "0.500000", "1.000000"]
+}
+_34 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "90.000000"
+    position : float[3] = ["0.500000", "0.500000", "2.000000"]
+}
+_35 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "90.000000"
+    position : float[3] = ["0.500000", "0.500000", "3.000000"]
+}
+_36 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "270.000000"
+    position : float[3] = ["-0.500000", "0.500000", "1.000000"]
+}
+_37 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "270.000000"
+    position : float[3] = ["-0.500000", "0.500000", "2.000000"]
+}
+_38 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "270.000000"
+    position : float[3] = ["-0.500000", "0.500000", "3.000000"]
+}
+_39 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "0.000000"
+    position : float[3] = ["0.000000", "0.500000", "4.500000"]
+}
+_40 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "0.000000"
+    position : float[3] = ["1.000000", "0.500000", "4.500000"]
+}
+_41 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "180.000000"
+    position : float[3] = ["1.000000", "0.500000", "3.500000"]
+}
+_42 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "180.000000"
+    position : float[3] = ["2.000000", "0.500000", "3.500000"]
+}
+_43 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "90.000000"
+    position : float[3] = ["2.500000", "0.500000", "4.000000"]
+}
+_44 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "90.000000"
+    position : float[3] = ["2.500000", "0.500000", "5.000000"]
+}
+_45 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "270.000000"
+    position : float[3] = ["1.500000", "0.500000", "5.000000"]
+}
+_46 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "270.000000"
+    position : float[3] = ["1.500000", "0.500000", "6.000000"]
+}
+_47 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "90.000000"
+    position : float[3] = ["2.500000", "0.500000", "6.000000"]
+}
+_48 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "90.000000"
+    position : float[3] = ["2.500000", "0.500000", "7.000000"]
+}
+_49 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "0.000000"
+    position : float[3] = ["2.000000", "0.500000", "7.500000"]
+}
+_50 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "0.000000"
+    position : float[3] = ["1.000000", "0.500000", "7.500000"]
+}
+_51 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "0.000000"
+    position : float[3] = ["0.000000", "0.500000", "7.500000"]
+}
+_52 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "180.000000"
+    position : float[3] = ["1.000000", "0.500000", "6.500000"]
+}
+_53 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "180.000000"
+    position : float[3] = ["0.000000", "0.500000", "6.500000"]
+}
+_54 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "180.000000"
+    position : float[3] = ["-1.000000", "0.500000", "6.500000"]
+}
+_55 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "0.000000"
+    position : float[3] = ["-1.000000", "0.500000", "7.500000"]
+}
+_56 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "0.000000"
+    position : float[3] = ["-2.000000", "0.500000", "7.500000"]
+}
+_57 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "270.000000"
+    position : float[3] = ["-2.500000", "0.500000", "7.000000"]
+}
+_58 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "270.000000"
+    position : float[3] = ["-2.500000", "0.500000", "6.000000"]
+}
+_59 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "270.000000"
+    position : float[3] = ["-2.500000", "0.500000", "5.000000"]
+}
+_60 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "180.000000"
+    position : float[3] = ["-2.000000", "0.500000", "4.500000"]
+}
+_61 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "270.000000"
+    position : float[3] = ["-1.500000", "0.500000", "4.000000"]
+}
+_62 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "180.000000"
+    position : float[3] = ["-1.000000", "0.500000", "3.500000"]
+}
+_63 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "0.000000"
+    position : float[3] = ["-1.000000", "0.500000", "5.500000"]
+}
+_64 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "90.000000"
+    position : float[3] = ["-0.500000", "0.500000", "5.000000"]
+}
+_65 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "90.000000"
+    position : float[3] = ["-1.500000", "0.500000", "6.000000"]
+}
+_66 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "180.000000"
+    position : float[3] = ["0.000000", "0.500000", "-1.500000"]
+}
+_67 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "270.000000"
+    position : float[3] = ["-0.500000", "0.500000", "-1.000000"]
+}
+_68 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "270.000000"
+    position : float[3] = ["-0.500000", "0.500000", "0.000000"]
+}
+_69 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "90.000000"
+    position : float[3] = ["0.500000", "0.500000", "0.000000"]
+}
+_70 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "90.000000"
+    position : float[3] = ["0.500000", "0.500000", "-1.000000"]
+}
+_71 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "90.000000"
+    position : float[3] = ["0.500000", "1.500000", "1.000000"]
+}
+_72 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "90.000000"
+    position : float[3] = ["0.500000", "1.500000", "2.000000"]
+}
+_73 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "90.000000"
+    position : float[3] = ["0.500000", "1.500000", "3.000000"]
+}
+_74 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "270.000000"
+    position : float[3] = ["-0.500000", "1.500000", "3.000000"]
+}
+_75 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "270.000000"
+    position : float[3] = ["-0.500000", "1.500000", "2.000000"]
+}
+_76 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "270.000000"
+    position : float[3] = ["-0.500000", "1.500000", "1.000000"]
+}
+_77 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "270.000000"
+    position : float[3] = ["-0.500000", "1.500000", "0.000000"]
+}
+_78 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "180.000000"
+    position : float[3] = ["0.000000", "1.500000", "-1.500000"]
+}
+_79 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "270.000000"
+    position : float[3] = ["-0.500000", "1.500000", "-1.000000"]
+}
+_80 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "90.000000"
+    position : float[3] = ["0.500000", "1.500000", "-1.000000"]
+}
+_81 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "90.000000"
+    position : float[3] = ["0.500000", "1.500000", "0.000000"]
+}
+_82 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "180.000000"
+    position : float[3] = ["1.000000", "1.500000", "3.500000"]
+}
+_83 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "180.000000"
+    position : float[3] = ["2.000000", "1.500000", "3.500000"]
+}
+_84 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "90.000000"
+    position : float[3] = ["2.500000", "1.500000", "4.000000"]
+}
+_85 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "90.000000"
+    position : float[3] = ["2.500000", "1.500000", "5.000000"]
+}
+_86 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "90.000000"
+    position : float[3] = ["2.500000", "1.500000", "6.000000"]
+}
+_87 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "0.000000"
+    position : float[3] = ["2.000000", "1.500000", "7.500000"]
+}
+_88 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "90.000000"
+    position : float[3] = ["2.500000", "1.500000", "7.000000"]
+}
+_89 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "0.000000"
+    position : float[3] = ["1.000000", "1.500000", "7.500000"]
+}
+_90 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "0.000000"
+    position : float[3] = ["0.000000", "1.500000", "7.500000"]
+}
+_91 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "0.000000"
+    position : float[3] = ["-1.000000", "1.500000", "7.500000"]
+}
+_92 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "270.000000"
+    position : float[3] = ["-2.500000", "1.500000", "7.000000"]
+}
+_93 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "0.000000"
+    position : float[3] = ["-2.000000", "1.500000", "7.500000"]
+}
+_94 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "270.000000"
+    position : float[3] = ["-2.500000", "1.500000", "6.000000"]
+}
+_95 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "270.000000"
+    position : float[3] = ["-2.500000", "1.500000", "5.000000"]
+}
+_96 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "180.000000"
+    position : float[3] = ["-2.000000", "1.500000", "3.500000"]
+}
+_97 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "180.000000"
+    position : float[3] = ["-1.000000", "1.500000", "3.500000"]
+}
+_98 = {
+    prefab : str = "StoneWall"
+    Saveable : Tag = ""
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    rotation : float = "270.000000"
+    position : float[3] = ["-2.500000", "1.500000", "4.000000"]
+}

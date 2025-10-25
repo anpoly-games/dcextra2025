@@ -46,61 +46,18 @@ static void fix_cube_coords(Mesh& mesh)
   }
 }
 
-/*
-struct primitives
-{
-  primitives(flecs::world& ecs)
-  {
-    ecs.module<primitives>();
-
-    ecs.component<RelativePos>()
-      .member<vec3f>("val");
-
-    ecs.component<Cube>()
-      .on_set([&](flecs::entity ent, const Cube& cube)
-      {
-        Mesh mesh = GenMeshCube(cube.sz.x, cube.sz.y, cube.sz.z);
-        fix_cube_coords(mesh);
-        ent.set(mesh);
-        ent.get([&](const Texture2D& tex, const EmissiveTex& emissive)
-        {
-          Model model = LoadModelFromMesh(mesh);
-          SetMaterialTexture(&model.materials[0], MATERIAL_MAP_DIFFUSE, tex);
-          SetMaterialTexture(&model.materials[0], MATERIAL_MAP_EMISSION, emissive.tex);
-          ent.set(model);
-        });
-      })
-      .member<vec3f>("sz");
-
-    ecs.component<Billboard>()
-      .member<vec2f>("sz");
-
-    ecs.component<ModelFile>()
-      .on_set([&](flecs::entity ent, const ModelFile& mf)
-      {
-        Model model = LoadModel(mf.filename.c_str());
-        ent.get([&](const Texture2D& tex, const EmissiveTex& emissive)
-        {
-          printf("load model %d materials\n", model.materialCount);
-          SetMaterialTexture(&model.materials[0], MATERIAL_MAP_DIFFUSE, tex);
-          SetMaterialTexture(&model.materials[0], MATERIAL_MAP_EMISSION, emissive.tex);
-        });
-        ent.set(model);
-      })
-      .member<std::string>("filename")
-      .add(flecs::OnInstantiate, flecs::Inherit);
-  }
-};
-*/
-
 void register_primitives(eecs::Registry& reg)
 {
+    // TODO: move somewhere
+    static Image defEmissiveImage = GenImageColor(1, 1, BLACK);
+    static Texture2D defEmissiveTex = LoadTextureFromImage(defEmissiveImage);
     eecs::reg_enter(reg, [&](eecs::EntityId eid, const vec3f& primitiveBlock_size)
     {
         Mesh mesh = GenMeshCube(primitiveBlock_size.x, primitiveBlock_size.y, primitiveBlock_size.z);
         fix_cube_coords(mesh);
         eecs::EntityWrap ent = eecs::wrap_entity(reg, eid);
         Model model = LoadModelFromMesh(mesh);
+        SetMaterialTexture(&model.materials[0], MATERIAL_MAP_EMISSION, defEmissiveTex);
         ent.set(COMPID(Model, model), model);
     }, COMPID(const vec3f, primitiveBlock_size));
 
@@ -108,6 +65,7 @@ void register_primitives(eecs::Registry& reg)
     {
         Model model = LoadModel(model_filename.c_str());
         eecs::EntityWrap ent = eecs::wrap_entity(reg, eid);
+        SetMaterialTexture(&model.materials[0], MATERIAL_MAP_EMISSION, defEmissiveTex);
         ent.set(COMPID(Model, model), model);
     }, COMPID(const std::string, model_filename));
 
@@ -118,6 +76,6 @@ void register_primitives(eecs::Registry& reg)
     eecs::reg_enter(reg, [&](eecs::EntityId eid, Model& model, const Texture2D& texture_emissive)
     {
         SetMaterialTexture(&model.materials[0], MATERIAL_MAP_EMISSION, texture_emissive);
-    }, COMPID(Model, model), COMPID(const Texture2D, texture_diff));
+    }, COMPID(Model, model), COMPID(const Texture2D, texture_emissive));
 }
 

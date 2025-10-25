@@ -1,22 +1,27 @@
 EditorCam = {
     cam_wideAngle : float = "120"
     cam_normalAngle : float = "60"
-    cam_lightStrength : float = "0.5"
     cam_backOffset : float = "0.3"
     cam_moveSpeed : float = "8"
     cam_rotSpeed : float = "12.56"
+
+    light_strength : float = "0.5"
+    cam_defLightStr : float = "0.5"
+    cam_ambientOverride : float = "0"
 }
 
 PlayerCam = {
     cam_normalAngle : float = "60"
-    cam_lightStrength : float = "0.5"
     cam_backOffset : float = "0.3"
     cam_moveSpeed : float = "8"
     cam_rotSpeed : float = "12.56"
+
+    light_strength : float = "0.5"
 }
 
 PlayerInstantCam = {
     cam_normalAngle : float = "60"
-    cam_lightStrength : float = "0.5"
     cam_backOffset : float = "0.3"
+
+    light_strength : float = "0.5"
 }

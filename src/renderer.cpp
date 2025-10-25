@@ -34,11 +34,12 @@ void register_renderer(eecs::Registry& reg)
 
     memset(lights, 0, sizeof(Light) * MAX_LIGHTS);
     // Move to render actually!
-    eecs::reg_system(reg, [&](eecs::EntityId, const Camera& camera)
+    eecs::reg_system(reg, [&](eecs::EntityId eid, const Camera& camera)
     {
         float cameraPos[3] = { camera.position.x, camera.position.y, camera.position.z };
         SetShaderValue(lightingShader, lightingShader.locs[SHADER_LOC_VECTOR_VIEW], cameraPos, SHADER_UNIFORM_VEC3);
 
+        int prevLights = lightsCount;
         lightsCount = 0;
         int nl = 0;
         eecs::query_entities(reg, [&](eecs::EntityId, float light_strength, const vec3f& position)
@@ -48,6 +49,14 @@ void register_renderer(eecs::Registry& reg)
             lights[nl] = CreateLight(LIGHT_POINT, toRLVec3(position), Vector3Zero(), Vector4{1.f, 1.f, 1.f, light_strength}, lightingShader);
             nl++;
         }, COMPID(const float, light_strength), COMPID(const vec3f, position));
+        for (int i = nl; i < prevLights; ++i)
+            InitDisabledLight(i, lightingShader);
+        float ambientOverride = eecs::get_comp_or(reg, eid, COMPID(float, cam_ambientOverride), 0.f);
+
+        int ambientLoc = GetShaderLocation(lightingShader, "ambient");
+        float ambient[4] = { ambientOverride, ambientOverride, ambientOverride, 1.0f };
+        SetShaderValue(lightingShader, ambientLoc, ambient, SHADER_UNIFORM_VEC4);
+
         eecs::query_entities(reg, [&](eecs::EntityId eid, Model& model, const vec3f& position)
         {
             model.materials[0].shader = lightingShader;
