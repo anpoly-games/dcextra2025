@@ -26,7 +26,6 @@ namespace fs = std::filesystem;
 
 void register_systems(eecs::Registry& reg)
 {
-  //register_math(ecs);
   register_textures(reg);
   register_primitives(reg);
   register_player(reg);
@@ -695,11 +694,5 @@ void delete_column(eecs::Registry& reg, int x, int y)
         if (position.x == x - 0.5f && position.z == y - 0.5f)
             eecs::del_entity(reg, eid);
     }, COMPID(const vec3f, position), COMPID(const Tag, Column));
-}
-
-void init_app(eecs::Registry& reg) {}
-
-void set_last_level(const char* level)
-{
 }
 

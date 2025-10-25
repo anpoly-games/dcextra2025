@@ -30,6 +30,13 @@ set(EDITOR_SOURCES
     editor/player.cpp
   )
 
+set(GAME_SOURCES
+    game/game.cpp
+    game/game_ui.cpp
+    game/cam.cpp
+    game/player.cpp
+    )
+
 
 if(MSVC)
   # https://github.com/raysan5/raylib/issues/857
@@ -42,6 +49,8 @@ if (EMSCRIPTEN)
 endif ()
     
 add_executable(editor ${SOURCES} ${EDITOR_SOURCES})
+add_executable(game ${SOURCES} ${GAME_SOURCES})
 #target_include_directories(dcjam2025 PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/../../src)
 target_link_libraries(editor PUBLIC raylib glfw eecs edat)
+target_link_libraries(game PUBLIC raylib glfw eecs edat)
 

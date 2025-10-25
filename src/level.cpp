@@ -78,8 +78,5 @@ void load_level(eecs::Registry& reg, const char* filename)
 
     restart_world(reg);
     load_entities_from_file(reg, fullPath.string().c_str());
-
-    set_last_level(filename);
 }
-
 
