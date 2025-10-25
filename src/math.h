@@ -12,11 +12,11 @@ struct vec2
 
   vec2<T>() = default;
   vec2<T>(const vec2<T>& rhs) = default;
-  vec2<T>(const vec2<T>&& rhs) = default;
+  vec2<T>(vec2<T>&& rhs) = default;
   vec2<T>(T _x, T _y) : x(_x), y(_y) {}
 
   vec2<T>& operator=(const vec2<T>& rhs) = default;
-  vec2<T>& operator=(const vec2<T>&& rhs) = default;
+  vec2<T>& operator=(vec2<T>&& rhs) = default;
 
   T dot(const vec2<T>& rhs) const { return x * rhs.x + y * rhs.y; }
 
@@ -71,7 +71,7 @@ struct vec3
 
   vec3<T>() = default;
   vec3<T>(const vec3<T>& rhs) = default;
-  vec3<T>(const vec3<T>&& rhs) = default;
+  vec3<T>(vec3<T>&& rhs) = default;
   vec3<T>(T _x, T _y, T _z) : x(_x), y(_y), z(_z) {}
 
   vec3<T>& operator=(const vec3<T>& rhs) = default;
