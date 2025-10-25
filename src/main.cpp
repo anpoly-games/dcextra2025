@@ -1,6 +1,7 @@
 #include <raylib.h>
 #include <eecs.h>
 #include <random>
+#include <cstring>
 
 #include "editor/editor_ui.h"
 #include "ui.h"
@@ -9,10 +10,20 @@
 #include "game.h"
 #include "level.h"
 
-int main(int argc, const char** argv)
+int main(int argc, char** argv)
 {
   int width = 1280;
   int height = 720;
+  char* levelToLoad = nullptr;//"level1";
+
+  for ( int i=1; i < argc; i++ )
+  {
+    if (strncmp(argv[i], "-l", 2)==0)
+    {
+      levelToLoad = argv[++i];
+      printf("Loading level %s\n", levelToLoad);
+    }
+  }
 
   ChangeDirectory(TextFormat("%s/../Resources/", GetApplicationDirectory()));
 
@@ -32,10 +43,9 @@ int main(int argc, const char** argv)
 
   eecs::Registry reg;
 
-  const char* levelToLoad = nullptr;//"level1";
   if (levelToLoad)
   {
-      load_level(reg, "level1");
+      load_level(reg, levelToLoad);
   }
   else
   {
