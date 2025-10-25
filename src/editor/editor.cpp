@@ -574,7 +574,6 @@ void create_floor(eecs::Registry& reg, vec3f tilePos, float rot, const char* nam
     eecs::create_wrap_from_prefab(reg, eecs::find_entity(reg, name))
         .tag(COMPID(Tag, Saveable))
         .set(COMPID(float, rotation), rot)
-        .set(COMPID(vec3f, position), {float(x), -0.025f, float(y)})
         .set(COMPID(vec3f, position), {float(tilePos.x), tilePos.y-0.025f, float(tilePos.z)})
         .set(COMPID(std::string, prefab), std::string(name));
 }
