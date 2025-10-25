@@ -15,3 +15,18 @@ SkeletalWall <- _BaseWall = {
     texture_filename : str = "res/textures/tiles/frames2-6.png"
 }
 
+MSMetalWall01 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/meatspace_metal_01.png"
+}
+
+MSMetalWindow01 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/meatspace_metal_window_01.png"
+}
+
+MSMetalDoor01 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/meatspace_metal_door_01.png"
+}
+
+MSMetalWall02 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/meatspace_metal_02.png"
+}
