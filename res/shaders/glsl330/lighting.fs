@@ -5,6 +5,8 @@ in vec3 fragPosition;
 in vec2 fragTexCoord;
 in vec4 fragColor;
 in vec3 fragNormal;
+in vec3 fragBinormal;
+in vec3 fragTangent;
 
 // Input uniform values
 uniform sampler2D texture0;
@@ -40,9 +42,12 @@ void main()
     if (texelColor.a == 0.0)
       discard;
     vec4 texelEmission = texture(emissiveMap, fragTexCoord);
+    // pixel position
+    //vec2 fragCoord = (floor(fragTexCoord * 12.0) + 0.5) / 12.0 - fragTexCoord;
+    //vec3 texelPosition = fragPosition + fragCoord.x * fragBinormal - fragCoord.y * fragTangent;
+    vec3 texelPosition = fragPosition;
     vec3 lightDot = vec3(0.0);
     vec3 normal = normalize(fragNormal);
-    vec3 viewD = normalize(viewPos - fragPosition);
     vec3 specular = vec3(0.0);
 
     vec4 tint = colDiffuse * fragColor;
@@ -53,7 +58,7 @@ void main()
         {
             vec3 light = vec3(0.0);
 
-            vec3 diff = lights[i].position - fragPosition;
+            vec3 diff = lights[i].position - texelPosition;
             float mag2 = diff.x * diff.x + diff.y * diff.y + diff.z * diff.z;
             //float mag = sqrt(mag2);
 
@@ -71,6 +76,8 @@ void main()
             lightDot += lights[i].color.rgb*(NdotL + 1.0) * 0.5 * lights[i].color.a / mag2;
         }
     }
+
+    //lightDot = floor(lightDot * 4.0) / 4.0;
 
     finalColor = (texelColor*(tint*max(vec4(min(lightDot, vec3(1.0, 1.0, 1.0)), 1.0), ambient))) + texelEmission * min(lightDot.r + 0.5, 1.0);
     finalColor = vec4(finalColor.rgb, texelColor.a);

@@ -1,5 +1,5 @@
 _BaseColumn = {
-    primitiveBlock_size : float[3] = ["0.125", "1", "0.125"]
+    primitiveBlock_size : float[3] = ["0.1666666", "1", "0.1666666"]
     column : Tag = ""
 }
 

@@ -385,7 +385,7 @@ void register_editor(eecs::Registry& reg)
                     int dir = fabsf(insideTilePos.x) > threshold ? 1 : 0;
                     if (dir == 1)
                     {
-                        DrawCube(castRLVec3(tilePos + vec3f(sign(insideTilePos.x) * 0.5f, 0.5f, 0)), 0.065f, 1.f, 1.f, Color{255, 255, 0, 150});
+                        DrawCube(castRLVec3(tilePos + vec3f(sign(insideTilePos.x) * 0.5f, 0.5f, 0)), 0.09f, 1.f, 1.f, Color{255, 255, 0, 150});
                         if (insideTilePos.x > 0.f)
                         {
                             wx++;
@@ -394,7 +394,7 @@ void register_editor(eecs::Registry& reg)
                     }
                     else
                     {
-                        DrawCube(castRLVec3(tilePos + vec3f(0, 0.5f, sign(insideTilePos.z) * 0.5f)), 1.f, 1.f, 0.065f, Color{255, 255, 0, 150});
+                        DrawCube(castRLVec3(tilePos + vec3f(0, 0.5f, sign(insideTilePos.z) * 0.5f)), 1.f, 1.f, 0.09f, Color{255, 255, 0, 150});
                         if (insideTilePos.z > 0.f)
                         {
                             wy++;

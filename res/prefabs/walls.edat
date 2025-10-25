@@ -1,5 +1,5 @@
 _BaseWall = {
-    model_filename : str = "res/meshes/Door.glb"
+    primitiveBlock_size : float[3] = ["1", "1", "0.0"]
     wall : Tag = ""
 }
 
