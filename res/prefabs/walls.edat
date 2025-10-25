@@ -23,10 +23,22 @@ MSMetalWindow01 <- _BaseWall = {
     texture_filename : str = "res/textures/walls/meatspace_metal_window_01.png"
 }
 
+MSMetalWindow02 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/meatspace_metal_window_02.png"
+}
+
 MSMetalDoor01 <- _BaseWall = {
     texture_filename : str = "res/textures/walls/meatspace_metal_door_01.png"
 }
 
 MSMetalWall02 <- _BaseWall = {
     texture_filename : str = "res/textures/walls/meatspace_metal_02.png"
+}
+
+MSCaveWall01 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/meatspace_cave_01.png"
+}
+
+MSCaveWall02 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/meatspace_cave_02.png"
 }
