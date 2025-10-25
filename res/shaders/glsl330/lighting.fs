@@ -5,8 +5,6 @@ in vec3 fragPosition;
 in vec2 fragTexCoord;
 in vec4 fragColor;
 in vec3 fragNormal;
-in vec3 fragBinormal;
-in vec3 fragTangent;
 
 // Input uniform values
 uniform sampler2D texture0;
@@ -43,9 +41,18 @@ void main()
       discard;
     vec4 texelEmission = texture(emissiveMap, fragTexCoord);
     // pixel position
-    //vec2 fragCoord = (floor(fragTexCoord * 12.0) + 0.5) / 12.0 - fragTexCoord;
-    //vec3 texelPosition = fragPosition + fragCoord.x * fragBinormal - fragCoord.y * fragTangent;
-    vec3 texelPosition = fragPosition;
+    vec2 texelSz = vec2(12.0);
+    vec2 tcCenter = (floor(fragTexCoord * texelSz)) / texelSz + 0.5 / texelSz;
+    vec2 fragCoord = tcCenter - fragTexCoord;
+    vec2 dtc_dx = dFdx(fragTexCoord);
+    vec2 dtc_dy = dFdy(fragTexCoord);
+    mat2x2 dinv = mat2x2(dtc_dy.y, -dtc_dy.x, -dtc_dx.y, dtc_dx.x) * (1.0 / (dtc_dx.x * dtc_dy.y - dtc_dy.x * dtc_dx.y));
+    vec2 dst = fragCoord * dinv;
+    vec3 dp_dx = dFdx(fragPosition);
+    vec3 dp_dy = dFdy(fragPosition);
+    vec3 dp = clamp(dp_dx * dst.x + dp_dy * dst.y, -1.0, 1.0);
+    vec3 texelPosition = fragPosition + dp;
+    //vec3 texelPosition = fragPosition;
     vec3 lightDot = vec3(0.0);
     vec3 normal = normalize(fragNormal);
     vec3 specular = vec3(0.0);
@@ -77,7 +84,8 @@ void main()
         }
     }
 
-    //lightDot = floor(lightDot * 4.0) / 4.0;
+    lightDot = floor(sqrt(lightDot) * 4.0) / 4.0;
+    lightDot *= lightDot;
 
     finalColor = (texelColor*(tint*max(vec4(min(lightDot, vec3(1.0, 1.0, 1.0)), 1.0), ambient))) + texelEmission * min(lightDot.r + 0.5, 1.0);
     finalColor = vec4(finalColor.rgb, texelColor.a);
