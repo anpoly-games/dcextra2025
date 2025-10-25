@@ -4,6 +4,7 @@
 #include "prefabs.h"
 #include "tags.h"
 #include "math.h"
+#include "component.h"
 
 namespace fs = std::filesystem;
 
@@ -61,6 +62,16 @@ std::vector<eecs::EntityId> load_entities_from_file(eecs::Registry& reg, const s
         {
             entity.set(eecs::comp_id<std::string>(compName.c_str()), val);
         });
+
+        if (entity.has(eecs::comp_id<std::string>("prefab")))
+        {
+            std::string prefab_name = entity.get_or(eecs::comp_id<std::string>("prefab"),std::string(""));
+            //printf("prefab found for entity %s : %s \n", name.c_str(), prefab_name.c_str());
+            eecs::EntityId prefab_id = eecs::find_entity(reg, prefab_name.c_str());
+            assert(prefab_id!=eecs::invalid_eid);
+            assert(eecs::is_prefab(reg, prefab_id));
+            eecs::copy_from_prefab(reg, prefab_id, entity.eid);
+        }
         res.push_back(entity.eid);
     });
     return res;
