@@ -41,6 +41,7 @@ void main()
       discard;
     vec4 texelEmission = texture(emissiveMap, fragTexCoord);
     // pixel position
+
     vec2 texelSz = vec2(12.0);
     vec2 tcCenter = (floor(fragTexCoord * texelSz)) / texelSz + 0.5 / texelSz;
     vec2 fragCoord = tcCenter - fragTexCoord;
@@ -52,6 +53,7 @@ void main()
     vec3 dp_dy = dFdy(fragPosition);
     vec3 dp = clamp(dp_dx * dst.x + dp_dy * dst.y, -1.0, 1.0);
     vec3 texelPosition = fragPosition + dp;
+
     //vec3 texelPosition = fragPosition;
     vec3 lightDot = vec3(0.0);
     vec3 normal = normalize(fragNormal);

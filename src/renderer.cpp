@@ -53,10 +53,11 @@ void register_renderer(eecs::Registry& reg)
             lights[nl] = CreateLight(LIGHT_POINT, toRLVec3(position), Vector3Zero(), Vector4{1.f, 1.f, 1.f, light_strength}, lightingShader);
             nl++;
         }, COMPID(const float, light_strength), COMPID(const vec3f, position));
+
         for (int i = nl; i < prevLights; ++i)
             InitDisabledLight(i, lightingShader);
-        float ambientOverride = eecs::get_comp_or(reg, eid, COMPID(float, cam_ambientOverride), 0.f);
 
+        float ambientOverride = eecs::get_comp_or(reg, eid, COMPID(float, cam_ambientOverride), 0.f);
         int ambientLoc = GetShaderLocation(lightingShader, "ambient");
         float ambient[4] = { ambientOverride, ambientOverride, ambientOverride, 1.0f };
         SetShaderValue(lightingShader, ambientLoc, ambient, SHADER_UNIFORM_VEC4);
