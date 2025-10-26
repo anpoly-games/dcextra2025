@@ -1,5 +1,6 @@
 #include <eecs.h>
 #include <raylib.h>
+#include <climits>
 
 #include "../player.h"
 #include "../math.h"
