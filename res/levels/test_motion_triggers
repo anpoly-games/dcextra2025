@@ -1,0 +1,416 @@
+_64 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["0.000000", "-0.025000", "2.000000"]
+}
+_65 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["1.000000", "-0.025000", "2.000000"]
+}
+_66 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["1.000000", "-0.025000", "3.000000"]
+}
+_67 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["0.000000", "-0.025000", "3.000000"]
+}
+_68 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-1.000000", "-0.025000", "3.000000"]
+}
+_69 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-1.000000", "-0.025000", "2.000000"]
+}
+_70 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["0.000000", "-0.025000", "1.000000"]
+}
+_71 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-1.000000", "-0.025000", "1.000000"]
+}
+_72 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["1.000000", "-0.025000", "1.000000"]
+}
+_73 = {
+    prefab : str = "SpawnPoint"
+    Saveable : Tag = ""
+    dbox_color : float[3] = ["0.000000", "1.000000", "0.000000"]
+    dbox_size : float[3] = ["0.250000", "0.250000", "0.250000"]
+    spawn : Tag = ""
+    dbox_offset : float[3] = ["0.000000", "0.125000", "0.000000"]
+    dbox_name : str = "spawn"
+    rotation : float = "0.000000"
+    position : float[3] = ["0.000000", "0.000000", "0.000000"]
+}
+_74 = {
+    teleporter : Tag = ""
+    displacement : float[2] = ["1.000000", "0.000000"]
+    prefab : str = "Teleport_X_by_1"
+    Saveable : Tag = ""
+    trigger_volume : int[2] = ["1", "1"]
+    trigger_debugName : str = "Teleport_X_by_1"
+    rotation : float = "360.000000"
+    position : float[3] = ["0.000000", "0.000000", "2.000000"]
+}
+_75 = {
+    teleporter : Tag = ""
+    displacement : float[2] = ["-1.000000", "0.000000"]
+    prefab : str = "Teleport_X_by_m1"
+    Saveable : Tag = ""
+    trigger_volume : int[2] = ["1", "1"]
+    trigger_debugName : str = "Teleport_X_by_m1"
+    rotation : float = "360.000000"
+    position : float[3] = ["1.000000", "0.000000", "3.000000"]
+}
+_76 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["0.000000", "-0.025000", "4.000000"]
+}
+_77 = {
+    teleporter : Tag = ""
+    displacement : float[2] = ["0.000000", "-1.000000"]
+    prefab : str = "Teleport_Z_by_m1"
+    Saveable : Tag = ""
+    trigger_volume : int[2] = ["1", "1"]
+    trigger_debugName : str = "Teleport_Z_by_m1"
+    rotation : float = "360.000000"
+    position : float[3] = ["0.000000", "0.000000", "4.000000"]
+}
+_78 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-1.000000", "-0.025000", "4.000000"]
+}
+_79 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-2.000000", "-0.025000", "4.000000"]
+}
+_80 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-2.000000", "-0.025000", "3.000000"]
+}
+_81 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-2.000000", "-0.025000", "2.000000"]
+}
+_82 = {
+    teleporter : Tag = ""
+    displacement : float[2] = ["0.000000", "1.000000"]
+    prefab : str = "Teleport_Z_by_1"
+    Saveable : Tag = ""
+    trigger_volume : int[2] = ["1", "1"]
+    trigger_debugName : str = "Teleport_Z_by_1"
+    rotation : float = "360.000000"
+    position : float[3] = ["-2.000000", "0.000000", "3.000000"]
+}
+_83 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-3.000000", "-0.025000", "4.000000"]
+}
+_84 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-4.000000", "-0.025000", "4.000000"]
+}
+_85 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-5.000000", "-0.025000", "4.000000"]
+}
+_86 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-5.000000", "-0.025000", "5.000000"]
+}
+_87 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-4.000000", "-0.025000", "5.000000"]
+}
+_88 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-4.000000", "-0.025000", "3.000000"]
+}
+_89 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-5.000000", "-0.025000", "3.000000"]
+}
+_90 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-6.000000", "-0.025000", "3.000000"]
+}
+_91 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-6.000000", "-0.025000", "4.000000"]
+}
+_92 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-6.000000", "-0.025000", "5.000000"]
+}
+_93 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-3.000000", "-0.025000", "3.000000"]
+}
+_94 = {
+    relative_teleporter : Tag = ""
+    prefab : str = "Teleport_Relative_by_1"
+    Saveable : Tag = ""
+    trigger_volume : int[2] = ["1", "1"]
+    trigger_debugName : str = "Teleport_Relative_by_1"
+    rotation : float = "360.000000"
+    position : float[3] = ["-5.000000", "0.000000", "4.000000"]
+    rel_displacement : float = "1.000000"
+}
+_95 = {
+    relative_teleporter : Tag = ""
+    prefab : str = "Teleport_Relative_by_m1"
+    Saveable : Tag = ""
+    trigger_volume : int[2] = ["1", "1"]
+    trigger_debugName : str = "Teleport_Relative_by_m1"
+    rotation : float = "360.000000"
+    position : float[3] = ["-6.000000", "0.000000", "5.000000"]
+    rel_displacement : float = "-1.000000"
+}
+_96 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-5.000000", "-0.025000", "6.000000"]
+}
+_97 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-6.000000", "-0.025000", "6.000000"]
+}
+_98 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-7.000000", "-0.025000", "6.000000"]
+}
+_99 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-8.000000", "-0.025000", "6.000000"]
+}
+_100 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-8.000000", "-0.025000", "7.000000"]
+}
+_101 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-7.000000", "-0.025000", "5.000000"]
+}
+_102 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-8.000000", "-0.025000", "5.000000"]
+}
+_103 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-9.000000", "-0.025000", "5.000000"]
+}
+_104 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-9.000000", "-0.025000", "6.000000"]
+}
+_105 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["-9.000000", "-0.025000", "7.000000"]
+}
+_106 = {
+    spinner : Tag = ""
+    prefab : str = "Spin_1"
+    turns : int = "1.000000"
+    Saveable : Tag = ""
+    trigger_volume : int[2] = ["1", "1"]
+    trigger_debugName : str = "spin-right-1-turn"
+    rotation : float = "360.000000"
+    position : float[3] = ["-9.000000", "0.000000", "7.000000"]
+}
+_107 = {
+    spinner : Tag = ""
+    prefab : str = "Spin_2"
+    turns : int = "2.000000"
+    Saveable : Tag = ""
+    trigger_volume : int[2] = ["1", "1"]
+    trigger_debugName : str = "spin-right-2-turns"
+    rotation : float = "360.000000"
+    position : float[3] = ["-9.000000", "0.000000", "6.000000"]
+}
+_109 = {
+    spinner : Tag = ""
+    prefab : str = "Spin_3"
+    turns : int = "-1.000000"
+    Saveable : Tag = ""
+    trigger_volume : int[2] = ["1", "1"]
+    trigger_debugName : str = "spin-right-3-turns"
+    rotation : float = "360.000000"
+    position : float[3] = ["-9.000000", "0.000000", "5.000000"]
+}

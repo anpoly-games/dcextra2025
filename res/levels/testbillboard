@@ -1,0 +1,21 @@
+_49 = {
+    billboard : Tag = ""
+    prefab : str = "Monster0"
+    Saveable : Tag = ""
+    texture_filename : str = "res/textures/creatures/monsters-0.png"
+    position : float[3] = ["2.000000", "0.500000", "3.500000"]
+}
+_50 = {
+    billboard : Tag = ""
+    prefab : str = "Monster0"
+    Saveable : Tag = ""
+    texture_filename : str = "res/textures/creatures/monsters-0.png"
+    position : float[3] = ["1.500000", "0.500000", "5.000000"]
+}
+_51 = {
+    billboard : Tag = ""
+    prefab : str = "Monster0"
+    Saveable : Tag = ""
+    texture_filename : str = "res/textures/creatures/monsters-0.png"
+    position : float[3] = ["-1.000000", "0.500000", "2.500000"]
+}

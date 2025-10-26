@@ -9,3 +9,56 @@ MeatspaceToCyberspaceLevelSwitch <- _Trigger = {
     trigger_debugName : str = "Meat->Cyber"
 }
 
+Teleport_X_by_1 <- _Trigger = {
+    teleporter : Tag = ""
+    displacement : float[2] = ["1", "0"]
+    trigger_debugName : str = "Teleport_X_by_1"
+}
+
+Teleport_X_by_m1 <- _Trigger = {
+    teleporter : Tag = ""
+    displacement : float[2] = ["-1", "0"]
+    trigger_debugName : str = "Teleport_X_by_m1"
+}
+
+Teleport_Z_by_1 <- _Trigger = {
+    teleporter : Tag = ""
+    displacement : float[2] = ["0", "1"]
+    trigger_debugName : str = "Teleport_Z_by_1"
+}
+
+Teleport_Z_by_m1 <- _Trigger = {
+    teleporter : Tag = ""
+    displacement : float[2] = ["0", "-1"]
+    trigger_debugName : str = "Teleport_Z_by_m1"
+}
+
+Teleport_Relative_by_1 <- _Trigger = {
+    relative_teleporter : Tag = ""
+    rel_displacement : float = "1"
+    trigger_debugName : str = "Teleport_Relative_by_1"
+}
+
+Teleport_Relative_by_m1 <- _Trigger = {
+    relative_teleporter : Tag = ""
+    rel_displacement : float = "-1"
+    trigger_debugName : str = "Teleport_Relative_by_m1"
+}
+
+Spin_1 <- _Trigger = {
+    spinner : Tag = ""
+    turns : int = "1"
+    trigger_debugName : str = "spin-right-1-turn"
+}
+
+Spin_2 <- _Trigger = {
+    spinner : Tag = ""
+    turns : int = "2"
+    trigger_debugName : str = "spin-right-2-turns"
+}
+
+Spin_3 <- _Trigger = {
+    spinner : Tag = ""
+    turns : int = "-1"
+    trigger_debugName : str = "spin-right-3-turns"
+}

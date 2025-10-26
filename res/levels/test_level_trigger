@@ -1,0 +1,38 @@
+_55 = {
+    prefab : str = "StoneFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["0.000000", "-0.025000", "2.000000"]
+}
+_56 = {
+    prefab : str = "MeatspaceToCyberspaceLevelSwitch"
+    level_switchTo : str = "level2"
+    Saveable : Tag = ""
+    trigger_volume : int[2] = ["1", "1"]
+    trigger_debugName : str = "Meat->Cyber"
+    rotation : float = "360.000000"
+    position : float[3] = ["0.000000", "0.000000", "2.000000"]
+}
+_57 = {
+    prefab : str = "MudFloor"
+    Saveable : Tag = ""
+    floor : Tag = ""
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-58.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    position : float[3] = ["0.000000", "-0.025000", "1.000000"]
+}
+_58 = {
+    prefab : str = "SpawnPoint"
+    Saveable : Tag = ""
+    dbox_color : float[3] = ["0.000000", "1.000000", "0.000000"]
+    dbox_size : float[3] = ["0.250000", "0.250000", "0.250000"]
+    spawn : Tag = ""
+    dbox_offset : float[3] = ["0.000000", "0.125000", "0.000000"]
+    dbox_name : str = "spawn"
+    rotation : float = "360.000000"
+    position : float[3] = ["0.000000", "0.000000", "1.000000"]
+}

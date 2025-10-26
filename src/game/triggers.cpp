@@ -14,6 +14,7 @@ void register_triggers(eecs::Registry& reg)
         vec3i curPosition = pos_to_grid3d(position);
         if (curPosition == prevPosition)
             return;
+        prevPosition = curPosition;
         eecs::query_entities(reg, [&](eecs::EntityId eid, const vec3f& position, const vec2i& trigger_volume)
         {
             vec3i triggerPos = pos_to_grid3d(position);
@@ -31,5 +32,39 @@ void register_triggers(eecs::Registry& reg)
     {
         load_level(reg, level_switchTo.c_str());
     }, COMPID(const std::string, level_switchTo));
+
+    eecs::on_event(reg, FNV1(enterTrigger), [&](eecs::EntityId eid, eecs::EntityId playerId, const vec2f& displacement, Tag teleporter)
+    {
+        eecs::query_components(reg, playerId, [&](vec3f& position, Tag player)
+        {
+            position.x += displacement.x;
+            position.z += displacement.y; // displacement is in the x-z plane
+        }, COMPID(vec3f, position), COMPID(Tag, player));
+    }, COMPID(vec2f, displacement), COMPID(Tag, teleporter));
+
+    eecs::on_event(reg, FNV1(enterTrigger), [&](eecs::EntityId eid, eecs::EntityId playerId, const float rel_displacement, Tag relative_teleporter)
+    {
+        eecs::query_components(reg, playerId, [&](vec3f& position, const vec3f& direction, Tag player)
+        {
+            position = position + rel_displacement * direction;
+        }, COMPID(vec3f, position), COMPID(const vec3f, direction), COMPID(Tag, player));
+    }, COMPID(float, rel_displacement), COMPID(Tag, relative_teleporter));
+
+    eecs::on_event(reg, FNV1(enterTrigger), [&](eecs::EntityId eid, eecs::EntityId playerId, const int turns, Tag spinner)
+    {
+        eecs::query_components(reg, playerId, [&](vec3f& direction, Tag player)
+        {
+            if (turns==2)
+            {
+                direction.x = -direction.x;
+                direction.z = -direction.z;
+            }
+            else
+            {
+                direction = vec3{-turns * direction.z, direction.y, turns * direction.x};   
+            }
+        }, COMPID(vec3f, direction), COMPID(Tag, player));
+    }, COMPID(const int, turns), COMPID(Tag, spinner));
+
 }
 
