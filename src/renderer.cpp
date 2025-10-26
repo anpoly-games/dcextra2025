@@ -69,7 +69,7 @@ void register_renderer(eecs::Registry& reg)
 
         eecs::query_entities(reg, [&](eecs::EntityId eid, const Texture2D& texture, const vec3f& position, Tag tag)
         {
-            BeginShaderMode(billboardShader);
+            BeginShaderMode(lightingShader);
             DrawBillboard(camera, texture, toRLVec3(position), 1.0f, WHITE);
             EndShaderMode();
         }, COMPID(const Texture2D, texture_diff), COMPID(const vec3f, position), COMPID(Tag, billboard));
