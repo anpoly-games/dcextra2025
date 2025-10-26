@@ -36,6 +36,7 @@ set(GAME_SOURCES
     game/cam.cpp
     game/player.cpp
     game/spawn.cpp
+    game/triggers.cpp
     )
 
 

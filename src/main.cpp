@@ -14,7 +14,7 @@ int main(int argc, char** argv)
 {
   int width = 1280;
   int height = 720;
-  char* levelToLoad = nullptr;//"level1";
+  const char* levelToLoad = nullptr;//"level1";
 
   for ( int i=1; i < argc; i++ )
   {

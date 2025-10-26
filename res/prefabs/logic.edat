@@ -1,0 +1,11 @@
+_Trigger = {
+    trigger_volume : int[2] = ["1", "1"]
+    trigger_debugName : str = "trigger"
+    Saveable : Tag = ""
+}
+
+MeatspaceToCyberspaceLevelSwitch <- _Trigger = {
+    level_switchTo : str = "level2"
+    trigger_debugName : str = "Meat->Cyber"
+}
+

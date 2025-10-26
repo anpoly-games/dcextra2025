@@ -1,121 +1,132 @@
-_31 = {
+_44 = {
     Saveable : Tag = ""
-    rotation : float = "180.000000"
     position : float[3] = ["0.000000", "-0.025000", "1.000000"]
+    rotation : float = "180.000000"
     texture_filename : str = "res/textures/tiles/biomes-9.png"
     floor : Tag = ""
     primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
 }
-_32 = {
+_45 = {
     Saveable : Tag = ""
-    rotation : float = "180.000000"
     position : float[3] = ["1.000000", "-0.025000", "1.000000"]
+    rotation : float = "180.000000"
     texture_filename : str = "res/textures/tiles/biomes-9.png"
     floor : Tag = ""
     primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
 }
-_33 = {
+_46 = {
     Saveable : Tag = ""
-    rotation : float = "180.000000"
     position : float[3] = ["0.000000", "-0.025000", "2.000000"]
-    texture_filename : str = "res/textures/tiles/biomes-9.png"
-    floor : Tag = ""
-    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
-}
-_34 = {
-    Saveable : Tag = ""
     rotation : float = "180.000000"
-    position : float[3] = ["1.000000", "-0.025000", "2.000000"]
     texture_filename : str = "res/textures/tiles/biomes-9.png"
     floor : Tag = ""
     primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
 }
-_35 = {
+_47 = {
     Saveable : Tag = ""
-    rotation : float = "90.000000"
+    position : float[3] = ["1.000000", "-0.025000", "2.000000"]
+    rotation : float = "180.000000"
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    floor : Tag = ""
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+}
+_48 = {
+    Saveable : Tag = ""
     position : float[3] = ["0.500000", "0.500000", "2.000000"]
-    texture_filename : str = "res/textures/tiles/biomes-58.png"
-    model_filename : str = "res/meshes/Door.glb"
-    wall : Tag = ""
-}
-_36 = {
-    Saveable : Tag = ""
-    rotation : float = "0.000000"
-    position : float[3] = ["1.000000", "0.500000", "1.500000"]
-    texture_filename : str = "res/textures/tiles/biomes-58.png"
-    model_filename : str = "res/meshes/Door.glb"
-    wall : Tag = ""
-}
-_37 = {
-    Saveable : Tag = ""
-    rotation : float = "0.000000"
-    position : float[3] = ["0.000000", "0.500000", "1.500000"]
-    texture_filename : str = "res/textures/tiles/biomes-58.png"
-    model_filename : str = "res/meshes/Door.glb"
-    wall : Tag = ""
-}
-_38 = {
-    Saveable : Tag = ""
     rotation : float = "90.000000"
-    position : float[3] = ["0.500000", "0.500000", "1.000000"]
+    wall : Tag = ""
     texture_filename : str = "res/textures/tiles/biomes-58.png"
     model_filename : str = "res/meshes/Door.glb"
-    wall : Tag = ""
 }
-_39 = {
+_49 = {
     Saveable : Tag = ""
+    position : float[3] = ["1.000000", "0.500000", "1.500000"]
     rotation : float = "0.000000"
-    position : float[3] = ["0.500000", "0.500000", "1.500000"]
+    wall : Tag = ""
+    texture_filename : str = "res/textures/tiles/biomes-58.png"
+    model_filename : str = "res/meshes/Door.glb"
+}
+_50 = {
+    Saveable : Tag = ""
+    position : float[3] = ["0.000000", "0.500000", "1.500000"]
+    rotation : float = "0.000000"
+    wall : Tag = ""
+    texture_filename : str = "res/textures/tiles/biomes-58.png"
+    model_filename : str = "res/meshes/Door.glb"
+}
+_51 = {
+    Saveable : Tag = ""
+    position : float[3] = ["0.500000", "0.500000", "1.000000"]
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    texture_filename : str = "res/textures/tiles/biomes-58.png"
+    model_filename : str = "res/meshes/Door.glb"
+}
+_52 = {
+    Saveable : Tag = ""
     Column : Tag = ""
+    position : float[3] = ["0.500000", "0.500000", "1.500000"]
+    rotation : float = "0.000000"
     column : Tag = ""
     texture_filename : str = "res/textures/tiles/biomes-9.png"
     primitiveBlock_size : float[3] = ["0.125000", "1.000000", "0.125000"]
 }
-_40 = {
+_53 = {
     Saveable : Tag = ""
-    rotation : float = "180.000000"
     position : float[3] = ["0.000000", "1.025000", "1.000000"]
+    rotation : float = "180.000000"
     ceiling : Tag = ""
     texture_filename : str = "res/textures/tiles/biomes-9.png"
     primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
 }
-_41 = {
+_54 = {
     Saveable : Tag = ""
-    rotation : float = "180.000000"
     position : float[3] = ["1.000000", "1.025000", "1.000000"]
+    rotation : float = "180.000000"
     ceiling : Tag = ""
     texture_filename : str = "res/textures/tiles/biomes-58.png"
     primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
 }
-_42 = {
+_55 = {
     Saveable : Tag = ""
-    rotation : float = "90.000000"
     position : float[3] = ["1.000000", "1.025000", "2.000000"]
+    rotation : float = "90.000000"
     ceiling : Tag = ""
     texture_filename : str = "res/textures/tiles/frames2-6.png"
     primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
 }
-_43 = {
+_56 = {
     Saveable : Tag = ""
-    rotation : float = "360.000000"
     position : float[3] = ["0.000000", "1.025000", "2.000000"]
+    rotation : float = "360.000000"
     ceiling : Tag = ""
     texture_filename : str = "res/textures/tiles/frames2-6.png"
     primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
 }
-_44 = {
+_57 = {
     Saveable : Tag = ""
-    rotation : float = "0.000000"
     position : float[3] = ["-1.000000", "0.500000", "1.500000"]
-    texture_filename : str = "res/textures/tiles/biomes-9.png"
-    model_filename : str = "res/meshes/Door.glb"
-    wall : Tag = ""
-}
-_45 = {
-    Saveable : Tag = ""
     rotation : float = "0.000000"
-    position : float[3] = ["-2.000000", "0.500000", "1.500000"]
+    wall : Tag = ""
     texture_filename : str = "res/textures/tiles/biomes-9.png"
     model_filename : str = "res/meshes/Door.glb"
+}
+_58 = {
+    Saveable : Tag = ""
+    position : float[3] = ["-2.000000", "0.500000", "1.500000"]
+    rotation : float = "0.000000"
     wall : Tag = ""
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    model_filename : str = "res/meshes/Door.glb"
+}
+_59 = {
+    prefab : str = "SpawnPoint"
+    Saveable : Tag = ""
+    dbox_name : str = "spawn"
+    spawn : Tag = ""
+    position : float[3] = ["0.000000", "0.000000", "1.000000"]
+    rotation : float = "360.000000"
+    dbox_size : float[3] = ["0.250000", "0.250000", "0.250000"]
+    dbox_offset : float[3] = ["0.000000", "0.125000", "0.000000"]
+    dbox_color : float[3] = ["0.000000", "1.000000", "0.000000"]
 }

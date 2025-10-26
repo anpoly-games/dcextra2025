@@ -549,6 +549,13 @@ void save_level(eecs::Registry& reg, const char* filename)
             "\"" + std::to_string(val.z) + "\""
             "]\n";
     });
+    handlers.addTypeHandler<vec2i>([&](const std::string_view& view, vec2i val)
+    {
+        edat += std::string("    ") + std::string(view) + " : int[2] = [" +
+            "\"" + std::to_string(val.x) + "\", "
+            "\"" + std::to_string(val.y) + "\""
+            "]\n";
+    });
     handlers.addTypeHandler<std::string>([&](const std::string_view& view, const std::string& val)
     {
         edat += std::string("    ") + std::string(view) + " : str = \"" + val + "\"\n";
@@ -597,7 +604,7 @@ void create_logic(eecs::Registry& reg, int x, int y, float rot, const char* name
     const vec3f tilePos = vec3f(x, 0, y);
     const vec3f pos = tilePos;
     eecs::create_wrap_from_prefab(reg, pref)
-        .tag(COMPID(Tag, Saaveable))
+        .tag(COMPID(Tag, Saveable))
         .set(COMPID(float, rotation), rot + 180)
         .set(COMPID(vec3f, position), pos)
         .set(COMPID(std::string, prefab), std::string(name));

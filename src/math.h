@@ -75,6 +75,7 @@ struct vec3
   vec3<T>(T _x, T _y, T _z) : x(_x), y(_y), z(_z) {}
 
   vec3<T>& operator=(const vec3<T>& rhs) = default;
+  bool operator==(const vec3<T>& rhs) const { return x == rhs.x && y == rhs.y && z == rhs.z; }
 
   T dot(const vec3<T>& rhs) const { return x * rhs.x + y * rhs.y + z * rhs.z; }
 
@@ -237,4 +238,10 @@ inline vec2i pos_to_grid(const vec3f& pos)
 {
   return vec2i{(int)floorf(pos.x + 0.5f), (int)floorf(pos.z + 0.5f)};
 }
+
+inline vec3i pos_to_grid3d(const vec3f& pos)
+{
+  return vec3i{(int)floorf(pos.x + 0.5f), (int)floorf(pos.y + 0.5f), (int)floorf(pos.z + 0.5f)};
+}
+
 

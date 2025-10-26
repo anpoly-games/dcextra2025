@@ -10,6 +10,7 @@
 #include "../renderer.h"
 #include "../cam.h"
 #include "../level.h"
+#include "triggers.h"
 
 #include "spawn.h"
 
@@ -24,6 +25,7 @@ void register_systems(eecs::Registry& reg)
   register_level(reg);
   register_ui(reg);
   register_spawn(reg);
+  register_triggers(reg);
 }
 
 eecs::EntityId init_new_world(eecs::Registry& reg)

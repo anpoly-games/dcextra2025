@@ -50,6 +50,15 @@ std::vector<eecs::EntityId> load_entities_from_file(eecs::Registry& reg, const s
             else if (val.size() == 4) // Vector4
                 entity.set(eecs::comp_id<vec4f>(compName.c_str()), vec4f{val[0], val[1], val[2], val[3]});
         });
+        tbl.getAll<std::vector<int>>([&](const std::string& compName, const std::vector<int>& val)
+        {
+            if (val.size() == 2) // vec2i
+                entity.set(eecs::comp_id<vec2i>(compName.c_str()), vec2i{val[0], val[1]});
+            else if (val.size() == 3) // vec3i
+                entity.set(eecs::comp_id<vec3i>(compName.c_str()), vec3i{val[0], val[1], val[2]});
+            else if (val.size() == 4) // vec4i
+                entity.set(eecs::comp_id<vec4i>(compName.c_str()), vec4i{val[0], val[1], val[2], val[3]});
+        });
         tbl.getAll<Tag>([&](const std::string& compName, Tag)
         {
             entity.tag(eecs::comp_id<Tag>(compName.c_str()));
