@@ -20,3 +20,11 @@ MSMetalCeiling01 <- _BaseCeiling = {
 }
 
 
+MSMetalCeiling02 <- _BaseCeiling = {
+    texture_filename : str = "res/textures/ceilings/meatspace_metal_celling_02.png"
+	texture_emissiveFilename : str = "res/textures/ceilings/meatspace_metal_celling_em_02.png"
+}
+
+MSMetalCeiling03 <- _BaseCeiling = {
+    texture_filename : str = "res/textures/ceilings/meatspace_metal_celling_03.png"
+}
