@@ -13,6 +13,7 @@ enum EntTypeList
   E_CEILINGS,
   E_ENTITIES,
   E_LOGIC,
+  E_BILLBOARDS,
   E_ETL_NUM
 };
 

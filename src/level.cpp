@@ -39,6 +39,7 @@ void register_level(eecs::Registry& reg)
     std::vector<eecs::EntityId> ceilings = load_prefabs_from_file(reg, "res/prefabs/ceilings.edat");
     std::vector<eecs::EntityId> entities = load_prefabs_from_file(reg, "res/prefabs/entities.edat");
     std::vector<eecs::EntityId> logic = load_prefabs_from_file(reg, "res/prefabs/logic.edat");
+    std::vector<eecs::EntityId> billboards = load_prefabs_from_file(reg, "res/prefabs/billboards.edat");
 
     eecs::create_entity_wrap(reg, "floors").set(COMPID(std::vector<eecs::EntityId>, children), floors);
     eecs::create_entity_wrap(reg, "walls").set(COMPID(std::vector<eecs::EntityId>, children), walls);
@@ -47,6 +48,7 @@ void register_level(eecs::Registry& reg)
     eecs::create_entity_wrap(reg, "ceilings").set(COMPID(std::vector<eecs::EntityId>, children), ceilings);
     eecs::create_entity_wrap(reg, "entities").set(COMPID(std::vector<eecs::EntityId>, children), entities);
     eecs::create_entity_wrap(reg, "logic").set(COMPID(std::vector<eecs::EntityId>, children), logic);
+    eecs::create_entity_wrap(reg, "billboards").set(COMPID(std::vector<eecs::EntityId>, children), billboards);
 
     static auto find_door_wall_coords = [](const vec3f& pos, float rot)
     {

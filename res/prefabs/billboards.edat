@@ -1,0 +1,7 @@
+_BaseBillboard = {
+    billboard : Tag = ""
+}
+
+Monster0 <- _BaseBillboard = {
+    texture_filename : str = "res/textures/creatures/monsters-0.png"
+}

@@ -35,7 +35,7 @@ static void draw_right_editor_panel(eecs::Registry& reg, float width, float heig
     DrawRectangle(left, top, width * 0.3f, height, Color{100, 100, 100, 200});
     const float lpad = 4 * scaleFactor;
     const float vpad = lpad;
-    const char* types[E_ETL_NUM] = {"floors", "walls", "doors", "columns", "ceilings", "entities", "logic"};
+    const char* types[E_ETL_NUM] = {"floors", "walls", "doors", "columns", "ceilings", "entities", "logic", "billboards"};
 
     const Vector2 mp = GetMousePosition();
 

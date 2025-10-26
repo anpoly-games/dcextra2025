@@ -8,6 +8,7 @@
 #include "raymath.h"
 #include "level.h"
 #include "game.h"
+#include "tags.h"
 
 #define RLIGHTS_IMPLEMENTATION
 #include "rlights.h"
@@ -20,6 +21,7 @@
 
 static Shader lightingShader;
 static Light lights[MAX_LIGHTS];
+static Shader billboardShader;
 
 void register_renderer(eecs::Registry& reg)
 {
@@ -27,6 +29,8 @@ void register_renderer(eecs::Registry& reg)
                                TextFormat("res/shaders/glsl%i/lighting.fs", GLSL_VERSION));
     lightingShader.locs[SHADER_LOC_VECTOR_VIEW] = GetShaderLocation(lightingShader, "viewPos");
     lightingShader.locs[SHADER_LOC_MAP_EMISSION] = GetShaderLocation(lightingShader, "emissiveMap");
+
+    billboardShader = LoadShader(NULL, TextFormat("res/shaders/glsl%i/billboardShader.fs", GLSL_VERSION));
 
     int ambientLoc = GetShaderLocation(lightingShader, "ambient");
     float ambient[4] = { 0.1f, 0.1f, 0.1f, 1.0f };
@@ -62,6 +66,14 @@ void register_renderer(eecs::Registry& reg)
             model.materials[0].shader = lightingShader;
             DrawModelEx(model, toRLVec3(position), Vector3{0.f, 1.f, 0.f}, eecs::get_comp_or(reg, eid, COMPID(float, rotation), 0.f), Vector3{1.f, 1.f, 1.f}, WHITE);
         }, COMPID(Model, model), COMPID(const vec3f, position));
+
+        eecs::query_entities(reg, [&](eecs::EntityId eid, const Texture2D& texture, const vec3f& position, Tag tag)
+        {
+            BeginShaderMode(billboardShader);
+            DrawBillboard(camera, texture, toRLVec3(position), 1.0f, WHITE);
+            EndShaderMode();
+        }, COMPID(const Texture2D, texture_diff), COMPID(const vec3f, position), COMPID(Tag, billboard));
+
     }, COMPID(const Camera, camera));
 }
 
