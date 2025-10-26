@@ -434,23 +434,30 @@ void register_editor(eecs::Registry& reg)
                 if ((selectedType == E_WALLS || selectedType == E_DOORS || selectedType == E_BILLBOARDS) && (fabsf(insideTilePos.x) > threshold || fabsf(insideTilePos.z) > threshold))
                 {
                     int dir = fabsf(insideTilePos.x) > threshold ? 1 : 0;
-                    if (dir == 1)
+                    if (selectedType != E_BILLBOARDS)
                     {
-                        DrawCube(castRLVec3(tilePos + vec3f(sign(insideTilePos.x) * 0.5f, 0.5f, 0)), 0.09f, 1.f, 1.f, Color{255, 255, 0, 150});
-                        if (insideTilePos.x > 0.f)
+                        if (dir == 1)
                         {
-                            wx++;
-                            tilePos.x += 1.f;
+                            DrawCube(castRLVec3(tilePos + vec3f(sign(insideTilePos.x) * 0.5f, 0.5f, 0)), 0.09f, 1.f, 1.f, Color{255, 255, 0, 150});
+                            if (insideTilePos.x > 0.f)
+                            {
+                                wx++;
+                                tilePos.x += 1.f;
+                            }
+                        }
+                        else
+                        {
+                            DrawCube(castRLVec3(tilePos + vec3f(0, 0.5f, sign(insideTilePos.z) * 0.5f)), 1.f, 1.f, 0.09f, Color{255, 255, 0, 150});
+                            if (insideTilePos.z > 0.f)
+                            {
+                                wy++;
+                                tilePos.z += 1.f;
+                            }
                         }
                     }
                     else
                     {
-                        DrawCube(castRLVec3(tilePos + vec3f(0, 0.5f, sign(insideTilePos.z) * 0.5f)), 1.f, 1.f, 0.09f, Color{255, 255, 0, 150});
-                        if (insideTilePos.z > 0.f)
-                        {
-                            wy++;
-                            tilePos.z += 1.f;
-                        }
+                        DrawCube(castRLVec3(tilePos + vec3f(0.0f, 0.5f, 0.0f)), 1.f, 1.f, 0.09f, Color{255, 255, 0, 150});
                     }
                     if (IsMouseButtonPressed(0))
                     {
@@ -699,7 +706,7 @@ void create_door(eecs::Registry& reg, int x, int y, int dir, const char* name)
 
 void create_billboard(eecs::Registry& reg, vec3f tilePos, int dir, bool flip, const char* name)
 {
-    vec3f pos = vec3f(tilePos.x - (dir ? 0.5f : 0.f), tilePos.y + 0.5f, tilePos.z - (dir ? 0.f : 0.5f));
+    vec3f pos = vec3f(tilePos.x, tilePos.y + 0.5f, tilePos.z);
     eecs::create_wrap_from_prefab(reg, eecs::find_entity(reg, name))
         .tag(COMPID(Tag, Saveable))
         .set(COMPID(vec3f, position), pos)
