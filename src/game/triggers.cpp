@@ -9,7 +9,7 @@
 
 void register_triggers(eecs::Registry& reg)
 {
-    eecs::reg_system(reg, [&](eecs::EntityId, vec3i& prevPosition, const vec3f& position)
+    eecs::reg_system(reg, [&](eecs::EntityId playerEid, vec3i& prevPosition, const vec3f& position)
     {
         vec3i curPosition = pos_to_grid3d(position);
         if (curPosition == prevPosition)
@@ -22,12 +22,12 @@ void register_triggers(eecs::Registry& reg)
                 curPosition.x >= triggerPos.x - volExt.x && curPosition.x <= triggerPos.x + volExt.x &&
                 curPosition.z >= triggerPos.z - volExt.y && curPosition.z <= triggerPos.z + volExt.y)
             {
-                eecs::emit_event(reg, FNV1(enterTrigger), eid);
+                eecs::emit_event(reg, FNV1(enterTrigger), eid, playerEid);
             }
         }, COMPID(const vec3f, position), COMPID(const vec2i, trigger_volume));
     }, COMPID(vec3i, prevPosition), COMPID(const vec3f, position));
 
-    eecs::on_event(reg, FNV1(enterTrigger), [&](eecs::EntityId, const std::string& level_switchTo)
+    eecs::on_event(reg, FNV1(enterTrigger), [&](eecs::EntityId, eecs::EntityId, const std::string& level_switchTo)
     {
         load_level(reg, level_switchTo.c_str());
     }, COMPID(const std::string, level_switchTo));
