@@ -15,4 +15,6 @@ SkeletalFloor <- _BaseFloor = {
     texture_filename : str = "res/textures/tiles/frames2-6.png"
 }
 
-
+MSMetalFloor01 <- _BaseFloor = {
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+}

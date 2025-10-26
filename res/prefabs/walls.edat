@@ -29,6 +29,7 @@ MSMetalWindow02 <- _BaseWall = {
 
 MSMetalDoor01 <- _BaseWall = {
     texture_filename : str = "res/textures/walls/meatspace_metal_door_01.png"
+	texture_emissiveFilename : str = "res/textures/walls/meatspace_metal_door_em_01.png"
 }
 
 MSMetalWall02 <- _BaseWall = {

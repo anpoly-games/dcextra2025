@@ -15,5 +15,8 @@ SkeletalCeiling <- _BaseCeiling = {
     texture_filename : str = "res/textures/tiles/frames2-6.png"
 }
 
+MSMetalCeiling01 <- _BaseCeiling = {
+    texture_filename : str = "res/textures/ceilings/meatspace_metal_celling_01.png"
+}
 
 
