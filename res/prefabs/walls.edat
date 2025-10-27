@@ -27,6 +27,10 @@ MSMetalWindow02 <- _BaseWall = {
     texture_filename : str = "res/textures/walls/meatspace_metal_window_02.png"
 }
 
+MSMetalWindow03 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/meatspace_metal_window_03.png"
+}
+
 MSMetalWall02 <- _BaseWall = {
     texture_filename : str = "res/textures/walls/meatspace_metal_02.png"
 }
@@ -42,6 +46,10 @@ MSCaveWall02 <- _BaseWall = {
 MSWallCapsule01 <- _BaseWall = {
     texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
 	texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+}
+
+MSWallCapsule01_empty <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01_empty.png"
 }
 
 MSWallCapsule01flip <- _BaseWall = {
