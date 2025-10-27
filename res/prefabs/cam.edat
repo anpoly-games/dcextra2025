@@ -1,5 +1,5 @@
 _CameraLighting = {
-    light_strength : float = "1.0"
+    light_strength : float = "4.0"
 }
 
 _DefaultCamera <- _CameraLighting = {
