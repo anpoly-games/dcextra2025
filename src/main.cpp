@@ -9,19 +9,25 @@
 #include "cam.h"
 #include "game.h"
 #include "level.h"
+#include "tags.h"
 
 int main(int argc, char** argv)
 {
     int width = 1280;
     int height = 720;
     const char* levelToLoad = nullptr;//"level1";
-
+    bool debugMode = false;
     for ( int i=1; i < argc; i++ )
     {
         if (strncmp(argv[i], "-l", 2)==0)
         {
             levelToLoad = argv[++i];
             printf("Loading level %s\n", levelToLoad);
+        }
+        
+        if (strncmp(argv[i], "-d", 2)==0)
+        {
+          debugMode = true;
         }
     }
 
@@ -42,6 +48,11 @@ int main(int argc, char** argv)
     InitAudioDevice();
 
     eecs::Registry reg;
+
+    if (debugMode)
+    {
+      eecs::EntityId eid = eecs::create_entity(reg, "DebugMarker"); // existence of this entity means we are in debug mode
+    }
 
     if (levelToLoad)
     {

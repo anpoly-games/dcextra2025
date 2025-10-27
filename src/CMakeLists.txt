@@ -37,6 +37,7 @@ set(GAME_SOURCES
     game/player.cpp
     game/spawn.cpp
     game/triggers.cpp
+    game/debug.cpp
     )
 
 

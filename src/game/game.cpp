@@ -11,6 +11,7 @@
 #include "../cam.h"
 #include "../level.h"
 #include "triggers.h"
+#include "debug.h"
 
 #include "spawn.h"
 
@@ -26,6 +27,8 @@ void register_systems(eecs::Registry& reg)
   register_ui(reg);
   register_spawn(reg);
   register_triggers(reg);
+  if (eecs::find_entity(reg, "DebugMarker")!=eecs::invalid_eid)
+    register_debug(reg);
 }
 
 eecs::EntityId init_new_world(eecs::Registry& reg)
@@ -44,9 +47,15 @@ void restart_world(eecs::Registry& reg)
         height = window_height;
         scaleFactor = window_scaleFactor;
     }, COMPID(const float, window_width), COMPID(const float, window_height), COMPID(const float, window_scaleFactor));
+    
+    bool debugMode = eecs::find_entity(reg, "DebugMarker")!=eecs::invalid_eid;
 
     eecs::del_all_entities(reg);
     eecs::del_all_systems(reg);
+    if (debugMode)
+    {
+        eecs::EntityId eid = eecs::create_entity(reg, "DebugMarker"); // existence of this entity means we are in debug mode
+    }
     register_systems(reg);
     init_new_world(reg);
     create_ui_helper(reg, width, height, scaleFactor);
