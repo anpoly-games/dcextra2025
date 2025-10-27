@@ -1,14 +1,15 @@
-_BaseWall = {
+_BaseDoor = {
     primitiveBlock_size : float[3] = ["1", "1", "0.0"]
     wall : Tag = ""
+    closed : Tag = ""
 }
 
-MSMetalDoor01 <- _BaseWall = {
+MSMetalDoor01 <- _BaseDoor = {
     texture_filename : str = "res/textures/doors/meatspace_metal_door_01.png"
 	texture_emissiveFilename : str = "res/textures/doors/meatspace_metal_door_em_01.png"
 }
 
-MSMetalDoor02 <- _BaseWall = {
+MSMetalDoor02 <- _BaseDoor = {
     texture_filename : str = "res/textures/doors/meatspace_metal_door_02.png"
 	texture_emissiveFilename : str = "res/textures/doors/meatspace_metal_door_em_02.png"
 }

@@ -61,10 +61,9 @@ void register_triggers(eecs::Registry& reg)
             }
             else
             {
-                direction = vec3{-turns * direction.z, direction.y, turns * direction.x};   
+                direction = vec3{-turns * direction.z, direction.y, turns * direction.x};
             }
         }, COMPID(vec3f, direction), COMPID(Tag, player));
     }, COMPID(const int, turns), COMPID(Tag, spinner));
-
 }
 
