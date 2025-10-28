@@ -109,7 +109,7 @@ void draw_button_9rect(const NineRect& nr, Rectangle rect, Font font, const char
         on_click();
   }
   draw_9rect(nr, rect, scaleFactor, col);
-  draw_centered_font_with_shadow(font, text, rect, fontSize, Color{255, 255, 255, col.a});
+  draw_centered_font_with_shadow(font, text, rect, fontSize * scaleFactor, Color{255, 255, 255, col.a});
 }
 
 void register_ui(eecs::Registry& reg)

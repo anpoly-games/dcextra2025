@@ -17,6 +17,14 @@ eecs::EntityId create_player(eecs::Registry& reg, float x, float z, float rot)
         .set(COMPID(int, attr_agility), 50)
         .set(COMPID(int, attr_mind), 50)
         .set(COMPID(int, attr_body), 50);
+    eecs::create_entity_wrap(reg, "attr_strength")
+        .set(COMPID(std::string, name), {"STR"});
+    eecs::create_entity_wrap(reg, "attr_agility")
+        .set(COMPID(std::string, name), {"AGI"});
+    eecs::create_entity_wrap(reg, "attr_mind")
+        .set(COMPID(std::string, name), {"MIND"});
+    eecs::create_entity_wrap(reg, "attr_body")
+        .set(COMPID(std::string, name), {"BODY"});
     return player.eid;
 }
 

@@ -92,7 +92,6 @@ void register_level(eecs::Registry& reg)
             toAdd.erase(xzd.xy());
         }, COMPID(std::set<vec2i>, level_xWalls), COMPID(std::set<vec2i>, level_zWalls));
     }, COMPID(const vec3f, position), COMPID(const float, rotation), COMPID(const Tag, door), COMPID(const Tag, closed));
-    
 }
 
 void load_level(eecs::Registry& reg, const char* filename)

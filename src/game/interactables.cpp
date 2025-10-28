@@ -20,14 +20,24 @@ void draw_interactables(eecs::Registry& reg, float width, float height, float sc
                 Vector3 pos2d = GetWorldToScreen3dEx(toRLVec3(position), camera);
                 if (pos2d.z < 0.f)
                     return;
-                const float step = 20.f;
+                const float step = 24.f;
                 const float width = step * 10.f;
                 pos2d.x -= width * 0.5f;
                 for (eecs::EntityId act : actionList)
                 {
                     eecs::query_components(reg, act, [&](float distance, const std::string& triggers, const std::string& text)
                     {
-                        draw_button_9rect(nrect, Rectangle(pos2d.x, pos2d.y, width, step), GetFontDefault(), text.c_str(), 12.f, scaleFactor, WHITE,
+                        std::string finalText = text;
+                        eecs::query_component(reg, act, [&](const std::string& attribute)
+                        {
+                            std::string attrName = eecs::get_comp_or(reg, eecs::find_entity(reg, attribute.c_str()), COMPID(std::string, name), attribute);
+                            const int attrVal = eecs::get_comp_or(reg, plEid, eecs::comp_id<int>(attribute.c_str()), 0);
+                            std::string actionDifficultyMultName = triggers + "_difficultyMult";
+                            const float mult = eecs::get_comp_or(reg, obj, eecs::comp_id<float>(actionDifficultyMultName.c_str()), 1.f);
+                            const int chance = int(float(attrVal) * mult);
+                            finalText += " (" + attrName + " " + std::to_string(chance) + "%)";
+                        }, COMPID(const std::string, attribute));
+                        draw_button_9rect(nrect, Rectangle(pos2d.x, pos2d.y, width, step), GetFontDefault(), finalText.c_str(), 12.f, scaleFactor, ColorFromHSV(0, 0, 0.7f),
                         [&]()
                         {
                             eecs::emit_event(reg, fnv1StrHash(triggers.c_str()), obj, plEid);
