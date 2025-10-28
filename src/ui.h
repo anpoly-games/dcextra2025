@@ -1,7 +1,9 @@
 #pragma once
 #include <raylib.h>
 #include <array>
+#include <functional>
 #include "math.h"
+
 constexpr Color selectedColor = Color{240, 230, 0, 220};
 constexpr Color notSelectedColor = Color{120, 120, 120, 220};
 
@@ -40,7 +42,7 @@ struct NineRect
 NineRect create_9rect(Image img, int sz);
 void draw_9rect(const NineRect& nr, Rectangle rect, float scale, Color col);
 
-void draw_button_9rect(const NineRect& nrect, Rectangle rect, Font font, const char* text, float fontSize, float scaleFactor, Color col);
+void draw_button_9rect(const NineRect& nrect, Rectangle rect, Font font, const char* text, float fontSize, float scaleFactor, Color col, const std::function<void()>& foo);
 
 void draw_cube_matrix(const BoundingBox& bbox, const vec3f& pos, float rotation, Color col);
 

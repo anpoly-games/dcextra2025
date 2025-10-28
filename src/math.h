@@ -52,6 +52,12 @@ struct vec2
     y += rhs.y;
     return *this;
   }
+  vec2<T>& operator-=(const vec2<T>& rhs)
+  {
+    x -= rhs.x;
+    y -= rhs.y;
+    return *this;
+  }
 };
 
 template<typename T>
@@ -84,6 +90,13 @@ struct vec3
     x += rhs.x;
     y += rhs.y;
     z += rhs.z;
+    return *this;
+  }
+  vec3<T>& operator-=(const vec3<T>& rhs)
+  {
+    x -= rhs.x;
+    y -= rhs.y;
+    z -= rhs.z;
     return *this;
   }
 

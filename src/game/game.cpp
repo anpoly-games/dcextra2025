@@ -10,6 +10,7 @@
 #include "../renderer.h"
 #include "../cam.h"
 #include "../level.h"
+#include "interactables.h"
 #include "triggers.h"
 #include "debug.h"
 
@@ -27,6 +28,7 @@ void register_systems(eecs::Registry& reg)
   register_ui(reg);
   register_spawn(reg);
   register_triggers(reg);
+  register_interactables(reg);
   if (eecs::find_entity(reg, "DebugMarker")!=eecs::invalid_eid)
     register_debug(reg);
 }

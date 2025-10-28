@@ -12,7 +12,11 @@ eecs::EntityId create_player(eecs::Registry& reg, float x, float z, float rot)
         .tag(COMPID(Tag, player))
         .set(COMPID(vec3f, position), {x, 0.f, z})
         .set(COMPID(vec3i, prevPosition), {INT_MAX, INT_MAX, INT_MAX})
-        .set(COMPID(vec3f, direction), {sinf(rot*DEG2RAD), 0.f, cosf(rot*DEG2RAD)});
+        .set(COMPID(vec3f, direction), {sinf(rot*DEG2RAD), 0.f, cosf(rot*DEG2RAD)})
+        .set(COMPID(int, attr_strength), 50)
+        .set(COMPID(int, attr_agility), 50)
+        .set(COMPID(int, attr_mind), 50)
+        .set(COMPID(int, attr_body), 50);
     return player.eid;
 }
 

@@ -96,7 +96,7 @@ void draw_button(Rectangle rect, const char* text, float scaleFactor, Color col)
   draw_centered_font_with_shadow(GetFontDefault(), text, rect, 12.f * scaleFactor, WHITE);
 }
 
-void draw_button_9rect(const NineRect& nr, Rectangle rect, Font font, const char* text, float fontSize, float scaleFactor, Color col)
+void draw_button_9rect(const NineRect& nr, Rectangle rect, Font font, const char* text, float fontSize, float scaleFactor, Color col, const std::function<void()>& on_click)
 {
   Vector2 mp = GetMousePosition();
   if (is_vec_in_rect(mp, rect))
@@ -105,6 +105,8 @@ void draw_button_9rect(const NineRect& nr, Rectangle rect, Font font, const char
     const char alpha = col.a;
     col = ColorFromHSV(hsv.x, hsv.y, std::min(1.f, hsv.z + 0.3f));
     col.a = alpha;
+    if (IsMouseButtonReleased(0))
+        on_click();
   }
   draw_9rect(nr, rect, scaleFactor, col);
   draw_centered_font_with_shadow(font, text, rect, fontSize, Color{255, 255, 255, col.a});
