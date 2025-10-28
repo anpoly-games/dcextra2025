@@ -19,7 +19,7 @@ std::vector<eecs::EntityId> load_entities_from_file(eecs::Registry& reg, const s
     psuite.addLambdaParser<bool>("bool", [](const std::string_view& str) -> bool { return str == "true"; });
     psuite.addLambdaParser<eecs::EntityId>("eid", [&](const std::string_view& str) -> eecs::EntityId
     {
-        return eecs::find_entity(reg, std::string(str).c_str());
+        return eecs::create_or_find_entity(reg, std::string(str).c_str());
     });
 
     fs::path enemies = filename;
@@ -28,7 +28,7 @@ std::vector<eecs::EntityId> load_entities_from_file(eecs::Registry& reg, const s
 
     entitiesTable.getAll<edat::Table>([&](const std::string& name, const edat::Table& tbl)
     {
-        eecs::EntityWrap entity = eecs::create_entity_wrap(reg, name.c_str());
+        eecs::EntityWrap entity = eecs::create_or_find_entity_wrap(reg, name.c_str());
         tbl.getAll<float>([&](const std::string& compName, float val)
         {
             entity.set(eecs::comp_id<float>(compName.c_str()), val);
@@ -66,6 +66,10 @@ std::vector<eecs::EntityId> load_entities_from_file(eecs::Registry& reg, const s
         tbl.getAll<eecs::EntityId>([&](const std::string& compName, eecs::EntityId val)
         {
             entity.set(eecs::comp_id<eecs::EntityId>(compName.c_str()), val);
+        });
+        tbl.getAll<std::vector<eecs::EntityId>>([&](const std::string& compName, const std::vector<eecs::EntityId>& val)
+        {
+            entity.set(eecs::comp_id<std::vector<eecs::EntityId>>(compName.c_str()), val);
         });
         tbl.getAll<std::string>([&](const std::string& compName, const std::string& val)
         {

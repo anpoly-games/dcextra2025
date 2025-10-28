@@ -38,6 +38,7 @@ set(GAME_SOURCES
     game/spawn.cpp
     game/triggers.cpp
     game/debug.cpp
+    game/interactables.cpp
     )
 
 

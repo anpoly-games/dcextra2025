@@ -68,6 +68,31 @@ void register_level(eecs::Registry& reg)
             toAdd.insert(xzd.xy());
         }, COMPID(std::set<vec2i>, level_xWalls), COMPID(std::set<vec2i>, level_zWalls));
     }, COMPID(const vec3f, position), COMPID(const float, rotation), COMPID(const Tag, wall));
+
+    eecs::reg_enter(reg, [&](eecs::EntityId, const vec3f& position, float rotation, Tag door, Tag closed)
+    {
+        eecs::query_entities(reg, [&](eecs::EntityId, std::set<vec2i>& level_xWalls, std::set<vec2i>& level_zWalls)
+        {
+            vec3i xzd = find_door_wall_coords(position, rotation);
+            if (int(position.y) != 0)
+                return;
+            std::set<vec2i>& toAdd = xzd.z == 0 ? level_zWalls : level_xWalls;
+            toAdd.insert(xzd.xy());
+        }, COMPID(std::set<vec2i>, level_xWalls), COMPID(std::set<vec2i>, level_zWalls));
+    }, COMPID(const vec3f, position), COMPID(const float, rotation), COMPID(const Tag, door), COMPID(const Tag, closed));
+
+    eecs::reg_exit(reg, [&](eecs::EntityId, const vec3f& position, float rotation, Tag door, Tag closed)
+    {
+        eecs::query_entities(reg, [&](eecs::EntityId, std::set<vec2i>& level_xWalls, std::set<vec2i>& level_zWalls)
+        {
+            vec3i xzd = find_door_wall_coords(position, rotation);
+            if (int(position.y) != 0)
+                return;
+            std::set<vec2i>& toAdd = xzd.z == 0 ? level_zWalls : level_xWalls;
+            toAdd.erase(xzd.xy());
+        }, COMPID(std::set<vec2i>, level_xWalls), COMPID(std::set<vec2i>, level_zWalls));
+    }, COMPID(const vec3f, position), COMPID(const float, rotation), COMPID(const Tag, door), COMPID(const Tag, closed));
+    
 }
 
 void load_level(eecs::Registry& reg, const char* filename)

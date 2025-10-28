@@ -1,10 +1,33 @@
+_OpenCloseAction = {
+    text : str = "Open/close"
+    triggers : str = "toggle"
+    distance : float = "1.0"
+}
+
+_PryAction = {
+    text : str = "Pry open"
+    triggers : str = "toggle"
+    distance : float = "1.0"
+}
+
+_HackAction = {
+    text : str = "Hack open"
+    triggers : str = "toggle"
+    distance : float = "1.0"
+}
+
 _BaseDoor = {
     primitiveBlock_size : float[3] = ["1", "1", "0.0"]
     door : Tag = ""
     closed : Tag = ""
 }
 
-MSMetalDoor01 <- _BaseDoor = {
+_OpenableDoor <- _BaseDoor = {
+    actionList : eid[] = ["_OpenCloseAction", "_PryAction", "_HackAction"]
+    togglable : Tag = ""
+}
+
+MSMetalDoor01 <- _OpenableDoor = {
     texture_filename : str = "res/textures/doors/meatspace_metal_door_01.png"
 	texture_emissiveFilename : str = "res/textures/doors/meatspace_metal_door_em_01.png"
 }
