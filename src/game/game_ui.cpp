@@ -18,9 +18,9 @@ void draw_character(eecs::Registry& reg, float width, float height, float scaleF
     static Font charFont = LoadFont("res/textures/ui/16px-IBM_VGA_8x16.ttf");
     const vec2i cam_wh = get_cam_wh(reg);
     vec2f pos = {cam_wh.x + 50.f * scaleFactor, 20.f * scaleFactor};
-    float step = 24.f * scaleFactor;
-    float hzStep = 120 * scaleFactor;
-    const float textSize = 18.f * scaleFactor;
+    float step = 22.f * scaleFactor;
+    float hzStep = 140 * scaleFactor;
+    const float textSize = 16.f * scaleFactor;
     auto drawAttr = [&](const char* str, vec2f pos, int& val, int& pointsToSpend)
     {
         DrawTextEx(charFont, TextFormat("%s: %d", str, val), toRLVec2(pos), textSize, 3, GetColor(0x3e8948ff));
@@ -28,22 +28,30 @@ void draw_character(eecs::Registry& reg, float width, float height, float scaleF
         {
             const Vector2 sz = MeasureTextEx(charFont, TextFormat("%s: %d", str, val), textSize, 3);
             float hzOffs = sz.x + 4.f * scaleFactor;
-            const vec2f upgPos = pos + vec2f(hzOffs, 0.f);
-            Vector2 upgSz = MeasureTextEx(charFont, "+", textSize, 3);
-            Vector2 mp = GetMousePosition();
-            Rectangle upgRect = torect(upgPos.x, upgPos.y, upgSz.x, upgSz.y);
-            if (is_vec_in_rect(mp, upgRect))
+            vec2f upgPos = pos + vec2f(hzOffs, 0.f);
+            auto drawPlus = [&](int v)
             {
-                DrawRectangleRec(upgRect, GetColor(0xfeae34ff));
-                DrawTextEx(charFont, "+", toRLVec2(upgPos), textSize, 3, GetColor(0x181425ff));
-                if (IsMouseButtonReleased(0))
+                std::string text = "+" + std::to_string(v);
+                Vector2 upgSz = MeasureTextEx(charFont, text.c_str(), textSize, 3);
+                Vector2 mp = GetMousePosition();
+                Rectangle upgRect = torect(upgPos.x, upgPos.y, upgSz.x, upgSz.y);
+                if (is_vec_in_rect(mp, upgRect))
                 {
-                    pointsToSpend--;
-                    val++;
+                    DrawRectangleRec(upgRect, GetColor(0xfeae34ff));
+                    DrawTextEx(charFont, text.c_str(), toRLVec2(upgPos), textSize, 3, GetColor(0x181425ff));
+                    if (IsMouseButtonReleased(0))
+                    {
+                        pointsToSpend -= v;
+                        val += v;
+                    }
                 }
-            }
-            else
-                DrawTextEx(charFont, "+", toRLVec2(upgPos), textSize, 3, GetColor(0xfeae34ff));
+                else
+                    DrawTextEx(charFont, text.c_str(), toRLVec2(upgPos), textSize, 3, GetColor(0xfeae34ff));
+                upgPos.x += upgSz.x + 4.f * scaleFactor;
+            };
+            drawPlus(1);
+            if (pointsToSpend >= 5)
+                drawPlus(5);
         }
     };
     eecs::query_entities(reg, [&](eecs::EntityId, int& attr_strength, int& attr_agility, int& attr_mind, int& attr_body, int hitpoints, int level, int experience, int& pointsToSpend)
@@ -53,6 +61,11 @@ void draw_character(eecs::Registry& reg, float width, float height, float scaleF
         DrawTextEx(charFont, "CHARACTER", toRLVec2(pos), textSize, 3, GetColor(0x3e8948ff)); pos.y += step;
         DrawTextEx(charFont, TextFormat("LVL: %d", level), toRLVec2(pos), textSize, 3, GetColor(0x3e8948ff));
         DrawTextEx(charFont, TextFormat("XP: %d/%d", experience, nextLevelExp), toRLVec2(pos + vec2f(hzStep, 0)), textSize, 3, GetColor(0x3e8948ff)); pos.y += step;
+
+        if (pointsToSpend > 0)
+        {
+            DrawTextEx(charFont, TextFormat("PTS: %d", pointsToSpend), toRLVec2(pos), textSize, 3, GetColor(0xfeae34ff)); pos.y += step;
+        }
 
         drawAttr("STR", pos, attr_strength, pointsToSpend);
         drawAttr("AGI", pos + vec2f(hzStep, 0), attr_agility, pointsToSpend); pos.y += step;

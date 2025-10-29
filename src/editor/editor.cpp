@@ -122,11 +122,11 @@ void register_editor(eecs::Registry& reg)
     eecs::reg_system(reg, [&](eecs::EntityId eid, const Camera& camera)
     {
         const vec3f cpos = tov3(camera.position);
+        const float plFloor = float(floorf(cpos.y));
         const vec3i pivot = vec3i(cpos.x, 0, cpos.z);
         const int numTiles = 10;
         const vec3f minP(pivot.x - numTiles - 0.5f, 0.f, pivot.z - numTiles - 0.5f);
         const vec3f maxP(pivot.x + numTiles - 0.5f, 0.f, pivot.z + numTiles - 0.5f);
-        const float plFloor = float(floorf(cpos.y));
         for (int y = pivot.z - numTiles; y <= pivot.z + numTiles; ++y)
         {
             DrawLine3D(Vector3{minP.x, -0.01f, y - 0.5f}, Vector3{maxP.x, -0.01f, y - 0.5f}, WHITE);
