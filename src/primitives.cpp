@@ -11,30 +11,30 @@ static void fix_cube_coords(Mesh& mesh, const vec3f& tcMult)
   if (mesh.texcoords != nullptr)
   {
     float texcoords[] = {
+        1.0f, 1.0f,
+        0.0f, 1.0f,
+        0.0f, 0.0f,
+        1.0f, 0.0f,
+
+        1.0f, 1.0f,
+        1.0f, 0.0f,
+        0.0f, 0.0f,
+        0.0f, 1.0f,
+
+        0.0f, 0.0f,
+        0.0f, 1.0f,
+        1.0f, 1.0f,
+        1.0f, 0.0f,
+
         0.0f, 1.0f,
         1.0f, 1.0f,
         1.0f, 0.0f,
         0.0f, 0.0f,
 
-        1.0f, 1.0f,
-        1.0f, 0.0f,
-        0.0f, 0.0f,
         0.0f, 1.0f,
-
         0.0f, 0.0f,
-        0.0f, 1.0f,
-        1.0f, 1.0f,
         1.0f, 0.0f,
-
-        0.0f, 1.0f,
         1.0f, 1.0f,
-        1.0f, 0.0f,
-        0.0f, 0.0f,
-
-        1.0f, 1.0f,
-        1.0f, 0.0f,
-        0.0f, 0.0f,
-        0.0f, 1.0f,
 
         0.0f, 1.0f,
         1.0f, 1.0f,
