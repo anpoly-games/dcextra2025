@@ -34,6 +34,7 @@ _TogglableDoor <- _OpenableDoor = {
 _HackableDoor <- _OpenableDoor = {
     actionList : eid[] = ["_HackAction"]
     hack_difficultyMult : float = "1.0"
+    hack_successExperience : int = "50"
 }
 
 _PryableDoor <- _OpenableDoor = {

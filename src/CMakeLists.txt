@@ -39,6 +39,7 @@ set(GAME_SOURCES
     game/triggers.cpp
     game/debug.cpp
     game/interactables.cpp
+    game/advancement.cpp
     )
 
 

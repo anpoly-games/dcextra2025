@@ -6,11 +6,11 @@
 #include <parsers.h>
 #include <float.h>
 
+#include "math.h"
 #include "cam.h"
 #include "tags.h"
 #include "renderer.h"
 #include "prefabs.h"
-#include "math.h"
 
 void register_cam(eecs::Registry& reg)
 {
@@ -63,22 +63,99 @@ void register_cam(eecs::Registry& reg)
         }
     }, COMPID(float, cam_ambientOverride), COMPID(const float, cam_defLightStr));
 
+    eecs::reg_enter(reg, [&](eecs::EntityId eid, int cam_resWidth, int cam_resHeight)
+    {
+        RenderTexture2D renderTex = LoadRenderTexture(cam_resWidth, cam_resHeight);
+        eecs::set_component(reg, eid, COMPID(RenderTexture2D, renderTex), renderTex);
+    }, COMPID(const int, cam_resWidth), COMPID(const int, cam_resHeight));
+
     load_prefabs_from_file(reg, "res/prefabs/cam.edat");
 }
 
-void update_cam(eecs::Registry& reg)
+void begin_cam(eecs::Registry& reg)
 {
+    eecs::query_entities(reg, [&](eecs::EntityId, RenderTexture2D& renderTex)
+    {
+        BeginTextureMode(renderTex);
+    }, COMPID(RenderTexture2D, renderTex));
     eecs::query_entities(reg, [&](eecs::EntityId eid, const Camera& camera)
     {
+        if (!eecs::has_comp(reg, eid, COMPID(RenderTexture2D, renderTex)))
+            BeginDrawing();
+        ClearBackground(BLACK);
         BeginMode3D(camera);
     }, COMPID(const Camera, camera));
 }
 
-Vector3 GetWorldToScreen3dEx(Vector3 position, Camera camera)
+void end_cam(eecs::Registry& reg)
+{
+    eecs::query_entities(reg, [&](eecs::EntityId eid, const Camera& camera)
+    {
+        EndMode3D();
+    }, COMPID(const Camera, camera));
+    eecs::query_entities(reg, [&](eecs::EntityId, RenderTexture2D& renderTex)
+    {
+        EndTextureMode();
+    }, COMPID(RenderTexture2D, renderTex));
+}
+
+void render_cam(eecs::Registry& reg)
+{
+    eecs::query_entities(reg, [&](eecs::EntityId, RenderTexture2D& renderTex, float cam_resMult)
+    {
+        eecs::query_entities(reg, [&](eecs::EntityId, float window_scaleFactor)
+        {
+            ClearBackground(BLACK);
+            Camera2D screenCam = {0};
+            screenCam.zoom = 1.f;
+            BeginMode2D(screenCam);
+                Rectangle sourceRect = torect(0, 0, renderTex.texture.width, -renderTex.texture.height);
+                Rectangle destRect = torect(0, 0, renderTex.texture.width * cam_resMult * window_scaleFactor, renderTex.texture.height * cam_resMult * window_scaleFactor);
+                DrawTexturePro(renderTex.texture, sourceRect, destRect, {0.f, 0.f}, 0.f, WHITE);
+            EndMode2D();
+        }, COMPID(const float, window_scaleFactor));
+    }, COMPID(RenderTexture2D, renderTex), COMPID(const float, cam_resMult));
+}
+
+void begin_postcam(eecs::Registry& reg)
+{
+    eecs::query_entities(reg, [&](eecs::EntityId eid, const Camera& camera)
+    {
+        if (eecs::has_comp(reg, eid, COMPID(RenderTexture2D, renderTex)))
+            BeginDrawing();
+    }, COMPID(const Camera, camera));
+}
+
+void end_postcam(eecs::Registry& reg)
+{
+    eecs::query_entities(reg, [&](eecs::EntityId eid, const Camera& camera)
+    {
+        EndDrawing();
+    }, COMPID(const Camera, camera));
+}
+
+vec2i get_cam_wh(eecs::Registry& reg)
 {
     int width = GetScreenWidth();
     int height = GetScreenHeight();
+    eecs::query_entities(reg, [&](eecs::EntityId, float window_scaleFactor)
+    {
+        eecs::query_entities(reg, [&](eecs::EntityId, int cam_resWidth, int cam_resHeight, float cam_resMult)
+        {
+            width = cam_resWidth * cam_resMult * window_scaleFactor;
+            height = cam_resHeight * cam_resMult * window_scaleFactor;
+        }, COMPID(const int, cam_resWidth), COMPID(const int, cam_resHeight), COMPID(const float, cam_resMult));
+    }, COMPID(const float, window_scaleFactor));
+    return {width, height};
+}
+
+Vector3 GetWorldToScreen3dEx(eecs::Registry& reg, Vector3 position, Camera camera)
+{
+    const vec2i cam_wh = get_cam_wh(reg);
     // Calculate projection matrix (from perspective instead of frustum
+    int width = cam_wh.x;
+    int height = cam_wh.y;
+
     Matrix matProj = MatrixIdentity();
 
     if (camera.projection == CAMERA_PERSPECTIVE)

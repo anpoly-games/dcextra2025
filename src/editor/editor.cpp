@@ -511,7 +511,7 @@ void register_editor(eecs::Registry& reg)
 
             Matrix matTransform = MatrixMultiply(matRotation, matTranslation);
             Vector3 topBox = (Vector3{(bbox.min.x + bbox.max.x) * 0.5f, bbox.max.y, (bbox.min.x + bbox.max.x) * 0.5f}) * matTransform;
-            Vector3 screenPos = GetWorldToScreen3dEx(topBox, camera);
+            Vector3 screenPos = GetWorldToScreen3dEx(reg, topBox, camera);
             if (screenPos.z >= 0.f)
             {
               EndMode3D();
@@ -524,7 +524,7 @@ void register_editor(eecs::Registry& reg)
           {
               DrawCube(toRLVec3(position), trigger_volume.x, 0.2f, trigger_volume.y, Color{255, 255, 255, 150});
               Vector3 topBox = Vector3{position.x, position.y + 0.2f, position.z};
-              Vector3 screenPos = GetWorldToScreen3dEx(topBox, camera);
+              Vector3 screenPos = GetWorldToScreen3dEx(reg, topBox, camera);
               if (screenPos.z >= 0.f)
               {
                   EndMode3D();

@@ -59,6 +59,7 @@ int main(int argc, char** argv)
 
     if (levelToLoad)
     {
+        create_ui_helper(*reg, width * scaleFactor, height * scaleFactor, scaleFactor);
         load_level(*reg, levelToLoad);
         registries[levelToLoad] = reg;
     }
@@ -73,15 +74,13 @@ int main(int argc, char** argv)
     while (!WindowShouldClose())
     {
         pre_draw_call(*reg);
-        BeginDrawing();
-            ClearBackground(BLACK);
-            update_cam(*reg);
+            begin_cam(*reg);
                 eecs::step(*reg);
-
-            EndMode3D();
-            // TODO: editor switch
-            draw_ui(*reg, width * scaleFactor, height * scaleFactor, scaleFactor);
-        EndDrawing();
+            end_cam(*reg);
+            begin_postcam(*reg);
+                render_cam(*reg);
+                draw_ui(*reg, width * scaleFactor, height * scaleFactor, scaleFactor);
+            end_postcam(*reg);
         reg = change_level(*reg, registries); // look for a change level request and execute it.
         assert(reg);
     }

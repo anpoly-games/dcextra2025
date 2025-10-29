@@ -119,6 +119,7 @@ void register_ui(eecs::Registry& reg)
 
 void create_ui_helper(eecs::Registry& reg, float width, float height, float scaleFactor)
 {
+    printf("setting scale to %.2f\n", scaleFactor);
     eecs::create_entity_wrap(reg)
         .set(COMPID(float, window_width), width)
         .set(COMPID(float, window_height), height)

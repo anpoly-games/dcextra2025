@@ -110,14 +110,14 @@ void load_level(eecs::Registry& reg, const char* filename)
 eecs::Registry* change_level(eecs::Registry& reg, std::unordered_map<std::string, eecs::Registry*>& registries)
 {
     eecs::EntityId eid = eecs::find_entity(reg, "Switch_Level");
-    if (  eid != eecs::invalid_eid )
+    if ( eid != eecs::invalid_eid )
     {
         std::string nextLevel{};
         eecs::query_component(reg, eid, [&](std::string& nl)
         {
             nextLevel = nl;
         }, COMPID(std::string, nextLevel));
-        
+
         if ( !nextLevel.empty() )
         {
             eecs::del_entity(reg, eid);
@@ -160,7 +160,7 @@ eecs::Registry* change_level(eecs::Registry& reg, std::unordered_map<std::string
             return &reg;
         }
     }
-    
+
     return &reg;
 }
 

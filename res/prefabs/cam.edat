@@ -19,10 +19,14 @@ EditorCam <- _SmoothCamera = {
     cam_ambientOverride : float = "0"
 }
 
-PlayerCam <- _SmoothCamera = {
+PlayerInstantCam <- _DefaultCamera = {
+    cam_resWidth : int = "220"
+    cam_resHeight : int = "180"
+    cam_resMult : float = "4"
+}
+
+PlayerCam <- PlayerInstantCam = {
     cam_moveSpeed : float = "8"
     cam_rotSpeed : float = "12.56"
 }
 
-PlayerInstantCam <- _DefaultCamera = {
-}
