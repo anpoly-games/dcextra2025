@@ -9,6 +9,16 @@ MeatspaceToCyberspaceLevelSwitch <- _Trigger = {
     trigger_debugName : str = "Meat->Cyber"
 }
 
+SendToMeatSpaceSwitch <- _Trigger = {
+    level_switchTo : str = "Meatspace_Main"
+    trigger_debugName : str = "To-Meatspace-Main"
+}
+
+SendToLevel1 <- _Trigger = {
+    level_switchTo : str = "level1"
+    trigger_debugName : str = "To-Level1"
+}
+
 Teleport_X_by_1 <- _Trigger = {
     teleporter : Tag = ""
     displacement : float[2] = ["1", "0"]

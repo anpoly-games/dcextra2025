@@ -1,5 +1,6 @@
 #include <raylib.h>
 #include <eecs.h>
+#include <climits>
 
 #include <filesystem>
 
@@ -106,7 +107,7 @@ void load_level(eecs::Registry& reg, const char* filename)
     load_entities_from_file(reg, fullPath.string().c_str());
 }
 
-void change_level(eecs::Registry& reg)
+eecs::Registry* change_level(eecs::Registry& reg, std::unordered_map<std::string, eecs::Registry*>& registries)
 {
     eecs::EntityId eid = eecs::find_entity(reg, "Switch_Level");
     if (  eid != eecs::invalid_eid )
@@ -119,15 +120,47 @@ void change_level(eecs::Registry& reg)
         
         if ( !nextLevel.empty() )
         {
+            eecs::del_entity(reg, eid);
+            if ( registries.count(nextLevel) )
+            {
+                eecs::Registry* nReg = registries[nextLevel];
+                assert(nReg);
+                eecs::query_entities(*nReg, [&](eecs::EntityId eid, const vec3f& pos, const float rot, Tag spawn){
+                    eecs::query_entities(*nReg, [&](eecs::EntityId pid, vec3f& position, vec3f& direction, vec3i& prevPosition, Tag player)
+                    {
+                        position = pos;
+                        printf("pos = %f, %f, %f\n", pos.x, pos.y, pos.z);
+                        direction = vec3f{sinf(rot*DEG2RAD), 0.f, cosf(rot*DEG2RAD)};
+                        prevPosition = vec3i{INT_MAX, INT_MAX, INT_MAX};
+                    }, COMPID(vec3f, position), COMPID(vec3f, direction), COMPID(vec3i, prevPosition), COMPID(Tag, player));
+                },
+                COMPID(const vec3f, position), COMPID(const float, rotation), COMPID(const Tag, spawn));
+                return nReg;
+            }
+
             std::filesystem::path fullPath{"res/levels/"};
             fullPath += nextLevel;
 
             if (!fs::exists(fullPath))
-                return;
+                return nullptr; // this is an error
 
-            reset_world(reg);
-            load_entities_from_file(reg, fullPath.string().c_str());
+            eecs::Registry* rNew = new eecs::Registry();
+            if (eecs::find_entity(reg, "DebugMarker")!=eecs::invalid_eid)
+            {
+                eecs::EntityId eid = eecs::create_entity(*rNew, "DebugMarker"); // existence of this entity means we are in debug mode
+            }
+            restart_world(*rNew);
+
+            load_entities_from_file(*rNew, fullPath.string().c_str());
+            registries[nextLevel] = rNew;
+            return rNew;
+        }
+        else
+        {
+            return &reg;
         }
     }
+    
+    return &reg;
 }
 

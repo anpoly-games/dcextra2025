@@ -2,6 +2,7 @@
 #include <eecs.h>
 #include <random>
 #include <cstring>
+#include <unordered_map>
 
 #include "editor/editor_ui.h"
 #include "ui.h"
@@ -10,6 +11,8 @@
 #include "game.h"
 #include "level.h"
 #include "tags.h"
+
+static std::unordered_map<std::string, eecs::Registry*> registries;
 
 int main(int argc, char** argv)
 {
@@ -47,39 +50,48 @@ int main(int argc, char** argv)
     SetExitKey(KEY_NULL);
     InitAudioDevice();
 
-    eecs::Registry reg;
+    eecs::Registry* reg = new eecs::Registry{};
 
     if (debugMode)
     {
-      eecs::EntityId eid = eecs::create_entity(reg, "DebugMarker"); // existence of this entity means we are in debug mode
+      eecs::EntityId eid = eecs::create_entity(*reg, "DebugMarker"); // existence of this entity means we are in debug mode
     }
 
     if (levelToLoad)
     {
-        load_level(reg, levelToLoad);
+        load_level(*reg, levelToLoad);
+        registries[levelToLoad] = reg;
     }
     else
     {
-        register_systems(reg);
-        init_new_world(reg);
-        create_ui_helper(reg, width * scaleFactor, height * scaleFactor, scaleFactor);
+        register_systems(*reg);
+        init_new_world(*reg);
+        create_ui_helper(*reg, width * scaleFactor, height * scaleFactor, scaleFactor);
+        registries["default"] = reg;
     }
 
     while (!WindowShouldClose())
     {
-        pre_draw_call(reg);
+        pre_draw_call(*reg);
         BeginDrawing();
             ClearBackground(BLACK);
-            update_cam(reg);
-                eecs::step(reg);
+            update_cam(*reg);
+                eecs::step(*reg);
 
             EndMode3D();
             // TODO: editor switch
-            draw_ui(reg, width * scaleFactor, height * scaleFactor, scaleFactor);
+            draw_ui(*reg, width * scaleFactor, height * scaleFactor, scaleFactor);
         EndDrawing();
-        change_level(reg); // look for a change level request and execute it.
+        reg = change_level(*reg, registries); // look for a change level request and execute it.
+        assert(reg);
     }
     CloseAudioDevice();
+
+    for ( auto r : registries )
+    {
+      delete r.second;
+    }
+
     return 0;
 }
 
