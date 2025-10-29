@@ -77,6 +77,7 @@ int main(int argc, char** argv)
             // TODO: editor switch
             draw_ui(reg, width * scaleFactor, height * scaleFactor, scaleFactor);
         EndDrawing();
+        change_level(reg); // look for a change level request and execute it.
     }
     CloseAudioDevice();
     return 0;

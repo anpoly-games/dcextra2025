@@ -60,6 +60,21 @@ void restart_world(eecs::Registry& reg)
     create_ui_helper(reg, width, height, scaleFactor);
 }
 
+void reset_world(eecs::Registry& reg)
+{
+    float width, height, scaleFactor;
+    eecs::query_entities(reg, [&](eecs::EntityId, float window_width, float window_height, float window_scaleFactor)
+    {
+        width = window_width;
+        height = window_height;
+        scaleFactor = window_scaleFactor;
+    }, COMPID(const float, window_width), COMPID(const float, window_height), COMPID(const float, window_scaleFactor));
+
+    eecs::del_all_systems(reg);
+    init_new_world(reg);
+    create_ui_helper(reg, width, height, scaleFactor);
+}
+
 
 void create_floor(eecs::Registry& reg, vec3f tilePos, float rot, const char* name);
 void create_ceiling(eecs::Registry& reg, int x, int y, float rot, const char* name);

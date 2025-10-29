@@ -23,6 +23,7 @@ void register_triggers(eecs::Registry& reg)
                 curPosition.x >= triggerPos.x - volExt.x && curPosition.x <= triggerPos.x + volExt.x &&
                 curPosition.z >= triggerPos.z - volExt.y && curPosition.z <= triggerPos.z + volExt.y)
             {
+                printf("emmiting event %i\n", FNV1(enterTrigger));
                 eecs::emit_event(reg, FNV1(enterTrigger), eid, playerEid);
             }
         }, COMPID(const vec3f, position), COMPID(const vec2i, trigger_volume));
@@ -30,7 +31,10 @@ void register_triggers(eecs::Registry& reg)
 
     eecs::on_event(reg, FNV1(enterTrigger), [&](eecs::EntityId, eecs::EntityId, const std::string& level_switchTo)
     {
-        load_level(reg, level_switchTo.c_str());
+        printf("switching to level %s\n", level_switchTo.c_str());
+        //load_level(reg, level_switchTo.c_str());
+        //change_level(reg, level_switchTo.c_str());
+        eecs::create_or_find_entity_wrap(reg, "Switch_Level").set(COMPID(std::string, nextLevel), level_switchTo);
     }, COMPID(const std::string, level_switchTo));
 
     eecs::on_event(reg, FNV1(enterTrigger), [&](eecs::EntityId eid, eecs::EntityId playerId, const vec2f& displacement, Tag teleporter)

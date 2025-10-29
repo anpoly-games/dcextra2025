@@ -106,3 +106,28 @@ void load_level(eecs::Registry& reg, const char* filename)
     load_entities_from_file(reg, fullPath.string().c_str());
 }
 
+void change_level(eecs::Registry& reg)
+{
+    eecs::EntityId eid = eecs::find_entity(reg, "Switch_Level");
+    if (  eid != eecs::invalid_eid )
+    {
+        std::string nextLevel{};
+        eecs::query_component(reg, eid, [&](std::string& nl)
+        {
+            nextLevel = nl;
+        }, COMPID(std::string, nextLevel));
+        
+        if ( !nextLevel.empty() )
+        {
+            std::filesystem::path fullPath{"res/levels/"};
+            fullPath += nextLevel;
+
+            if (!fs::exists(fullPath))
+                return;
+
+            reset_world(reg);
+            load_entities_from_file(reg, fullPath.string().c_str());
+        }
+    }
+}
+
