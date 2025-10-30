@@ -39,7 +39,7 @@ void register_player(eecs::Registry& reg)
             if (mdir2d.mag2() != 0)
             {
                 vec2i gridPos = pos_to_grid(position);
-                if (check_collision_dir(reg, gridPos, mdir2d))
+                if (check_collision_dir(reg, gridPos, mdir2d) || check_occupancy(reg, position + mdir))
                     return;
                 // align back to grid
                 PlaySound(stepSnd);
@@ -48,6 +48,11 @@ void register_player(eecs::Registry& reg)
         }
         position += direction * forward;
         position += right * rdir;
+        // NOTE: possible to have two turns if two buttons pressed at the same time
+        if (forward != 0)
+            eecs::emit_event(reg, FNV1(next_turn), eecs::invalid_eid, eid);
+        if (right != 0)
+            eecs::emit_event(reg, FNV1(next_turn), eecs::invalid_eid, eid);
     }, COMPID(vec3f, position), COMPID(vec3f, direction), COMPID(const Tag, player));
 }
 

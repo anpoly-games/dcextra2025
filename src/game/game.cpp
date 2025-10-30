@@ -15,6 +15,7 @@
 #include "debug.h"
 #include "../prefabs.h"
 #include "spawn.h"
+#include "ai.h"
 
 void register_systems(eecs::Registry& reg)
 {
@@ -29,6 +30,7 @@ void register_systems(eecs::Registry& reg)
   register_spawn(reg);
   register_triggers(reg);
   register_interactables(reg);
+  register_ai(reg);
   if (eecs::find_entity(reg, "DebugMarker")!=eecs::invalid_eid)
     register_debug(reg);
 }
@@ -49,7 +51,7 @@ void restart_world(eecs::Registry& reg)
         height = window_height;
         scaleFactor = window_scaleFactor;
     }, COMPID(const float, window_width), COMPID(const float, window_height), COMPID(const float, window_scaleFactor));
-    
+
     bool debugMode = eecs::find_entity(reg, "DebugMarker")!=eecs::invalid_eid;
 
     eecs::del_all_entities(reg);
@@ -72,7 +74,7 @@ void reset_world(eecs::Registry& reg)
         height = window_height;
         scaleFactor = window_scaleFactor;
     }, COMPID(const float, window_width), COMPID(const float, window_height), COMPID(const float, window_scaleFactor));
-    
+
     bool debugMode = eecs::find_entity(reg, "DebugMarker")!=eecs::invalid_eid;
 
     eecs::del_all_entities(reg);

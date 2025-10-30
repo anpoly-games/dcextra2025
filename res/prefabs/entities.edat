@@ -54,6 +54,9 @@ _BaseCreature = {
     actionList : eid[] = ["_SwingAction", "_ShootAction", "_AimedShotAction", "_BurstShotAction"]
     relativePos : float[3] = ["0", "0.3", "0"]
     expDrop : int = "25"
+    ai : Tag = ""
+    attackDamage : int = "5"
+    occupiesCell : Tag = ""
 }
 
 ShroomBlob <- _BaseCreature = {

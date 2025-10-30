@@ -7,40 +7,10 @@
 #include "../tags.h"
 #include "../ui.h"
 #include "../cam.h"
+#include "../level.h"
 #include "interactables.h"
 #include "advancement.h"
 #include "game_ui.h"
-
-bool ray_hit(eecs::Registry& reg, const vec3f& targetPos, eecs::EntityId target)
-{
-    bool res = false;
-    eecs::query_entities(reg, [&](eecs::EntityId, const Camera& camera)
-    {
-        const vec3f source = tov3(camera.position);
-        vec3f dir = targetPos - source;
-        const float initialDist = dir.mag();
-        const float maxDistSq = sqr(initialDist + 1.f);
-        dir = (1.f / initialDist) * dir;
-        Ray r = {camera.position, toRLVec3(dir)};
-        float bestT = 1e12f;
-        eecs::query_entities(reg, [&](eecs::EntityId eid, const vec3f& position, const Model& model)
-        {
-            if ((source - position).mag2() > maxDistSq || eid == target || bestT < initialDist)
-                return;
-            Matrix matRotation = MatrixRotate(Vector3{0.f, 1.f, 0.f}, eecs::get_comp_or(reg, eid, COMPID(float, rotation),0.f));
-            Matrix matTranslation = MatrixTranslate(position.x, position.y, position.z);
-
-            Matrix matTransform = MatrixMultiply(matRotation, matTranslation);
-            RayCollision coll = GetRayCollisionMesh(r, model.meshes[0], matTransform);
-            if (!coll.hit)
-                return;
-            if (coll.distance < bestT)
-                bestT = coll.distance;
-        }, COMPID(const vec3f, position), COMPID(const Model, model));
-        res = bestT < initialDist;
-    }, COMPID(const Camera, camera));
-    return res;
-}
 
 void draw_interactables(eecs::Registry& reg, float top, float scrwidth, float height, float scaleFactor)
 {
@@ -68,7 +38,7 @@ void draw_interactables(eecs::Registry& reg, float top, float scrwidth, float he
                 {
                     eecs::query_components(reg, act, [&](float distance, const std::string& triggers, const std::string& text)
                     {
-                        if ((ppos - flPos).mag2() > sqr(distance) || ray_hit(reg, position, obj))
+                        if ((ppos - flPos).mag2() > sqr(distance) || ray_hit(reg, ppos + vec3f(0.f, 0.4f, 0.f), position, obj))
                             return;
                         haveActions = true;
                         std::string finalText = text;
@@ -86,6 +56,7 @@ void draw_interactables(eecs::Registry& reg, float top, float scrwidth, float he
                         [&]()
                         {
                             eecs::emit_event(reg, fnv1StrHash(triggers.c_str()), obj, plEid);
+                            eecs::emit_event(reg, FNV1(next_turn), eecs::invalid_eid, plEid);
                         });
                         //DrawLineEx({pos.x, pos.y + step * 0.5f}, {pos2d.x, pos2d.y}, 4.f, GetColor(0x63c74dff));
                         DrawLineEx({pos.x, pos.y + step * 0.5f}, {(float)cam_wh.x, pos.y + step * 0.5f}, 4.f, GetColor(0x63c74dff));
@@ -134,7 +105,7 @@ void register_interactables(eecs::Registry& reg)
         const int dice = GetRandomValue(1, 100);
         const int attr = int(float(attrVal) * diffMult);
         const bool success = dice < attr;
-        push_rolling_text(reg, std::string(TextFormat("%s (%d): roll %d vs %d\n", attrName, attrVal, dice, attr)), success ? GetColor(0x3e8948ff) : GetColor(0xff0044ff));
+        push_rolling_text(reg, TextFormat("%s (%d): roll %d vs %d\n", attrName, attrVal, dice, attr), success ? GetColor(0x3e8948ff) : GetColor(0xff0044ff));
         return success;
     };
     eecs::on_event(reg, FNV1(hack), [&](eecs::EntityId doorEid, eecs::EntityId plEid, float hack_difficultyMult, int hack_successExperience)
@@ -162,7 +133,7 @@ void register_interactables(eecs::Registry& reg)
                     {
                         hitpoints = std::max(hitpoints - dmg, 0);
                     }, COMPID(int, hitpoints));
-                    push_rolling_text(reg, std::string(TextFormat("Electrocuted for %d dmg", dmg)), GetColor(0xff0044ff));
+                    push_rolling_text(reg, TextFormat("Electrocuted for %d dmg", dmg), GetColor(0xff0044ff));
                 }
             }
         }, COMPID(const int, attr_mind));
@@ -173,7 +144,7 @@ void register_interactables(eecs::Registry& reg)
     {
         if (!attrRoll(reg, "STR", attrVal, 1.f))
             return;
-        push_rolling_text(reg, std::string(TextFormat("Damaged enemy for %d dmg %s", dmg, desc)), GetColor(0x3e8948ff));
+        push_rolling_text(reg, TextFormat("Damaged enemy for %d dmg %s", dmg, desc), GetColor(0x3e8948ff));
         hitpoints -= dmg;
         if (hitpoints <= 0)
         {

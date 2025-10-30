@@ -40,6 +40,7 @@ set(GAME_SOURCES
     game/debug.cpp
     game/interactables.cpp
     game/advancement.cpp
+    game/ai.cpp
     )
 
 

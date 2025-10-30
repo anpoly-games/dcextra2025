@@ -126,11 +126,11 @@ void draw_ui(eecs::Registry& reg, float width, float height, float scaleFactor)
     }, COMPID(const std::vector<ColoredText>, rollingText));
 }
 
-void push_rolling_text(eecs::Registry& reg, const std::string& text, Color col)
+void push_rolling_text(eecs::Registry& reg, const char* text, Color col)
 {
     eecs::query_component(reg, eecs::find_entity(reg, "rolling_text"), [&](std::vector<ColoredText>& rollingText)
     {
-        rollingText.push_back(std::make_pair(text, col));
+        rollingText.push_back(std::make_pair(std::string(text), col));
     }, COMPID(std::vector<ColoredText>, rollingText));
 }
 

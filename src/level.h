@@ -16,3 +16,6 @@ eecs::Registry* change_level(eecs::Registry& reg, std::unordered_map<std::string
 // Only one step at a time, not a visibility check!
 bool check_collision_dir(eecs::Registry& reg, const vec2i& pos, const vec2i& dir);
 
+bool ray_hit(eecs::Registry& reg, const vec3f& sourcePos, const vec3f& targetPos, eecs::EntityId target);
+bool check_occupancy(eecs::Registry& reg, const vec3f& pos);
+

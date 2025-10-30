@@ -1,4 +1,5 @@
 #include <raylib.h>
+#include <raymath.h>
 #include <eecs.h>
 #include <climits>
 
@@ -162,5 +163,43 @@ eecs::Registry* change_level(eecs::Registry& reg, std::unordered_map<std::string
     }
 
     return &reg;
+}
+
+bool ray_hit(eecs::Registry& reg, const vec3f& sourcePos, const vec3f& targetPos, eecs::EntityId target)
+{
+    bool res = false;
+    vec3f dir = targetPos - sourcePos;
+    const float initialDist = dir.mag();
+    const float maxDistSq = sqr(initialDist + 1.f);
+    dir = (1.f / initialDist) * dir;
+    Ray r = {toRLVec3(sourcePos), toRLVec3(dir)};
+    float bestT = 1e12f;
+    eecs::query_entities(reg, [&](eecs::EntityId eid, const vec3f& position, const Model& model)
+    {
+        if ((sourcePos - position).mag2() > maxDistSq || eid == target || bestT < initialDist)
+            return;
+        Matrix matRotation = MatrixRotate(Vector3{0.f, 1.f, 0.f}, eecs::get_comp_or(reg, eid, COMPID(float, rotation),0.f));
+        Matrix matTranslation = MatrixTranslate(position.x, position.y, position.z);
+
+        Matrix matTransform = MatrixMultiply(matRotation, matTranslation);
+        RayCollision coll = GetRayCollisionMesh(r, model.meshes[0], matTransform);
+        if (!coll.hit)
+            return;
+        if (coll.distance < bestT)
+            bestT = coll.distance;
+    }, COMPID(const vec3f, position), COMPID(const Model, model));
+    res = bestT < initialDist;
+    return res;
+}
+
+bool check_occupancy(eecs::Registry& reg, const vec3f& pos)
+{
+    bool res = false;
+    vec3i pos3d = pos_to_grid3d(pos);
+    eecs::query_entities(reg, [&](eecs::EntityId eid, const vec3f& position, Tag occupiesCell)
+    {
+        res |= pos_to_grid3d(position) == pos3d;
+    }, COMPID(const vec3f, position), COMPID(const Tag, occupiesCell));
+    return res;
 }
 
