@@ -6,6 +6,7 @@
 
 void add_exp(eecs::Registry& reg, eecs::EntityId plEid, int amount)
 {
+    static Sound levelUp = LoadSound("res/audio/sfx/upbeat_01.ogg");
     eecs::query_components(reg, plEid, [&](int& experience, int& level, int& pointsToSpend)
     {
         experience += amount;
@@ -13,6 +14,7 @@ void add_exp(eecs::Registry& reg, eecs::EntityId plEid, int amount)
         {
             experience -= get_next_level_exp(level);
             pointsToSpend += get_points_per_level(); // TODO: component maybe? MIND?
+            PlaySound(levelUp);
             level++;
             eecs::query_component(reg, eecs::find_entity(reg, "rolling_text"), [&](std::vector<ColoredText>& rollingText)
             {

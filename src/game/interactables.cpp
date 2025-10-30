@@ -75,6 +75,7 @@ void draw_interactables(eecs::Registry& reg, float top, float scrwidth, float he
 void register_interactables(eecs::Registry& reg)
 {
     static int textIndex = 0;
+    static Sound playerHit = LoadSound("res/audio/sfx/hit_07.ogg");
     eecs::on_event(reg, FNV1(toggle), [&](eecs::EntityId doorEid, eecs::EntityId plEid, vec3f& position, const vec3f& openRelPosition)
     {
         // NOTE: Order is important, we need to remove closed tag before moving, so on_exit will trigger at appropriate position!!!
@@ -131,6 +132,7 @@ void register_interactables(eecs::Registry& reg)
                 {
                     eecs::query_component(reg, plEid, [&](int& hitpoints)
                     {
+                        PlaySound(playerHit);
                         hitpoints = std::max(hitpoints - dmg, 0);
                     }, COMPID(int, hitpoints));
                     push_rolling_text(reg, TextFormat("Electrocuted for %d dmg", dmg), GetColor(0xff0044ff));
@@ -139,13 +141,19 @@ void register_interactables(eecs::Registry& reg)
         }, COMPID(const int, attr_mind));
     }, COMPID(const float, hack_difficultyMult), COMPID(const int, hack_successExperience));
 
+    static Sound swoosh = LoadSound("res/audio/sfx/swoosh_01.ogg");
+    static Sound shot = LoadSound("res/audio/sfx/hit_03.ogg");
+    static Sound aimedShot = LoadSound("res/audio/sfx/hit_02.ogg");
+    static Sound burstShot = LoadSound("res/audio/sfx/hit_04.ogg");
+    static Sound enemyHit = LoadSound("res/audio/sfx/hit_06.ogg");
     auto procAttack = [attrRoll](eecs::Registry& reg, const char* attrName, int attrVal, float attrMult, int dmg, const char* desc, int& hitpoints, int expDrop,
                          eecs::EntityId enemy, eecs::EntityId pl)
     {
-        if (!attrRoll(reg, "STR", attrVal, 1.f))
+        if (!attrRoll(reg, attrName, attrVal, 1.f))
             return;
         push_rolling_text(reg, TextFormat("Damaged enemy for %d dmg %s", dmg, desc), GetColor(0x3e8948ff));
         hitpoints -= dmg;
+        PlaySound(enemyHit);
         if (hitpoints <= 0)
         {
             add_exp(reg, pl, expDrop);
@@ -156,11 +164,13 @@ void register_interactables(eecs::Registry& reg)
     {
         eecs::query_components(reg, pl, [&](int attr_strength)
         {
+            PlaySound(swoosh);
             procAttack(reg, "STR", attr_strength, 1.f, attr_strength / 5, "(STR/5)", hitpoints, expDrop, enemy, pl);
         }, COMPID(const int, attr_strength));
     }, COMPID(int, hitpoints), COMPID(const int, expDrop));
     eecs::on_event(reg, FNV1(shot), [&](eecs::EntityId enemy, eecs::EntityId pl, int& hitpoints, int expDrop)
     {
+        PlaySound(shot);
         eecs::query_components(reg, pl, [&](int attr_agility)
         {
             procAttack(reg, "AGI", attr_agility, 1.f, attr_agility / 10, "(AGI/10)", hitpoints, expDrop, enemy, pl);
@@ -168,6 +178,7 @@ void register_interactables(eecs::Registry& reg)
     }, COMPID(int, hitpoints), COMPID(const int, expDrop));
     eecs::on_event(reg, FNV1(aimed_shot), [&](eecs::EntityId enemy, eecs::EntityId pl, int& hitpoints, int expDrop)
     {
+        PlaySound(aimedShot);
         eecs::query_components(reg, pl, [&](int attr_agility)
         {
             procAttack(reg, "AGI", attr_agility, 2.f, attr_agility / 20, "(AGI/20)", hitpoints, expDrop, enemy, pl);
@@ -175,6 +186,7 @@ void register_interactables(eecs::Registry& reg)
     }, COMPID(int, hitpoints), COMPID(const int, expDrop));
     eecs::on_event(reg, FNV1(burst_shot), [&](eecs::EntityId enemy, eecs::EntityId pl, int& hitpoints, int expDrop)
     {
+        PlaySound(burstShot);
         eecs::query_components(reg, pl, [&](int attr_agility)
         {
             procAttack(reg, "AGI", attr_agility, 0.5f, attr_agility / 5, "(AGI/5)", hitpoints, expDrop, enemy, pl);

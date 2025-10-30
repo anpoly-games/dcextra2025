@@ -21,6 +21,7 @@ void draw_character(eecs::Registry& reg, float top, float width, float height, f
     float step = 14.f * scaleFactor;
     float hzStep = 140 * scaleFactor;
     const float textSize = 8.f * scaleFactor;
+    static Sound press = LoadSound("res/audio/sfx/press_01.ogg");
     auto drawAttr = [&](const char* str, vec2f pos, int& val, int& pointsToSpend)
     {
         DrawTextEx(charFont, TextFormat("%s: %d", str, val), toRLVec2(pos), textSize, 0, GetColor(0x3e8948ff));
@@ -41,6 +42,7 @@ void draw_character(eecs::Registry& reg, float top, float width, float height, f
                     DrawTextEx(charFont, text.c_str(), toRLVec2(upgPos), textSize, 0, GetColor(0x181425ff));
                     if (IsMouseButtonReleased(0))
                     {
+                        PlaySound(press);
                         pointsToSpend -= v;
                         val += v;
                     }

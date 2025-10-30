@@ -9,6 +9,7 @@
 
 void register_ai(eecs::Registry& reg)
 {
+    static Sound playerHit = LoadSound("res/audio/sfx/hit_07.ogg");
     eecs::on_event(reg, FNV1(next_turn), [&](eecs::EntityId eid, eecs::EntityId plEid, vec3f& position, int attackDamage, Tag ai)
     {
         eecs::query_components(reg, plEid, [&, &epos = position](const vec3f& position, int& hitpoints)
@@ -22,6 +23,7 @@ void register_ai(eecs::Registry& reg)
                 // Attack player!
                 hitpoints = std::max(hitpoints - attackDamage, 0);
                 push_rolling_text(reg, TextFormat("Enemy deals you %d dmg", attackDamage), GetColor(0xff0044ff));
+                PlaySound(playerHit);
                 return;
             }
             // first try to move along longest one
