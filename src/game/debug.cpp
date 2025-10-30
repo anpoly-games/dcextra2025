@@ -20,7 +20,7 @@ void register_debug(eecs::Registry& reg)
             if (screenPos.z >= 0.f)
             {
                 EndMode3D();
-                draw_centered_font_with_shadow(GetFontDefault(), trigger_debugName.c_str(), torect(screenPos.x, screenPos.y, 0.f, 0.f), 12.f, WHITE);
+                draw_centered_font_with_shadow(GetFontDefault(), trigger_debugName.c_str(), torect(screenPos.x, screenPos.y, 0.f, 0.f), 12.f, 3, WHITE);
                 BeginMode3D(camera);
             }
         }, COMPID(const vec3f, position), COMPID(const vec2i, trigger_volume), COMPID(const std::string, trigger_debugName));
@@ -42,7 +42,7 @@ void register_debug(eecs::Registry& reg)
             if (screenPos.z >= 0.f)
             {
               EndMode3D();
-              draw_centered_font_with_shadow(GetFontDefault(), dbox_name.c_str(), torect(screenPos.x, screenPos.y, 0.f, 0.f), 12.f, WHITE);
+              draw_centered_font_with_shadow(GetFontDefault(), dbox_name.c_str(), torect(screenPos.x, screenPos.y, 0.f, 0.f), 12.f, 3, WHITE);
               BeginMode3D(camera);
             }
           }, COMPID(const vec3f, position), COMPID(const float, rotation), COMPID(const vec3f, dbox_offset),

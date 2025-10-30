@@ -13,10 +13,10 @@ enum FontCentering
   EFC_VCENTER = 2
 };
 
-void draw_font_with_shadow(Font font, const char* text, float x, float y, float size, Color col);
-float draw_bounded_font_with_shadow(Font font, const char* text, float x, float y, float width, float size, float pad, Color col);
-void draw_centered_font_with_shadow(Font font, const char* text, Rectangle rect, float size, Color col, FontCentering fc = FontCentering(EFC_HCENTER | EFC_VCENTER));
-void draw_centered_block_with_shadow(Font font, int num, const char** text, Rectangle rect, float size, Color col);
+void draw_font_with_shadow(Font font, const char* text, float x, float y, float size, int spacing, Color col);
+float draw_bounded_font_with_shadow(Font font, const char* text, float x, float y, float width, float size, int spacing, float pad, Color col);
+void draw_centered_font_with_shadow(Font font, const char* text, Rectangle rect, float size, int spacing, Color col, FontCentering fc = FontCentering(EFC_HCENTER | EFC_VCENTER));
+void draw_centered_block_with_shadow(Font font, int num, const char** text, Rectangle rect, float size, int spacing, Color col);
 void draw_centered_texture(Texture2D tex, Rectangle rect, float scale);
 
 void draw_button(Rectangle rect, const char* text, float scaleFactor, Color col);
@@ -43,7 +43,7 @@ NineRect create_9rect(Image img, int sz);
 void draw_9rect(const NineRect& nr, Rectangle rect, float scale, Color col);
 
 void draw_tiled_tex(Texture2D tex, Rectangle source, Rectangle dest, float scale, Color col);
-void draw_button_9rect(const NineRect& nrect, Rectangle rect, Font font, const char* text, float fontSize, float scaleFactor, Color col, const std::function<void()>& foo);
+void draw_button_9rect(const NineRect& nrect, Rectangle rect, Font font, const char* text, float fontSize, int spacing, float scaleFactor, Color col, const std::function<void()>& foo);
 
 void draw_cube_matrix(const BoundingBox& bbox, const vec3f& pos, float rotation, Color col);
 

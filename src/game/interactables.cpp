@@ -10,13 +10,14 @@
 #include "advancement.h"
 #include "game_ui.h"
 
-void draw_interactables(eecs::Registry& reg, float width, float height, float scaleFactor)
+void draw_interactables(eecs::Registry& reg, float top, float scrwidth, float height, float scaleFactor)
 {
     static NineRect nrect = create_9rect(LoadImage("res/textures/ui/button_rect.png"), 2);
+    static Font actionFont = LoadFontEx("res/textures/ui/8px-IBM_BIOS_8x8.ttf", 8, nullptr, 0);
     eecs::query_entities(reg, [&](eecs::EntityId camEid, const Camera& camera)
     {
         const vec2i cam_wh = get_cam_wh(reg);
-        vec2f pos = {cam_wh.x + 50.f * scaleFactor, 180.f * scaleFactor};
+        vec2f pos = {cam_wh.x + 50.f * scaleFactor, top};
         eecs::query_entities(reg, [&](eecs::EntityId plEid, const vec3f& position, Tag player)
         {
             eecs::query_entities(reg, [&, &ppos = position](eecs::EntityId obj, const vec3f& position, const std::vector<eecs::EntityId>& actionList)
@@ -26,8 +27,8 @@ void draw_interactables(eecs::Registry& reg, float width, float height, float sc
                     return;
                 if (pos2d.x > cam_wh.x || pos2d.x < 0 || pos2d.y < 0 || pos2d.y > cam_wh.y)
                     return;
-                const float step = 24.f * scaleFactor;
-                const float width = step * 10.f;
+                const float step = 16.f * scaleFactor;
+                const float width = scrwidth - pos.x - 4.f * 4.f * scaleFactor;
                 //pos2d.x -= cam_wh.x * 0.5f;
                 bool haveActions = false;
                 for (eecs::EntityId act : actionList)
@@ -47,7 +48,7 @@ void draw_interactables(eecs::Registry& reg, float width, float height, float sc
                             const int chance = int(float(attrVal) * mult);
                             finalText += " (" + attrName + " " + std::to_string(chance) + "%)";
                         }, COMPID(const std::string, attribute));
-                        draw_button_9rect(nrect, Rectangle(pos.x, pos.y, width, step), GetFontDefault(), finalText.c_str(), 12.f, scaleFactor, ColorFromHSV(0, 0, 0.7f),
+                        draw_button_9rect(nrect, Rectangle(pos.x, pos.y, width, step), actionFont, finalText.c_str(), 8.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
                         [&]()
                         {
                             eecs::emit_event(reg, fnv1StrHash(triggers.c_str()), obj, plEid);
@@ -83,29 +84,50 @@ void register_interactables(eecs::Registry& reg)
             position -= openRelPosition;
             eecs::set_component(reg, doorEid, COMPID(Tag, closed), Tag{});
         }
+        eecs::query_component(reg, doorEid, [&](eecs::EntityId door_openSound)
+        {
+            eecs::query_component(reg, door_openSound, [&](const Sound& sound)
+            {
+                PlaySound(sound);
+            }, COMPID(const Sound, sound));
+        }, COMPID(const eecs::EntityId, door_openSound));
     }, COMPID(vec3f, position), COMPID(const vec3f, openRelPosition));
 
     eecs::create_entity_wrap(reg, "rolling_text")
         .set(COMPID(std::vector<ColoredText>, rollingText), {});
-    eecs::on_event(reg, FNV1(hack), [&](eecs::EntityId doorEid, eecs::EntityId plEid, vec3f& position, const vec3f& openRelPosition, float hack_difficultyMult, int hack_successExperience)
+    eecs::on_event(reg, FNV1(hack), [&](eecs::EntityId doorEid, eecs::EntityId plEid, float hack_difficultyMult, int hack_successExperience)
     {
         eecs::query_component(reg, plEid, [&](int attr_mind)
         {
             const int dice = GetRandomValue(1, 100);
             const int attr = int(float(attr_mind) * hack_difficultyMult);
             bool success = dice < attr;
+            push_rolling_text(reg, std::string(TextFormat("MIND (%d): roll %d vs %d\n", attr_mind, dice, attr)), success ? GetColor(0x3e8948ff) : GetColor(0xff0044ff));
             if (success)
             {
-                eecs::del_component(reg, doorEid, COMPID(Tag, closed));
-                position += openRelPosition;
+                eecs::emit_event(reg, FNV1(toggle), doorEid, plEid);
                 add_exp(reg, plEid, hack_successExperience);
             }
-            // TODO: show dice roll
-            eecs::query_component(reg, eecs::find_entity(reg, "rolling_text"), [&](std::vector<ColoredText>& rollingText)
+            else
             {
-                rollingText.push_back(std::make_pair(std::string(TextFormat("MIND (%d): roll %d vs %d\n", attr_mind, dice, attr)), success ? GetColor(0x3e8948ff) : GetColor(0xff0044ff)));
-            }, COMPID(std::vector<ColoredText>, rollingText));
+                eecs::query_component(reg, doorEid, [&](eecs::EntityId hack_failureSound)
+                {
+                    eecs::query_component(reg, hack_failureSound, [&](const Sound& sound)
+                    {
+                        PlaySound(sound);
+                    }, COMPID(const Sound, sound));
+                }, COMPID(const eecs::EntityId, hack_failureSound));
+                const int dmg = eecs::get_comp_or(reg, doorEid, COMPID(int, hack_failureDamage), 0);
+                if (dmg > 0)
+                {
+                    eecs::query_component(reg, plEid, [&](int& hitpoints)
+                    {
+                        hitpoints = std::max(hitpoints - dmg, 0);
+                    }, COMPID(int, hitpoints));
+                    push_rolling_text(reg, std::string(TextFormat("Electrocuted for %d dmg", dmg)), GetColor(0xff0044ff));
+                }
+            }
         }, COMPID(const int, attr_mind));
-    }, COMPID(vec3f, position), COMPID(const vec3f, openRelPosition), COMPID(const float, hack_difficultyMult), COMPID(const int, hack_successExperience));
+    }, COMPID(const float, hack_difficultyMult), COMPID(const int, hack_successExperience));
 }
 

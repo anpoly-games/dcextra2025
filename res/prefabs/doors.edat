@@ -23,18 +23,29 @@ _BaseDoor = {
     closed : Tag = ""
 }
 
+_DoorOpenSound = {
+    sound_filename : str = "res/audio/sfx/roar_01.ogg"
+}
+
 _OpenableDoor <- _BaseDoor = {
     openRelPosition : float[3] = ["0", "0.7", "0"]
+    door_openSound : eid = "_DoorOpenSound"
 }
 
 _TogglableDoor <- _OpenableDoor = {
     actionList : eid[] = ["_OpenCloseAction"]
 }
 
+_HackFailureSound = {
+    sound_filename : str = "res/audio/sfx/effect_01.ogg"
+}
+
 _HackableDoor <- _OpenableDoor = {
     actionList : eid[] = ["_HackAction"]
     hack_difficultyMult : float = "1.0"
     hack_successExperience : int = "50"
+    hack_failureDamage : int = "10"
+    hack_failureSound : eid = "_HackFailureSound"
 }
 
 _PryableDoor <- _OpenableDoor = {

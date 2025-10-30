@@ -13,24 +13,24 @@ void draw_centered_texture(Texture2D tex, Rectangle rect, float scale)
   DrawTextureEx(tex, pos, 0.f, scale, WHITE);
 }
 
-void draw_font_with_shadow(Font font, const char* text, float x, float y, float size, Color col)
+void draw_font_with_shadow(Font font, const char* text, float x, float y, float size, int spacing, Color col)
 {
   Color shadowC = BLACK;
   shadowC.a = col.a;
-  DrawTextEx(font, text, tovec(x - 1, y - 1), size, 3, shadowC);
-  DrawTextEx(font, text, tovec(x + 1, y + 1), size, 3, shadowC);
-  DrawTextEx(font, text, tovec(x - 1, y + 1), size, 3, shadowC);
-  DrawTextEx(font, text, tovec(x + 1, y - 1), size, 3, shadowC);
+  DrawTextEx(font, text, tovec(x - 1, y - 1), size, spacing, shadowC);
+  DrawTextEx(font, text, tovec(x + 1, y + 1), size, spacing, shadowC);
+  DrawTextEx(font, text, tovec(x - 1, y + 1), size, spacing, shadowC);
+  DrawTextEx(font, text, tovec(x + 1, y - 1), size, spacing, shadowC);
 
-  DrawTextEx(font, text, tovec(x - 1, y), size, 3, shadowC);
-  DrawTextEx(font, text, tovec(x + 1, y), size, 3, shadowC);
-  DrawTextEx(font, text, tovec(x, y + 1), size, 3, shadowC);
-  DrawTextEx(font, text, tovec(x, y - 1), size, 3, shadowC);
+  DrawTextEx(font, text, tovec(x - 1, y), size, spacing, shadowC);
+  DrawTextEx(font, text, tovec(x + 1, y), size, spacing, shadowC);
+  DrawTextEx(font, text, tovec(x, y + 1), size, spacing, shadowC);
+  DrawTextEx(font, text, tovec(x, y - 1), size, spacing, shadowC);
 
-  DrawTextEx(font, text, tovec(x, y), size, 3, col);
+  DrawTextEx(font, text, tovec(x, y), size, spacing, col);
 }
 
-float draw_bounded_font_with_shadow(Font font, const char* text, float x, float y, float width, float size, float pad, Color col)
+float draw_bounded_font_with_shadow(Font font, const char* text, float x, float y, float width, float size, int spacing, float pad, Color col)
 {
   std::string str = text;
   size_t start = 0;
@@ -42,24 +42,24 @@ float draw_bounded_font_with_shadow(Font font, const char* text, float x, float 
     if (next == std::string::npos)
     {
       std::string sub = str.substr(start) + " ";
-      Vector2 sz = MeasureTextEx(font, sub.c_str(), size, 3);
+      Vector2 sz = MeasureTextEx(font, sub.c_str(), size, spacing);
       if (xpos + sz.x > width)
       {
         xpos = x;
         ypos += sz.y + pad;
       }
-      draw_font_with_shadow(font, sub.c_str(), xpos, ypos, size, col);
+      draw_font_with_shadow(font, sub.c_str(), xpos, ypos, size, spacing, col);
       xpos += sz.x;
       break;
     }
     std::string sub = str.substr(start, next - start) + " ";
-    Vector2 sz = MeasureTextEx(font, sub.c_str(), size, 3);
+    Vector2 sz = MeasureTextEx(font, sub.c_str(), size, spacing);
     if (xpos + sz.x > width)
     {
       xpos = x;
       ypos += sz.y + pad;
     }
-    draw_font_with_shadow(font, sub.c_str(), xpos, ypos, size, col);
+    draw_font_with_shadow(font, sub.c_str(), xpos, ypos, size, spacing, col);
     xpos += sz.x;
     start = next + 1;
     next = str.find_first_of(" ", start);
@@ -67,21 +67,21 @@ float draw_bounded_font_with_shadow(Font font, const char* text, float x, float 
   return ypos + size + pad;
 }
 
-void draw_centered_font_with_shadow(Font font, const char* text, Rectangle rect, float size, Color col, FontCentering fc)
+void draw_centered_font_with_shadow(Font font, const char* text, Rectangle rect, float size, int spacing, Color col, FontCentering fc)
 {
   const bool vcenter = fc & EFC_VCENTER;
   const bool hcenter = fc & EFC_HCENTER;
-  Vector2 sz = MeasureTextEx(font, text, size, 3);
-  draw_font_with_shadow(font, text, rect.x + (hcenter ? (rect.width - sz.x) * 0.5f : 0), rect.y + (vcenter ? (rect.height - sz.y) * 0.5f : 0), size, col);
+  Vector2 sz = MeasureTextEx(font, text, size, spacing);
+  draw_font_with_shadow(font, text, rect.x + (hcenter ? (rect.width - sz.x) * 0.5f : 0), rect.y + (vcenter ? (rect.height - sz.y) * 0.5f : 0), size, spacing, col);
 }
 
-void draw_centered_block_with_shadow(Font font, int num, const char** text, Rectangle rect, float size, Color col)
+void draw_centered_block_with_shadow(Font font, int num, const char** text, Rectangle rect, float size, int spacing, Color col)
 {
-  const Vector2 sz = MeasureTextEx(font, text[0], size, 3);
+  const Vector2 sz = MeasureTextEx(font, text[0], size, spacing);
   const float lineHt = sz.y;
   float vstart = rect.y + (rect.height - lineHt * num) * 0.5f;
   for (int i = 0; i < num; ++i)
-    draw_centered_font_with_shadow(font, text[i], torect(rect.x, vstart + lineHt * i, rect.width, lineHt), size, col);
+    draw_centered_font_with_shadow(font, text[i], torect(rect.x, vstart + lineHt * i, rect.width, lineHt), size, spacing, col);
 }
 
 void draw_button(Rectangle rect, const char* text, float scaleFactor, Color col)
@@ -93,10 +93,10 @@ void draw_button(Rectangle rect, const char* text, float scaleFactor, Color col)
     col = ColorFromHSV(hsv.x, hsv.y, std::min(1.f, hsv.z + 0.3f));
   }
   DrawRectangleRec(rect, col);
-  draw_centered_font_with_shadow(GetFontDefault(), text, rect, 12.f * scaleFactor, WHITE);
+  draw_centered_font_with_shadow(GetFontDefault(), text, rect, 12.f * scaleFactor, 3, WHITE);
 }
 
-void draw_button_9rect(const NineRect& nr, Rectangle rect, Font font, const char* text, float fontSize, float scaleFactor, Color col, const std::function<void()>& on_click)
+void draw_button_9rect(const NineRect& nr, Rectangle rect, Font font, const char* text, float fontSize, int spacing, float scaleFactor, Color col, const std::function<void()>& on_click)
 {
   Vector2 mp = GetMousePosition();
   if (is_vec_in_rect(mp, rect))
@@ -109,7 +109,7 @@ void draw_button_9rect(const NineRect& nr, Rectangle rect, Font font, const char
         on_click();
   }
   draw_9rect(nr, rect, scaleFactor, col);
-  draw_centered_font_with_shadow(font, text, rect, fontSize * scaleFactor, Color{255, 255, 255, col.a});
+  draw_centered_font_with_shadow(font, text, rect, fontSize * scaleFactor, spacing, Color{255, 255, 255, col.a});
 }
 
 void register_ui(eecs::Registry& reg)

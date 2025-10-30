@@ -161,7 +161,7 @@ static void draw_new_file(eecs::Registry& reg, Rectangle panelRect, float scaleF
       panelRect.width * 0.6f, textSize + 2.f * vpad);
   static std::string newFileName = "";
   Rectangle promptRect = torect(editboxRect.x, editboxRect.y - textSize - vpad, editboxRect.width, textSize);
-  draw_centered_font_with_shadow(GetFontDefault(), "Select a filename:",  promptRect, 12.f * scaleFactor, WHITE);
+  draw_centered_font_with_shadow(GetFontDefault(), "Select a filename:",  promptRect, 12.f * scaleFactor, 3, WHITE);
   DrawRectangleRec(editboxRect, Color{50, 50, 50, 200});
   DrawRectangleLinesEx(editboxRect, 1.f, BLACK);
 
@@ -180,7 +180,7 @@ static void draw_new_file(eecs::Registry& reg, Rectangle panelRect, float scaleF
   if (IsKeyPressed(KEY_BACKSPACE) && !newFileName.empty())
     newFileName.resize(newFileName.size() - 1);
 
-  draw_font_with_shadow(GetFontDefault(), newFileName.c_str(), editboxRect.x + vpad, editboxRect.y + vpad, textSize, WHITE);
+  draw_font_with_shadow(GetFontDefault(), newFileName.c_str(), editboxRect.x + vpad, editboxRect.y + vpad, textSize, 3, WHITE);
 
   Rectangle okButtonRect = torect(editboxRect.x,
       editboxRect.y + editboxRect.height + vpad,
@@ -232,7 +232,7 @@ static float draw_list_of_files(Rectangle panelRect, float ypos, float scaleFact
         c(path.filename().string().c_str());
     }
     DrawRectangleRec(underpan, col);
-    draw_font_with_shadow(GetFontDefault(), path.filename().string().c_str(), underpan.x + vpad, underpan.y + vpad, textSize, WHITE);
+    draw_font_with_shadow(GetFontDefault(), path.filename().string().c_str(), underpan.x + vpad, underpan.y + vpad, textSize, 3, WHITE);
     ypos = underpan.y + underpan.height + vpad;
   }
   return ypos;
@@ -243,7 +243,7 @@ static void draw_load_select(eecs::Registry& reg, Rectangle panelRect, float sca
   const float vpad = 4 * scaleFactor;
   const float textSize = 12.f * scaleFactor;
   Rectangle promptRect = torect(panelRect.x, panelRect.y + vpad, panelRect.width, textSize + vpad * 2);
-  draw_centered_font_with_shadow(GetFontDefault(), "Select a file to load",  promptRect, textSize, WHITE);
+  draw_centered_font_with_shadow(GetFontDefault(), "Select a file to load",  promptRect, textSize, 3, WHITE);
 
   // go through all files in the directory
   float ypos = promptRect.y + promptRect.height + vpad;
@@ -273,7 +273,7 @@ static void draw_save_select(eecs::Registry& reg, Rectangle panelRect, float sca
   const float vpad = 4 * scaleFactor;
   const float textSize = 12.f * scaleFactor;
   Rectangle promptRect = torect(panelRect.x, panelRect.y + vpad, panelRect.width, textSize + vpad * 2);
-  draw_centered_font_with_shadow(GetFontDefault(), "Select a file to save to",  promptRect, textSize, WHITE);
+  draw_centered_font_with_shadow(GetFontDefault(), "Select a file to save to",  promptRect, textSize, 3, WHITE);
 
   // go through all files in the directory
   float ypos = promptRect.y + promptRect.height + vpad;
@@ -290,7 +290,7 @@ static void draw_save_select(eecs::Registry& reg, Rectangle panelRect, float sca
       panelRect.width * 0.6f, textSize + 2.f * vpad);
   static std::string newFileName = "";
   Rectangle typePromptRect = torect(editboxRect.x, editboxRect.y - textSize - vpad, editboxRect.width, textSize);
-  draw_centered_font_with_shadow(GetFontDefault(), "Type a filename:", typePromptRect, 12.f * scaleFactor, WHITE);
+  draw_centered_font_with_shadow(GetFontDefault(), "Type a filename:", typePromptRect, 12.f * scaleFactor, 3, WHITE);
   DrawRectangleRec(editboxRect, Color{50, 50, 50, 200});
   DrawRectangleLinesEx(editboxRect, 1.f, BLACK);
 
@@ -316,7 +316,7 @@ static void draw_save_select(eecs::Registry& reg, Rectangle panelRect, float sca
   else
     SetMouseCursor(MOUSE_CURSOR_DEFAULT);
 
-  draw_font_with_shadow(GetFontDefault(), newFileName.c_str(), editboxRect.x + vpad, editboxRect.y + vpad, textSize, WHITE);
+  draw_font_with_shadow(GetFontDefault(), newFileName.c_str(), editboxRect.x + vpad, editboxRect.y + vpad, textSize, 3, WHITE);
 
   Rectangle okButtonRect = torect(editboxRect.x,
       editboxRect.y + editboxRect.height + vpad,
@@ -346,7 +346,7 @@ static void draw_save_prev(eecs::Registry& reg, Rectangle panelRect, float scale
   const float vpad = 4 * scaleFactor;
   const float textSize = 12.f * scaleFactor;
   const Rectangle promptRect = torect(panelRect.x, panelRect.y + panelRect.height * 0.4f, panelRect.width, panelRect.height * 0.2f);
-  draw_centered_font_with_shadow(GetFontDefault(), "Do you want to save your current work?", promptRect, 12.f * scaleFactor, WHITE);
+  draw_centered_font_with_shadow(GetFontDefault(), "Do you want to save your current work?", promptRect, 12.f * scaleFactor, 3, WHITE);
 
   Rectangle okButtonRect = torect(promptRect.x,
       promptRect.y + promptRect.height + vpad,
