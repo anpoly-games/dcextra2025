@@ -1,5 +1,6 @@
 #include <eecs.h>
 #include <raylib.h>
+#include <raymath.h>
 #include <reflection.h>
 
 #include "../math.h"
@@ -9,6 +10,37 @@
 #include "interactables.h"
 #include "advancement.h"
 #include "game_ui.h"
+
+bool ray_hit(eecs::Registry& reg, const vec3f& targetPos, eecs::EntityId target)
+{
+    bool res = false;
+    eecs::query_entities(reg, [&](eecs::EntityId, const Camera& camera)
+    {
+        const vec3f source = tov3(camera.position);
+        vec3f dir = targetPos - source;
+        const float initialDist = dir.mag();
+        const float maxDistSq = sqr(initialDist + 1.f);
+        dir = (1.f / initialDist) * dir;
+        Ray r = {camera.position, toRLVec3(dir)};
+        float bestT = 1e12f;
+        eecs::query_entities(reg, [&](eecs::EntityId eid, const vec3f& position, const Model& model)
+        {
+            if ((source - position).mag2() > maxDistSq || eid == target || bestT < initialDist)
+                return;
+            Matrix matRotation = MatrixRotate(Vector3{0.f, 1.f, 0.f}, eecs::get_comp_or(reg, eid, COMPID(float, rotation),0.f));
+            Matrix matTranslation = MatrixTranslate(position.x, position.y, position.z);
+
+            Matrix matTransform = MatrixMultiply(matRotation, matTranslation);
+            RayCollision coll = GetRayCollisionMesh(r, model.meshes[0], matTransform);
+            if (!coll.hit)
+                return;
+            if (coll.distance < bestT)
+                bestT = coll.distance;
+        }, COMPID(const vec3f, position), COMPID(const Model, model));
+        res = bestT < initialDist;
+    }, COMPID(const Camera, camera));
+    return res;
+}
 
 void draw_interactables(eecs::Registry& reg, float top, float scrwidth, float height, float scaleFactor)
 {
@@ -22,6 +54,7 @@ void draw_interactables(eecs::Registry& reg, float top, float scrwidth, float he
         {
             eecs::query_entities(reg, [&, &ppos = position](eecs::EntityId obj, const vec3f& position, const std::vector<eecs::EntityId>& actionList)
             {
+                vec3f flPos = vec3f(position.x, floorf(position.y), position.z);
                 Vector3 pos2d = GetWorldToScreen3dEx(reg, toRLVec3(position), camera);
                 if (pos2d.z < 0.f)
                     return;
@@ -35,17 +68,18 @@ void draw_interactables(eecs::Registry& reg, float top, float scrwidth, float he
                 {
                     eecs::query_components(reg, act, [&](float distance, const std::string& triggers, const std::string& text)
                     {
-                        if ((ppos - position).mag2() > sqr(distance))
+                        if ((ppos - flPos).mag2() > sqr(distance) || ray_hit(reg, position, obj))
                             return;
                         haveActions = true;
                         std::string finalText = text;
                         eecs::query_component(reg, act, [&](const std::string& attribute)
                         {
+                            const float attrMult = eecs::get_comp_or(reg, act, COMPID(float, attribute_modifier), 1.f);
                             std::string attrName = eecs::get_comp_or(reg, eecs::find_entity(reg, attribute.c_str()), COMPID(std::string, name), attribute);
                             const int attrVal = eecs::get_comp_or(reg, plEid, eecs::comp_id<int>(attribute.c_str()), 0);
                             std::string actionDifficultyMultName = triggers + "_difficultyMult";
                             const float mult = eecs::get_comp_or(reg, obj, eecs::comp_id<float>(actionDifficultyMultName.c_str()), 1.f);
-                            const int chance = int(float(attrVal) * mult);
+                            const int chance = int(float(attrVal) * mult * attrMult);
                             finalText += " (" + attrName + " " + std::to_string(chance) + "%)";
                         }, COMPID(const std::string, attribute));
                         draw_button_9rect(nrect, Rectangle(pos.x, pos.y, width, step), actionFont, finalText.c_str(), 8.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
@@ -95,15 +129,19 @@ void register_interactables(eecs::Registry& reg)
 
     eecs::create_entity_wrap(reg, "rolling_text")
         .set(COMPID(std::vector<ColoredText>, rollingText), {});
+    auto attrRoll = [](eecs::Registry& reg, const char* attrName, int attrVal, float diffMult) -> bool
+    {
+        const int dice = GetRandomValue(1, 100);
+        const int attr = int(float(attrVal) * diffMult);
+        const bool success = dice < attr;
+        push_rolling_text(reg, std::string(TextFormat("%s (%d): roll %d vs %d\n", attrName, attrVal, dice, attr)), success ? GetColor(0x3e8948ff) : GetColor(0xff0044ff));
+        return success;
+    };
     eecs::on_event(reg, FNV1(hack), [&](eecs::EntityId doorEid, eecs::EntityId plEid, float hack_difficultyMult, int hack_successExperience)
     {
         eecs::query_component(reg, plEid, [&](int attr_mind)
         {
-            const int dice = GetRandomValue(1, 100);
-            const int attr = int(float(attr_mind) * hack_difficultyMult);
-            bool success = dice < attr;
-            push_rolling_text(reg, std::string(TextFormat("MIND (%d): roll %d vs %d\n", attr_mind, dice, attr)), success ? GetColor(0x3e8948ff) : GetColor(0xff0044ff));
-            if (success)
+            if (attrRoll(reg, "MIND", attr_mind, hack_difficultyMult))
             {
                 eecs::emit_event(reg, FNV1(toggle), doorEid, plEid);
                 add_exp(reg, plEid, hack_successExperience);
@@ -129,5 +167,48 @@ void register_interactables(eecs::Registry& reg)
             }
         }, COMPID(const int, attr_mind));
     }, COMPID(const float, hack_difficultyMult), COMPID(const int, hack_successExperience));
+
+    auto procAttack = [attrRoll](eecs::Registry& reg, const char* attrName, int attrVal, float attrMult, int dmg, const char* desc, int& hitpoints, int expDrop,
+                         eecs::EntityId enemy, eecs::EntityId pl)
+    {
+        if (!attrRoll(reg, "STR", attrVal, 1.f))
+            return;
+        push_rolling_text(reg, std::string(TextFormat("Damaged enemy for %d dmg %s", dmg, desc)), GetColor(0x3e8948ff));
+        hitpoints -= dmg;
+        if (hitpoints <= 0)
+        {
+            add_exp(reg, pl, expDrop);
+            eecs::del_entity(reg, enemy);
+        }
+    };
+    eecs::on_event(reg, FNV1(swing), [&](eecs::EntityId enemy, eecs::EntityId pl, int& hitpoints, int expDrop)
+    {
+        eecs::query_components(reg, pl, [&](int attr_strength)
+        {
+            procAttack(reg, "STR", attr_strength, 1.f, attr_strength / 5, "(STR/5)", hitpoints, expDrop, enemy, pl);
+        }, COMPID(const int, attr_strength));
+    }, COMPID(int, hitpoints), COMPID(const int, expDrop));
+    eecs::on_event(reg, FNV1(shot), [&](eecs::EntityId enemy, eecs::EntityId pl, int& hitpoints, int expDrop)
+    {
+        eecs::query_components(reg, pl, [&](int attr_agility)
+        {
+            procAttack(reg, "AGI", attr_agility, 1.f, attr_agility / 10, "(AGI/10)", hitpoints, expDrop, enemy, pl);
+        }, COMPID(const int, attr_strength));
+    }, COMPID(int, hitpoints), COMPID(const int, expDrop));
+    eecs::on_event(reg, FNV1(aimed_shot), [&](eecs::EntityId enemy, eecs::EntityId pl, int& hitpoints, int expDrop)
+    {
+        eecs::query_components(reg, pl, [&](int attr_agility)
+        {
+            procAttack(reg, "AGI", attr_agility, 2.f, attr_agility / 20, "(AGI/20)", hitpoints, expDrop, enemy, pl);
+        }, COMPID(const int, attr_strength));
+    }, COMPID(int, hitpoints), COMPID(const int, expDrop));
+    eecs::on_event(reg, FNV1(burst_shot), [&](eecs::EntityId enemy, eecs::EntityId pl, int& hitpoints, int expDrop)
+    {
+        eecs::query_components(reg, pl, [&](int attr_agility)
+        {
+            procAttack(reg, "AGI", attr_agility, 0.5f, attr_agility / 5, "(AGI/5)", hitpoints, expDrop, enemy, pl);
+        }, COMPID(const int, attr_strength));
+    }, COMPID(int, hitpoints), COMPID(const int, expDrop));
+
 }
 

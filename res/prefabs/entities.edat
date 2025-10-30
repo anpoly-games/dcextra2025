@@ -17,3 +17,46 @@ SpawnPoint = {
     dbox_name : str = "spawn"
 }
 
+_SwingAction = {
+    text : str = "Swing"
+    triggers : str = "swing"
+    distance : float = "1.1"
+    attribute : str = "attr_strength"
+}
+
+_ShootAction = {
+    text : str = "Shot"
+    triggers : str = "shot"
+    distance : float = "4"
+    attribute : str = "attr_agility"
+}
+
+_AimedShotAction = {
+    text : str = "Aimed shot"
+    triggers : str = "aimed_shot"
+    distance : float = "5"
+    attribute : str = "attr_agility"
+    attribute_modifier : float = "2.0"
+}
+
+_BurstShotAction = {
+    text : str = "Burst shot"
+    triggers : str = "burst_shot"
+    distance : float = "3"
+    attribute : str = "attr_agility"
+    attribute_modifier : float = "0.5"
+}
+
+_BaseCreature = {
+    billboard : Tag = ""
+    billboard_size : float = "0.6"
+    hitpoints : int = "10"
+    actionList : eid[] = ["_SwingAction", "_ShootAction", "_AimedShotAction", "_BurstShotAction"]
+    relativePos : float[3] = ["0", "0.3", "0"]
+    expDrop : int = "25"
+}
+
+ShroomBlob <- _BaseCreature = {
+    texture_filename : str = "res/textures/creatures/rykhath-tiles-58.png"
+}
+

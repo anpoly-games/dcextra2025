@@ -587,6 +587,16 @@ void save_level(eecs::Registry& reg, const char* filename)
         edat += std::string("    ") + std::string(view) + " : str = \"" + val + "\"\n";
     });
 
+    handlers.addTypeHandler<eecs::EntityId>([&](const std::string_view& view, eecs::EntityId eid)
+    {
+        edat += std::string("    ") + std::string(view) + " : eid = ";
+        eecs::entity_name(reg, eid, [&](const std::string& name)
+        {
+            edat += std::string("\"") + name + "\"";
+        });
+        edat += std::string("\n");
+    });
+
     handlers.addTypeHandler<std::vector<eecs::EntityId>>([&](const std::string_view& view, const std::vector<eecs::EntityId>& val)
     {
         edat += std::string("    ") + std::string(view) + " : eid[] = [";

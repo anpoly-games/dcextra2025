@@ -68,12 +68,12 @@ void register_renderer(eecs::Registry& reg)
             DrawModelEx(model, toRLVec3(position), Vector3{0.f, 1.f, 0.f}, eecs::get_comp_or(reg, eid, COMPID(float, rotation), 0.f), Vector3{1.f, 1.f, 1.f}, WHITE);
         }, COMPID(Model, model), COMPID(const vec3f, position));
 
-        eecs::query_entities(reg, [&](eecs::EntityId eid, const Texture2D& texture, const vec3f& position, Tag tag)
+        eecs::query_entities(reg, [&](eecs::EntityId eid, const Texture2D& texture, const vec3f& position, float billboard_size, Tag tag)
         {
             BeginShaderMode(lightingShader);
-            DrawBillboard(camera, texture, toRLVec3(position), 1.0f, WHITE);
+            DrawBillboard(camera, texture, toRLVec3(position), billboard_size, WHITE);
             EndShaderMode();
-        }, COMPID(const Texture2D, texture_diff), COMPID(const vec3f, position), COMPID(Tag, billboard));
+        }, COMPID(const Texture2D, texture_diff), COMPID(const vec3f, position), COMPID(const float, billboard_size), COMPID(Tag, billboard));
 
     }, COMPID(const Camera, camera));
 }
