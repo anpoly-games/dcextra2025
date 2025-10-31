@@ -18,6 +18,8 @@ struct vec2
   vec2<T>& operator=(const vec2<T>& rhs) = default;
   vec2<T>& operator=(vec2<T>&& rhs) = default;
 
+  vec2<T> operator-() const { return vec2<T>(-x, -y); }
+
   T dot(const vec2<T>& rhs) const { return x * rhs.x + y * rhs.y; }
 
   T mag2() const { return sqr(x) + sqr(y); }
@@ -82,6 +84,8 @@ struct vec3
 
   vec3<T>& operator=(const vec3<T>& rhs) = default;
   bool operator==(const vec3<T>& rhs) const { return x == rhs.x && y == rhs.y && z == rhs.z; }
+
+  vec3<T> operator-() const { return vec3<T>(-x, -y, -z); }
 
   T dot(const vec3<T>& rhs) const { return x * rhs.x + y * rhs.y + z * rhs.z; }
 

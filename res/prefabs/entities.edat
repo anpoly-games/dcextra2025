@@ -63,3 +63,13 @@ ShroomBlob <- _BaseCreature = {
     texture_filename : str = "res/textures/creatures/rykhath-tiles-58.png"
 }
 
+_BaseDecor = {
+    billboard : Tag = ""
+    billboard_size : float = "0.6"
+    relativePos : float[3] = ["0", "0.3", "0"]
+}
+
+DecorShroom <- _BaseDecor = {
+    texture_filename : str = "res/textures/decor/shrooms_01.png"
+}
+

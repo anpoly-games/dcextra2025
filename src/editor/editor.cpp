@@ -292,46 +292,42 @@ void register_editor(eecs::Registry& reg)
                 }
             }, COMPID(const vec3f, position), COMPID(const vec2i, trigger_volume));
 
-            eecs::query_entities(reg, [&](eecs::EntityId eid, const vec3f& position, const Texture2D& tex, Tag tag)
+            eecs::query_entities(reg, [&](eecs::EntityId eid, const vec3f& position, const Texture2D& tex, float billboard_size, Tag tag)
             {
-                vec3 aCamDir{fabsf(camDir.x), fabsf(camDir.y), fabsf(camDir.z)};
-                int maxCamDir = aCamDir.x > std::max(aCamDir.y, aCamDir.z) ? 0 : (aCamDir.y > aCamDir.z ? 1 : 2);
-                Vector3 p1{toRLVec3(position)}, p2{toRLVec3(position)}, p3{toRLVec3(position)}, p4{toRLVec3(position)};
-                
-#define PLANE_PTS(X,Y) \
-    p1.X += 0.5f; \
-    p1.Y -= 0.5f; \
-    p2.X += 0.5f; \
-    p2.Y += 0.5f; \
-    p3.X -= 0.5f; \
-    p3.Y += 0.5f; \
-    p4.X -= 0.5f; \
-    p4.Y -= 0.5f;
-                switch(maxCamDir)
-                {
-                    case 0:
-                        PLANE_PTS(y,z);
-                        break;
-                    case 1:
-                        PLANE_PTS(x,z);
-                        break;
-                    case 2:
-                        PLANE_PTS(x,y);
-                        break;
-                    default:
-                        assert(false);
-                }
-#undef PLANE_PTS
+                vec3f camUp(0, 1, 0);
+                vec3f camLeft(camDir.z, 0, -camDir.x);
+                Vector3 p1 = toRLVec3(position + 0.5f * billboard_size * (camUp + camLeft));
+                Vector3 p2 = toRLVec3(position + 0.5f * billboard_size * (camUp - camLeft));
+                Vector3 p3 = toRLVec3(position + 0.5f * billboard_size * (-camUp - camLeft));
+                Vector3 p4 = toRLVec3(position + 0.5f * billboard_size * (-camUp + camLeft));
+                // p1    p2
+                // +-----+
+                // |     |
+                // |     |
+                // +-----+
+                // p4    p3
                 RayCollision coll = GetRayCollisionQuad(r,p1,p2,p3,p4);
                 if (!coll.hit)
                     return;
                 if (coll.distance < bestT)
                 {
+                    // Figure out texture coordinates
+                    const vec3f hzdir = tov3(p2 - p1);
+                    const vec3f vdir = tov3(p1 - p4);
+                    const vec3f origin = tov3(r.position);
+                    const vec3f dir = tov3(r.direction);
+                    const vec3f isectPos = origin + coll.distance * dir;
+                    vec2f uvs = vec2f((isectPos - tov3(p1)).dot(hzdir) / hzdir.mag2(), (isectPos - tov3(p4)).dot(vdir) / vdir.mag2());
+                    // Check for alpha in texture
+                    Image tmpImg = LoadImageFromTexture(tex);
+                    Color c = GetImageColor(tmpImg, uvs.x * tex.width, (1.f - uvs.y) * tex.height);
+                    UnloadImage(tmpImg);
+                    if (c.a != 255)
+                        return;
                     bestT = coll.distance;
                     bestEntity = eid;
                 }
-                
-            }, COMPID(const vec3f, position), COMPID(const Texture2D, texture_diff), COMPID(Tag, billboard));
+            }, COMPID(const vec3f, position), COMPID(const Texture2D, texture_diff), COMPID(const float, billboard_size), COMPID(Tag, billboard));
 
             if (bestEntity != eecs::invalid_eid)
             {
@@ -356,10 +352,10 @@ void register_editor(eecs::Registry& reg)
                     DrawCube(toRLVec3(position), trigger_volume.x + 0.02f, 0.2f + 0.02f, trigger_volume.y + 0.02f, Color{255, 255, 0, 150});
                 }, COMPID(const vec3f, position), COMPID(const vec2i, trigger_volume));
 
-                best.query_comps([&](const vec3f& position, const Texture2D& tex, Tag tag)
+                best.query_comps([&](const vec3f& position, const Texture2D& tex, float billboard_size, Tag tag)
                 {
-                    DrawBillboard(camera, tex, toRLVec3(position), 1.0f, YELLOW);
-                }, COMPID(const vec3f, position), COMPID(const Texture2D, texture_diff), COMPID(Tag, billboard));
+                    DrawBillboard(camera, tex, toRLVec3(position), billboard_size, YELLOW);
+                }, COMPID(const vec3f, position), COMPID(const Texture2D, texture_diff), COMPID(const float, billboard_size), COMPID(Tag, billboard));
 
                 if (IsMouseButtonReleased(0) && !best.has(COMPID(Tag, Door)) && !best.has(COMPID(Tag, wall)))
                     selectedEntity = bestEntity;
