@@ -49,7 +49,8 @@ void draw_interactables(eecs::Registry& reg, float top, float scrwidth, float he
                             const int attrVal = eecs::get_comp_or(reg, plEid, eecs::comp_id<int>(attribute.c_str()), 0);
                             std::string actionDifficultyMultName = triggers + "_difficultyMult";
                             const float mult = eecs::get_comp_or(reg, obj, eecs::comp_id<float>(actionDifficultyMultName.c_str()), 1.f);
-                            const int chance = int(float(attrVal) * mult * attrMult);
+                            const float genMult = eecs::has_comp(reg, plEid, COMPID(Tag, genius)) ? 2.f : 1.f;
+                            const int chance = int(float(attrVal) * mult * attrMult * genMult);
                             finalText += " (" + attrName + " " + std::to_string(chance) + "%)";
                         }, COMPID(const std::string, attribute));
                         draw_button_9rect(nrect, Rectangle(pos.x, pos.y, width, step), actionFont, finalText.c_str(), 8.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
@@ -128,6 +129,12 @@ void register_interactables(eecs::Registry& reg)
             eecs::EntityId actEid, int action_experience,
             fnv1_hash_t succEvt, eecs::EntityId target, eecs::EntityId plEid)
     {
+        if (eecs::has_comp(reg, plEid, COMPID(Tag, genius)))
+        {
+            diffMult *= 2.f;
+            push_rolling_text(reg, "GeniusInj: wears out", WHITE);
+            eecs::del_component(reg, plEid, COMPID(Tag, genius));
+        }
         if (attrRoll(reg, attrName, attrVal, diffMult))
         {
             eecs::emit_event(reg, succEvt, target, plEid);
@@ -170,6 +177,12 @@ void register_interactables(eecs::Registry& reg)
     auto procAttack = [attrRoll](eecs::Registry& reg, const char* attrName, int attrVal, float attrMult, int dmg, const char* desc, int& hitpoints, int expDrop,
                          eecs::EntityId enemy, eecs::EntityId pl)
     {
+        if (eecs::has_comp(reg, pl, COMPID(Tag, genius)))
+        {
+            attrMult *= 2.f;
+            push_rolling_text(reg, "GeniusInj: wears out", WHITE);
+            eecs::del_component(reg, pl, COMPID(Tag, genius));
+        }
         if (!attrRoll(reg, attrName, attrVal, attrMult))
             return;
         push_rolling_text(reg, TextFormat("Damaged enemy for %d dmg %s", dmg, desc), GetColor(0x3e8948ff));
@@ -230,5 +243,108 @@ void register_interactables(eecs::Registry& reg)
         }, COMPID(int, hitpoints), COMPID(const int, expDrop));
     }, COMPID(const eecs::EntityId, parent));
 
+    eecs::on_event(reg, FNV1(add_item), [&](eecs::EntityId actEid, eecs::EntityId pl, eecs::EntityId parent, const std::string& compName)
+    {
+        eecs::query_components(reg, pl, [&](int& item)
+        {
+            item++;
+        }, eecs::ComponentId<int>(compName.c_str()));
+        eecs::del_entity(reg, parent);
+    }, COMPID(const eecs::EntityId, parent), COMPID(const std::string, compName));
+
+    eecs::on_event(reg, FNV1(RegenX), [&](eecs::EntityId pl, eecs::EntityId, int& items_regenX, int& hitpoints, int attr_body)
+    {
+        if (hitpoints >= attr_body)
+            return;
+        const int numHeal = 25;
+        int prevHp = hitpoints;
+        hitpoints = std::min(hitpoints + numHeal, attr_body);
+        push_rolling_text(reg, TextFormat("RegenX: healed %d/%d hp", hitpoints - prevHp, numHeal), WHITE);
+        items_regenX--;
+    }, COMPID(int, items_regenX), COMPID(int, hitpoints), COMPID(const int, attr_body));
+
+    constexpr int numTurns = 10;
+    constexpr int potency = 25;
+
+    auto procUse = [&](eecs::Registry& reg, eecs::EntityId pl, const char* turnsName, const char* name, const char* attrName, int& attr, int& items)
+    {
+        int curTurns = eecs::get_comp_or(reg, pl, eecs::ComponentId<int>(turnsName), 0);
+        if (curTurns > 0)
+            return;
+        attr += potency;
+        items--;
+        eecs::set_component(reg, pl, eecs::ComponentId<int>(turnsName), numTurns);
+        push_rolling_text(reg, TextFormat("%s: %s+%d for %dt", name, attrName, potency, numTurns), WHITE);
+    };
+    eecs::on_event(reg, FNV1(BearSerker), [&](eecs::EntityId pl, eecs::EntityId, int& items_bearserker, int& attr_strength)
+    {
+        procUse(reg, pl, "effect_bearSerkerTurns", "BearSerker", "STR", attr_strength, items_bearserker);
+    }, COMPID(int, items_bearserker), COMPID(int, attr_strength));
+    eecs::on_event(reg, FNV1(RefleXXX), [&](eecs::EntityId pl, eecs::EntityId, int& items_reflexxx, int& attr_agility)
+    {
+        procUse(reg, pl, "effect_reflexxxTurns", "RefleXXX", "AGI", attr_agility, items_reflexxx);
+    }, COMPID(int, items_reflexxx), COMPID(int, attr_agility));
+    eecs::on_event(reg, FNV1(MindDefoger), [&](eecs::EntityId pl, eecs::EntityId, int& items_mindDefoger, int& attr_mind)
+    {
+        procUse(reg, pl, "effect_minDefogerTurns", "MindDefog", "MIND", attr_mind, items_mindDefoger);
+    }, COMPID(int, items_mindDefoger), COMPID(int, attr_mind));
+    eecs::on_event(reg, FNV1(Bandito), [&](eecs::EntityId pl, eecs::EntityId, int& items_bandito, int& attr_strength, int& attr_agility, int& attr_mind)
+    {
+        int curTurns = eecs::get_comp_or(reg, pl, COMPID(int, effect_banditoTurns), 0);
+        if (curTurns > 0)
+            return;
+        attr_strength += potency;
+        attr_agility += potency;
+        attr_mind += potency;
+        items_bandito--;
+        eecs::set_component(reg, pl, COMPID(int, effect_banditoTurns), numTurns);
+        push_rolling_text(reg, TextFormat("Bandito: STR,AGI,MIND+%d for %dt", potency, numTurns), WHITE);
+    }, COMPID(int, items_bandito), COMPID(int, attr_strength), COMPID(int, attr_agility), COMPID(int, attr_mind));
+    eecs::on_event(reg, FNV1(GeniusInj), [&](eecs::EntityId pl, eecs::EntityId, int& items_genius)
+    {
+        if (eecs::has_comp(reg, pl, COMPID(Tag, genius)))
+            return;
+        items_genius--;
+        push_rolling_text(reg, "GeniusInj: applied", WHITE);
+        eecs::set_component(reg, pl, COMPID(Tag, genius), Tag{});
+    }, COMPID(int, items_genius));
+
+    auto procEffect = [&](eecs::Registry& reg, int& turns, int& attr, const char* name)
+    {
+        if (turns <= 0)
+            return;
+        turns--;
+        if (turns == 0)
+        {
+            attr -= potency;
+            push_rolling_text(reg, TextFormat("%s: wears out", name), WHITE);
+        }
+    };
+
+    eecs::on_event(reg, FNV1(next_turn), [&](eecs::EntityId, eecs::EntityId, int& effect_bearSerkerTurns, int& attr_strength)
+    {
+        procEffect(reg, effect_bearSerkerTurns, attr_strength, "BearSerker");
+    }, COMPID(int, effect_bearSerkerTurns), COMPID(int, attr_strength));
+    eecs::on_event(reg, FNV1(next_turn), [&](eecs::EntityId, eecs::EntityId, int& effect_reflexxxTurns, int& attr_agility)
+    {
+        procEffect(reg, effect_reflexxxTurns, attr_agility, "RefleXXX");
+    }, COMPID(int, effect_reflexxxTurns), COMPID(int, attr_agility));
+    eecs::on_event(reg, FNV1(next_turn), [&](eecs::EntityId, eecs::EntityId, int& effect_minDefogerTurns, int& attr_mind)
+    {
+        procEffect(reg, effect_minDefogerTurns, attr_mind, "Mind Defog");
+    }, COMPID(int, effect_minDefogerTurns), COMPID(int, attr_mind));
+    eecs::on_event(reg, FNV1(next_turn), [&](eecs::EntityId, eecs::EntityId, int& effect_banditoTurns, int& attr_strength, int& attr_agility, int& attr_mind)
+    {
+        if (effect_banditoTurns <= 0)
+            return;
+        effect_banditoTurns--;
+        if (effect_banditoTurns == 0)
+        {
+            attr_strength -= potency;
+            attr_agility -= potency;
+            attr_mind -= potency;
+            push_rolling_text(reg, "Bandito: wears out", WHITE);
+        }
+    }, COMPID(int, effect_banditoTurns), COMPID(int, attr_strength), COMPID(int, attr_agility), COMPID(int, attr_mind));
 }
 

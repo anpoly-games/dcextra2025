@@ -20,7 +20,13 @@ eecs::EntityId create_player(eecs::Registry& reg, float x, float z, float rot)
         .set(COMPID(int, hitpoints), 50)
         .set(COMPID(int, level), 1)
         .set(COMPID(int, pointsToSpend), 0)
-        .set(COMPID(int, experience), 0);
+        .set(COMPID(int, experience), 0)
+        .set(COMPID(int, items_regenX), 0)
+        .set(COMPID(int, items_bearserker), 0)
+        .set(COMPID(int, items_reflexxx), 0)
+        .set(COMPID(int, items_mindDefoger), 0)
+        .set(COMPID(int, items_genius), 0)
+        .set(COMPID(int, items_bandito), 0);
     eecs::create_entity_wrap(reg, "attr_strength")
         .set(COMPID(std::string, name), {"STR"});
     eecs::create_entity_wrap(reg, "attr_agility")

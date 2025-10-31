@@ -145,70 +145,75 @@ DecorShroom04 <- _BaseDecor = {
 	relativePos : float[3] = ["0", "0.2", "-0.2"]
 }
 
-_PickupRegenAction = {
-    text : str = "Pick up Regen Juice"
+_PickupAction = {
     triggers : str = "add_item"
-    attrName : str = "items_regenJuice"
+    distance : float = "1.1"
 }
 
-_PickupBearserkerAction = {
+_PickupRegenXAction <- _PickupAction = {
+    text : str = "Pick up RegenX"
+    compName : str = "items_regenX"
+}
+
+_PickupBearserkerAction <- _PickupAction = {
     text : str = "Pick up BearSerker"
-    triggers : str = "add_item"
-    attrName : str = "items_bearserker"
+    compName : str = "items_bearserker"
 }
 
-_PickupReflexxxAction = {
+_PickupReflexxxAction <- _PickupAction = {
     text : str = "Pick up Reflexxx"
-    triggers : str = "add_item"
-    attrName : str = "items_reflexxx"
+    compName : str = "items_reflexxx"
 }
 
-_PickupMindDefogerAction = {
+_PickupMindDefogerAction <- _PickupAction = {
     text : str = "Pick up Mind Defoger"
-    triggers : str = "add_item"
-    attrName : str = "items_mindDefoger"
+    compName : str = "items_mindDefoger"
 }
 
-_PickupGeniusAction = {
+_PickupGeniusAction <- _PickupAction = {
     text : str = "Pick up Genius Injection"
-    triggers : str = "add_item"
-    attrName : str = "items_genius"
+    compName : str = "items_genius"
 }
 
-_PickupBanditoAction = {
+_PickupBanditoAction <- _PickupAction = {
     text : str = "Pick up Bandito"
-    triggers : str = "add_item"
-    attrName : str = "items_bandito"
+    compName : str = "items_bandito"
 }
 
 _PickableItem = {
     billboard : Tag = ""
-    billboard_size : float = "0.4"
-    relativePos : float[3] = ["0", "0.2", "0"]
+    billboard_size : float = "0.2"
+    relativePos : float[3] = ["0", "0.1", "0"]
 }
 
-ItemRegen = {
-    actionPrefabs : str[] = ["_PickupRegenAction"]
+ItemRegenX <- _PickableItem = {
+    actionPrefabs : str[] = ["_PickupRegenXAction"]
+    texture_filename : str = "res/textures/items/regenX.png"
 }
 
-ItemBearserker = {
+ItemBearserker <- _PickableItem = {
     actionPrefabs : str[] = ["_PickupBearserkerAction"]
+    texture_filename : str = "res/textures/items/bearSerker.png"
 }
 
-ItemReflexxx = {
+ItemReflexxx <- _PickableItem = {
     actionPrefabs : str[] = ["_PickupReflexxxAction"]
+    texture_filename : str = "res/textures/items/reflexxx.png"
 }
 
-ItemMindDefoger = {
+ItemMindDefoger <- _PickableItem = {
     actionPrefabs : str[] = ["_PickupMindDefogerAction"]
+    texture_filename : str = "res/textures/items/mindDefoger.png"
 }
 
-ItemGenius = {
+ItemGenius <- _PickableItem = {
     actionPrefabs : str[] = ["_PickupGeniusAction"]
+    texture_filename : str = "res/textures/items/genius.png"
 }
 
-ItemBandito = {
+ItemBandito <- _PickableItem = {
     actionPrefabs : str[] = ["_PickupBanditoAction"]
+    texture_filename : str = "res/textures/items/bandito.png"
 }
 
 

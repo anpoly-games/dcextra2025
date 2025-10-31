@@ -77,6 +77,52 @@ void draw_character(eecs::Registry& reg, float top, float width, float height, f
         COMPID(const int, level), COMPID(const int, experience), COMPID(int, pointsToSpend));
 }
 
+void draw_items(eecs::Registry& reg, float top, float scrwidth, float height, float scaleFactor)
+{
+    static Font itmFont = LoadFontEx("res/textures/ui/8px-IBM_BIOS_8x8.ttf", 8, nullptr, 0);
+    static NineRect nrect = create_9rect(LoadImage("res/textures/ui/button_rect.png"), 2);
+    static Texture2D regenX = LoadTexture("res/textures/items/regenX.png");
+    static Texture2D bearSerker = LoadTexture("res/textures/items/BearSerker.png");
+    static Texture2D reflexxx = LoadTexture("res/textures/items/reflexxx.png");
+    static Texture2D mindDefoger = LoadTexture("res/textures/items/mindDefoger.png");
+    static Texture2D genius = LoadTexture("res/textures/items/genius.png");
+    static Texture2D bandito = LoadTexture("res/textures/items/bandito.png");
+    const vec2i cam_wh = get_cam_wh(reg);
+    vec2f pos = {cam_wh.x + 50.f * scaleFactor, top};
+    const float pad = 4.f * scaleFactor;
+    eecs::query_entities(reg, [&](eecs::EntityId plEid,
+                int& items_regenX, int& items_bearserker, int& items_reflexxx,
+                int& items_mindDefoger, int& items_genius, int& items_bandito)
+    {
+        const float width = (scrwidth - pos.x - 4.f * 4.f * scaleFactor - pad) * 0.5f;
+        const float step = 16.f * scaleFactor;
+        auto drawItem = [&](const char* name, const Texture2D& icon, int& count, const vec2f& pos)
+        {
+            draw_button_9rect(nrect, Rectangle(pos.x, pos.y, width, step), itmFont, "", 8.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
+            [&]()
+            {
+                if (count > 0)
+                {
+                    eecs::emit_event(reg, fnv1StrHash(name), plEid, plEid);
+                    eecs::emit_event(reg, FNV1(next_turn), eecs::invalid_eid, plEid);
+                }
+            });
+            float vpos = pos.y + (step - icon.height * scaleFactor) * 0.5f;
+            float hpos = pos.x + pad;
+            DrawTextureEx(icon, {hpos, vpos}, 0.f, scaleFactor, WHITE);
+            std::string finalText = std::string(name) + ": " + std::to_string(count);
+            draw_centered_font_with_shadow(itmFont, finalText.c_str(), torect(hpos + icon.width * scaleFactor + pad, pos.y, width, step), 8.f * scaleFactor, 0, WHITE, EFC_VCENTER);
+        };
+        drawItem("RegenX", regenX, items_regenX, pos);
+        drawItem("BearSerker", bearSerker, items_bearserker, pos + vec2f(width + pad, 0.f)); pos.y += step + pad;
+        drawItem("RefleXXX", reflexxx, items_reflexxx, pos);
+        drawItem("MindDefoger", mindDefoger, items_mindDefoger, pos + vec2f(width + pad, 0.f)); pos.y += step + pad;
+        drawItem("GeniusInj", genius, items_genius, pos);
+        drawItem("Bandito", bandito, items_bandito, pos + vec2f(width + pad, 0.f)); pos.y += step + 4.f * scaleFactor;
+    }, COMPID(int, items_regenX), COMPID(int, items_bearserker), COMPID(int, items_reflexxx),
+       COMPID(int, items_mindDefoger), COMPID(int, items_genius), COMPID(int, items_bandito));
+}
+
 void draw_ui(eecs::Registry& reg, float width, float height, float scaleFactor)
 {
     static Font headerFont = LoadFontEx("res/textures/ui/16px-IBM_VGA_8x16.ttf", 16, nullptr, 0);
@@ -112,6 +158,8 @@ void draw_ui(eecs::Registry& reg, float width, float height, float scaleFactor)
     draw_character(reg, 40.f * scaleFactor, width, height, scaleFactor);
     //DrawFPS(20, height - 40);
     draw_interactables(reg, charEnd + borderHt + headerSize + pad, width, height, scaleFactor);
+
+    draw_items(reg, actEnd + borderHt + headerSize + pad, width, height, scaleFactor);
 
     const vec2i cam_wh = get_cam_wh(reg);
     vec2f pos = {cam_wh.x + 50.f * scaleFactor, itmEnd + borderHt + headerSize + pad};

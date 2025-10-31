@@ -10122,7 +10122,7 @@ _1204 = {
     position : float[3] = ["2.500000", "0.500000", "4.500000"]
     Column : Tag = ""
 }
-_1206 = {
+_1205 = {
     prefab : str = "StoneColumn"
     Saveable : Tag = ""
     primitiveBlock_size : float[3] = ["0.083333", "1.000000", "0.083333"]
@@ -10132,7 +10132,7 @@ _1206 = {
     position : float[3] = ["3.500000", "0.500000", "4.500000"]
     Column : Tag = ""
 }
-_1205 = {
+_1206 = {
     prefab : str = "StoneColumn"
     Saveable : Tag = ""
     primitiveBlock_size : float[3] = ["0.083333", "1.000000", "0.083333"]
@@ -10151,4 +10151,70 @@ _1207 = {
     texture_filename : str = "res/textures/walls/meatspace_metal_01.png"
     position : float[3] = ["-1.500000", "0.500000", "4.500000"]
     Column : Tag = ""
+}
+_1208 = {
+    prefab : str = "ItemRegenX"
+    Saveable : Tag = ""
+    billboard : Tag = ""
+    rotation : float = "360.000000"
+    texture_filename : str = "res/textures/items/regenX.png"
+    position : float[3] = ["-1.000000", "0.100000", "3.000000"]
+    billboard_size : float = "0.200000"
+    actionPrefabs : str[] = ["_PickupRegenXAction"]
+    relativePos : float[3] = ["0.000000", "0.100000", "0.000000"]
+}
+_1209 = {
+    prefab : str = "ItemBearserker"
+    Saveable : Tag = ""
+    billboard : Tag = ""
+    rotation : float = "360.000000"
+    texture_filename : str = "res/textures/items/bearSerker.png"
+    position : float[3] = ["0.000000", "0.100000", "3.000000"]
+    billboard_size : float = "0.200000"
+    actionPrefabs : str[] = ["_PickupBearserkerAction"]
+    relativePos : float[3] = ["0.000000", "0.100000", "0.000000"]
+}
+_1210 = {
+    prefab : str = "ItemReflexxx"
+    Saveable : Tag = ""
+    billboard : Tag = ""
+    rotation : float = "360.000000"
+    texture_filename : str = "res/textures/items/reflexxx.png"
+    position : float[3] = ["-1.000000", "0.100000", "2.000000"]
+    billboard_size : float = "0.200000"
+    actionPrefabs : str[] = ["_PickupReflexxxAction"]
+    relativePos : float[3] = ["0.000000", "0.100000", "0.000000"]
+}
+_1211 = {
+    prefab : str = "ItemMindDefoger"
+    Saveable : Tag = ""
+    billboard : Tag = ""
+    rotation : float = "360.000000"
+    texture_filename : str = "res/textures/items/mindDefoger.png"
+    position : float[3] = ["0.000000", "0.100000", "2.000000"]
+    billboard_size : float = "0.200000"
+    actionPrefabs : str[] = ["_PickupMindDefogerAction"]
+    relativePos : float[3] = ["0.000000", "0.100000", "0.000000"]
+}
+_1212 = {
+    prefab : str = "ItemGenius"
+    Saveable : Tag = ""
+    billboard : Tag = ""
+    rotation : float = "630.000000"
+    texture_filename : str = "res/textures/items/genius.png"
+    position : float[3] = ["-1.000000", "0.100000", "1.000000"]
+    billboard_size : float = "0.200000"
+    actionPrefabs : str[] = ["_PickupGeniusAction"]
+    relativePos : float[3] = ["0.000000", "0.100000", "0.000000"]
+}
+_1213 = {
+    prefab : str = "ItemBandito"
+    Saveable : Tag = ""
+    billboard : Tag = ""
+    rotation : float = "630.000000"
+    texture_filename : str = "res/textures/items/bandito.png"
+    position : float[3] = ["-1.000000", "0.100000", "0.000000"]
+    billboard_size : float = "0.200000"
+    actionPrefabs : str[] = ["_PickupBanditoAction"]
+    relativePos : float[3] = ["0.000000", "0.100000", "0.000000"]
 }
