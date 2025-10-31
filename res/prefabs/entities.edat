@@ -211,31 +211,37 @@ _PickableItem = {
 ItemRegenX <- _PickableItem = {
     actionPrefabs : str[] = ["_PickupRegenXAction"]
     texture_filename : str = "res/textures/items/regenX.png"
+    texture_emissiveFilename : str = "res/textures/items/regenX_em.png"
 }
 
 ItemBearserker <- _PickableItem = {
     actionPrefabs : str[] = ["_PickupBearserkerAction"]
     texture_filename : str = "res/textures/items/bearSerker.png"
+    texture_emissiveFilename : str = "res/textures/items/bearSerker_em.png"
 }
 
 ItemReflexxx <- _PickableItem = {
     actionPrefabs : str[] = ["_PickupReflexxxAction"]
     texture_filename : str = "res/textures/items/reflexxx.png"
+    texture_emissiveFilename : str = "res/textures/items/reflexxx_em.png"
 }
 
 ItemMindDefoger <- _PickableItem = {
     actionPrefabs : str[] = ["_PickupMindDefogerAction"]
     texture_filename : str = "res/textures/items/mindDefoger.png"
+    texture_emissiveFilename : str = "res/textures/items/mindDefoger_em.png"
 }
 
 ItemGenius <- _PickableItem = {
     actionPrefabs : str[] = ["_PickupGeniusAction"]
     texture_filename : str = "res/textures/items/genius.png"
+    texture_emissiveFilename : str = "res/textures/items/genius_em.png"
 }
 
 ItemBandito <- _PickableItem = {
     actionPrefabs : str[] = ["_PickupBanditoAction"]
     texture_filename : str = "res/textures/items/bandito.png"
+    texture_emissiveFilename : str = "res/textures/items/bandito_em.png"
 }
 
 CyberFog = {
@@ -300,5 +306,14 @@ _CyberCreature = {
 
 CyberEnemy01 <- _CyberCreature = {
     texture_filename : str = "res/textures/creatures/cyber_enemy_01.png"
+    texture_emissiveFilename : str = "res/textures/creatures/cyber_enemy_01_em.png"
+}
+
+CyberEnemy02 <- _CyberCreature = {
+    texture_filename : str = "res/textures/creatures/cyber_enemy_02.png"
+    texture_emissiveFilename : str = "res/textures/creatures/cyber_enemy_02_em.png"
+    expDrop : int = "50"
+    attackDamage : int = "5"
+    hitpoints : int = "20"
 }
 

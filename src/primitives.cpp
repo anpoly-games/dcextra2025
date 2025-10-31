@@ -232,5 +232,56 @@ void register_primitives(eecs::Registry& reg)
     {
         SetMaterialTexture(&model.materials[0], MATERIAL_MAP_EMISSION, texture_emissive);
     }, COMPID(Model, model), COMPID(const Texture2D, texture_emissive));
+
+    eecs::reg_enter(reg, [&](eecs::EntityId eid, float billboard_size)
+    {
+        Mesh mesh = { 0 };
+        mesh.triangleCount = 2;
+        mesh.vertexCount = 4;
+
+        mesh.vertices = new float[mesh.vertexCount * 3];
+        mesh.normals = new float[mesh.vertexCount * 3];
+        mesh.texcoords = new float[mesh.vertexCount * 2];
+
+        // 0   1
+        // +--+
+        // | /|
+        // |/ |
+        // +--+
+        // 2   3
+        float vertices[] = {
+            -billboard_size * 0.5f, +billboard_size * 0.5f, 0.f,
+            +billboard_size * 0.5f, +billboard_size * 0.5f, 0.f,
+            -billboard_size * 0.5f, -billboard_size * 0.5f, 0.f,
+            +billboard_size * 0.5f, -billboard_size * 0.5f, 0.f,
+        };
+        float texcoords[] = {
+            1.0f, 0.0f,
+            0.0f, 0.0f,
+            1.0f, 1.0f,
+            0.0f, 1.0f,
+        };
+        float normals[] = {
+            0.0f, 0.0f, -1.0f,
+            0.0f, 0.0f, -1.0f,
+            0.0f, 0.0f, -1.0f,
+            0.0f, 0.0f, -1.0f,
+        };
+        unsigned short indices[] = {
+            0, 1, 2,
+            1, 3, 2
+        };
+
+        memcpy(mesh.vertices, vertices, mesh.vertexCount*3*sizeof(float));
+        memcpy(mesh.texcoords, texcoords, mesh.vertexCount*2*sizeof(float));
+        memcpy(mesh.normals, normals, mesh.vertexCount*3*sizeof(float));
+
+        mesh.indices = (unsigned short *)RL_MALLOC(mesh.triangleCount*3*sizeof(unsigned short));
+        memcpy(mesh.indices, indices, mesh.triangleCount*3*sizeof(unsigned short));
+
+        UploadMesh(&mesh, false);
+        Model model = LoadModelFromMesh(mesh);
+        eecs::set_component(reg, eid, COMPID(Model, model), model);
+    }, COMPID(const float, billboard_size));
 }
 

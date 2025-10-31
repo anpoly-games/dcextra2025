@@ -75,19 +75,18 @@ void register_renderer(eecs::Registry& reg)
             SetShaderValue(lightingShader, fogParamsLoc, &fog_params, SHADER_UNIFORM_VEC4);
         }, COMPID(const vec4f, fog_params));
 
+        eecs::query_entities(reg, [&](eecs::EntityId eid, float& rotation, const vec3f& position, Tag billboard)
+        {
+            const vec3f camDir = tov3(camera.target) - tov3(camera.position);
+            const float angle = 90.f - atan2f(camDir.z, camDir.x) * RAD2DEG;
+            rotation = angle;
+        }, COMPID(float, rotation), COMPID(const vec3f, position), COMPID(Tag, billboard));
+
         eecs::query_entities(reg, [&](eecs::EntityId eid, Model& model, const vec3f& position)
         {
             model.materials[0].shader = lightingShader;
             DrawModelEx(model, toRLVec3(position), Vector3{0.f, 1.f, 0.f}, eecs::get_comp_or(reg, eid, COMPID(float, rotation), 0.f), Vector3{1.f, 1.f, 1.f}, WHITE);
         }, COMPID(Model, model), COMPID(const vec3f, position));
-
-        eecs::query_entities(reg, [&](eecs::EntityId eid, const Texture2D& texture, const vec3f& position, float billboard_size, Tag tag)
-        {
-            BeginShaderMode(lightingShader);
-            DrawBillboard(camera, texture, toRLVec3(position), billboard_size, WHITE);
-            EndShaderMode();
-        }, COMPID(const Texture2D, texture_diff), COMPID(const vec3f, position), COMPID(const float, billboard_size), COMPID(Tag, billboard));
-
     }, COMPID(const Camera, camera));
 }
 
