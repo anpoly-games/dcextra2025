@@ -66,13 +66,12 @@ ShroomBlob <- _BaseCreature = {
 _BaseDecor = {
     billboard : Tag = ""
     billboard_size : float = "0.6"
-    relativePos : float[3] = ["0", "0.3", "0"]
+    relativePos : float[3] = ["0", "0.3", "-0.2"]
 }
 
-DecorShroom <- _BaseDecor = {
-    texture_filename : str = "res/textures/decor/shrooms_01.png"
-}
 
+
+<<<<<<< HEAD
 _BaseLadder = {
     primitiveRamp_base : float = "0"
     primitiveRamp_top : float = "0.5"
@@ -114,3 +113,25 @@ MedievalSun = {
     dbox_color : float[3] = ["0", "1", "0"]
     dbox_name : str = "sun"
 }
+=======
+
+DecorShroom01 <- _BaseDecor = {
+    texture_filename : str = "res/textures/decor/shrooms_01.png"
+}
+
+DecorShroom02 <- _BaseDecor = {
+    texture_filename : str = "res/textures/decor/shrooms_02.png"
+	relativePos : float[3] = ["0", "0.2", "-0.2"]
+}
+
+DecorShroom03 <- _BaseDecor = {
+    texture_filename : str = "res/textures/decor/shrooms_03.png"
+    billboard_size : float = "0.4"
+	relativePos : float[3] = ["0", "0.1", "-0.2"]
+}
+
+DecorShroom04 <- _BaseDecor = {
+    texture_filename : str = "res/textures/decor/shrooms_04.png"
+	relativePos : float[3] = ["0", "0.2", "-0.2"]
+}
+>>>>>>> 46d6dd8 (some lvl 0 mushrooms spead around)
