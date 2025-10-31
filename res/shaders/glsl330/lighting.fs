@@ -38,9 +38,9 @@ void main()
 {
     // Texel color fetching from texture sampler
     vec4 texelColor = texture(texture0, fragTexCoord);
+    vec4 texelEmission = texture(emissiveMap, fragTexCoord);
     if (texelColor.a == 0.0)
       discard;
-    vec4 texelEmission = texture(emissiveMap, fragTexCoord);
     // pixel position
 
     vec2 texelSz = vec2(12.0);

@@ -169,10 +169,6 @@ void register_interactables(eecs::Registry& reg)
         }, COMPID(const int, attr_mind));
     }, COMPID(const eecs::EntityId, parent), COMPID(const int, action_experience), COMPID(const std::string, action_successEvent));
 
-    static Sound swoosh = LoadSound("res/audio/sfx/swoosh_01.ogg");
-    static Sound shot = LoadSound("res/audio/sfx/hit_03.ogg");
-    static Sound aimedShot = LoadSound("res/audio/sfx/hit_02.ogg");
-    static Sound burstShot = LoadSound("res/audio/sfx/hit_04.ogg");
     static Sound enemyHit = LoadSound("res/audio/sfx/hit_06.ogg");
     auto procAttack = [attrRoll](eecs::Registry& reg, const char* attrName, int attrVal, float attrMult, int dmg, const char* desc, int& hitpoints, int expDrop,
                          eecs::EntityId enemy, eecs::EntityId pl)
@@ -194,6 +190,24 @@ void register_interactables(eecs::Registry& reg)
             eecs::del_entity(reg, enemy);
         }
     };
+    eecs::on_event(reg, FNV1(attack), [&](eecs::EntityId actEid, eecs::EntityId pl, eecs::EntityId parent, const std::string& attribute, float attr_dmgMult, eecs::EntityId action_sound)
+    {
+        const float attrMult = eecs::get_comp_or(reg, actEid, COMPID(float, attribute_modifier), 1.f);
+        eecs::query_components(reg, parent, [&](int& hitpoints, int expDrop)
+        {
+            eecs::query_components(reg, pl, [&](int attr)
+            {
+                std::string attrName = eecs::get_comp_or(reg, eecs::find_entity(reg, attribute.c_str()), COMPID(std::string, name), attribute);
+                eecs::query_components(reg, action_sound, [&](const Sound& sound)
+                {
+                    PlaySound(sound);
+                }, COMPID(const Sound, sound));
+                std::string dmgLine = std::string(TextFormat("(%s/%d)", attrName.c_str(), int(roundf(1.f / attr_dmgMult))));
+                procAttack(reg, attrName.c_str(), attr, attrMult, attr * attr_dmgMult, dmgLine.c_str(), hitpoints, expDrop, parent, pl);
+            }, eecs::ComponentId<int>(attribute.c_str()));
+        }, COMPID(int, hitpoints), COMPID(const int, expDrop));
+    }, COMPID(const eecs::EntityId, parent), COMPID(const std::string, attribute), COMPID(const float, attr_dmgMult), COMPID(const eecs::EntityId, action_sound));
+    /*
     eecs::on_event(reg, FNV1(swing), [&](eecs::EntityId actEid, eecs::EntityId pl, eecs::EntityId parent)
     {
         const float attrMult = eecs::get_comp_or(reg, actEid, COMPID(float, attribute_modifier), 1.f);
@@ -242,6 +256,7 @@ void register_interactables(eecs::Registry& reg)
             }, COMPID(const int, attr_agility));
         }, COMPID(int, hitpoints), COMPID(const int, expDrop));
     }, COMPID(const eecs::EntityId, parent));
+    */
 
     eecs::on_event(reg, FNV1(add_item), [&](eecs::EntityId actEid, eecs::EntityId pl, eecs::EntityId parent, const std::string& compName)
     {

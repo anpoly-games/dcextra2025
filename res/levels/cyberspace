@@ -1,0 +1,3546 @@
+_153 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "0.500000", "2.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_154 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "0.500000", "3.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_155 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "0.500000", "4.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_156 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "0.500000", "5.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_157 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "0.500000", "6.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_158 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "0.500000", "2.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_159 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "0.500000", "3.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_160 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "0.500000", "4.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_161 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "0.500000", "5.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_162 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "0.500000", "6.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_163 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "1.500000", "4.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_164 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "1.500000", "3.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_165 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "1.500000", "2.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_166 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "1.500000", "1.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_167 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "1.500000", "5.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_168 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "1.500000", "7.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_169 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "1.500000", "6.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_170 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "1.500000", "6.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_171 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "1.500000", "5.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_172 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "1.500000", "3.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_173 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "1.500000", "4.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_174 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "1.500000", "1.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_175 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "1.500000", "2.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_176 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "-0.500000", "3.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_177 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "-0.500000", "4.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_178 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "-0.500000", "5.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_179 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "-0.500000", "6.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_180 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "-0.500000", "7.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_181 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "-0.500000", "7.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_182 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "-0.500000", "6.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_183 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "-0.500000", "5.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_184 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "-0.500000", "4.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_185 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "-0.500000", "3.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_186 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "-0.500000", "2.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_187 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "0.500000", "2.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_188 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "0.500000", "3.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_189 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "0.500000", "4.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_190 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "0.500000", "5.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_191 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "0.500000", "6.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_192 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "0.500000", "7.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_193 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "0.500000", "1.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_194 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "0.500000", "2.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_195 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "0.500000", "3.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_196 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "0.500000", "4.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_197 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "0.500000", "5.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_198 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "0.500000", "6.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_199 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "0.500000", "7.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_200 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "1.500000", "2.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_201 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "1.500000", "3.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_202 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "1.500000", "4.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_203 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "1.500000", "5.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_204 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "1.500000", "6.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_205 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "1.500000", "7.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_206 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "-0.500000", "7.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_207 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "-0.500000", "6.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_208 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "-0.500000", "5.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_209 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "-0.500000", "4.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_210 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "-0.500000", "3.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_211 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "-0.500000", "2.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_212 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "1.500000", "-6.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_213 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "-0.500000", "3.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_214 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "-0.500000", "4.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_215 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "-0.500000", "5.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_216 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "-0.500000", "6.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_217 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "-0.500000", "7.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_218 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "-0.500000", "8.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_219 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "1.500000", "8.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_220 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "1.500000", "7.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_221 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "1.500000", "6.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_222 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "1.500000", "4.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_223 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "1.500000", "5.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_224 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "1.500000", "3.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_225 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "1.500000", "2.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_226 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "1.500000", "1.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_227 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "1.500000", "0.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_228 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["1.000000", "0.000000", "2.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_229 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["1.000000", "0.000000", "3.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_230 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["1.000000", "0.000000", "4.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_231 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["1.000000", "0.000000", "5.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_232 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["1.000000", "0.000000", "6.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_233 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["1.000000", "0.000000", "1.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_234 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["1.000000", "0.000000", "7.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_235 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["1.000000", "0.000000", "8.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_236 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["1.000000", "0.000000", "9.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_237 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["1.000000", "0.000000", "10.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_238 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    position : float[3] = ["4.000000", "0.000000", "10.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_239 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    position : float[3] = ["2.000000", "0.000000", "10.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_240 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    position : float[3] = ["-1.000000", "0.000000", "10.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_241 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    position : float[3] = ["3.000000", "0.000000", "10.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_242 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "0.500000", "0.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_243 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "0.500000", "-1.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_244 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "0.500000", "-2.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_245 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "0.500000", "-3.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_246 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "0.500000", "-4.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_247 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "0.500000", "-5.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_248 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "0.500000", "-6.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_249 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "1.500000", "-1.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_250 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "1.500000", "-2.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_251 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "1.500000", "-3.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_252 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "1.500000", "-4.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_253 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "1.500000", "-5.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_254 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "-0.500000", "2.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_255 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "-0.500000", "1.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_256 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "-0.500000", "0.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_257 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "-0.500000", "-1.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_258 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "-0.500000", "-2.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_259 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "-0.500000", "-3.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_260 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "-0.500000", "-4.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_261 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "-0.500000", "-5.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_262 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["-0.500000", "-0.500000", "-6.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_263 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "-0.500000", "1.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_264 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "-0.500000", "0.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_265 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "-0.500000", "-1.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_266 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "-0.500000", "-2.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_267 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "-0.500000", "-3.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_268 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "-0.500000", "-4.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_269 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "-0.500000", "-6.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_270 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "-0.500000", "-5.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_271 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "0.500000", "-6.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_272 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "0.500000", "-5.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_273 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "0.500000", "-4.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_274 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "0.500000", "-3.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_275 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "0.500000", "-2.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_276 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "0.500000", "-1.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_277 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "0.500000", "0.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_278 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "0.500000", "1.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_279 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "1.500000", "1.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_280 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "1.500000", "0.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_281 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "1.500000", "-1.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_282 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "1.500000", "-2.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_283 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "1.500000", "-3.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_284 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "1.500000", "-4.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_285 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "1.500000", "-5.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_286 = {
+    prefab : str = "CSWallLines02"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "1.500000", "-6.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_287 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "0.500000", "1.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_288 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "0.500000", "0.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_289 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "0.500000", "-1.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_290 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "0.500000", "-2.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_291 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "0.500000", "-3.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_292 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "0.500000", "-4.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_293 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "0.500000", "-5.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_294 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "0.500000", "-6.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_295 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "1.500000", "12.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_296 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "0.500000", "1.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_297 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "0.500000", "0.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_298 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "0.500000", "-1.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_299 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "0.500000", "-2.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_300 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "0.500000", "-3.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_301 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "0.500000", "-4.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_302 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "0.500000", "-5.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_303 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "0.500000", "-6.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_304 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "1.500000", "-6.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_305 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "1.500000", "-5.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_306 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "1.500000", "-4.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_307 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "1.500000", "-3.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_308 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "1.500000", "-2.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_309 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "1.500000", "-1.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_310 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "1.500000", "0.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_311 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "-0.500000", "1.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_312 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "-0.500000", "0.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_313 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "-0.500000", "-1.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_314 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "-0.500000", "-2.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_315 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "-0.500000", "-3.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_316 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "-0.500000", "-4.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_317 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "-0.500000", "-5.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_318 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "-0.500000", "-6.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_319 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "-0.500000", "-6.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_320 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "-0.500000", "-5.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_321 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "-0.500000", "-4.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_322 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "-0.500000", "-3.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_323 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "-0.500000", "-2.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_324 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "-0.500000", "-1.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_325 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "-0.500000", "0.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_326 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "-0.500000", "1.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_327 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "-0.500000", "2.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_328 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "0.500000", "7.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_329 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "0.500000", "8.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_330 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "0.500000", "7.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_331 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "0.500000", "8.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_332 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "1.500000", "7.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_333 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "1.500000", "8.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_334 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "1.500000", "8.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_335 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "1.500000", "0.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_336 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "1.500000", "-1.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_337 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "1.500000", "-2.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_338 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "1.500000", "-3.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_339 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "1.500000", "-4.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_340 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "1.500000", "-5.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_341 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "1.500000", "-6.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_342 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "-0.500000", "8.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_343 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "-0.500000", "8.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_344 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "0.500000", "9.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_345 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.000000", "0.500000", "9.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_346 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["-1.000000", "0.500000", "9.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_347 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.000000", "0.500000", "9.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_348 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["3.000000", "0.500000", "9.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_349 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["-2.500000", "1.500000", "12.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_350 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.000000", "1.500000", "9.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_351 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.000000", "1.500000", "9.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_352 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["-1.000000", "1.500000", "9.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_353 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "1.500000", "9.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_354 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "1.500000", "9.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_355 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "0.500000", "9.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_356 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.500000", "-0.500000", "9.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_357 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.500000", "-0.500000", "9.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_358 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.000000", "-0.500000", "9.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_359 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["-1.000000", "-0.500000", "9.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_360 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.000000", "-0.500000", "9.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_361 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["3.000000", "-0.500000", "9.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_362 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    position : float[3] = ["0.000000", "1.000000", "10.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_363 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    position : float[3] = ["-1.000000", "1.000000", "10.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_364 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    position : float[3] = ["1.000000", "1.000000", "10.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_365 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    position : float[3] = ["2.000000", "1.000000", "10.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_366 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    position : float[3] = ["3.000000", "1.000000", "10.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_367 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    position : float[3] = ["0.000000", "0.000000", "10.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_368 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["4.000000", "0.000000", "11.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_369 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["4.000000", "0.000000", "12.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_370 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "0.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.000000", "0.500000", "11.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_371 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "0.500000", "12.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_372 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "0.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.000000", "0.500000", "11.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_373 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "0.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.000000", "0.500000", "11.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_374 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "0.000000"
+    wall : Tag = ""
+    position : float[3] = ["-1.000000", "0.500000", "11.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_375 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "0.000000"
+    wall : Tag = ""
+    position : float[3] = ["-2.000000", "0.500000", "11.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_376 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "0.000000"
+    wall : Tag = ""
+    position : float[3] = ["-2.000000", "1.500000", "11.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_377 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "0.000000"
+    wall : Tag = ""
+    position : float[3] = ["-1.000000", "1.500000", "11.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_378 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "0.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.000000", "1.500000", "11.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_379 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "0.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.000000", "1.500000", "11.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_380 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "0.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.000000", "1.500000", "11.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_381 = {
+    prefab : str = "SpawnPoint"
+    Saveable : Tag = ""
+    rotation : float = "360.000000"
+    dbox_color : float[3] = ["0.000000", "1.000000", "0.000000"]
+    dbox_size : float[3] = ["0.250000", "0.250000", "0.250000"]
+    position : float[3] = ["1.000000", "0.000000", "2.000000"]
+    dbox_name : str = "spawn"
+    dbox_offset : float[3] = ["0.000000", "0.125000", "0.000000"]
+    spawn : Tag = ""
+}
+_382 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["4.000000", "0.000000", "13.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_383 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    position : float[3] = ["3.000000", "0.000000", "13.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_384 = {
+    prefab : str = "CSLinesLadderBase"
+    Saveable : Tag = ""
+    ladder : Tag = ""
+    trigger_volume : int[2] = ["1", "1"]
+    primitiveRamp_length : float = "1.000000"
+    primitiveRamp_top : float = "0.500000"
+    primitiveRamp_base : float = "0.000000"
+    rotation : float = "270.000000"
+    position : float[3] = ["2.000000", "0.250000", "13.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    relativePos : float[3] = ["0.000000", "0.250000", "0.000000"]
+    primitiveRamp_width : float = "1.000000"
+    ori_displacement : float[3] = ["0.000000", "1.000000", "2.000000"]
+}
+_385 = {
+    prefab : str = "CSLinesLadderTop"
+    Saveable : Tag = ""
+    ladder : Tag = ""
+    trigger_volume : int[2] = ["1", "1"]
+    primitiveRamp_length : float = "1.000000"
+    primitiveRamp_top : float = "1.000000"
+    primitiveRamp_base : float = "0.500000"
+    rotation : float = "270.000000"
+    position : float[3] = ["1.000000", "0.750000", "13.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    relativePos : float[3] = ["0.000000", "0.750000", "0.000000"]
+    primitiveRamp_width : float = "1.000000"
+    ori_displacement : float[3] = ["0.000000", "-1.000000", "-2.000000"]
+}
+_386 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    position : float[3] = ["0.000000", "1.000000", "13.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_387 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    position : float[3] = ["-1.000000", "1.000000", "13.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_388 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    position : float[3] = ["-2.000000", "1.000000", "13.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_389 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    position : float[3] = ["-3.000000", "1.000000", "13.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_390 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "360.000000"
+    position : float[3] = ["-3.000000", "1.000000", "12.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_391 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "360.000000"
+    position : float[3] = ["-3.000000", "1.000000", "10.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_392 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "360.000000"
+    position : float[3] = ["-3.000000", "1.000000", "11.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_393 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    position : float[3] = ["-2.000000", "1.000000", "10.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_394 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.000000", "1.500000", "12.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_395 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.000000", "0.500000", "12.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_396 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.000000", "0.500000", "12.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_397 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["1.000000", "1.500000", "12.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_398 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.000000", "1.500000", "12.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_399 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["0.000000", "0.500000", "12.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_400 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["-1.000000", "0.500000", "12.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_401 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["-1.000000", "1.500000", "12.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_402 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["-2.000000", "1.500000", "12.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_403 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["-2.000000", "0.500000", "12.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_404 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["-2.500000", "0.500000", "12.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_405 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["3.000000", "1.000000", "9.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_406 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "1.500000", "9.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_407 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "0.500000", "9.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_408 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "-0.500000", "9.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_409 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "-0.500000", "8.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_410 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "0.500000", "8.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_411 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["2.500000", "1.500000", "8.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_412 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["3.000000", "1.000000", "8.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_413 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["3.000000", "1.500000", "7.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_414 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["4.000000", "1.500000", "7.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_415 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["4.000000", "0.500000", "7.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_416 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["3.000000", "0.500000", "7.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_417 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["5.000000", "0.500000", "7.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_418 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["5.000000", "1.500000", "7.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_419 = {
+    prefab : str = "CSLinesLadderTop"
+    Saveable : Tag = ""
+    ladder : Tag = ""
+    trigger_volume : int[2] = ["1", "1"]
+    primitiveRamp_length : float = "1.000000"
+    primitiveRamp_top : float = "1.000000"
+    primitiveRamp_base : float = "0.500000"
+    rotation : float = "270.000000"
+    position : float[3] = ["4.000000", "0.750000", "8.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    relativePos : float[3] = ["0.000000", "0.750000", "0.000000"]
+    primitiveRamp_width : float = "1.000000"
+    ori_displacement : float[3] = ["0.000000", "-1.000000", "-2.000000"]
+}
+_420 = {
+    prefab : str = "CSLinesLadderBase"
+    Saveable : Tag = ""
+    ladder : Tag = ""
+    trigger_volume : int[2] = ["1", "1"]
+    primitiveRamp_length : float = "1.000000"
+    primitiveRamp_top : float = "0.500000"
+    primitiveRamp_base : float = "0.000000"
+    rotation : float = "270.000000"
+    position : float[3] = ["5.000000", "0.250000", "8.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    relativePos : float[3] = ["0.000000", "0.250000", "0.000000"]
+    primitiveRamp_width : float = "1.000000"
+    ori_displacement : float[3] = ["0.000000", "1.000000", "2.000000"]
+}
+_421 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    position : float[3] = ["6.000000", "0.000000", "8.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_422 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["6.000000", "0.000000", "9.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_423 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["6.000000", "0.000000", "10.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_424 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["6.000000", "0.000000", "11.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_425 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["6.000000", "0.000000", "12.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_426 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["6.000000", "0.000000", "13.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_427 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["6.000000", "0.000000", "14.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_428 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["3.500000", "0.500000", "9.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_429 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["4.000000", "-0.500000", "8.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_430 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["3.500000", "-0.500000", "9.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_431 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["5.000000", "-0.500000", "8.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_432 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["5.000000", "-0.500000", "7.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_433 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["4.000000", "-0.500000", "7.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_434 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["3.000000", "-0.500000", "7.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_435 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["6.000000", "0.500000", "7.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_436 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    wall : Tag = ""
+    position : float[3] = ["6.000000", "1.500000", "7.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_437 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["5.500000", "-0.500000", "9.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_438 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["5.500000", "-0.500000", "10.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_439 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["5.500000", "-0.500000", "11.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_440 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["5.500000", "-0.500000", "12.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_441 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["6.500000", "-0.500000", "12.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_442 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["6.500000", "-0.500000", "11.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_509 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["6.500000", "1.500000", "10.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_444 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["6.500000", "-0.500000", "9.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_445 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["6.500000", "-0.500000", "8.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_446 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["5.500000", "-0.500000", "13.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_447 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["6.500000", "-0.500000", "13.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_448 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["6.500000", "-0.500000", "14.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_449 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["5.500000", "-0.500000", "14.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_450 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["5.500000", "-0.500000", "15.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_451 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["6.500000", "-0.500000", "15.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_452 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["6.000000", "0.000000", "15.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_453 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    position : float[3] = ["6.000000", "0.000000", "16.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_454 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["5.000000", "0.000000", "16.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_455 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    position : float[3] = ["5.000000", "0.000000", "17.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_456 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "360.000000"
+    position : float[3] = ["6.000000", "0.000000", "17.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_457 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    position : float[3] = ["8.000000", "0.000000", "16.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_458 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["7.000000", "0.000000", "16.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_459 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    position : float[3] = ["7.000000", "0.000000", "17.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_460 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "360.000000"
+    position : float[3] = ["8.000000", "0.000000", "17.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_461 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    position : float[3] = ["4.000000", "0.000000", "16.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_462 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["3.000000", "0.000000", "16.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_463 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    position : float[3] = ["3.000000", "0.000000", "17.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_464 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "360.000000"
+    position : float[3] = ["4.000000", "0.000000", "17.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_465 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["6.000000", "0.000000", "18.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_466 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "360.000000"
+    position : float[3] = ["6.000000", "0.000000", "19.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_467 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "360.000000"
+    position : float[3] = ["6.000000", "0.000000", "20.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_468 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "180.000000"
+    position : float[3] = ["6.000000", "0.000000", "21.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_469 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    position : float[3] = ["7.000000", "0.000000", "20.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_470 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    position : float[3] = ["8.000000", "0.000000", "20.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_471 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    position : float[3] = ["5.000000", "0.000000", "20.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_472 = {
+    prefab : str = "CSFloorLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    position : float[3] = ["4.000000", "0.000000", "20.000000"]
+    texture_filename : str = "res/textures/floors/cyber_floor_01.png"
+    texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.000000", "1.000000"]
+    floor : Tag = ""
+}
+_473 = {
+    prefab : str = "CyberEnemy01"
+    Saveable : Tag = ""
+    occupiesCell : Tag = ""
+    rotation : float = "450.000000"
+    ai : Tag = ""
+    billboard : Tag = ""
+    attackDamage : int = "5.000000"
+    billboard_size : float = "0.600000"
+    position : float[3] = ["4.000000", "0.300000", "10.000000"]
+    texture_filename : str = "res/textures/creatures/cyber_enemy_01.png"
+    relativePos : float[3] = ["0.000000", "0.300000", "0.000000"]
+    actionPrefabs : str[] = ["_OverwhelmDataAttack","_AccessViolationAttack","_TripProtectionAttack"]
+    expDrop : int = "25.000000"
+    hitpoints : int = "10.000000"
+}
+_474 = {
+    prefab : str = "CyberEnemy01"
+    Saveable : Tag = ""
+    occupiesCell : Tag = ""
+    rotation : float = "540.000000"
+    ai : Tag = ""
+    billboard : Tag = ""
+    attackDamage : int = "5.000000"
+    billboard_size : float = "0.600000"
+    position : float[3] = ["-3.000000", "1.300000", "10.000000"]
+    texture_filename : str = "res/textures/creatures/cyber_enemy_01.png"
+    relativePos : float[3] = ["0.000000", "0.300000", "0.000000"]
+    actionPrefabs : str[] = ["_OverwhelmDataAttack","_AccessViolationAttack","_TripProtectionAttack"]
+    expDrop : int = "25.000000"
+    hitpoints : int = "10.000000"
+}
+_475 = {
+    Door : Tag = ""
+    prefab : str = "CSDoorHack01"
+    Saveable : Tag = ""
+    rotation : float = "0.000000"
+    door_openSound : eid = "_DoorOpenSound"
+    openRelPosition : float[3] = ["0.000000", "0.700000", "0.000000"]
+    door : Tag = ""
+    closed : Tag = ""
+    position : float[3] = ["6.000000", "0.500000", "11.500000"]
+    texture_filename : str = "res/textures/doors/cyber_door_01.png"
+    texture_emissiveFilename : str = "res/textures/doors/cyber_door_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    actionPrefabs : str[] = ["_HackAction"]
+}
+_476 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "0.000000"
+    wall : Tag = ""
+    position : float[3] = ["5.000000", "0.500000", "13.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_477 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["5.500000", "0.500000", "13.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_478 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["5.500000", "0.500000", "12.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_479 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["5.500000", "0.500000", "11.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_480 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["5.500000", "0.500000", "10.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_481 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "0.000000"
+    wall : Tag = ""
+    position : float[3] = ["5.000000", "0.500000", "9.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_482 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["4.500000", "0.500000", "10.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_483 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["4.500000", "0.500000", "11.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_484 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["4.500000", "0.500000", "12.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_485 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["4.500000", "0.500000", "13.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_486 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["4.500000", "1.500000", "13.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_487 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["4.500000", "1.500000", "12.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_488 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["4.500000", "1.500000", "11.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_489 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["4.500000", "1.500000", "10.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_490 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "0.000000"
+    wall : Tag = ""
+    position : float[3] = ["5.000000", "1.500000", "9.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_491 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["5.500000", "1.500000", "10.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_492 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["5.500000", "1.500000", "11.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_493 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["5.500000", "1.500000", "12.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_494 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["5.500000", "1.500000", "13.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_495 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "0.000000"
+    wall : Tag = ""
+    position : float[3] = ["5.000000", "1.500000", "13.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_496 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "0.000000"
+    wall : Tag = ""
+    position : float[3] = ["5.000000", "-0.500000", "13.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_497 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["4.500000", "-0.500000", "13.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_498 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["4.500000", "-0.500000", "12.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_499 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["4.500000", "-0.500000", "11.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_500 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "270.000000"
+    wall : Tag = ""
+    position : float[3] = ["4.500000", "-0.500000", "10.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_501 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "0.000000"
+    wall : Tag = ""
+    position : float[3] = ["5.000000", "-0.500000", "9.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_502 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["6.500000", "0.500000", "10.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_503 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["6.500000", "0.500000", "11.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_504 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["6.500000", "0.500000", "12.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_505 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["6.500000", "0.500000", "13.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_506 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["6.500000", "1.500000", "13.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_507 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["6.500000", "1.500000", "12.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_508 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["6.500000", "1.500000", "11.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_443 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "90.000000"
+    wall : Tag = ""
+    position : float[3] = ["6.500000", "-0.500000", "10.000000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_510 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "0.000000"
+    wall : Tag = ""
+    position : float[3] = ["6.000000", "1.500000", "11.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
+_511 = {
+    prefab : str = "CSWallLines01"
+    Saveable : Tag = ""
+    rotation : float = "0.000000"
+    wall : Tag = ""
+    position : float[3] = ["6.000000", "-0.500000", "11.500000"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+    texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+}
