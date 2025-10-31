@@ -108,4 +108,9 @@ MedievalSun = {
     light_strength : float = "1.0"
     clear_color : float[4] = ["0.172", "0.909", "0.960", "1"]
     fog_params : float[4] = ["0.172", "0.909", "0.960", "0.05"]
+
+    dbox_offset : float[3] = ["0", "0.125", "0"]
+    dbox_size : float[3] = ["0.25", "0.25", "0.25"]
+    dbox_color : float[3] = ["0", "1", "0"]
+    dbox_name : str = "sun"
 }
