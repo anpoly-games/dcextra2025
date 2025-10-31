@@ -33,7 +33,7 @@ _OpenableDoor <- _BaseDoor = {
 }
 
 _TogglableDoor <- _OpenableDoor = {
-    actionList : eid[] = ["_OpenCloseAction"]
+    actionPrefabs : str[] = ["_OpenCloseAction"]
 }
 
 _HackFailureSound = {
@@ -41,7 +41,7 @@ _HackFailureSound = {
 }
 
 _HackableDoor <- _OpenableDoor = {
-    actionList : eid[] = ["_HackAction"]
+    actionPrefabs : str[] = ["_HackAction"]
     hack_difficultyMult : float = "1.0"
     hack_successExperience : int = "50"
     hack_failureDamage : int = "10"
@@ -49,7 +49,7 @@ _HackableDoor <- _OpenableDoor = {
 }
 
 _PryableDoor <- _OpenableDoor = {
-    actionList : eid[] = ["_PryAction"]
+    actionPrefabs : str[] = ["_PryAction"]
 }
 
 MSMetalDoor01 <- _TogglableDoor = {

@@ -76,6 +76,17 @@ void register_interactables(eecs::Registry& reg)
 {
     static int textIndex = 0;
     static Sound playerHit = LoadSound("res/audio/sfx/hit_07.ogg");
+    eecs::reg_enter(reg, [&](eecs::EntityId eid, const std::vector<std::string>& actionPrefabs)
+    {
+        std::vector<eecs::EntityId> actionList;
+        for (const std::string& prefabName : actionPrefabs)
+        {
+            eecs::EntityWrap action = eecs::create_wrap_from_prefab(reg, eecs::find_entity(reg, prefabName.c_str()))
+                .set(COMPID(eecs::EntityId, parent), eid);
+            actionList.emplace_back(action.eid);
+        }
+        eecs::set_component(reg, eid, COMPID(std::vector<eecs::EntityId>, actionList), actionList);
+    }, COMPID(const std::vector<std::string>, actionPrefabs));
     eecs::on_event(reg, FNV1(toggle), [&](eecs::EntityId doorEid, eecs::EntityId plEid, vec3f& position, const vec3f& openRelPosition)
     {
         // NOTE: Order is important, we need to remove closed tag before moving, so on_exit will trigger at appropriate position!!!
