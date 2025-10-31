@@ -28,3 +28,7 @@ MSMetalCeiling02 <- _BaseCeiling = {
 MSMetalCeiling03 <- _BaseCeiling = {
     texture_filename : str = "res/textures/ceilings/meatspace_metal_celling_03.png"
 }
+
+MSRail <- _BaseCeiling = {
+    texture_filename : str = "res/textures/ceilings/meatspace_rail.png"
+}
