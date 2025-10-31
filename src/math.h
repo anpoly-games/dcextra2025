@@ -274,7 +274,7 @@ inline vec2i pos_to_grid(const vec3f& pos)
 
 inline vec3i pos_to_grid3d(const vec3f& pos)
 {
-  return vec3i{(int)floorf(pos.x + 0.5f), (int)floorf(pos.y + 0.5f), (int)floorf(pos.z + 0.5f)};
+  return vec3i{(int)roundf(pos.x), (int)roundf(pos.y), (int)roundf(pos.z)};
 }
 
 

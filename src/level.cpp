@@ -66,7 +66,7 @@ void register_level(eecs::Registry& reg)
         {
             vec3i xzd = find_door_wall_coords(position, rotation);
             std::set<vec3i>& toAdd = xzd.z == 0 ? level_zWalls : level_xWalls;
-            toAdd.insert(vec3i(xzd.x, int(position.y), xzd.y));
+            toAdd.insert(vec3i(xzd.x, int(floorf(position.y)), xzd.y));
         }, COMPID(std::set<vec3i>, level_xWalls), COMPID(std::set<vec3i>, level_zWalls));
     }, COMPID(const vec3f, position), COMPID(const float, rotation), COMPID(const Tag, wall));
 
@@ -76,7 +76,7 @@ void register_level(eecs::Registry& reg)
         {
             vec3i xzd = find_door_wall_coords(position, rotation);
             std::set<vec3i>& toAdd = xzd.z == 0 ? level_zWalls : level_xWalls;
-            toAdd.insert(vec3i(xzd.x, int(position.y), xzd.y));
+            toAdd.insert(vec3i(xzd.x, int(floorf(position.y)), xzd.y));
         }, COMPID(std::set<vec3i>, level_xWalls), COMPID(std::set<vec3i>, level_zWalls));
     }, COMPID(const vec3f, position), COMPID(const float, rotation), COMPID(const Tag, door), COMPID(const Tag, closed));
 
@@ -110,7 +110,7 @@ void register_level(eecs::Registry& reg)
         {
             vec3i xzd = find_door_wall_coords(position, rotation);
             std::set<vec3i>& toAdd = xzd.z == 0 ? level_zWalls : level_xWalls;
-            toAdd.erase(vec3i(xzd.x, int(position.y), xzd.y));
+            toAdd.erase(vec3i(xzd.x, int(floorf(position.y)), xzd.y));
         }, COMPID(std::set<vec3i>, level_xWalls), COMPID(std::set<vec3i>, level_zWalls));
     }, COMPID(const vec3f, position), COMPID(const float, rotation), COMPID(const Tag, door), COMPID(const Tag, closed));
 }
