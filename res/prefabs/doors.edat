@@ -1,3 +1,11 @@
+_HackFailureSound = {
+    sound_filename : str = "res/audio/sfx/effect_01.ogg"
+}
+
+_PryFailureSound = {
+    sound_filename : str = "res/audio/sfx/hit_09.ogg"
+}
+
 _OpenCloseAction = {
     text : str = "Open/close"
     triggers : str = "toggle"
@@ -8,6 +16,21 @@ _PryAction = {
     text : str = "Pry open"
     triggers : str = "pry"
     distance : float = "1.0"
+    attribute : str = "attr_strength"
+    action_experience : int = "50"
+    action_successEvent : str = "open"
+    action_failSound : eid = "_PryFailureSound"
+    action_failDamage : int = "10"
+    action_failMsg : str = "Bruised for %d dmg"
+}
+
+_EasyPryAction <- _PryAction = {
+    action_failDamage : int = "5"
+    attribute_modifier : float = "2"
+}
+
+_HardPryAction <- _PryAction = {
+    attribute_modifier : float = "0.5"
 }
 
 _HackAction = {
@@ -16,9 +39,19 @@ _HackAction = {
     distance : float = "1.0"
     attribute : str = "attr_mind"
     action_experience : int = "50"
+    action_successEvent : str = "open"
     action_failSound : eid = "_HackFailureSound"
     action_failDamage : int = "10"
     action_failMsg : str = "Electrocuted for %d dmg"
+}
+
+_EasyHackAction <- _HackAction = {
+    action_failDamage : int = "5"
+    attribute_modifier : float = "2"
+}
+
+_HardHackAction <- _HackAction = {
+    attribute_modifier : float = "0.5"
 }
 
 _BaseDoor = {
@@ -40,14 +73,8 @@ _TogglableDoor <- _OpenableDoor = {
     actionPrefabs : str[] = ["_OpenCloseAction"]
 }
 
-_HackFailureSound = {
-    sound_filename : str = "res/audio/sfx/effect_01.ogg"
-}
-
 _HackableDoor <- _OpenableDoor = {
     actionPrefabs : str[] = ["_HackAction"]
-    hack_failureDamage : int = "10"
-    hack_failureSound : eid = "_HackFailureSound"
 }
 
 _PryableDoor <- _OpenableDoor = {

@@ -145,3 +145,72 @@ DecorShroom04 <- _BaseDecor = {
 	relativePos : float[3] = ["0", "0.2", "-0.2"]
 }
 
+_PickupRegenAction = {
+    text : str = "Pick up Regen Juice"
+    triggers : str = "add_item"
+    attrName : str = "items_regenJuice"
+}
+
+_PickupBearserkerAction = {
+    text : str = "Pick up BearSerker"
+    triggers : str = "add_item"
+    attrName : str = "items_bearserker"
+}
+
+_PickupReflexxxAction = {
+    text : str = "Pick up Reflexxx"
+    triggers : str = "add_item"
+    attrName : str = "items_reflexxx"
+}
+
+_PickupMindDefogerAction = {
+    text : str = "Pick up Mind Defoger"
+    triggers : str = "add_item"
+    attrName : str = "items_mindDefoger"
+}
+
+_PickupGeniusAction = {
+    text : str = "Pick up Genius Injection"
+    triggers : str = "add_item"
+    attrName : str = "items_genius"
+}
+
+_PickupBanditoAction = {
+    text : str = "Pick up Bandito"
+    triggers : str = "add_item"
+    attrName : str = "items_bandito"
+}
+
+_PickableItem = {
+    billboard : Tag = ""
+    billboard_size : float = "0.4"
+    relativePos : float[3] = ["0", "0.2", "0"]
+}
+
+ItemRegen = {
+    actionPrefabs : str[] = ["_PickupRegenAction"]
+}
+
+ItemBearserker = {
+    actionPrefabs : str[] = ["_PickupBearserkerAction"]
+}
+
+ItemReflexxx = {
+    actionPrefabs : str[] = ["_PickupReflexxxAction"]
+}
+
+ItemMindDefoger = {
+    actionPrefabs : str[] = ["_PickupMindDefogerAction"]
+}
+
+ItemGenius = {
+    actionPrefabs : str[] = ["_PickupGeniusAction"]
+}
+
+ItemBandito = {
+    actionPrefabs : str[] = ["_PickupBanditoAction"]
+}
+
+
+
+

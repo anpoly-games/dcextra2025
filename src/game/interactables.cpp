@@ -153,14 +153,14 @@ void register_interactables(eecs::Registry& reg)
             }, COMPID(const int, action_failDamage), COMPID(const std::string, action_failMsg));
         }
     };
-    eecs::on_event(reg, FNV1(hack), [&](eecs::EntityId actEid, eecs::EntityId plEid, eecs::EntityId parent, int action_experience)
+    eecs::on_event(reg, FNV1(hack), [&](eecs::EntityId actEid, eecs::EntityId plEid, eecs::EntityId parent, int action_experience, const std::string& action_successEvent)
     {
         const float attrMult = eecs::get_comp_or(reg, actEid, COMPID(float, attribute_modifier), 1.f);
         eecs::query_component(reg, plEid, [&](int attr_mind)
         {
-            procSkillcheck(reg, "MIND", attr_mind, attrMult, actEid, action_experience, FNV1(open), parent, plEid);
+            procSkillcheck(reg, "MIND", attr_mind, attrMult, actEid, action_experience, fnv1StrHash(action_successEvent.c_str()), parent, plEid);
         }, COMPID(const int, attr_mind));
-    }, COMPID(const eecs::EntityId, parent), COMPID(const int, action_experience));
+    }, COMPID(const eecs::EntityId, parent), COMPID(const int, action_experience), COMPID(const std::string, action_successEvent));
 
     static Sound swoosh = LoadSound("res/audio/sfx/swoosh_01.ogg");
     static Sound shot = LoadSound("res/audio/sfx/hit_03.ogg");

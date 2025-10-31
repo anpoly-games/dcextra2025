@@ -1,9 +1,9 @@
 _BaseColumn = {
-    primitiveBlock_size : float[3] = ["0.1666666", "1", "0.1666666"]
+    primitiveBlock_size : float[3] = ["0.083333333", "1", "0.083333333"]
     column : Tag = ""
 }
 
 StoneColumn <- _BaseColumn = {
-    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    texture_filename : str = "res/textures/walls/meatspace_metal_01.png"
 }
 
