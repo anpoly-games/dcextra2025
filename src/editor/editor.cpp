@@ -615,7 +615,7 @@ void save_level(eecs::Registry& reg, const char* filename)
     });
     handlers.addTypeHandler<std::vector<std::string>>([&](const std::string_view& view, const std::vector<std::string>& val)
     {
-        edat += std::string("    ") + std::string(view) + " : eid[] = [";
+        edat += std::string("    ") + std::string(view) + " : str[] = [";
         for (size_t i = 0; i < val.size(); ++i)
         {
             const std::string& str = val[i];

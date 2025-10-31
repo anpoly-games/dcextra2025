@@ -15,6 +15,10 @@ _HackAction = {
     triggers : str = "hack"
     distance : float = "1.0"
     attribute : str = "attr_mind"
+    action_experience : int = "50"
+    action_failSound : eid = "_HackFailureSound"
+    action_failDamage : int = "10"
+    action_failMsg : str = "Electrocuted for %d dmg"
 }
 
 _BaseDoor = {
@@ -42,8 +46,6 @@ _HackFailureSound = {
 
 _HackableDoor <- _OpenableDoor = {
     actionPrefabs : str[] = ["_HackAction"]
-    hack_difficultyMult : float = "1.0"
-    hack_successExperience : int = "50"
     hack_failureDamage : int = "10"
     hack_failureSound : eid = "_HackFailureSound"
 }

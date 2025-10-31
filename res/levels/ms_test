@@ -940,7 +940,7 @@ _219 = {
     closed : Tag = ""
     texture_emissiveFilename : str = "res/textures/doors/meatspace_metal_door_em_03.png"
     primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
-    actionPrefabs : eid[] = ["_OpenCloseAction"]
+    actionPrefabs : str[] = ["_OpenCloseAction"]
 }
 _220 = {
     prefab : str = "MSMetalCeiling03"
@@ -4198,7 +4198,7 @@ _545 = {
     primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
     hack_failureSound : eid = "_HackFailureSound"
     hack_successExperience : int = "50.000000"
-    actionPrefabs : eid[] = ["_HackAction"]
+    actionPrefabs : str[] = ["_HackAction"]
 }
 _546 = {
     prefab : str = "MSMetalWall04"
@@ -4388,7 +4388,7 @@ _565 = {
     primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
     hack_failureSound : eid = "_HackFailureSound"
     hack_successExperience : int = "50.000000"
-    actionPrefabs : eid[] = ["_HackAction"]
+    actionPrefabs : str[] = ["_HackAction"]
 }
 _566 = {
     prefab : str = "MSMetalWall04"
@@ -4538,7 +4538,7 @@ _581 = {
     closed : Tag = ""
     texture_emissiveFilename : str = "res/textures/doors/meatspace_metal_door_em_03.png"
     primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
-    actionPrefabs : eid[] = ["_OpenCloseAction"]
+    actionPrefabs : str[] = ["_OpenCloseAction"]
 }
 _582 = {
     prefab : str = "MSMetalWall02"
@@ -4580,7 +4580,7 @@ _585 = {
     closed : Tag = ""
     texture_emissiveFilename : str = "res/textures/doors/meatspace_metal_door_em_03.png"
     primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
-    actionPrefabs : eid[] = ["_OpenCloseAction"]
+    actionPrefabs : str[] = ["_OpenCloseAction"]
 }
 _586 = {
     prefab : str = "MSMetalFloor01"
@@ -6050,7 +6050,7 @@ _746 = {
     closed : Tag = ""
     texture_emissiveFilename : str = "res/textures/doors/meatspace_metal_door_em_03.png"
     primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
-    actionPrefabs : eid[] = ["_OpenCloseAction"]
+    actionPrefabs : str[] = ["_OpenCloseAction"]
 }
 _747 = {
     prefab : str = "MSMetalFloor01"
@@ -6834,7 +6834,7 @@ _831 = {
     primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
     hack_failureSound : eid = "_HackFailureSound"
     hack_successExperience : int = "50.000000"
-    actionPrefabs : eid[] = ["_HackAction"]
+    actionPrefabs : str[] = ["_HackAction"]
 }
 _832 = {
     Door : Tag = ""
@@ -6853,7 +6853,7 @@ _832 = {
     primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
     hack_failureSound : eid = "_HackFailureSound"
     hack_successExperience : int = "50.000000"
-    actionPrefabs : eid[] = ["_HackAction"]
+    actionPrefabs : str[] = ["_HackAction"]
 }
 _833 = {
     Door : Tag = ""
@@ -6868,7 +6868,7 @@ _833 = {
     closed : Tag = ""
     texture_emissiveFilename : str = "res/textures/doors/meatspace_metal_door_em_03.png"
     primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
-    actionPrefabs : eid[] = ["_OpenCloseAction"]
+    actionPrefabs : str[] = ["_OpenCloseAction"]
 }
 _834 = {
     prefab : str = "MSWallCapsule01_empty"
@@ -8693,7 +8693,7 @@ _1035 = {
     closed : Tag = ""
     texture_emissiveFilename : str = "res/textures/doors/meatspace_metal_door_em_03.png"
     primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
-    actionPrefabs : eid[] = ["_OpenCloseAction"]
+    actionPrefabs : str[] = ["_OpenCloseAction"]
 }
 _1036 = {
     Door : Tag = ""
@@ -8712,7 +8712,7 @@ _1036 = {
     primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
     hack_failureSound : eid = "_HackFailureSound"
     hack_successExperience : int = "50.000000"
-    actionPrefabs : eid[] = ["_HackAction"]
+    actionPrefabs : str[] = ["_HackAction"]
 }
 _1037 = {
     Door : Tag = ""
@@ -8731,7 +8731,7 @@ _1037 = {
     primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
     hack_failureSound : eid = "_HackFailureSound"
     hack_successExperience : int = "50.000000"
-    actionPrefabs : eid[] = ["_HackAction"]
+    actionPrefabs : str[] = ["_HackAction"]
 }
 _1038 = {
     Door : Tag = ""
@@ -8750,7 +8750,7 @@ _1038 = {
     primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
     hack_failureSound : eid = "_HackFailureSound"
     hack_successExperience : int = "50.000000"
-    actionPrefabs : eid[] = ["_HackAction"]
+    actionPrefabs : str[] = ["_HackAction"]
 }
 _1039 = {
     prefab : str = "MSMetalWindow01"
@@ -10042,7 +10042,7 @@ _1180 = {
     position : float[3] = ["-5.000000", "0.300000", "3.000000"]
     billboard_size : float = "0.600000"
     relativePos : float[3] = ["0.000000", "0.300000", "0.000000"]
-    actionPrefabs : eid[] = ["_SwingAction","_ShootAction","_AimedShotAction","_BurstShotAction"]
+    actionPrefabs : str[] = ["_SwingAction","_ShootAction","_AimedShotAction","_BurstShotAction"]
     expDrop : int = "25.000000"
     hitpoints : int = "10.000000"
 }
@@ -10058,7 +10058,7 @@ _1181 = {
     position : float[3] = ["1.000000", "0.300000", "5.000000"]
     billboard_size : float = "0.600000"
     relativePos : float[3] = ["0.000000", "0.300000", "0.000000"]
-    actionPrefabs : eid[] = ["_SwingAction","_ShootAction","_AimedShotAction","_BurstShotAction"]
+    actionPrefabs : str[] = ["_SwingAction","_ShootAction","_AimedShotAction","_BurstShotAction"]
     expDrop : int = "25.000000"
     hitpoints : int = "10.000000"
 }

@@ -12,6 +12,7 @@ in vec3 fragNormal;
 uniform sampler2D texture0;
 uniform sampler2D emissiveMap;
 uniform vec4 colDiffuse;
+uniform vec4 fogParams = vec4(0.0, 0.0, 0.0, 0.0);
 
 // Output fragment color
 out vec4 finalColor;
@@ -54,6 +55,11 @@ void main()
     vec3 dp_dy = dFdy(fragPosition);
     vec3 dp = clamp(dp_dx * dst.x + dp_dy * dst.y, -1.0, 1.0);
     vec3 texelPosition = fragPosition + dp;
+
+    vec4 fogColor = vec4(fogParams.x, fogParams.y, fogParams.z, 1.0);
+    float fogStr = clamp(length(texelPosition - viewPos) * fogParams.w, 0.0, 1.0);
+    texelColor = mix(texelColor, fogColor, fogStr);
+    texelEmission = mix(texelEmission, fogColor, fogStr);
 
     vec3 lightDot = vec3(0.0);
     vec3 normal = normalize(fragNormal);

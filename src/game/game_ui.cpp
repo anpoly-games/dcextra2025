@@ -60,6 +60,7 @@ void draw_character(eecs::Registry& reg, float top, float width, float height, f
     {
         int nextLevelExp = get_next_level_exp(level);
 
+        DrawTextEx(charFont, TextFormat("HP: %d/%d", hitpoints, attr_body), toRLVec2(pos), textSize, 0, GetColor(0x3e8948ff)); pos.y += step;
         DrawTextEx(charFont, TextFormat("LVL: %d", level), toRLVec2(pos), textSize, 0, GetColor(0x3e8948ff));
         DrawTextEx(charFont, TextFormat("XP: %d/%d", experience, nextLevelExp), toRLVec2(pos + vec2f(hzStep, 0)), textSize, 0, GetColor(0x3e8948ff)); pos.y += step;
 
@@ -72,9 +73,6 @@ void draw_character(eecs::Registry& reg, float top, float width, float height, f
         drawAttr("AGI", pos + vec2f(hzStep, 0), attr_agility, pointsToSpend); pos.y += step;
         drawAttr("MIND", pos, attr_mind, pointsToSpend);
         drawAttr("BODY", pos + vec2f(hzStep, 0), attr_body, pointsToSpend); pos.y += step;
-
-        DrawTextEx(charFont, TextFormat("HP: %d/%d", hitpoints, attr_body), toRLVec2(pos), textSize, 0, GetColor(0x3e8948ff)); pos.y += step;
-
     }, COMPID(int, attr_strength), COMPID(int, attr_agility), COMPID(int, attr_mind), COMPID(int, attr_body), COMPID(const int, hitpoints),
         COMPID(const int, level), COMPID(const int, experience), COMPID(int, pointsToSpend));
 }
