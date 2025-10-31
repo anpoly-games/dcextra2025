@@ -77,6 +77,7 @@ void main()
             if (lights[i].type == LIGHT_DIRECTIONAL)
             {
                 light = -normalize(lights[i].target - lights[i].position);
+                mag2 = 1.0;
             }
 
             if (lights[i].type == LIGHT_POINT)

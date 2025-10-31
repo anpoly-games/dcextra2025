@@ -360,7 +360,12 @@ void register_editor(eecs::Registry& reg)
                 if (IsMouseButtonReleased(0) && !best.has(COMPID(Tag, Door)) && !best.has(COMPID(Tag, wall)))
                     selectedEntity = bestEntity;
                 if (IsMouseButtonReleased(1))
-                    eecs::del_entity(reg, bestEntity);
+                {
+                    if (selectedEntity != eecs::invalid_eid)
+                        selectedEntity = eecs::invalid_eid;
+                    else
+                        eecs::del_entity(reg, bestEntity);
+                }
             }
         }, COMPID(eecs::EntityId, selectedEntity), COMPID(const std::string, selectedPrefab));
         eecs::query_entities(reg, [&](eecs::EntityId eid, EntTypeList selectedType, const std::string& selectedPrefab)

@@ -46,6 +46,13 @@ void register_renderer(eecs::Registry& reg)
         int prevLights = lightsCount;
         lightsCount = 0;
         int nl = 0;
+        eecs::query_entities(reg, [&](eecs::EntityId, float light_strength, const vec3f& light_direction)
+        {
+            if (nl >= MAX_LIGHTS)
+                return;
+            lights[nl] = CreateLight(LIGHT_DIRECTIONAL, toRLVec3(light_direction), Vector3Zero(), Vector4{1.f, 1.f, 1.f, light_strength}, lightingShader);
+            nl++;
+        }, COMPID(const float, light_strength), COMPID(const vec3f, light_direction));
         eecs::query_entities(reg, [&](eecs::EntityId, float light_strength, const vec3f& position)
         {
             if (nl >= MAX_LIGHTS)
@@ -61,6 +68,12 @@ void register_renderer(eecs::Registry& reg)
         int ambientLoc = GetShaderLocation(lightingShader, "ambient");
         float ambient[4] = { ambientOverride, ambientOverride, ambientOverride, 1.0f };
         SetShaderValue(lightingShader, ambientLoc, ambient, SHADER_UNIFORM_VEC4);
+
+        eecs::query_entities(reg, [&](eecs::EntityId, const vec4f& fog_params)
+        {
+            const int fogParamsLoc = GetShaderLocation(lightingShader, "fogParams");
+            SetShaderValue(lightingShader, fogParamsLoc, &fog_params, SHADER_UNIFORM_VEC4);
+        }, COMPID(const vec4f, fog_params));
 
         eecs::query_entities(reg, [&](eecs::EntityId eid, Model& model, const vec3f& position)
         {

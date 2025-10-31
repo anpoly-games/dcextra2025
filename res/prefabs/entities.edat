@@ -103,3 +103,9 @@ MSMetalLadderTop <- _TopLadder = {
     texture_filename : str = "res/textures/walls/meatspace_metal_01.png"
 }
 
+MedievalSun = {
+    light_direction : float[3] = ["0.3", "0.5", "0.3"]
+    light_strength : float = "1.0"
+    clear_color : float[4] = ["0.172", "0.909", "0.960", "1"]
+    fog_params : float[4] = ["0.172", "0.909", "0.960", "0.05"]
+}

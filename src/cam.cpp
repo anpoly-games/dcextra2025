@@ -82,7 +82,12 @@ void begin_cam(eecs::Registry& reg)
     {
         if (!eecs::has_comp(reg, eid, COMPID(RenderTexture2D, renderTex)))
             BeginDrawing();
-        ClearBackground(BLACK);
+        Color clearColor = BLACK;
+        eecs::query_entities(reg, [&](eecs::EntityId, const vec4f& clear_color)
+        {
+            clearColor = ColorFromNormalized(toRLVec4(clear_color));
+        }, COMPID(const vec4f, clear_color));
+        ClearBackground(clearColor);
         BeginMode3D(camera);
     }, COMPID(const Camera, camera));
 }
