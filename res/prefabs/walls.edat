@@ -78,3 +78,39 @@ MSWallCapsule02flip <- _BaseWall = {
     texture_filename : str = "res/textures/walls/meatspace_capsule_02flip.png"
 	texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02flip.png"
 }
+
+DSTreeWall01 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/dreamspace_treewall_01.png"
+}
+
+DSTreeWall02 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/dreamspace_treewall_02.png"
+}
+
+DSTreeWall03 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/dreamspace_treewall_03.png"
+}
+
+DSTreeWall04 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/dreamspace_treewall_04.png"
+}
+
+DSTreeWall05 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/dreamspace_treewall_05.png"
+}
+
+DSTreeWall06 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/dreamspace_treewall_06.png"
+}
+
+DSTreeWall07 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/dreamspace_treewall_07.png"
+}
+
+DSStoneWall01 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/dreamspace_stonewall_01.png"
+}
+
+DSStoneWallBroken01 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/dreamspace_stonewall_broken_01.png"
+}

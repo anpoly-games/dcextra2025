@@ -22,3 +22,19 @@ MSMetalFloor01 <- _BaseFloor = {
 MSMetalFloor02 <- _BaseFloor = {
     texture_filename : str = "res/textures/floors/meatspace_metal_floor_02.png"
 }
+
+DSGrassFloor01 <- _BaseFloor = {
+    texture_filename : str = "res/textures/floors/dreamspace_grassfloor_01.png"
+}
+
+DSGrassFloor02 <- _BaseFloor = {
+    texture_filename : str = "res/textures/floors/dreamspace_grassfloor_02.png"
+}
+
+DSGrassPath01 <- _BaseFloor = {
+    texture_filename : str = "res/textures/floors/dreamspace_grasspath_01.png"
+}
+
+DSGrassPath02 <- _BaseFloor = {
+    texture_filename : str = "res/textures/floors/dreamspace_grasspath_02.png"
+}
