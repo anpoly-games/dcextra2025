@@ -54,6 +54,16 @@ void register_triggers(eecs::Registry& reg)
         }, COMPID(vec3f, position), COMPID(const vec3f, direction), COMPID(Tag, player));
     }, COMPID(float, rel_displacement), COMPID(Tag, relative_teleporter));
 
+    eecs::on_event(reg, FNV1(enterTrigger), [&](eecs::EntityId eid, eecs::EntityId playerId, const vec3f& ori_displacement, float rotation)
+    {
+        eecs::query_components(reg, playerId, [&](vec3f& position, Tag player)
+        {
+            position = position + vec3f(0, ori_displacement.y, 0) +
+                vec3f(sinf(rotation * DEG2RAD), 0, cosf(rotation * DEG2RAD)) * ori_displacement.z +
+                vec3f(cosf(rotation * DEG2RAD), 0, -sinf(rotation * DEG2RAD)) * ori_displacement.x;
+        }, COMPID(vec3f, position), COMPID(Tag, player));
+    }, COMPID(const vec3f, ori_displacement), COMPID(const float, rotation));
+
     eecs::on_event(reg, FNV1(enterTrigger), [&](eecs::EntityId eid, eecs::EntityId playerId, const int turns, Tag spinner)
     {
         eecs::query_components(reg, playerId, [&](vec3f& direction, Tag player)

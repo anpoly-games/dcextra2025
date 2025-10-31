@@ -68,6 +68,154 @@ void register_primitives(eecs::Registry& reg)
         ent.set(COMPID(Model, model), model);
     }, COMPID(const vec3f, primitiveBlock_size));
 
+    eecs::reg_enter(reg, [&](eecs::EntityId eid, float primitiveRamp_base, float primitiveRamp_top, float primitiveRamp_width, float primitiveRamp_length)
+    {
+        Mesh mesh = { 0 };
+        mesh.triangleCount = 12;
+        mesh.vertexCount = mesh.triangleCount * 3;
+
+        mesh.vertices = new float[mesh.vertexCount * 3];
+        mesh.normals = new float[mesh.vertexCount * 3];
+        mesh.texcoords = new float[mesh.vertexCount * 2];
+
+        //
+        //    +-----+
+        //   /|    /|
+        //  +-----+ |
+        //  | +-- |-+
+        //  |/    |/
+        //  +-----+
+        //
+
+        const float range = primitiveRamp_top - primitiveRamp_base;
+        const float avgHt = (primitiveRamp_top + primitiveRamp_base) * 0.5f;
+        const float ramp = range / primitiveRamp_length;
+        const float bottom = -avgHt - range * 0.5f;
+        const float base = -avgHt + primitiveRamp_base;
+        const float top = -avgHt + primitiveRamp_top;
+        vec3f inclination = {0.f, sqrtf(1.f - sqr(ramp)), ramp};
+        float vertices[] = {
+            -primitiveRamp_width * 0.5f, bottom, primitiveRamp_length * 0.5f,
+            +primitiveRamp_width * 0.5f, bottom, primitiveRamp_length * 0.5f,
+            +primitiveRamp_width * 0.5f, top, primitiveRamp_length * 0.5f,
+            -primitiveRamp_width * 0.5f, top, primitiveRamp_length * 0.5f,
+
+            -primitiveRamp_width * 0.5f, bottom, -primitiveRamp_length * 0.5f,
+            -primitiveRamp_width * 0.5f, base, -primitiveRamp_length * 0.5f,
+            +primitiveRamp_width * 0.5f, base, -primitiveRamp_length * 0.5f,
+            +primitiveRamp_width * 0.5f, bottom, -primitiveRamp_length * 0.5f,
+
+            -primitiveRamp_width * 0.5f, base, -primitiveRamp_length * 0.5f,
+            -primitiveRamp_width * 0.5f, top, primitiveRamp_length * 0.5f,
+            +primitiveRamp_width * 0.5f, top, primitiveRamp_length * 0.5f,
+            +primitiveRamp_width * 0.5f, base, -primitiveRamp_length * 0.5f,
+
+            -primitiveRamp_width * 0.5f, bottom, -primitiveRamp_length * 0.5f,
+            +primitiveRamp_width * 0.5f, bottom, -primitiveRamp_length * 0.5f,
+            +primitiveRamp_width * 0.5f, bottom, +primitiveRamp_length * 0.5f,
+            -primitiveRamp_width * 0.5f, bottom, +primitiveRamp_length * 0.5f,
+
+            +primitiveRamp_width * 0.5f, bottom, -primitiveRamp_length * 0.5f,
+            +primitiveRamp_width * 0.5f, base, -primitiveRamp_length * 0.5f,
+            +primitiveRamp_width * 0.5f, top, +primitiveRamp_length * 0.5f,
+            +primitiveRamp_width * 0.5f, bottom, +primitiveRamp_length * 0.5f,
+
+            -primitiveRamp_width * 0.5f, bottom, -primitiveRamp_length * 0.5f,
+            -primitiveRamp_width * 0.5f, bottom, +primitiveRamp_length * 0.5f,
+            -primitiveRamp_width * 0.5f, top, +primitiveRamp_length * 0.5f,
+            -primitiveRamp_width * 0.5f, base, -primitiveRamp_length * 0.5f
+        };
+        float texcoords[] = {
+            1.0f, 1.0f,
+            0.0f, 1.0f,
+            0.0f, 0.0f,
+            1.0f, 0.0f,
+
+            1.0f, 1.0f,
+            1.0f, 0.0f,
+            0.0f, 0.0f,
+            0.0f, 1.0f,
+
+            0.0f, 1 - primitiveRamp_base,
+            0.0f, 1 - primitiveRamp_top,
+            1.0f, 1 - primitiveRamp_top,
+            1.0f, 1 - primitiveRamp_base,
+
+            0.0f, 1.0f,
+            1.0f, 1.0f,
+            1.0f, 0.0f,
+            0.0f, 0.0f,
+
+            0.0f, 1 - primitiveRamp_base,
+            0.0f, 1 - primitiveRamp_top,
+            1.0f, 1 - primitiveRamp_top,
+            1.0f, 1 - primitiveRamp_base,
+
+            0.0f, 1 - primitiveRamp_base,
+            1.0f, 1 - primitiveRamp_base,
+            1.0f, 1 - primitiveRamp_top,
+            0.0f, 1 - primitiveRamp_top
+        };
+        float normals[] = {
+            0.0f, 0.0f, 1.0f,
+            0.0f, 0.0f, 1.0f,
+            0.0f, 0.0f, 1.0f,
+            0.0f, 0.0f, 1.0f,
+
+            0.0f, 0.0f,-1.0f,
+            0.0f, 0.0f,-1.0f,
+            0.0f, 0.0f,-1.0f,
+            0.0f, 0.0f,-1.0f,
+
+            inclination.x, inclination.y, inclination.z,
+            inclination.x, inclination.y, inclination.z,
+            inclination.x, inclination.y, inclination.z,
+            inclination.x, inclination.y, inclination.z,
+
+            0.0f,-1.0f, 0.0f,
+            0.0f,-1.0f, 0.0f,
+            0.0f,-1.0f, 0.0f,
+            0.0f,-1.0f, 0.0f,
+
+            1.0f, 0.0f, 0.0f,
+            1.0f, 0.0f, 0.0f,
+            1.0f, 0.0f, 0.0f,
+            1.0f, 0.0f, 0.0f,
+
+            -1.0f, 0.0f, 0.0f,
+            -1.0f, 0.0f, 0.0f,
+            -1.0f, 0.0f, 0.0f,
+            -1.0f, 0.0f, 0.0f
+        };
+
+        memcpy(mesh.vertices, vertices, 24*3*sizeof(float));
+        memcpy(mesh.texcoords, texcoords, 24*2*sizeof(float));
+        memcpy(mesh.normals, normals, 24*3*sizeof(float));
+
+        mesh.indices = (unsigned short *)RL_MALLOC(36*sizeof(unsigned short));
+
+        int k = 0;
+
+        // Indices can be initialized right now
+        for (int i = 0; i < 36; i += 6)
+        {
+            mesh.indices[i] = 4*k;
+            mesh.indices[i + 1] = 4*k + 1;
+            mesh.indices[i + 2] = 4*k + 2;
+            mesh.indices[i + 3] = 4*k;
+            mesh.indices[i + 4] = 4*k + 2;
+            mesh.indices[i + 5] = 4*k + 3;
+
+            k++;
+        }
+
+        UploadMesh(&mesh, false);
+
+        Model model = LoadModelFromMesh(mesh);
+        eecs::EntityWrap ent = eecs::wrap_entity(reg, eid);
+        ent.set(COMPID(Model, model), model);
+    }, COMPID(const float, primitiveRamp_base), COMPID(const float, primitiveRamp_top), COMPID(const float, primitiveRamp_width), COMPID(const float, primitiveRamp_length));
+
     eecs::reg_enter(reg, [&](eecs::EntityId eid, const std::string& model_filename)
     {
         Model model = LoadModel(model_filename.c_str());

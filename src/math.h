@@ -159,6 +159,22 @@ inline vec2<T> operator*(const T& lhs, const vec2<T>& rhs) { return vec2<T>{lhs 
 template<typename T>
 inline bool operator<(const vec2<T>& lhs, const vec2<T>& rhs) { return lhs.x < rhs.x ? true : lhs.x == rhs.x ? lhs.y < rhs.y : false; }
 
+template<typename T>
+inline bool operator<(const vec3<T>& lhs, const vec3<T>& rhs)
+{
+    // TODO: make it pretty...
+    if (lhs.x < rhs.x)
+        return true;
+    else if (lhs.x > rhs.x)
+        return false;
+    else if (lhs.y < rhs.y)
+        return true;
+    else if (lhs.y > rhs.y)
+        return false;
+    else
+        return lhs.z < rhs.z;
+}
+
 
 using vec2f = vec2<float>;
 using vec2i = vec2<int>;

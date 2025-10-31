@@ -39,9 +39,11 @@ void register_ai(eecs::Registry& reg)
                 longMove = vec2i(0, sign(dirTo.y));
                 shortMove = vec2i(sign(dirTo.x), 0);
             }
-            if (!check_collision_dir(reg, pos_to_grid(epos), longMove))
+            const vec3f lmove3d = vec3f(longMove.x, 0, longMove.y);
+            const vec3f smove3d = vec3f(shortMove.x, 0, shortMove.y);
+            if (!check_collision_dir(reg, epos, longMove) && check_floor(reg, epos + lmove3d))
                 epos += vec3f(longMove.x, 0, longMove.y);
-            else if (!check_collision_dir(reg, pos_to_grid(epos), shortMove))
+            else if (!check_collision_dir(reg, epos, shortMove) && check_floor(reg, epos + smove3d))
                 epos += vec3f(shortMove.x, 0, shortMove.y);
         }, COMPID(const vec3f, position), COMPID(int, hitpoints));
     }, COMPID(vec3f, position), COMPID(const int, attackDamage), COMPID(const Tag, ai));

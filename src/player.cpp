@@ -38,12 +38,12 @@ void register_player(eecs::Registry& reg)
             vec2i mdir2d = vec2i(mdir.x, mdir.z);
             if (mdir2d.mag2() != 0)
             {
-                vec2i gridPos = pos_to_grid(position);
-                if (check_collision_dir(reg, gridPos, mdir2d) || check_occupancy(reg, position + mdir))
+                if (check_collision_dir(reg, position, mdir2d) || !check_floor(reg, position + mdir) || check_occupancy(reg, position + mdir))
                     return;
                 // align back to grid
                 PlaySound(stepSnd);
-                position = vec3f(gridPos.x, int(position.y + 0.5f), gridPos.y);
+                vec2i gridPos = pos_to_grid(position);
+                position = vec3f(gridPos.x, floorf(position.y + 0.5f), gridPos.y);
             }
         }
         position += direction * forward;

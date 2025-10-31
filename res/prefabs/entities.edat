@@ -73,3 +73,33 @@ DecorShroom <- _BaseDecor = {
     texture_filename : str = "res/textures/decor/shrooms_01.png"
 }
 
+_BaseLadder = {
+    primitiveRamp_base : float = "0"
+    primitiveRamp_top : float = "0.5"
+    primitiveRamp_width : float = "1"
+    primitiveRamp_length : float = "1"
+    relativePos : float[3] = ["0", "0.25", "0"]
+    ori_displacement : float[3] = ["0", "1", "2"]
+    trigger_volume : int[2] = ["1", "1"]
+    ladder : Tag = ""
+}
+
+_TopLadder = {
+    primitiveRamp_base : float = "0.5"
+    primitiveRamp_top : float = "1.0"
+    primitiveRamp_width : float = "1"
+    primitiveRamp_length : float = "1"
+    relativePos : float[3] = ["0", "0.75", "0"]
+    ori_displacement : float[3] = ["0", "-1", "-2"]
+    trigger_volume : int[2] = ["1", "1"]
+    ladder : Tag = ""
+}
+
+MSMetalLadderBase <- _BaseLadder = {
+    texture_filename : str = "res/textures/walls/meatspace_metal_01.png"
+}
+
+MSMetalLadderTop <- _TopLadder = {
+    texture_filename : str = "res/textures/walls/meatspace_metal_01.png"
+}
+
