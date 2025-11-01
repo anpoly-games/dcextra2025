@@ -378,15 +378,16 @@ void register_interactables(eecs::Registry& reg)
 
     eecs::on_event(reg, FNV1(open_remote), [&](eecs::EntityId eid, eecs::EntityId reply, Tag dialogue_active)
     {
-        eecs::query_components(reg, reply, [&](const std::string& level_name, const std::string& door_tag)
+        eecs::query_components(reg, reply, [&](const std::string& level_name, const std::vector<std::string>& door_tags)
         {
             eecs::Registry& levelReg = get_registry(level_name);
-            eecs::query_entities(levelReg, [&, &dt = door_tag](eecs::EntityId doorEid, const std::string& door_tag)
+            eecs::query_entities(levelReg, [&](eecs::EntityId doorEid, const std::string& door_tag)
             {
-                if (door_tag == dt)
-                    eecs::emit_event(levelReg, FNV1(open), doorEid, doorEid);
+                for (const std::string& dt : door_tags)
+                    if (door_tag == dt)
+                        eecs::emit_event(levelReg, FNV1(open), doorEid, doorEid);
             }, COMPID(const std::string, door_tag));
-        }, COMPID(const std::string, level_name), COMPID(const std::string, door_tag));
+        }, COMPID(const std::string, level_name), COMPID(const std::vector<std::string>, door_tags));
     }, COMPID(Tag, dialogue_active));
 }
 

@@ -90,7 +90,7 @@ _SwitchToDS1 = {
 _SwitchToMS = {
     text : str = "Wake up"
     triggers : str = "switch_level"
-    distance : float = "1.0"
+    distance : float = "1.1"
     level_name : str = "Meatspace_Main"
 }
 
@@ -132,84 +132,84 @@ _ShroomJoin1 = {
     text : str = "I'll aid you"
     reply_triggers : str[] = ["join_team_1", "open_remote", "kill_dialogue"]
     level_name : str = "cyberspace"
-    door_tag : str = "1->2"
+    door_tags : str[] = ["1->2"]
 }
 
 _ShroomDeny1 = {
     text : str = "I'll kill you"
     reply_triggers : str[] = ["join_team_2", "open_remote", "kill_dialogue"]
     level_name : str = "Meatspace_Main"
-    door_tag : str = "1->2"
+    door_tags : str[] = ["1->2"]
 }
 
 _AIJoin1 = {
     text : str = "I'll aid you"
     reply_triggers : str[] = ["join_team_2", "open_remote", "kill_dialogue"]
     level_name : str = "Meatspace_Main"
-    door_tag : str = "1->2"
+    door_tags : str[] = ["1->2"]
 }
 
 _AIDeny1 = {
     text : str = "I'll kill you"
     reply_triggers : str[] = ["join_team_1", "open_remote", "kill_dialogue"]
     level_name : str = "cyberspace"
-    door_tag : str = "1->2"
+    door_tags : str[] = ["1->2"]
 }
 
 _ShroomJoin2 = {
     text : str = "I'll aid you"
     reply_triggers : str[] = ["join_team_1", "open_remote", "kill_dialogue"]
     level_name : str = "cyberspace"
-    door_tag : str = "2->3"
+    door_tags : str[] = ["1->2", "2->3"]
 }
 
 _ShroomDeny2 = {
     text : str = "I'll kill you"
     reply_triggers : str[] = ["join_team_2", "open_remote", "kill_dialogue"]
     level_name : str = "Meatspace_Main"
-    door_tag : str = "2->3"
+    door_tags : str[] = ["1->2", "2->3"]
 }
 
 _AIJoin2 = {
     text : str = "I'll aid you"
     reply_triggers : str[] = ["join_team_2", "open_remote", "kill_dialogue"]
     level_name : str = "Meatspace_Main"
-    door_tag : str = "2->3"
+    door_tags : str[] = ["1->2", "2->3"]
 }
 
 _AIDeny2 = {
     text : str = "I'll kill you"
     reply_triggers : str[] = ["join_team_1", "open_remote", "kill_dialogue"]
     level_name : str = "cyberspace"
-    door_tag : str = "2->3"
+    door_tags : str[] = ["1->2", "2->3"]
 }
 
 _ShroomJoin3 = {
     text : str = "I'll aid you"
     reply_triggers : str[] = ["join_team_1", "open_remote", "kill_dialogue"]
     level_name : str = "cyberspace"
-    door_tag : str = "3->4"
+    door_tags : str[] = ["1->2", "2->3", "3->4"]
 }
 
 _ShroomDeny3 = {
     text : str = "I'll kill you"
     reply_triggers : str[] = ["join_team_2", "open_remote", "kill_dialogue"]
     level_name : str = "Meatspace_Main"
-    door_tag : str = "3->4"
+    door_tags : str[] = ["1->2", "2->3", "3->4"]
 }
 
 _AIJoin3 = {
     text : str = "I'll aid you"
     reply_triggers : str[] = ["join_team_2", "open_remote", "kill_dialogue"]
     level_name : str = "Meatspace_Main"
-    door_tag : str = "3->4"
+    door_tags : str[] = ["1->2", "2->3", "3->4"]
 }
 
 _AIDeny3 = {
     text : str = "I'll kill you"
     reply_triggers : str[] = ["join_team_1", "open_remote", "kill_dialogue"]
     level_name : str = "cyberspace"
-    door_tag : str = "3->4"
+    door_tags : str[] = ["1->2", "2->3", "3->4"]
 }
 
 _NeedTimeToThink = {
