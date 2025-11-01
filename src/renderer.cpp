@@ -69,11 +69,13 @@ void register_renderer(eecs::Registry& reg)
         float ambient[4] = { ambientOverride, ambientOverride, ambientOverride, 1.0f };
         SetShaderValue(lightingShader, ambientLoc, ambient, SHADER_UNIFORM_VEC4);
 
+        const int fogParamsLoc = GetShaderLocation(lightingShader, "fogParams");
+        vec4f fogParams = vec4f(0, 0, 0, 0);
         eecs::query_entities(reg, [&](eecs::EntityId, const vec4f& fog_params)
         {
-            const int fogParamsLoc = GetShaderLocation(lightingShader, "fogParams");
-            SetShaderValue(lightingShader, fogParamsLoc, &fog_params, SHADER_UNIFORM_VEC4);
+            fogParams = fog_params;
         }, COMPID(const vec4f, fog_params));
+        SetShaderValue(lightingShader, fogParamsLoc, &fogParams, SHADER_UNIFORM_VEC4);
 
         eecs::query_entities(reg, [&](eecs::EntityId eid, float& rotation, const vec3f& position, Tag billboard)
         {

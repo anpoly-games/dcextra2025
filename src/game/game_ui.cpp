@@ -186,7 +186,7 @@ void draw_dialogue(eecs::Registry& reg, float width, float height, float scaleFa
                     [&]()
                     {
                         for (const std::string& trName : reply_triggers)
-                            eecs::emit_event(reg, fnv1StrHash(trName.c_str()), eid, eid);
+                            eecs::emit_event(reg, fnv1StrHash(trName.c_str()), eid, reply);
                     });
                     textPos.x += sz.x * 0.3f + pad;
                 }, COMPID(const std::string, text), COMPID(const std::vector<std::string>, reply_triggers));

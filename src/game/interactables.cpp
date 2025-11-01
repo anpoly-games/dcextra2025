@@ -376,14 +376,17 @@ void register_interactables(eecs::Registry& reg)
         }
     }, COMPID(int, effect_banditoTurns), COMPID(int, attr_strength), COMPID(int, attr_agility), COMPID(int, attr_mind));
 
-    eecs::on_event(reg, FNV1(open_remote), [&](eecs::EntityId actId, eecs::EntityId, const std::string& level_name, const std::string& door_tag)
+    eecs::on_event(reg, FNV1(open_remote), [&](eecs::EntityId eid, eecs::EntityId reply, Tag dialogue_active)
     {
-        eecs::Registry& levelReg = get_registry(level_name);
-        eecs::query_entities(levelReg, [&, &dt = door_tag](eecs::EntityId doorEid, const std::string& door_tag)
+        eecs::query_components(reg, reply, [&](const std::string& level_name, const std::string& door_tag)
         {
-            if (door_tag == dt)
-                eecs::emit_event(levelReg, FNV1(open), doorEid, doorEid);
-        }, COMPID(const std::string, door_tag));
-    }, COMPID(const std::string, level_name), COMPID(const std::string, door_tag));
+            eecs::Registry& levelReg = get_registry(level_name);
+            eecs::query_entities(levelReg, [&, &dt = door_tag](eecs::EntityId doorEid, const std::string& door_tag)
+            {
+                if (door_tag == dt)
+                    eecs::emit_event(levelReg, FNV1(open), doorEid, doorEid);
+            }, COMPID(const std::string, door_tag));
+        }, COMPID(const std::string, level_name), COMPID(const std::string, door_tag));
+    }, COMPID(Tag, dialogue_active));
 }
 

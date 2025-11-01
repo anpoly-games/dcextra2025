@@ -91,10 +91,35 @@ MSMetalDoorHack01 <- _HackableDoor = {
 	texture_emissiveFilename : str = "res/textures/doors/meatspace_metal_door_em_01.png"
 }
 
+MSMetalDoorHackEasy01 <- MSMetalDoorHack01 = {
+    actionPrefabs : str[] = ["_EasyHackAction"]
+}
+
+MSMetalDoorHackHard01 <- MSMetalDoorHack01 = {
+    actionPrefabs : str[] = ["_HardHackAction"]
+}
 
 MSMetalDoor02 <- _BaseDoor = {
     texture_filename : str = "res/textures/doors/meatspace_metal_door_02.png"
 	texture_emissiveFilename : str = "res/textures/doors/meatspace_metal_door_em_02.png"
+}
+
+MSDoorBlock01 <- _OpenableDoor = {
+    texture_filename : str = "res/textures/doors/meatspace_metal_door_02.png"
+	texture_emissiveFilename : str = "res/textures/doors/meatspace_metal_door_em_02.png"
+    door_tag : str = "1->2"
+}
+
+MSDoorBlock02 <- _OpenableDoor = {
+    texture_filename : str = "res/textures/doors/meatspace_metal_door_02.png"
+	texture_emissiveFilename : str = "res/textures/doors/meatspace_metal_door_em_02.png"
+    door_tag : str = "2->3"
+}
+
+MSDoorBlock03 <- _OpenableDoor = {
+    texture_filename : str = "res/textures/doors/meatspace_metal_door_02.png"
+	texture_emissiveFilename : str = "res/textures/doors/meatspace_metal_door_em_02.png"
+    door_tag : str = "3->4"
 }
 
 MSMetalDoor03 <- _TogglableDoor = {
@@ -105,5 +130,31 @@ MSMetalDoor03 <- _TogglableDoor = {
 CSDoorHack01 <- _HackableDoor = {
     texture_filename : str = "res/textures/doors/cyber_door_01.png"
 	texture_emissiveFilename : str = "res/textures/doors/cyber_door_01_emm.png"
+}
+
+CSDoorHackEasy01 <- CSDoorHack01 = {
+    actionPrefabs : str[] = ["_EasyHackAction"]
+}
+
+CSDoorHackHard01 <- CSDoorHack01 = {
+    actionPrefabs : str[] = ["_HardHackAction"]
+}
+
+CSDoorBlock01 <- _OpenableDoor = {
+    texture_filename : str = "res/textures/doors/cyber_door_02.png"
+	texture_emissiveFilename : str = "res/textures/doors/cyber_door_02_emm.png"
+    door_tag : str = "1->2"
+}
+
+CSDoorBlock02 <- _OpenableDoor = {
+    texture_filename : str = "res/textures/doors/cyber_door_02.png"
+	texture_emissiveFilename : str = "res/textures/doors/cyber_door_02_emm.png"
+    door_tag : str = "2->3"
+}
+
+CSDoorBlock03 <- _OpenableDoor = {
+    texture_filename : str = "res/textures/doors/cyber_door_02.png"
+	texture_emissiveFilename : str = "res/textures/doors/cyber_door_02_emm.png"
+    door_tag : str = "3->4"
 }
 

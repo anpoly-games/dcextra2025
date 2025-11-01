@@ -43,7 +43,7 @@ void register_triggers(eecs::Registry& reg)
         eecs::del_component(reg, eid, COMPID(Tag, dialogue_active));
     }, COMPID(const Tag, dialogue_active));
 
-    eecs::on_event(reg, FNV1(join_team_1), [&](eecs::EntityId eid, eecs::EntityId, Tag dialogue_active)
+    eecs::on_event(reg, FNV1(join_team_1), [&](eecs::EntityId, eecs::EntityId, Tag dialogue_active)
     {
         eecs::query_entities(reg, [&](eecs::EntityId plEid, Tag player, int& team)
         {
@@ -51,7 +51,7 @@ void register_triggers(eecs::Registry& reg)
         }, COMPID(Tag, player), COMPID(int, team));
     }, COMPID(const Tag, dialogue_active));
 
-    eecs::on_event(reg, FNV1(join_team_2), [&](eecs::EntityId eid, eecs::EntityId, Tag dialogue_active)
+    eecs::on_event(reg, FNV1(join_team_2), [&](eecs::EntityId, eecs::EntityId, Tag dialogue_active)
     {
         eecs::query_entities(reg, [&](eecs::EntityId plEid, Tag player, int& team)
         {
