@@ -148,6 +148,23 @@ eecs::Registry* change_level(eecs::Registry& reg, std::unordered_map<std::string
             {
                 eecs::Registry* nReg = registries[nextLevel];
                 assert(nReg);
+                const char* compsToCopy[] =
+                {
+                    "attr_strength", "attr_agility", "attr_mind", "attr_body",
+                    "hitpoints", "level", "pointsToSpend", "experience",
+                    "items_regenX", "items_bearserker", "items_reflexxx", "items_mindDefoger", "items_genius", "items_bandito"
+                };
+                eecs::query_entities(reg, [&](eecs::EntityId rhs, Tag player)
+                {
+                    eecs::query_entities(*nReg, [&](eecs::EntityId lhs, Tag player)
+                    {
+                        for (int i = 0; i < sizeof(compsToCopy) / sizeof(compsToCopy[0]); ++i)
+                        {
+                            int curVal = eecs::get_comp_or(reg, rhs, eecs::ComponentId<int>(compsToCopy[i]), 0);
+                            eecs::set_component(*nReg, lhs, eecs::ComponentId<int>(compsToCopy[i]), curVal);
+                        }
+                    }, COMPID(Tag, player));
+                }, COMPID(Tag, player));
                 /*
                 eecs::query_entities(*nReg, [&](eecs::EntityId eid, const vec3f& pos, const float rot, Tag spawn){
                     eecs::query_entities(*nReg, [&](eecs::EntityId pid, vec3f& position, vec3f& direction, vec3i& prevPosition, Tag player)
