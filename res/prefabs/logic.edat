@@ -72,3 +72,38 @@ Spin_3 <- _Trigger = {
     turns : int = "-1"
     trigger_debugName : str = "spin-right-3-turns"
 }
+
+_SwitchToCS1 = {
+    text : str = "Access cyberspace"
+    triggers : str = "switch_level"
+    distance : float = "1.0"
+    level_name : str = "cyberspace"
+}
+
+_SwitchToDS1 = {
+    text : str = "Access dreamspace"
+    triggers : str = "switch_level"
+    distance : float = "1.0"
+    level_name : str = "dreamspace_1"
+}
+
+
+SwitchToCS1 = {
+    billboard : Tag = ""
+    billboard_size : float = "0.6"
+    texture_filename : str = "res/textures/objects/terminal.png"
+    actionPrefabs : str[] = ["_SwitchToCS1"]
+    relativePos : float[3] = ["0", "0.3", "0"]
+    occupiesCell : Tag = ""
+}
+
+SwitchToDS1 = {
+    actionPrefabs : str[] = ["_SwitchToDS1"]
+    relativePos : float[3] = ["0", "0.3", "0"]
+    occupiesCell : Tag = ""
+    dbox_offset : float[3] = ["0", "0.125", "0"]
+    dbox_size : float[3] = ["0.25", "0.25", "0.25"]
+    dbox_color : float[3] = ["0", "1", "0"]
+    dbox_name : str = "DS1"
+}
+

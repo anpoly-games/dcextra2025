@@ -2,6 +2,8 @@
 #include <raymath.h>
 #include <eecs.h>
 #include <climits>
+#include <edat.h>
+#include <parsers.h>
 
 #include <filesystem>
 
@@ -11,6 +13,7 @@
 #include "editor/editor_ui.h"
 #include "game.h"
 #include "prefabs.h"
+#include "ui.h"
 
 namespace fs = std::filesystem;
 
@@ -145,6 +148,7 @@ eecs::Registry* change_level(eecs::Registry& reg, std::unordered_map<std::string
             {
                 eecs::Registry* nReg = registries[nextLevel];
                 assert(nReg);
+                /*
                 eecs::query_entities(*nReg, [&](eecs::EntityId eid, const vec3f& pos, const float rot, Tag spawn){
                     eecs::query_entities(*nReg, [&](eecs::EntityId pid, vec3f& position, vec3f& direction, vec3i& prevPosition, Tag player)
                     {
@@ -155,6 +159,7 @@ eecs::Registry* change_level(eecs::Registry& reg, std::unordered_map<std::string
                     }, COMPID(vec3f, position), COMPID(vec3f, direction), COMPID(vec3i, prevPosition), COMPID(Tag, player));
                 },
                 COMPID(const vec3f, position), COMPID(const float, rotation), COMPID(const Tag, spawn));
+                */
                 return nReg;
             }
 
@@ -182,6 +187,31 @@ eecs::Registry* change_level(eecs::Registry& reg, std::unordered_map<std::string
     }
 
     return &reg;
+}
+
+void preload_levels(std::unordered_map<std::string, eecs::Registry*>& registries, float width, float height, float scaleFactor)
+{
+    edat::ParserSuite psuite;
+    psuite.addLambdaParser<std::string>("str", [](const std::string_view& str) -> std::string { return std::string(str); });
+    fs::path levels = "res/level_list.edat";
+    fs::path fullPath = fs::current_path() / levels;
+    edat::Table levelsTable = edat::parseFile(fullPath, psuite);
+    levelsTable.getAll<std::vector<std::string>>([&](const std::string& name, const std::vector<std::string>& level_list)
+    {
+        for (const std::string& lname : level_list)
+        {
+            std::filesystem::path fullPath{"res/levels/"};
+            fullPath += lname;
+            if (!fs::exists(fullPath))
+                continue; // this is an error
+            eecs::Registry* rNew = new eecs::Registry();
+            create_ui_helper(*rNew, width, height, scaleFactor);
+            restart_world(*rNew);
+
+            load_entities_from_file(*rNew, fullPath.string().c_str());
+            registries[lname] = rNew;
+        }
+    });
 }
 
 bool ray_hit(eecs::Registry& reg, const vec3f& sourcePos, const vec3f& targetPos, eecs::EntityId target)

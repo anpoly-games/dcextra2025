@@ -88,6 +88,10 @@ void register_interactables(eecs::Registry& reg)
         }
         eecs::set_component(reg, eid, COMPID(std::vector<eecs::EntityId>, actionList), actionList);
     }, COMPID(const std::vector<std::string>, actionPrefabs));
+    eecs::on_event(reg, FNV1(switch_level), [&](eecs::EntityId actEid, eecs::EntityId plEid, const std::string& level_name)
+    {
+        eecs::create_or_find_entity_wrap(reg, "Switch_Level").set(COMPID(std::string, nextLevel), level_name);
+    }, COMPID(const std::string, level_name));
     eecs::on_event(reg, FNV1(toggle), [&](eecs::EntityId actEid, eecs::EntityId plEid, eecs::EntityId parent)
     {
         eecs::emit_event(reg, FNV1(open), parent, plEid);

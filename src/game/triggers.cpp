@@ -23,7 +23,6 @@ void register_triggers(eecs::Registry& reg)
                 curPosition.x >= triggerPos.x - volExt.x && curPosition.x <= triggerPos.x + volExt.x &&
                 curPosition.z >= triggerPos.z - volExt.y && curPosition.z <= triggerPos.z + volExt.y)
             {
-                printf("emmiting event %i\n", FNV1(enterTrigger));
                 eecs::emit_event(reg, FNV1(enterTrigger), eid, playerEid);
             }
         }, COMPID(const vec3f, position), COMPID(const vec2i, trigger_volume));

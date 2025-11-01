@@ -60,22 +60,6 @@ void restart_world(eecs::Registry& reg)
     create_ui_helper(reg, width, height, scaleFactor);
 }
 
-void reset_world(eecs::Registry& reg)
-{
-    float width, height, scaleFactor;
-    eecs::query_entities(reg, [&](eecs::EntityId, float window_width, float window_height, float window_scaleFactor)
-    {
-        width = window_width;
-        height = window_height;
-        scaleFactor = window_scaleFactor;
-    }, COMPID(const float, window_width), COMPID(const float, window_height), COMPID(const float, window_scaleFactor));
-
-    eecs::del_all_systems(reg);
-    init_new_world(reg);
-    create_ui_helper(reg, width, height, scaleFactor);
-}
-
-
 void create_floor(eecs::Registry& reg, vec3f tilePos, float rot, const char* name);
 void create_ceiling(eecs::Registry& reg, vec3f tilePos, float rot, const char* name);
 void create_wall(eecs::Registry& reg, vec3f tilePos, int dir, bool flip, const char* name);
@@ -674,10 +658,13 @@ void create_entity(eecs::Registry& reg, vec3f tilePos, float rot, const char* na
 void create_logic(eecs::Registry& reg, vec3f tilePos, float rot, const char* name)
 {
     eecs::EntityWrap pref = eecs::find_entity_wrap(reg, name);
+    const vec3f relPos = pref.get_or(COMPID(vec3f, relativePos), vec3f(0, 0, 0));
+    const Matrix matRotation = MatrixRotate(tovec3(0, 1, 0), rot * DEG2RAD);
+    const vec3f pos = tilePos + tov3(castRLVec3(relPos) * matRotation);
     eecs::create_wrap_from_prefab(reg, pref)
         .tag(COMPID(Tag, Saveable))
         .set(COMPID(float, rotation), rot + 180)
-        .set(COMPID(vec3f, position), tilePos)
+        .set(COMPID(vec3f, position), pos)
         .set(COMPID(std::string, prefab), std::string(name));
 }
 

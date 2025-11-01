@@ -24,6 +24,7 @@ static EntTypeList entType = E_FLOORS;
 static EditorState editorState = E_WORLD;
 static std::string editorLevelName = "";
 static std::string editorLevelToLoad = "";
+static bool filterSelected = false;
 
 
 static void draw_right_editor_panel(eecs::Registry& reg, float width, float height, float scaleFactor)
@@ -79,13 +80,40 @@ static void draw_right_editor_panel(eecs::Registry& reg, float width, float heig
     float ypos = ytabpos + 16 * scaleFactor + vpad * 2;
     const float fontSz = 16 * scaleFactor;
 
+    static std::string filter;
+
     eecs::EntityWrap type = eecs::find_entity_wrap(reg, types[entType]);
     eecs::query_component(reg, type.eid, [&](const std::vector<eecs::EntityId>& children)
     {
+        const float filterWd = 50.f * scaleFactor;
+        Rectangle promptRect = torect(left + filterWd, ypos, width * 0.3 - filterWd, fontSz);
+        DrawText("Filter:", left, ypos, fontSz, WHITE);
+        DrawRectangleRec(promptRect, Color{50, 50, 50, 200});
+        DrawText(filter.c_str(), left + filterWd + lpad, ypos, fontSz, WHITE);
+        if (filterSelected)
+        {
+            int key = GetCharPressed();
+
+            // Check if more characters have been pressed on the same frame
+            while (key > 0)
+            {
+                // NOTE: Only allow keys in range [32..125]
+                if ((key >= 32) && (key <= 125))
+                    filter += (char)key;
+
+                key = GetCharPressed();  // Check next character in the queue
+            }
+            if (IsKeyPressed(KEY_BACKSPACE) && !filter.empty())
+                filter.pop_back();
+        }
+        DrawRectangleLinesEx(promptRect, 1.f, filterSelected ? WHITE : BLACK);
+        ypos += fontSz + vspacing;
         for (eecs::EntityId eid : children)
             eecs::entity_name(reg, eid, [&](const std::string& name)
             {
                 if (name[0] == '_')
+                    return;
+                if (!filter.empty() && name.find(filter) == std::string::npos)
                     return;
                 Rectangle rect = torect(left, ypos, width * 0.3f, fontSz);
                 auto procSelection = [&](std::string& val)
@@ -120,6 +148,10 @@ static void draw_right_editor_panel(eecs::Registry& reg, float width, float heig
                 }, COMPID(const Texture2D, texture_diff));
                 ypos += fontSz + vspacing;
             });
+        if (IsMouseButtonReleased(0))
+        {
+            filterSelected = is_vec_in_rect(mp, promptRect);
+        }
     }, COMPID(const std::vector<eecs::EntityId>, children));
 }
 
@@ -455,7 +487,7 @@ bool is_cursor_over_ui(eecs::Registry& reg)
 
 bool is_ui_blocks_input()
 {
-  if (editorState != E_WORLD)
+  if (editorState != E_WORLD || filterSelected)
     return true;
   return false;
 }

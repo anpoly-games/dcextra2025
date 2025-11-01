@@ -3,7 +3,7 @@
 void register_systems(eecs::Registry& reg);
 eecs::EntityId init_new_world(eecs::Registry& reg);
 void restart_world(eecs::Registry& reg);
-void reset_world(eecs::Registry& reg);
+eecs::Registry& get_registry(const std::string& name);
 
 void pre_draw_call(eecs::Registry& reg);
 

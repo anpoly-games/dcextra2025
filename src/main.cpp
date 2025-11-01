@@ -50,7 +50,7 @@ int main(int argc, char** argv)
     SetExitKey(KEY_NULL);
     InitAudioDevice();
 
-    eecs::Registry* reg = new eecs::Registry{};
+    eecs::Registry* reg = nullptr;
 
     if (debugMode)
     {
@@ -59,14 +59,24 @@ int main(int argc, char** argv)
 
     if (levelToLoad)
     {
-        create_ui_helper(*reg, width * scaleFactor, height * scaleFactor, scaleFactor);
-        load_level(*reg, levelToLoad);
-        registries[levelToLoad] = reg;
+        preload_levels(registries, width * scaleFactor, height * scaleFactor, scaleFactor); // maybe only in the game?
+        auto itf = registries.find(levelToLoad);
+        if (itf != registries.end())
+            reg = itf->second;
+        else
+        {
+            reg = new eecs::Registry{};
+            create_ui_helper(*reg, width * scaleFactor, height * scaleFactor, scaleFactor);
+            load_level(*reg, levelToLoad);
+            registries[levelToLoad] = reg;
+        }
     }
     else
     {
+        reg = new eecs::Registry{};
         register_systems(*reg);
         init_new_world(*reg);
+        preload_levels(registries, width * scaleFactor, height * scaleFactor, scaleFactor); // maybe only in the game?
         create_ui_helper(*reg, width * scaleFactor, height * scaleFactor, scaleFactor);
         registries["default"] = reg;
     }
@@ -92,5 +102,17 @@ int main(int argc, char** argv)
     }
 
     return 0;
+}
+
+eecs::Registry& get_registry(const std::string& name)
+{
+    auto itf = registries.find(name);
+    assert(itf != registries.end());
+    if (itf == registries.end())
+    {
+        static eecs::Registry temp;
+        return temp;
+    }
+    return *itf->second;
 }
 
