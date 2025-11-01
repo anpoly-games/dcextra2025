@@ -5,9 +5,18 @@
 #include "../cam.h"
 #include "../ui.h"
 #include "../tags.h"
+#include "../game.h"
 #include "game_ui.h"
 #include "interactables.h"
 #include "advancement.h"
+
+static GameState gameState = E_MAIN_MENU;
+
+void set_game_state(GameState gs)
+{
+    gameState = gs;
+}
+
 
 bool is_ui_blocks_input(eecs::Registry& reg)
 {
@@ -199,56 +208,83 @@ void draw_ui(eecs::Registry& reg, float width, float height, float scaleFactor)
 {
     static Font headerFont = LoadFontEx("res/textures/ui/16px-IBM_VGA_8x16.ttf", 16, nullptr, 0);
     static Font logFont = LoadFontEx("res/textures/ui/8px-IBM_BIOS_8x8.ttf", 8, nullptr, 0);
-    static Texture2D border = LoadTexture("res/textures/ui/border.png");
-    static Texture2D horzborder = LoadTexture("res/textures/ui/horz_border2.png");
-    const float headerSize = 16.f * scaleFactor;
-
-    float charEnd = (40 + 14 * 5) * scaleFactor;
-
-    const float uiPxScale = 4.f * scaleFactor;
-    const float borderHt = uiPxScale * 8.f;
+    static NineRect nrect = create_9rect(LoadImage("res/textures/ui/button_rect.png"), 2);
     const float pad = 4.f * scaleFactor;
-    const float actEnd = charEnd + borderHt + headerSize + pad + 20.f * scaleFactor * 8;
-    const float itmEnd = height - 180 * scaleFactor;
-
-    eecs::query_entities(reg, [&](eecs::EntityId, int cam_resWidth, float cam_resMult)
+    if (gameState == E_MAIN_MENU)
     {
-        const float leftSide = cam_resWidth * cam_resMult * scaleFactor - cam_resMult * scaleFactor;
-        const float leftSideTrue = leftSide + cam_resMult * scaleFactor;
-        draw_tiled_tex(horzborder, torect(0, 0, width, 12), torect(leftSideTrue, charEnd, width, 12 * scaleFactor), uiPxScale, WHITE);
-        draw_tiled_tex(horzborder, torect(0, 0, width, 12), torect(leftSideTrue, actEnd, width, 12 * scaleFactor), uiPxScale, WHITE);
-        draw_tiled_tex(horzborder, torect(0, 0, width, 12), torect(leftSideTrue, itmEnd, width, 12 * scaleFactor), uiPxScale, WHITE);
-
-        draw_centered_font_with_shadow(headerFont, "CHARACTER", torect(leftSide + 12.f * uiPxScale, 16.f * scaleFactor, width - (leftSide + 12.f * uiPxScale), headerSize), headerSize, 3, GetColor(0x3e8948ff));
-        draw_centered_font_with_shadow(headerFont, "ACTIONS", torect(leftSide + 12.f * uiPxScale, charEnd + borderHt, width - (leftSide + 12.f * uiPxScale), headerSize), headerSize, 3, GetColor(0x3e8948ff));
-        draw_centered_font_with_shadow(headerFont, "ITEMS", torect(leftSide + 12.f * uiPxScale, actEnd + borderHt, width - (leftSide + 12.f * uiPxScale), headerSize), headerSize, 3, GetColor(0x3e8948ff));
-        draw_centered_font_with_shadow(headerFont, "SYSLOG", torect(leftSide + 12.f * uiPxScale, itmEnd + borderHt, width - (leftSide + 12.f * uiPxScale), headerSize), headerSize, 3, GetColor(0x3e8948ff));
-
-        draw_tiled_tex(border, torect(0, 0, 12, height), torect(leftSide, 0.f, 12 * scaleFactor, height), uiPxScale, WHITE);
-    }, COMPID(const int, cam_resWidth), COMPID(const float, cam_resMult));
-
-    draw_character(reg, 40.f * scaleFactor, width, height, scaleFactor);
-    //DrawFPS(20, height - 40);
-    draw_interactables(reg, charEnd + borderHt + headerSize + pad, width, height, scaleFactor);
-
-    draw_items(reg, actEnd + borderHt + headerSize + pad, width, height, scaleFactor);
-
-    const vec2i cam_wh = get_cam_wh(reg);
-    vec2f pos = {cam_wh.x + 50.f * scaleFactor, itmEnd + borderHt + headerSize + pad};
-    const float spacing = 12.f * scaleFactor;
-    eecs::query_entities(reg, [&](eecs::EntityId, std::vector<ColoredText>& rollingText)
-    {
-        int numfit = (height - pos.y) / spacing;
-        while (numfit < rollingText.size())
-            rollingText.erase(rollingText.begin());
-        for (const ColoredText& text : rollingText)
+        vec2f bsz = {width * 0.5f, 40.f * scaleFactor};
+        vec2f pos = {(width - bsz.x) * 0.5f, height * 0.5f};
+        draw_button_9rect(nrect, Rectangle(pos.x, pos.y, bsz.x, bsz.y), headerFont, "Begin", 32.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
+        [&]()
         {
-            DrawTextEx(logFont, text.first.c_str(), toRLVec2(pos), 8.f * scaleFactor, 0, text.second);
-            pos.y += spacing;
-        }
-    }, COMPID(const std::vector<ColoredText>, rollingText));
+            eecs::create_or_find_entity_wrap(reg, "Switch_Level").set(COMPID(std::string, nextLevel), std::string("Meatspace_Main"));
+            gameState = E_GAME;
+        });
+        pos.y += bsz.y + pad;
+        draw_button_9rect(nrect, Rectangle(pos.x, pos.y, bsz.x, bsz.y), headerFont, "Logout", 32.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
+        [&]()
+        {
+            eecs::create_entity_wrap(reg).set(COMPID(Tag, quitGame), Tag{});
+        });
+    }
+    else if (gameState == E_WIN)
+    {
+    }
+    else if (gameState == E_LOSE)
+    {
+    }
+    else if (gameState == E_GAME)
+    {
+        static Texture2D border = LoadTexture("res/textures/ui/border.png");
+        static Texture2D horzborder = LoadTexture("res/textures/ui/horz_border2.png");
+        const float headerSize = 16.f * scaleFactor;
 
-    draw_dialogue(reg, width, height, scaleFactor);
+        float charEnd = (40 + 14 * 5) * scaleFactor;
+
+        const float uiPxScale = 4.f * scaleFactor;
+        const float borderHt = uiPxScale * 8.f;
+        const float actEnd = charEnd + borderHt + headerSize + pad + 20.f * scaleFactor * 8;
+        const float itmEnd = height - 180 * scaleFactor;
+
+        eecs::query_entities(reg, [&](eecs::EntityId, int cam_resWidth, float cam_resMult)
+        {
+            const float leftSide = cam_resWidth * cam_resMult * scaleFactor - cam_resMult * scaleFactor;
+            const float leftSideTrue = leftSide + cam_resMult * scaleFactor;
+            draw_tiled_tex(horzborder, torect(0, 0, width, 12), torect(leftSideTrue, charEnd, width, 12 * scaleFactor), uiPxScale, WHITE);
+            draw_tiled_tex(horzborder, torect(0, 0, width, 12), torect(leftSideTrue, actEnd, width, 12 * scaleFactor), uiPxScale, WHITE);
+            draw_tiled_tex(horzborder, torect(0, 0, width, 12), torect(leftSideTrue, itmEnd, width, 12 * scaleFactor), uiPxScale, WHITE);
+
+            draw_centered_font_with_shadow(headerFont, "CHARACTER", torect(leftSide + 12.f * uiPxScale, 16.f * scaleFactor, width - (leftSide + 12.f * uiPxScale), headerSize), headerSize, 3, GetColor(0x3e8948ff));
+            draw_centered_font_with_shadow(headerFont, "ACTIONS", torect(leftSide + 12.f * uiPxScale, charEnd + borderHt, width - (leftSide + 12.f * uiPxScale), headerSize), headerSize, 3, GetColor(0x3e8948ff));
+            draw_centered_font_with_shadow(headerFont, "ITEMS", torect(leftSide + 12.f * uiPxScale, actEnd + borderHt, width - (leftSide + 12.f * uiPxScale), headerSize), headerSize, 3, GetColor(0x3e8948ff));
+            draw_centered_font_with_shadow(headerFont, "SYSLOG", torect(leftSide + 12.f * uiPxScale, itmEnd + borderHt, width - (leftSide + 12.f * uiPxScale), headerSize), headerSize, 3, GetColor(0x3e8948ff));
+
+            draw_tiled_tex(border, torect(0, 0, 12, height), torect(leftSide, 0.f, 12 * scaleFactor, height), uiPxScale, WHITE);
+        }, COMPID(const int, cam_resWidth), COMPID(const float, cam_resMult));
+
+        draw_character(reg, 40.f * scaleFactor, width, height, scaleFactor);
+        //DrawFPS(20, height - 40);
+        draw_interactables(reg, charEnd + borderHt + headerSize + pad, width, height, scaleFactor);
+
+        draw_items(reg, actEnd + borderHt + headerSize + pad, width, height, scaleFactor);
+
+        const vec2i cam_wh = get_cam_wh(reg);
+        vec2f pos = {cam_wh.x + 50.f * scaleFactor, itmEnd + borderHt + headerSize + pad};
+        const float spacing = 12.f * scaleFactor;
+        eecs::query_entities(reg, [&](eecs::EntityId, std::vector<ColoredText>& rollingText)
+        {
+            int numfit = (height - pos.y) / spacing;
+            while (numfit < rollingText.size())
+                rollingText.erase(rollingText.begin());
+            for (const ColoredText& text : rollingText)
+            {
+                DrawTextEx(logFont, text.first.c_str(), toRLVec2(pos), 8.f * scaleFactor, 0, text.second);
+                pos.y += spacing;
+            }
+        }, COMPID(const std::vector<ColoredText>, rollingText));
+
+        draw_dialogue(reg, width, height, scaleFactor);
+    }
 }
 
 void push_rolling_text(eecs::Registry& reg, const char* text, Color col)

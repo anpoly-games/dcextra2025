@@ -70,6 +70,7 @@ int main(int argc, char** argv)
             load_level(*reg, levelToLoad);
             registries[levelToLoad] = reg;
         }
+        set_game_state(E_GAME);
     }
     else
     {
@@ -92,6 +93,16 @@ int main(int argc, char** argv)
                 draw_ui(*reg, width * scaleFactor, height * scaleFactor, scaleFactor);
             end_postcam(*reg);
         reg = change_level(*reg, registries); // look for a change level request and execute it.
+        bool shouldQuit = false;
+        eecs::query_entities(*reg, [&](eecs::EntityId, Tag quitGame)
+        {
+            shouldQuit = true;
+        }, COMPID(Tag, quitGame));
+        if (shouldQuit)
+        {
+            CloseWindow();
+            break;
+        }
         assert(reg);
     }
     CloseAudioDevice();

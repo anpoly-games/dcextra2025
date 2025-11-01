@@ -779,3 +779,5 @@ void delete_column(eecs::Registry& reg, vec3f tilePos)
     }, COMPID(const vec3f, position), COMPID(const Tag, Column));
 }
 
+void set_game_state(GameState gs) {}
+

@@ -7,4 +7,14 @@ eecs::Registry& get_registry(const std::string& name);
 
 void pre_draw_call(eecs::Registry& reg);
 
+enum GameState
+{
+    E_MAIN_MENU = 0,
+    E_GAME,
+    E_WIN,
+    E_LOSE
+};
+
+void set_game_state(GameState gs);
+
 //inline float get_game_dt(flecs::world& ecs) { return ecs.has<GamePaused>() ? 0.f : ecs.delta_time(); }
