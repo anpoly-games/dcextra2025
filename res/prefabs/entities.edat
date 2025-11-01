@@ -79,30 +79,34 @@ _BaseCreature = {
     ai : Tag = ""
     attackDamage : int = "5"
     occupiesCell : Tag = ""
+    aggroesTeam : int = "0"
 }
 
 ShroomBlob <- _BaseCreature = {
     texture_filename : str = "res/textures/creatures/rykhath-tiles-58.png"
+    aggroesTeam : int = "2"
 }
 
 MonsterMushroom01 <- _BaseCreature = {
     texture_filename : str = "res/textures/creatures/monster_mushroom_01.png"
+    aggroesTeam : int = "2"
 }
 
 MonsterMushroom02 <- _BaseCreature = {
     texture_filename : str = "res/textures/creatures/monster_mushroom_02.png"
+    aggroesTeam : int = "2"
 }
 
 MonsterMushroomOrc <- _BaseCreature = {
     texture_filename : str = "res/textures/creatures/mushroom_orc_01.png"
+    aggroesTeam : int = "2"
 }
-
-
 
 _BaseDecor = {
     billboard : Tag = ""
     billboard_size : float = "0.6"
     relativePos : float[3] = ["0", "0.3", "-0.2"]
+    rayTransparent : Tag = ""
 }
 
 _BaseLadder = {
@@ -306,6 +310,7 @@ _CyberCreature = {
     ai : Tag = ""
     attackDamage : int = "5"
     occupiesCell : Tag = ""
+    aggroesTeam : int = "0"
 }
 
 CyberEnemy01 <- _CyberCreature = {

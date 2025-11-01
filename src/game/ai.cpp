@@ -10,10 +10,12 @@
 void register_ai(eecs::Registry& reg)
 {
     static Sound playerHit = LoadSound("res/audio/sfx/hit_07.ogg");
-    eecs::on_event(reg, FNV1(next_turn), [&](eecs::EntityId eid, eecs::EntityId plEid, vec3f& position, int attackDamage, Tag ai)
+    eecs::on_event(reg, FNV1(next_turn), [&](eecs::EntityId eid, eecs::EntityId plEid, vec3f& position, int attackDamage, Tag ai, int aggroesTeam)
     {
-        eecs::query_components(reg, plEid, [&, &epos = position](const vec3f& position, int& hitpoints)
+        eecs::query_components(reg, plEid, [&, &epos = position](const vec3f& position, int& hitpoints, int team)
         {
+            if (aggroesTeam != team)
+                return;
             if (ray_hit(reg, epos, position + vec3f(0, 0.4f, 0), plEid))
                 return;
             // try to move towards
@@ -45,7 +47,7 @@ void register_ai(eecs::Registry& reg)
                 epos += vec3f(longMove.x, 0, longMove.y);
             else if (!check_collision_dir(reg, epos, shortMove) && check_floor(reg, epos + smove3d))
                 epos += vec3f(shortMove.x, 0, shortMove.y);
-        }, COMPID(const vec3f, position), COMPID(int, hitpoints));
-    }, COMPID(vec3f, position), COMPID(const int, attackDamage), COMPID(const Tag, ai));
+        }, COMPID(const vec3f, position), COMPID(int, hitpoints), COMPID(const int, team));
+    }, COMPID(vec3f, position), COMPID(const int, attackDamage), COMPID(const Tag, ai), COMPID(const int, aggroesTeam));
 }
 

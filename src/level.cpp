@@ -244,6 +244,8 @@ bool ray_hit(eecs::Registry& reg, const vec3f& sourcePos, const vec3f& targetPos
     {
         if ((sourcePos - position).mag2() > maxDistSq || eid == target || bestT < initialDist)
             return;
+        if (eecs::has_comp(reg, eid, COMPID(Tag, rayTransparent)))
+            return;
         Matrix matRotation = MatrixRotate(Vector3{0.f, 1.f, 0.f}, eecs::get_comp_or(reg, eid, COMPID(float, rotation),0.f));
         Matrix matTranslation = MatrixTranslate(position.x, position.y, position.z);
 

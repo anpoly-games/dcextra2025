@@ -107,3 +107,51 @@ SwitchToDS1 = {
     dbox_name : str = "DS1"
 }
 
+_OkReply = {
+    text : str = "OK"
+    reply_triggers : str[] = ["kill_dialogue"]
+}
+
+_ShroomJoin = {
+    text : str = "I'll aid you"
+    reply_triggers : str[] = ["join_team_1", "kill_dialogue"]
+}
+
+_ShroomDeny = {
+    text : str = "I'll kill you"
+    reply_triggers : str[] = ["join_team_2", "kill_dialogue"]
+}
+
+_AIJoin = {
+    text : str = "I'll aid you"
+    reply_triggers : str[] = ["join_team_2", "kill_dialogue"]
+}
+
+_AIDeny = {
+    text : str = "I'll kill you"
+    reply_triggers : str[] = ["join_team_1", "kill_dialogue"]
+}
+
+_NeedTimeToThink = {
+    text : str = "I need time to think"
+    reply_triggers : str[] = ["close_dialogue"]
+}
+
+CSDialogueWarden1 = {
+    trigger_volume : int[2] = ["1", "1"]
+    trigger_debugName : str = "dial AI 1"
+    Saveable : Tag = ""
+    dialogue_title : str = "AI_Warden"
+    dialogue_text : str[] = ["Oh hi", "didn't think I would see someone", "Well I'm lying"]
+    dialogue_replies : eid[] = ["_OkReply"]
+}
+
+DS1Dialogue = {
+    trigger_volume : int[2] = ["1", "1"]
+    trigger_debugName : str = "dial DS1 shroom"
+    Saveable : Tag = ""
+    dialogue_title : str = "Fungus_Cogitans"
+    dialogue_text : str[] = ["Well finally", "Why the hell it took so long?", "Ah, you don't understand what's going on, do you?", "Well, I'm trapped by this filthy AI warden", "So it can use me to simulate this space", "Would you mind killing invaders for me please?", "I'll let you out if you help me"]
+    dialogue_replies : eid[] = ["_ShroomJoin", "_ShroomDeny", "_NeedTimeToThink"]
+}
+

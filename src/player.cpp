@@ -13,7 +13,7 @@ void register_player(eecs::Registry& reg)
     static Sound stepSnd = LoadSound("res/audio/sfx/step_single_01.ogg");
     eecs::reg_system(reg, [&](eecs::EntityId eid, vec3f& position, vec3f& direction, Tag player)
     {
-        if (is_ui_blocks_input())
+        if (is_ui_blocks_input(reg))
             return;
         const float turnRight = (IsKeyPressed(KEY_Q) || IsKeyPressed(KEY_KP_7) ? -1.f : 0.f) +
                                 (IsKeyPressed(KEY_E) || IsKeyPressed(KEY_KP_9) ? 1.f  : 0.f);

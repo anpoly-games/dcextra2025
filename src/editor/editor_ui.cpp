@@ -485,7 +485,7 @@ bool is_cursor_over_ui(eecs::Registry& reg)
     return res;
 }
 
-bool is_ui_blocks_input()
+bool is_ui_blocks_input(eecs::Registry& reg)
 {
   if (editorState != E_WORLD || filterSelected)
     return true;

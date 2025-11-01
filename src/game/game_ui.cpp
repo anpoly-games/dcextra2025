@@ -4,13 +4,19 @@
 #include "../math.h"
 #include "../cam.h"
 #include "../ui.h"
+#include "../tags.h"
 #include "game_ui.h"
 #include "interactables.h"
 #include "advancement.h"
 
-bool is_ui_blocks_input()
+bool is_ui_blocks_input(eecs::Registry& reg)
 {
-    return false;
+    bool res = false;
+    eecs::query_entities(reg, [&](eecs::EntityId, Tag dialogue_active)
+    {
+        res = true;
+    }, COMPID(Tag, dialogue_active));
+    return res;
 }
 
 void draw_character(eecs::Registry& reg, float top, float width, float height, float scaleFactor)
@@ -103,6 +109,8 @@ void draw_items(eecs::Registry& reg, float top, float scrwidth, float height, fl
             {
                 if (count > 0)
                 {
+                    if (is_ui_blocks_input(reg))
+                        return;
                     eecs::emit_event(reg, fnv1StrHash(name), plEid, plEid);
                     eecs::emit_event(reg, FNV1(next_turn), eecs::invalid_eid, plEid);
                 }
@@ -121,6 +129,70 @@ void draw_items(eecs::Registry& reg, float top, float scrwidth, float height, fl
         drawItem("Bandito", bandito, items_bandito, pos + vec2f(width + pad, 0.f)); pos.y += step + 4.f * scaleFactor;
     }, COMPID(int, items_regenX), COMPID(int, items_bearserker), COMPID(int, items_reflexxx),
        COMPID(int, items_mindDefoger), COMPID(int, items_genius), COMPID(int, items_bandito));
+}
+
+void draw_dialogue(eecs::Registry& reg, float width, float height, float scaleFactor)
+{
+    //static Texture2D border = LoadTexture("res/textures/ui/border.png");
+    //static Texture2D horzborder = LoadTexture("res/textures/ui/horz_border2.png");
+    static Font titleFont = LoadFontEx("res/textures/ui/16px-IBM_VGA_8x16.ttf", 16, nullptr, 0);
+    static Font textFont = LoadFontEx("res/textures/ui/16px-IBM_VGA_8x16.ttf", 16, nullptr, 0);//LoadFontEx("res/textures/ui/8px-IBM_BIOS_8x8.ttf", 8, nullptr, 0);
+    static NineRect nrect = create_9rect(LoadImage("res/textures/ui/button_rect.png"), 2);
+
+    static Texture2D tlTex = LoadTexture("res/textures/ui/topleft.png");
+    static Texture2D trTex = LoadTexture("res/textures/ui/topright.png");
+    static Texture2D blTex = LoadTexture("res/textures/ui/botleft.png");
+    static Texture2D brTex = LoadTexture("res/textures/ui/botright.png");
+    static Texture2D hzTex = LoadTexture("res/textures/ui/horz.png");
+    static Texture2D vtTex = LoadTexture("res/textures/ui/vert.png");
+    const vec2i cam_wh = get_cam_wh(reg);
+    const vec2f sz = {cam_wh.x * 0.8f, cam_wh.y * 0.6f};
+
+    const float uiPxScale = 2.f * scaleFactor;
+    const float pad = 4.f * scaleFactor;
+    const float titleSz = 16.f * scaleFactor;
+    const float fontSz = 16.f * scaleFactor;
+    vec2f pos = 0.5f * vec2f(cam_wh.x - sz.x, cam_wh.y - sz.y);
+
+    eecs::query_entities(reg, [&](eecs::EntityId eid, const std::string& dialogue_title,
+                const std::vector<std::string>& dialogue_text, const std::vector<eecs::EntityId>& dialogue_replies, Tag dialogue_active)
+    {
+        eecs::query_entities(reg, [&](eecs::EntityId, int cam_resWidth, float cam_resMult)
+        {
+            const float texSz = uiPxScale * 12;
+            DrawRectangleRec(torect(pos.x, pos.y, sz.x, sz.y), BLACK);
+            DrawTexturePro(tlTex, torect(0, 0, 12, 12), torect(pos.x, pos.y, texSz, texSz), Vector2{0, 0}, 0, WHITE);
+            DrawTexturePro(trTex, torect(0, 0, 12, 12), torect(pos.x + sz.x - texSz, pos.y, texSz, texSz), Vector2{0, 0}, 0, WHITE);
+            DrawTexturePro(blTex, torect(0, 0, 12, 12), torect(pos.x, pos.y + sz.y - texSz, texSz, texSz), Vector2{0, 0}, 0, WHITE);
+            DrawTexturePro(brTex, torect(0, 0, 12, 12), torect(pos.x + sz.x - texSz, pos.y + sz.y - texSz, texSz, texSz), Vector2{0, 0}, 0, WHITE);
+
+            draw_tiled_tex(hzTex, torect(0, 0, (sz.x - texSz*2) / uiPxScale, 12), torect(pos.x + texSz, pos.y, 0, 0), uiPxScale, WHITE);
+            draw_tiled_tex(hzTex, torect(0, 0, (sz.x - texSz*2) / uiPxScale, 12), torect(pos.x + texSz, pos.y + sz.y - texSz, 0, 0), uiPxScale, WHITE);
+            draw_tiled_tex(vtTex, torect(0, 0, 12, (sz.y - texSz*2) / uiPxScale), torect(pos.x, pos.y + texSz, 0, 0), uiPxScale, WHITE);
+            draw_tiled_tex(vtTex, torect(0, 0, 12, (sz.y - texSz*2) / uiPxScale), torect(pos.x + sz.x - texSz, pos.y + texSz, 0, 0), uiPxScale, WHITE);
+            vec2f textPos = pos + vec2f{texSz + pad, texSz + pad};
+            for (const std::string& line : dialogue_text)
+            {
+                std::string finalText = dialogue_title + "> " + line;
+                DrawTextEx(textFont, finalText.c_str(), toRLVec2(textPos), fontSz, 0, GetColor(0x63c74dff));
+                textPos.y += fontSz + pad;
+            }
+            const float step = fontSz + pad * 2;
+            for (eecs::EntityId reply : dialogue_replies)
+            {
+                eecs::query_components(reg, reply, [&](const std::string& text, const std::vector<std::string>& reply_triggers)
+                {
+                    draw_button_9rect(nrect, Rectangle(textPos.x, textPos.y, sz.x * 0.3f, step), textFont, text.c_str(), 16.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
+                    [&]()
+                    {
+                        for (const std::string& trName : reply_triggers)
+                            eecs::emit_event(reg, fnv1StrHash(trName.c_str()), eid, eid);
+                    });
+                    textPos.x += sz.x * 0.3f + pad;
+                }, COMPID(const std::string, text), COMPID(const std::vector<std::string>, reply_triggers));
+            }
+        }, COMPID(const int, cam_resWidth), COMPID(const float, cam_resMult));
+    }, COMPID(const std::string, dialogue_title), COMPID(const std::vector<std::string>, dialogue_text), COMPID(const std::vector<eecs::EntityId>, dialogue_replies), COMPID(Tag, dialogue_active));
 }
 
 void draw_ui(eecs::Registry& reg, float width, float height, float scaleFactor)
@@ -175,6 +247,8 @@ void draw_ui(eecs::Registry& reg, float width, float height, float scaleFactor)
             pos.y += spacing;
         }
     }, COMPID(const std::vector<ColoredText>, rollingText));
+
+    draw_dialogue(reg, width, height, scaleFactor);
 }
 
 void push_rolling_text(eecs::Registry& reg, const char* text, Color col)

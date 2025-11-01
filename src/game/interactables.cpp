@@ -8,6 +8,7 @@
 #include "../ui.h"
 #include "../cam.h"
 #include "../level.h"
+#include "../game.h"
 #include "interactables.h"
 #include "advancement.h"
 #include "game_ui.h"
@@ -20,7 +21,7 @@ void draw_interactables(eecs::Registry& reg, float top, float scrwidth, float he
     {
         const vec2i cam_wh = get_cam_wh(reg);
         vec2f pos = {cam_wh.x + 50.f * scaleFactor, top};
-        eecs::query_entities(reg, [&](eecs::EntityId plEid, const vec3f& position, Tag player)
+        eecs::query_entities(reg, [&](eecs::EntityId plEid, const vec3f& position, Tag player, int team)
         {
             eecs::query_entities(reg, [&, &ppos = position](eecs::EntityId obj, const vec3f& position, const std::vector<eecs::EntityId>& actionList)
             {
@@ -29,6 +30,13 @@ void draw_interactables(eecs::Registry& reg, float top, float scrwidth, float he
                 if (pos2d.z < 0.f)
                     return;
                 if (pos2d.x > cam_wh.x || pos2d.x < 0 || pos2d.y < 0 || pos2d.y > cam_wh.y)
+                    return;
+                bool shouldSkip = false;
+                eecs::query_components(reg, obj, [&](int aggroesTeam)
+                {
+                    shouldSkip = team != aggroesTeam;
+                }, COMPID(const int, aggroesTeam));
+                if (shouldSkip)
                     return;
                 const float step = 16.f * scaleFactor;
                 const float width = scrwidth - pos.x - 4.f * 4.f * scaleFactor;
@@ -56,6 +64,8 @@ void draw_interactables(eecs::Registry& reg, float top, float scrwidth, float he
                         draw_button_9rect(nrect, Rectangle(pos.x, pos.y, width, step), actionFont, finalText.c_str(), 8.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
                         [&]()
                         {
+                            if (is_ui_blocks_input(reg))
+                                return;
                             eecs::emit_event(reg, fnv1StrHash(triggers.c_str()), act, plEid);
                             eecs::emit_event(reg, FNV1(next_turn), eecs::invalid_eid, plEid);
                         });
@@ -69,7 +79,7 @@ void draw_interactables(eecs::Registry& reg, float top, float scrwidth, float he
                 {
                 }
             }, COMPID(const vec3f, position), COMPID(const std::vector<eecs::EntityId>, actionList));
-        }, COMPID(const vec3f, position), COMPID(const Tag, player));
+        }, COMPID(const vec3f, position), COMPID(const Tag, player), COMPID(const int, team));
     }, COMPID(const Camera, camera));
 }
 
@@ -365,5 +375,15 @@ void register_interactables(eecs::Registry& reg)
             push_rolling_text(reg, "Bandito: wears out", WHITE);
         }
     }, COMPID(int, effect_banditoTurns), COMPID(int, attr_strength), COMPID(int, attr_agility), COMPID(int, attr_mind));
+
+    eecs::on_event(reg, FNV1(open_remote), [&](eecs::EntityId actId, eecs::EntityId, const std::string& level_name, const std::string& door_tag)
+    {
+        eecs::Registry& levelReg = get_registry(level_name);
+        eecs::query_entities(levelReg, [&, &dt = door_tag](eecs::EntityId doorEid, const std::string& door_tag)
+        {
+            if (door_tag == dt)
+                eecs::emit_event(levelReg, FNV1(open), doorEid, doorEid);
+        }, COMPID(const std::string, door_tag));
+    }, COMPID(const std::string, level_name), COMPID(const std::string, door_tag));
 }
 

@@ -32,7 +32,7 @@ template<typename Vec>
 inline bool is_vec_in_rect(const Vec& v, Rectangle r) { return v.x >= r.x && v.y >= r.y && v.x <= r.x + r.width && v.y <= r.y + r.height; }
 
 bool is_cursor_over_ui(eecs::Registry& reg);
-bool is_ui_blocks_input();
+bool is_ui_blocks_input(eecs::Registry& reg);
 
 struct NineRect
 {

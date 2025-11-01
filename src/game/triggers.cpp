@@ -28,6 +28,37 @@ void register_triggers(eecs::Registry& reg)
         }, COMPID(const vec3f, position), COMPID(const vec2i, trigger_volume));
     }, COMPID(vec3i, prevPosition), COMPID(const vec3f, position));
 
+    eecs::on_event(reg, FNV1(enterTrigger), [&](eecs::EntityId eid, eecs::EntityId, const std::vector<std::string>& dialogue_text)
+    {
+        if (!eecs::has_comp(reg, eid, COMPID(Tag, dialogue_active)))
+            eecs::set_component(reg, eid, COMPID(Tag, dialogue_active), Tag{});
+    }, COMPID(const std::vector<std::string>, dialogue_text));
+
+    eecs::on_event(reg, FNV1(kill_dialogue), [&](eecs::EntityId eid, eecs::EntityId, Tag dialogue_active)
+    {
+        eecs::del_entity(reg, eid);
+    }, COMPID(const Tag, dialogue_active));
+    eecs::on_event(reg, FNV1(close_dialogue), [&](eecs::EntityId eid, eecs::EntityId, Tag dialogue_active)
+    {
+        eecs::del_component(reg, eid, COMPID(Tag, dialogue_active));
+    }, COMPID(const Tag, dialogue_active));
+
+    eecs::on_event(reg, FNV1(join_team_1), [&](eecs::EntityId eid, eecs::EntityId, Tag dialogue_active)
+    {
+        eecs::query_entities(reg, [&](eecs::EntityId plEid, Tag player, int& team)
+        {
+            team = 1;
+        }, COMPID(Tag, player), COMPID(int, team));
+    }, COMPID(const Tag, dialogue_active));
+
+    eecs::on_event(reg, FNV1(join_team_2), [&](eecs::EntityId eid, eecs::EntityId, Tag dialogue_active)
+    {
+        eecs::query_entities(reg, [&](eecs::EntityId plEid, Tag player, int& team)
+        {
+            team = 2;
+        }, COMPID(Tag, player), COMPID(int, team));
+    }, COMPID(const Tag, dialogue_active));
+
     eecs::on_event(reg, FNV1(enterTrigger), [&](eecs::EntityId, eecs::EntityId, const std::string& level_switchTo)
     {
         printf("switching to level %s\n", level_switchTo.c_str());
