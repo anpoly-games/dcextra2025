@@ -7,14 +7,3 @@ Monster0 <- _BaseBillboard = {
     texture_filename : str = "res/textures/creatures/monsters-0.png"
 }
 
-MonsterMushroom01 <- _BaseBillboard = {
-    texture_filename : str = "res/textures/creatures/monster_mushroom_01.png"
-}
-
-MonsterMushroom02 <- _BaseBillboard = {
-    texture_filename : str = "res/textures/creatures/monster_mushroom_02.png"
-}
-
-MonsterMushroomOrc <- _BaseBillboard = {
-    texture_filename : str = "res/textures/creatures/mushroom_orc_01.png"
-}
