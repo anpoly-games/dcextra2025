@@ -17,6 +17,11 @@ void register_spawn(eecs::Registry& reg)
             hasPlayer = true;
             position = spawnPos;
             direction = vec3f(sinf(rotation * DEG2RAD), 0.f, cosf(rotation * DEG2RAD));
+            eecs::query_entities(reg, [&](eecs::EntityId, vec3f& position, vec3f& direction, const Camera&)
+            {
+                position = spawnPos + vec3f(0, 0.4f, 0);
+                direction = vec3f(sinf(rotation * DEG2RAD), 0.f, cosf(rotation * DEG2RAD));
+            }, COMPID(vec3f, position), COMPID(vec3f, direction), COMPID(const Camera, camera));
         }, COMPID(vec3f, position), COMPID(vec3f, direction), COMPID(const Tag, player));
         if (!hasPlayer)
         {
