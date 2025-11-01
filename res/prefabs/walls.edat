@@ -115,6 +115,41 @@ DSStoneWallBroken01 <- _BaseWall = {
     texture_filename : str = "res/textures/walls/dreamspace_stonewall_broken_01.png"
 }
 
+DSStoneTop01 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/dreamspace_stone_top_01.png"
+}
+
+DSCaveWall01 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/dreamspace_cave_01.png"
+}
+
+DSCaveeWall02 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/dreamspace_cave_02.png"
+}
+
+DSCaveeOutside01 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/dreamspace_cave_outside_01.png"
+}
+
+DSCaveeOutside02 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/dreamspace_cave_outside_02.png"
+}
+
+DSCaveeOutside03 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/dreamspace_cave_outside_03.png"
+}
+
+DSCaveeOutside04 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/dreamspace_cave_outside_04.png"
+}
+
+DSWoodenFence01 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/dreamspace_wood_fence_01.png"
+}
+
+DSWoodenFence02 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/dreamspace_wood_fence_02.png"
+}
 
 CSWallLines01 <- _BaseWall = {
     texture_filename : str = "res/textures/walls/cyber_wall_01.png"

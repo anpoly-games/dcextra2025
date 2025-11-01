@@ -39,6 +39,10 @@ DSGrassPath02 <- _BaseFloor = {
     texture_filename : str = "res/textures/floors/dreamspace_grasspath_02.png"
 }
 
+DSCaveFloor01 <- _BaseFloor = {
+    texture_filename : str = "res/textures/floors/dreamspace_cave_floor_01.png"
+}
+
 CSFloorLines01 <- _BaseFloor = {
     texture_filename : str = "res/textures/floors/cyber_floor_01.png"
     texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"

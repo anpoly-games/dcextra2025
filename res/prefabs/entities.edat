@@ -167,6 +167,10 @@ DecorShroom04 <- _BaseDecor = {
 	relativePos : float[3] = ["0", "0.2", "-0.2"]
 }
 
+DecorWheat1 <- _BaseDecor = {
+    texture_filename : str = "res/textures/decor/wheat_01.png"
+}
+
 _PickupAction = {
     triggers : str = "add_item"
     distance : float = "1.1"
@@ -317,3 +321,12 @@ CyberEnemy02 <- _CyberCreature = {
     hitpoints : int = "20"
 }
 
+DSMountainRamp = {
+    primitiveRamp_base : float = "0"
+    primitiveRamp_top : float = "1"
+    primitiveRamp_width : float = "1"
+    primitiveRamp_length : float = "1"
+    relativePos : float[3] = ["0", "0.5", "0"]
+	
+    texture_filename : str = "res/textures/walls/dreamspace_cave_outside_01.png"
+}
