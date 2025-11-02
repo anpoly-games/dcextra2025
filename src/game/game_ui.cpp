@@ -77,14 +77,45 @@ void draw_character(eecs::Registry& reg, float top, float width, float height, f
     eecs::query_entities(reg, [&](eecs::EntityId, int& attr_strength, int& attr_agility, int& attr_mind, int& attr_body, int hitpoints, int level, int experience, int& pointsToSpend)
     {
         int nextLevelExp = get_next_level_exp(level);
+        const float pad = 2.f * scaleFactor;
 
-        DrawTextEx(charFont, TextFormat("HP: %d/%d", hitpoints, attr_body), toRLVec2(pos), textSize, 0, GetColor(0x3e8948ff)); pos.y += step;
+        static float timer = 0.f;
+        timer += GetFrameTime();
+
+        {
+            Color hpColor = GetColor(0x3e8948ff);
+            Color hpBgColor = BLACK;
+            float hpRatio = float(hitpoints) / float(attr_body);
+            if (hpRatio <= 0.2f)
+            {
+                hpColor = GetColor(0xff0044ff);
+                if (int(timer * 4.f) % 2 == 0)
+                    std::swap(hpColor, hpBgColor);
+            }
+            else if (hpRatio <= 0.5f)
+            {
+                hpColor = GetColor(0xfee761ff);
+                if (int(timer * 2.f) % 2 == 0)
+                    std::swap(hpColor, hpBgColor);
+            }
+            Vector2 tsz = MeasureTextEx(charFont, TextFormat("HP: %d/%d", hitpoints, attr_body), textSize, 0);
+            DrawRectangle(pos.x - pad, pos.y - pad, tsz.x + pad * 2, tsz.y + pad * 2, hpBgColor);
+            DrawTextEx(charFont, TextFormat("HP: %d/%d", hitpoints, attr_body), toRLVec2(pos), textSize, 0, hpColor);
+            pos.y += step;
+        }
         DrawTextEx(charFont, TextFormat("LVL: %d", level), toRLVec2(pos), textSize, 0, GetColor(0x3e8948ff));
         DrawTextEx(charFont, TextFormat("XP: %d/%d", experience, nextLevelExp), toRLVec2(pos + vec2f(hzStep, 0)), textSize, 0, GetColor(0x3e8948ff)); pos.y += step;
 
         if (pointsToSpend > 0)
         {
-            DrawTextEx(charFont, TextFormat("PTS: %d", pointsToSpend), toRLVec2(pos), textSize, 0, GetColor(0xfeae34ff)); pos.y += step;
+            Color fgColor = GetColor(0xfeae34ff);
+            Color bgColor = BLACK;
+            if (int(timer * 2.0f) % 2)
+                std::swap(fgColor, bgColor);
+            Vector2 tsz = MeasureTextEx(charFont, TextFormat("PTS: %d", pointsToSpend), textSize, 0);
+            DrawRectangle(pos.x - pad, pos.y - pad, tsz.x + pad * 2, tsz.y + pad * 2, bgColor);
+            DrawTextEx(charFont, TextFormat("PTS: %d", pointsToSpend), toRLVec2(pos), textSize, 0, fgColor);
+            pos.y += step;
         }
 
         drawAttr("STR", pos, attr_strength, pointsToSpend);
