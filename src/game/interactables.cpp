@@ -220,7 +220,8 @@ void register_interactables(eecs::Registry& reg)
         }, eecs::ComponentId<int>(attribute.c_str()), COMPID(const vec3f, position));
     }, COMPID(const eecs::EntityId, parent), COMPID(const std::string, attribute), COMPID(const int, shove_distance));
 
-    static Sound enemyHit = LoadSound("res/audio/sfx/hit_06.ogg");
+    static Sound enemyHit = LoadSound("res/audio/sfx/hit.ogg");
+    static Sound enemyDied = LoadSound("res/audio/sfx/enemy_perish.ogg");
     auto procAttack = [attrRoll](eecs::Registry& reg, const char* attrName, int attrVal, float attrMult, int dmg, const char* desc, int& hitpoints, int expDrop,
                          eecs::EntityId enemy, eecs::EntityId pl)
     {
@@ -234,12 +235,14 @@ void register_interactables(eecs::Registry& reg)
             return;
         push_rolling_text(reg, TextFormat("Damaged enemy for %d dmg %s", dmg, desc), GetColor(0x3e8948ff));
         hitpoints -= dmg;
-        PlaySound(enemyHit);
         if (hitpoints <= 0)
         {
+            PlaySound(enemyDied);
             add_exp(reg, pl, expDrop);
             eecs::del_entity(reg, enemy);
         }
+        else
+            PlaySound(enemyHit);
     };
     eecs::on_event(reg, FNV1(attack), [&](eecs::EntityId actEid, eecs::EntityId pl, eecs::EntityId parent, const std::string& attribute, float attr_dmgMult, eecs::EntityId action_sound)
     {

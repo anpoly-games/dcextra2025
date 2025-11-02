@@ -20,9 +20,9 @@ EditorCam <- _SmoothCamera = {
 }
 
 PlayerInstantCam <- _DefaultCamera = {
-    cam_resWidth : int = "110"
-    cam_resHeight : int = "90"
-    cam_resMult : float = "8"
+    cam_resWidth : int = "220"
+    cam_resHeight : int = "180"
+    cam_resMult : float = "4"
 }
 
 PlayerCam <- PlayerInstantCam = {

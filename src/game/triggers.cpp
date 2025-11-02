@@ -120,10 +120,10 @@ void register_triggers(eecs::Registry& reg)
         }, COMPID(vec3f, direction), COMPID(Tag, player));
     }, COMPID(const int, turns), COMPID(Tag, spinner));
 
-    eecs::on_event(reg, FNV1(enterTrigger), [&](eecs::EntityId, eecs::EntityId, Tag winGame)
+    eecs::on_event(reg, FNV1(win_game), [&](eecs::EntityId, eecs::EntityId, const std::string& triggers)
     {
         set_game_state(E_WIN);
-    }, COMPID(Tag, winGame));
+    }, COMPID(const std::string, triggers));
 
     static Sound playerHit = LoadSound("res/audio/sfx/hit_07.ogg");
     eecs::on_event(reg, FNV1(enterTrigger), [&](eecs::EntityId, eecs::EntityId plEid, int area_damage, Tag active)

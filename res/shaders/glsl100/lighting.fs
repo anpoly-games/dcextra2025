@@ -12,7 +12,7 @@ in vec3 fragNormal;
 uniform sampler2D texture0;
 uniform sampler2D emissiveMap;
 uniform vec4 colDiffuse;
-uniform vec4 fogParams = vec4(0.0, 0.0, 0.0, 0.0);
+uniform vec4 fogParams;
 
 // Output fragment color
 out vec4 finalColor;

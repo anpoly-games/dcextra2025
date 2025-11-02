@@ -317,6 +317,14 @@ DS2DialogueMages = {
     dialogue_replies : eid[] = ["_AIJoin2", "_AIDeny2", "_NeedTimeToThink"]
 }
 
+DS3DialogueElves = {
+    trigger_volume : int[2] = ["1", "1"]
+    trigger_debugName : str = "dial DS3 elves"
+    Saveable : Tag = ""
+    dialogue_title : str = "Elf_rony"
+    dialogue_text : str[] = ["Ah, mere mortal is here.", "Well maybe you can take out the junk from upstairs for us?", "Go on, not that it matters anymore haha."]
+    dialogue_replies : eid[] = ["_AIJoin3", "_AIDeny3", "_NeedTimeToThink"]
+}
 
 DS2Jump_4_1 = {
     ori_displacement : float[3] = ["0", "1", "4"]
@@ -360,10 +368,20 @@ DS2Jump_5_neg1 = {
 	ladder : Tag = ""
 }
 
+_WinGame = {
+    text : str = "Wake up?"
+    triggers : str = "win_game"
+    distance : float = "1.1"
+}
+
 WinGame = {
-    trigger_volume : int[2] = ["1", "1"]
-    winGame : Tag = ""
-	trigger_debugName : str = "win game"
+    actionPrefabs : str[] = ["_WinGame"]
+    relativePos : float[3] = ["0", "0.3", "0"]
+    occupiesCell : Tag = ""
+    dbox_offset : float[3] = ["0", "0.125", "0"]
+    dbox_size : float[3] = ["0.25", "0.25", "0.25"]
+    dbox_color : float[3] = ["0", "1", "0"]
+    dbox_name : str = "WIN"
 }
 
 CSAreaDamage_minus_10 = {

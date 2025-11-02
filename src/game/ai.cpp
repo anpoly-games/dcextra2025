@@ -19,8 +19,9 @@ void register_ai(eecs::Registry& reg)
             if (ray_hit(reg, epos, position + vec3f(0, 0.4f, 0), plEid))
                 return;
             // try to move towards
-            vec2f dirTo = position.xz() - epos.xz();
-            if (dirTo.mag2() <= 1.f)
+            vec3f dir3d = position - epos;
+            vec2f dirTo = dir3d.xz();
+            if (dirTo.mag2() <= 1.f && fabsf(dir3d.y) < 1.f)
             {
                 // Attack player!
                 hitpoints = std::max(hitpoints - attackDamage, 0);
