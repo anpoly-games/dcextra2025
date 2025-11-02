@@ -97,6 +97,7 @@ void draw_interactables(eecs::Registry& reg, float top, float scrwidth, float he
 
 void register_interactables(eecs::Registry& reg)
 {
+    static Sound useSound = LoadSound("res/audio/sfx/hit_08.ogg");
     static int textIndex = 0;
     static Sound playerHit = LoadSound("res/audio/sfx/hit_07.ogg");
     eecs::reg_enter(reg, [&](eecs::EntityId eid, const std::vector<std::string>& actionPrefabs)
@@ -271,10 +272,12 @@ void register_interactables(eecs::Registry& reg)
         }, COMPID(int, hitpoints), COMPID(const int, expDrop));
     }, COMPID(const eecs::EntityId, parent), COMPID(const std::string, attribute), COMPID(const float, attr_dmgMult), COMPID(const eecs::EntityId, action_sound));
 
+    static Sound pickupSound = LoadSound("res/audio/sfx/hit_09.ogg");
     eecs::on_event(reg, FNV1(add_item), [&](eecs::EntityId actEid, eecs::EntityId pl, eecs::EntityId parent, const std::string& compName)
     {
         eecs::query_components(reg, pl, [&](int& item)
         {
+            PlaySound(pickupSound);
             item++;
         }, eecs::ComponentId<int>(compName.c_str()));
         eecs::del_entity(reg, parent);
@@ -284,6 +287,7 @@ void register_interactables(eecs::Registry& reg)
     {
         if (hitpoints >= attr_body)
             return;
+        PlaySound(useSound);
         const int numHeal = attr_body / 2;
         int prevHp = hitpoints;
         hitpoints = std::min(hitpoints + numHeal, attr_body);
@@ -300,6 +304,7 @@ void register_interactables(eecs::Registry& reg)
         if (curTurns > 0)
             return;
         attr += potency;
+        PlaySound(useSound);
         items--;
         eecs::set_component(reg, pl, eecs::ComponentId<int>(turnsName), numTurns);
         push_rolling_text(reg, TextFormat("%s: %s+%d for %dt", name, attrName, potency, numTurns), WHITE);
@@ -324,6 +329,7 @@ void register_interactables(eecs::Registry& reg)
         attr_strength += potency;
         attr_agility += potency;
         attr_mind += potency;
+        PlaySound(useSound);
         items_bandito--;
         eecs::set_component(reg, pl, COMPID(int, effect_banditoTurns), numTurns);
         push_rolling_text(reg, TextFormat("Bandito: STR,AGI,MIND+%d for %dt", potency, numTurns), WHITE);
@@ -332,6 +338,7 @@ void register_interactables(eecs::Registry& reg)
     {
         if (eecs::has_comp(reg, pl, COMPID(Tag, genius)))
             return;
+        PlaySound(useSound);
         items_genius--;
         push_rolling_text(reg, "GeniusInj: applied", WHITE);
         eecs::set_component(reg, pl, COMPID(Tag, genius), Tag{});
