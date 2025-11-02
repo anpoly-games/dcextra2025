@@ -172,6 +172,10 @@ _BaseDecor = {
     rayTransparent : Tag = ""
 }
 
+_LadderSound = {
+    sound_filename : str = "res/audio/sfx/steps_fast_01.ogg"
+}
+
 _BaseLadder = {
     primitiveRamp_base : float = "0"
     primitiveRamp_top : float = "0.5"
@@ -181,6 +185,7 @@ _BaseLadder = {
     ori_displacement : float[3] = ["0", "1", "2"]
     trigger_volume : int[2] = ["1", "1"]
     ladder : Tag = ""
+    tele_sound : eid = "_LadderSound"
 }
 
 _TopLadder = {
@@ -192,6 +197,7 @@ _TopLadder = {
     ori_displacement : float[3] = ["0", "-1", "-2"]
     trigger_volume : int[2] = ["1", "1"]
     ladder : Tag = ""
+    tele_sound : eid = "_LadderSound"
 }
 
 MSMetalLadderBase <- _BaseLadder = {
