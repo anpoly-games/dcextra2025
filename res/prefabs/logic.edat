@@ -522,6 +522,7 @@ MSAudioNoise01 = {
     audio_timeFrom : float = "5"
     audio_timeTo : float = "10"
     audio_volumeRange : float[2] = ["0.5", "1"]
+    audio_pitchRange : float[2] = ["0.9", "1.1"]
     dbox_offset : float[3] = ["0", "0.125", "0"]
     dbox_size : float[3] = ["0.25", "0.25", "0.25"]
     dbox_color : float[3] = ["0", "1", "0"]
@@ -533,6 +534,7 @@ MSAudioNoise02 = {
     audio_timeFrom : float = "2"
     audio_timeTo : float = "5"
     audio_volumeRange : float[2] = ["0.25", "0.5"]
+    audio_pitchRange : float[2] = ["0.9", "1.1"]
 
     dbox_offset : float[3] = ["0", "0.125", "0"]
     dbox_size : float[3] = ["0.25", "0.25", "0.25"]
@@ -540,4 +542,52 @@ MSAudioNoise02 = {
     dbox_name : str = "water drops"
 }
 
+MSAudioNoise03 = {
+    sound_filename : str = "res/audio/sfx/noise_02.ogg"
+    audio_timeFrom : float = "5"
+    audio_timeTo : float = "10"
+    audio_volumeRange : float[2] = ["0.5", "1"]
+    audio_pitchRange : float[2] = ["0.9", "1.1"]
+    dbox_offset : float[3] = ["0", "0.125", "0"]
+    dbox_size : float[3] = ["0.25", "0.25", "0.25"]
+    dbox_color : float[3] = ["0", "1", "0"]
+    dbox_name : str = "swoosh 2"
+}
+
+
+CSAudioNoise01 = {
+    sound_filename : str = "res/audio/sfx/noise_03.ogg"
+    audio_timeFrom : float = "5"
+    audio_timeTo : float = "15"
+    audio_volumeRange : float[2] = ["0.05", "0.15"]
+    audio_pitchRange : float[2] = ["0.9", "1.1"]
+    dbox_offset : float[3] = ["0", "0.125", "0"]
+    dbox_size : float[3] = ["0.25", "0.25", "0.25"]
+    dbox_color : float[3] = ["0", "1", "0"]
+    dbox_name : str = "CS swoosh"
+}
+
+CSAudioNoise02 = {
+    sound_filename : str = "res/audio/sfx/ping_03.ogg"
+    audio_timeFrom : float = "2"
+    audio_timeTo : float = "10"
+    audio_volumeRange : float[2] = ["0.05", "0.15"]
+    audio_pitchRange : float[2] = ["0.9", "1.1"]
+    dbox_offset : float[3] = ["0", "0.125", "0"]
+    dbox_size : float[3] = ["0.25", "0.25", "0.25"]
+    dbox_color : float[3] = ["0", "1", "0"]
+    dbox_name : str = "CS ping"
+}
+
+CSAudioNoise03 = {
+    sound_filename : str = "res/audio/sfx/effect_09.ogg"
+    audio_timeFrom : float = "2"
+    audio_timeTo : float = "10"
+    audio_volumeRange : float[2] = ["0.05", "0.15"]
+    audio_pitchRange : float[2] = ["0.9", "1.1"]
+    dbox_offset : float[3] = ["0", "0.125", "0"]
+    dbox_size : float[3] = ["0.25", "0.25", "0.25"]
+    dbox_color : float[3] = ["0", "1", "0"]
+    dbox_name : str = "CS ping 2"
+}
 
