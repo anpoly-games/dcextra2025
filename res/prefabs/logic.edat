@@ -192,6 +192,12 @@ _OkReply = {
     reply_triggers : str[] = ["kill_dialogue"]
 }
 
+_ContinueReply = {
+    text : str = "Continue"
+    reply_triggers : str[] = ["kill_dialogue"]
+}
+
+
 _ShroomJoin1 = {
     text : str = "I'll aid you"
     reply_triggers : str[] = ["join_team_1", "open_remote", "kill_all_dialogues"]
@@ -281,6 +287,26 @@ _NeedTimeToThink = {
     reply_triggers : str[] = ["close_dialogue"]
 }
 
+MSInnerDialogue1 = {
+    trigger_volume : int[2] = ["1", "1"]
+    trigger_debugName : str = "dial MS 1"
+    Saveable : Tag = ""
+    dialogue_title : str = "SELF"
+    dialogue_text : str[] = ["So this is it, this place was like a hole in a network fabric.", "No signals passing through here, which makes me wonder"]
+    dialogue_replies : eid[] = ["_ContinueReply"]
+}
+
+MSInnerDialogue2 = {
+    trigger_volume : int[2] = ["1", "1"]
+    trigger_debugName : str = "dial MS 2"
+    Saveable : Tag = ""
+    dialogue_title : str = "SELF"
+    dialogue_text : str[] = ["Unfortunatelly door closed right behind me.", "I'll need to find another way out.", "Fortunatelly I still have some unspent boosters, might come really handy."]
+    dialogue_replies : eid[] = ["_ContinueReply"]
+}
+
+
+
 CSDialogueWarden1 = {
     trigger_volume : int[2] = ["1", "1"]
     trigger_debugName : str = "dial AI 1"
@@ -313,7 +339,7 @@ DS1Dialogue = {
     trigger_debugName : str = "dial DS1 shroom"
     Saveable : Tag = ""
     dialogue_title : str = "Fungus_Cogitans"
-    dialogue_text : str[] = ["Well finally", "Why the hell it took so long?", "Ah, you don't understand what's going on, do you?", "Well, I'm trapped by this filthy AI warden", "So it can use me to simulate this space", "Would you mind killing invaders for me please?", "I'll let you out if you help me"]
+    dialogue_text : str[] = ["Well finally", "Why the hell it took so long?", "Ah, you don't understand what's going on, do you?", "Well, I'm trapped by this filthy AI warden", "So it can use me to simulate this space", "Would you mind killing invaders for me please?", "I'll let you out if you help me.", "Even more, I'll open a door in cyberspace for you"]
     dialogue_replies : eid[] = ["_ShroomJoin1", "_ShroomDeny1", "_NeedTimeToThink"]
 }
 

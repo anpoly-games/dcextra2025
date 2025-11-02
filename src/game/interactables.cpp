@@ -54,6 +54,7 @@ void draw_interactables(eecs::Registry& reg, float top, float scrwidth, float he
                         eecs::query_component(reg, act, [&](const std::string& attribute)
                         {
                             const float attrMult = eecs::get_comp_or(reg, act, COMPID(float, attribute_modifier), 1.f);
+                            const float attrDmgMult = eecs::get_comp_or(reg, act, COMPID(float, attr_dmgMult), -1.f);
                             std::string attrName = eecs::get_comp_or(reg, eecs::find_entity(reg, attribute.c_str()), COMPID(std::string, name), attribute);
                             const int attrVal = eecs::get_comp_or(reg, plEid, eecs::comp_id<int>(attribute.c_str()), 0);
                             std::string actionDifficultyMultName = triggers + "_difficultyMult";
@@ -61,6 +62,8 @@ void draw_interactables(eecs::Registry& reg, float top, float scrwidth, float he
                             const float genMult = eecs::has_comp(reg, plEid, COMPID(Tag, genius)) ? 2.f : 1.f;
                             const int chance = int(float(attrVal) * mult * attrMult * genMult);
                             finalText += " (" + attrName + " " + std::to_string(chance) + "%)";
+                            if (attrDmgMult > 0.f)
+                                finalText += " " + std::to_string(int(attrVal * attrDmgMult)) + "dmg";
                         }, COMPID(const std::string, attribute));
                         draw_button_9rect(nrect, Rectangle(pos.x, pos.y, width, step), actionFont, finalText.c_str(), 8.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
                         [&]()
