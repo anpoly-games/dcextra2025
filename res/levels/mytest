@@ -1,0 +1,1597 @@
+_52 = {
+    prefab : str = "MSMetalDoor01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_metal_door_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_metal_door_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.500000", "0.500000", "0.000000"]
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    rotation : float = "90.000000"
+}
+_53 = {
+    prefab : str = "MSMetalDoor01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_metal_door_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_metal_door_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.000000", "0.500000", "1.500000"]
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    rotation : float = "0.000000"
+}
+_54 = {
+    prefab : str = "MSMetalWall01"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_metal_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.500000", "0.500000", "-1.000000"]
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    rotation : float = "90.000000"
+}
+_55 = {
+    prefab : str = "MSMetalWall02"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_metal_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["0.000000", "0.500000", "1.500000"]
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    rotation : float = "0.000000"
+}
+_56 = {
+    prefab : str = "MSMetalWall02"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_metal_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.500000", "0.500000", "1.000000"]
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    rotation : float = "90.000000"
+}
+_57 = {
+    prefab : str = "StoneColumn"
+    primitiveBlock_size : float[3] = ["0.166667", "1.000000", "0.166667"]
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.500000", "0.500000", "-0.500000"]
+    column : Tag = ""
+    rotation : float = "0.000000"
+    Column : Tag = ""
+}
+_58 = {
+    prefab : str = "StoneColumn"
+    primitiveBlock_size : float[3] = ["0.166667", "1.000000", "0.166667"]
+    texture_filename : str = "res/textures/tiles/biomes-9.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.500000", "0.500000", "0.500000"]
+    column : Tag = ""
+    rotation : float = "0.000000"
+    Column : Tag = ""
+}
+_59 = {
+    prefab : str = "MSMetalWindow01"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_metal_window_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.000000", "0.500000", "1.500000"]
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    rotation : float = "0.000000"
+}
+_60 = {
+    prefab : str = "MSMetalWall01"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_metal_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-2.000000", "0.500000", "1.500000"]
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    rotation : float = "0.000000"
+}
+_61 = {
+    prefab : str = "MSMetalWindow02"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_metal_window_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-3.000000", "0.500000", "1.500000"]
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    rotation : float = "0.000000"
+}
+_62 = {
+    prefab : str = "MSMetalWindow02"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_metal_window_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-4.000000", "0.500000", "1.500000"]
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    rotation : float = "0.000000"
+}
+_63 = {
+    prefab : str = "MSMetalWall02"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_metal_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-5.000000", "0.500000", "1.500000"]
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    rotation : float = "0.000000"
+}
+_64 = {
+    prefab : str = "MSCaveWall01"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_cave_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-5.500000", "0.500000", "1.000000"]
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    rotation : float = "270.000000"
+}
+_65 = {
+    prefab : str = "MSCaveWall02"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_cave_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-5.500000", "0.500000", "0.000000"]
+    wall : Tag = ""
+    model_filename : str = "res/meshes/Door.glb"
+    rotation : float = "270.000000"
+}
+_66 = {
+    prefab : str = "MSMetalCeiling01"
+    ceiling : Tag = ""
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    texture_filename : str = "res/textures/ceilings/meatspace_metal_celling_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["0.000000", "1.025000", "2.000000"]
+    rotation : float = "180.000000"
+}
+_67 = {
+    prefab : str = "MSMetalCeiling01"
+    ceiling : Tag = ""
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    texture_filename : str = "res/textures/ceilings/meatspace_metal_celling_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["0.000000", "1.025000", "1.000000"]
+    rotation : float = "180.000000"
+}
+_68 = {
+    prefab : str = "MSMetalCeiling03"
+    ceiling : Tag = ""
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    texture_filename : str = "res/textures/ceilings/meatspace_metal_celling_03.png"
+    Saveable : Tag = ""
+    position : float[3] = ["0.000000", "1.025000", "0.000000"]
+    rotation : float = "270.000000"
+}
+_69 = {
+    prefab : str = "MSMetalCeiling03"
+    ceiling : Tag = ""
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    texture_filename : str = "res/textures/ceilings/meatspace_metal_celling_03.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.000000", "1.025000", "0.000000"]
+    rotation : float = "180.000000"
+}
+_70 = {
+    prefab : str = "MSMetalCeiling01"
+    ceiling : Tag = ""
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    texture_filename : str = "res/textures/ceilings/meatspace_metal_celling_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["0.000000", "1.025000", "-1.000000"]
+    rotation : float = "180.000000"
+}
+_71 = {
+    prefab : str = "MSMetalCeiling03"
+    ceiling : Tag = ""
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    texture_filename : str = "res/textures/ceilings/meatspace_metal_celling_03.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.000000", "1.025000", "1.000000"]
+    rotation : float = "180.000000"
+}
+_72 = {
+    prefab : str = "MSMetalCeiling03"
+    ceiling : Tag = ""
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    texture_filename : str = "res/textures/ceilings/meatspace_metal_celling_03.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.000000", "1.025000", "-2.000000"]
+    rotation : float = "360.000000"
+}
+_73 = {
+    prefab : str = "MSMetalCeiling01"
+    ceiling : Tag = ""
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    texture_filename : str = "res/textures/ceilings/meatspace_metal_celling_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.000000", "1.025000", "1.000000"]
+    rotation : float = "180.000000"
+}
+_74 = {
+    prefab : str = "MSMetalCeiling02"
+    ceiling : Tag = ""
+    texture_emissiveFilename : str = "res/textures/ceilings/meatspace_metal_celling_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    texture_filename : str = "res/textures/ceilings/meatspace_metal_celling_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.000000", "1.025000", "-3.000000"]
+    rotation : float = "360.000000"
+}
+_75 = {
+    prefab : str = "MSMetalCeiling01"
+    ceiling : Tag = ""
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    texture_filename : str = "res/textures/ceilings/meatspace_metal_celling_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.000000", "1.025000", "-1.000000"]
+    rotation : float = "180.000000"
+}
+_76 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["0.000000", "-0.025000", "1.000000"]
+    rotation : float = "180.000000"
+}
+_77 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.000000", "-0.025000", "1.000000"]
+    rotation : float = "180.000000"
+}
+_78 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.000000", "-0.025000", "0.000000"]
+    rotation : float = "180.000000"
+}
+_79 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["0.000000", "-0.025000", "0.000000"]
+    rotation : float = "360.000000"
+}
+_80 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["0.000000", "-0.025000", "-1.000000"]
+    rotation : float = "360.000000"
+}
+_81 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.000000", "-0.025000", "-1.000000"]
+    rotation : float = "270.000000"
+}
+_82 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.000000", "-0.025000", "1.000000"]
+    rotation : float = "450.000000"
+}
+_83 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.000000", "-0.025000", "0.000000"]
+    rotation : float = "450.000000"
+}
+_84 = {
+    prefab : str = "MSMetalWall01"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_metal_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.500000", "0.500000", "-2.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_85 = {
+    prefab : str = "MSMetalWall01"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_metal_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.500000", "0.500000", "-4.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_86 = {
+    prefab : str = "MSMetalWall01"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_metal_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.500000", "0.500000", "-6.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_87 = {
+    prefab : str = "MSMetalWall01"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_metal_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["0.500000", "0.500000", "-6.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_88 = {
+    prefab : str = "MSMetalWall01"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_metal_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["0.500000", "0.500000", "-4.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_89 = {
+    prefab : str = "MSMetalWall01"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_metal_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["0.500000", "0.500000", "-2.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_90 = {
+    prefab : str = "MSMetalWall02"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_metal_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.500000", "0.500000", "-3.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_91 = {
+    prefab : str = "MSMetalWall02"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_metal_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["0.500000", "0.500000", "-3.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_92 = {
+    prefab : str = "MSMetalWall02"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_metal_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["0.500000", "0.500000", "-5.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_93 = {
+    prefab : str = "MSMetalWall02"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_metal_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.500000", "0.500000", "-5.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_94 = {
+    prefab : str = "MSMetalWall02"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_metal_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.000000", "0.500000", "-6.500000"]
+    wall : Tag = ""
+    rotation : float = "180.000000"
+}
+_95 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.000000", "-0.025000", "-3.000000"]
+    rotation : float = "180.000000"
+}
+_96 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.000000", "-0.025000", "-2.000000"]
+    rotation : float = "180.000000"
+}
+_97 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.000000", "-0.025000", "-4.000000"]
+    rotation : float = "360.000000"
+}
+_98 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.000000", "-0.025000", "-5.000000"]
+    rotation : float = "360.000000"
+}
+_99 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.000000", "-0.025000", "-6.000000"]
+    rotation : float = "360.000000"
+}
+_100 = {
+    prefab : str = "MSMetalCeiling01"
+    ceiling : Tag = ""
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    texture_filename : str = "res/textures/ceilings/meatspace_metal_celling_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-2.000000", "1.025000", "0.000000"]
+    rotation : float = "270.000000"
+}
+_101 = {
+    prefab : str = "MSMetalCeiling03"
+    ceiling : Tag = ""
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    texture_filename : str = "res/textures/ceilings/meatspace_metal_celling_03.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.000000", "1.025000", "-5.000000"]
+    rotation : float = "360.000000"
+}
+_102 = {
+    prefab : str = "MSMetalCeiling02"
+    ceiling : Tag = ""
+    texture_emissiveFilename : str = "res/textures/ceilings/meatspace_metal_celling_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    texture_filename : str = "res/textures/ceilings/meatspace_metal_celling_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.000000", "1.025000", "-6.000000"]
+    rotation : float = "360.000000"
+}
+_103 = {
+    prefab : str = "MSMetalCeiling03"
+    ceiling : Tag = ""
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    texture_filename : str = "res/textures/ceilings/meatspace_metal_celling_03.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.000000", "1.025000", "-4.000000"]
+    rotation : float = "360.000000"
+}
+_104 = {
+    prefab : str = "MSMetalCeiling02"
+    ceiling : Tag = ""
+    texture_emissiveFilename : str = "res/textures/ceilings/meatspace_metal_celling_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    texture_filename : str = "res/textures/ceilings/meatspace_metal_celling_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["1.000000", "1.025000", "-1.000000"]
+    rotation : float = "360.000000"
+}
+_105 = {
+    prefab : str = "MSMetalCeiling01"
+    ceiling : Tag = ""
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    texture_filename : str = "res/textures/ceilings/meatspace_metal_celling_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.000000", "1.025000", "0.000000"]
+    rotation : float = "270.000000"
+}
+_106 = {
+    prefab : str = "MSMetalCeiling01"
+    ceiling : Tag = ""
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    texture_filename : str = "res/textures/ceilings/meatspace_metal_celling_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-3.000000", "1.025000", "0.000000"]
+    rotation : float = "270.000000"
+}
+_107 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "1.500000", "4.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_108 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "1.500000", "4.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_109 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["0.000000", "1.500000", "3.500000"]
+    wall : Tag = ""
+    rotation : float = "0.000000"
+}
+_110 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-2.000000", "1.500000", "3.500000"]
+    wall : Tag = ""
+    rotation : float = "0.000000"
+}
+_111 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "0.500000", "14.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_112 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "0.500000", "11.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_113 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "1.500000", "6.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_164 = {
+    prefab : str = "MSWallCapsule01flip"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01flip.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01flip.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "0.500000", "7.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_115 = {
+    prefab : str = "MSMetalCeiling03"
+    ceiling : Tag = ""
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    texture_filename : str = "res/textures/ceilings/meatspace_metal_celling_03.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.000000", "1.025000", "2.000000"]
+    rotation : float = "180.000000"
+}
+_116 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "0.500000", "11.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_128 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "0.500000", "7.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_118 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-2.000000", "0.500000", "5.500000"]
+    wall : Tag = ""
+    rotation : float = "0.000000"
+}
+_119 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "0.500000", "2.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_120 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.000000", "-0.025000", "11.000000"]
+    rotation : float = "180.000000"
+}
+_124 = {
+    prefab : str = "MSWallCapsule01flip"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01flip.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01flip.png"
+    Saveable : Tag = ""
+    position : float[3] = ["0.000000", "0.500000", "3.500000"]
+    wall : Tag = ""
+    rotation : float = "0.000000"
+}
+_114 = {
+    prefab : str = "MSWallCapsule02flip"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02flip.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02flip.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-2.000000", "0.500000", "3.500000"]
+    wall : Tag = ""
+    rotation : float = "0.000000"
+}
+_123 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "0.500000", "9.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_211 = {
+    prefab : str = "MSWallCapsule02flip"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02flip.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02flip.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "4.500000", "12.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_216 = {
+    prefab : str = "MSWallCapsule02flip"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02flip.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02flip.png"
+    Saveable : Tag = ""
+    position : float[3] = ["0.000000", "0.500000", "8.500000"]
+    wall : Tag = ""
+    rotation : float = "0.000000"
+}
+_127 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "0.500000", "8.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_126 = {
+    prefab : str = "MSWallCapsule01flip"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01flip.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01flip.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "0.500000", "6.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_134 = {
+    prefab : str = "MSWallCapsule02flip"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02flip.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02flip.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "0.500000", "4.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_129 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "0.500000", "9.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_130 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "0.500000", "10.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_131 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-2.000000", "0.500000", "12.500000"]
+    wall : Tag = ""
+    rotation : float = "0.000000"
+}
+_132 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["0.000000", "-0.025000", "5.000000"]
+    rotation : float = "270.000000"
+}
+_133 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-2.000000", "0.500000", "2.500000"]
+    wall : Tag = ""
+    rotation : float = "0.000000"
+}
+_121 = {
+    prefab : str = "MSWallCapsule02flip"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02flip.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02flip.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "0.500000", "4.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_135 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["0.000000", "0.500000", "5.500000"]
+    wall : Tag = ""
+    rotation : float = "0.000000"
+}
+_136 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.000000", "-0.025000", "2.000000"]
+    rotation : float = "180.000000"
+}
+_137 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.000000", "-0.025000", "3.000000"]
+    rotation : float = "180.000000"
+}
+_138 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.000000", "-0.025000", "4.000000"]
+    rotation : float = "180.000000"
+}
+_139 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.000000", "-0.025000", "5.000000"]
+    rotation : float = "180.000000"
+}
+_140 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.000000", "-0.025000", "6.000000"]
+    rotation : float = "180.000000"
+}
+_141 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.000000", "-0.025000", "8.000000"]
+    rotation : float = "180.000000"
+}
+_142 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.000000", "-0.025000", "10.000000"]
+    rotation : float = "180.000000"
+}
+_143 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.000000", "-0.025000", "9.000000"]
+    rotation : float = "180.000000"
+}
+_144 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.000000", "-0.025000", "13.000000"]
+    rotation : float = "180.000000"
+}
+_145 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.000000", "-0.025000", "7.000000"]
+    rotation : float = "180.000000"
+}
+_146 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.000000", "-0.025000", "12.000000"]
+    rotation : float = "180.000000"
+}
+_147 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "0.500000", "12.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_148 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "1.500000", "12.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_149 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "1.500000", "11.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_150 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "1.500000", "10.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_151 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "1.500000", "9.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_152 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "1.500000", "8.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_153 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "1.500000", "7.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_154 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "1.500000", "11.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_155 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "1.500000", "12.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_122 = {
+    prefab : str = "MSWallCapsule02flip"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02flip.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02flip.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.000000", "0.500000", "12.500000"]
+    wall : Tag = ""
+    rotation : float = "0.000000"
+}
+_157 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "1.500000", "10.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_158 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "1.500000", "9.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_159 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "1.500000", "8.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_160 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "1.500000", "7.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_161 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "1.500000", "6.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_162 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["0.000000", "1.500000", "5.500000"]
+    wall : Tag = ""
+    rotation : float = "0.000000"
+}
+_163 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-2.000000", "1.500000", "5.500000"]
+    wall : Tag = ""
+    rotation : float = "0.000000"
+}
+_117 = {
+    prefab : str = "MSWallCapsule02flip"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02flip.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02flip.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "0.500000", "6.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_165 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "0.500000", "10.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_166 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "0.500000", "12.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_167 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "0.500000", "2.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_168 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["0.000000", "-0.025000", "3.000000"]
+    rotation : float = "180.000000"
+}
+_169 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-2.000000", "-0.025000", "3.000000"]
+    rotation : float = "90.000000"
+}
+_170 = {
+    prefab : str = "MSMetalFloor01"
+    primitiveBlock_size : float[3] = ["1.000000", "0.050000", "1.000000"]
+    floor : Tag = ""
+    texture_filename : str = "res/textures/floors/meatspace_metal_floor_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-2.000000", "-0.025000", "5.000000"]
+    rotation : float = "90.000000"
+}
+_171 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "2.500000", "4.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_172 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "2.500000", "6.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_173 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "2.500000", "7.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_174 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "2.500000", "8.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_175 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "2.500000", "9.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_176 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "2.500000", "10.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_177 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "2.500000", "11.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_178 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "2.500000", "12.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_156 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.000000", "1.500000", "12.500000"]
+    wall : Tag = ""
+    rotation : float = "0.000000"
+}
+_180 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "2.500000", "12.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_181 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "2.500000", "11.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_182 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "2.500000", "10.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_183 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "2.500000", "9.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_184 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "2.500000", "8.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_185 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "2.500000", "7.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_186 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "2.500000", "6.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_187 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-2.000000", "2.500000", "5.500000"]
+    wall : Tag = ""
+    rotation : float = "0.000000"
+}
+_188 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "2.500000", "4.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_189 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-2.000000", "2.500000", "3.500000"]
+    wall : Tag = ""
+    rotation : float = "0.000000"
+}
+_190 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["0.000000", "2.500000", "3.500000"]
+    wall : Tag = ""
+    rotation : float = "0.000000"
+}
+_191 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.000000", "3.500000", "12.500000"]
+    wall : Tag = ""
+    rotation : float = "0.000000"
+}
+_192 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "3.500000", "12.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_193 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "3.500000", "12.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_194 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "3.500000", "11.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_195 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "3.500000", "10.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_196 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "3.500000", "9.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_197 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "3.500000", "8.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_198 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "3.500000", "7.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_199 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "3.500000", "6.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_200 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-2.000000", "3.500000", "5.500000"]
+    wall : Tag = ""
+    rotation : float = "0.000000"
+}
+_201 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "3.500000", "6.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_202 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "3.500000", "7.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_203 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "3.500000", "8.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_204 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "3.500000", "9.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_205 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "3.500000", "10.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_206 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "3.500000", "11.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_207 = {
+    prefab : str = "MSWallCapsule02"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02.png"
+    Saveable : Tag = ""
+    position : float[3] = ["0.000000", "2.500000", "5.500000"]
+    wall : Tag = ""
+    rotation : float = "0.000000"
+}
+_208 = {
+    prefab : str = "MSWallCapsule01"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01.png"
+    Saveable : Tag = ""
+    position : float[3] = ["0.000000", "3.500000", "5.500000"]
+    wall : Tag = ""
+    rotation : float = "0.000000"
+}
+_179 = {
+    prefab : str = "MSWallCapsule02flip"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02flip.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02flip.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.000000", "2.500000", "12.500000"]
+    wall : Tag = ""
+    rotation : float = "0.000000"
+}
+_213 = {
+    prefab : str = "MSWallCapsule01flip"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01flip.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01flip.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "4.500000", "11.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_209 = {
+    prefab : str = "MSWallCapsule01flip"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01flip.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01flip.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.000000", "4.500000", "12.500000"]
+    wall : Tag = ""
+    rotation : float = "0.000000"
+}
+_214 = {
+    prefab : str = "MSWallCapsule01flip"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01flip.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01flip.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "4.500000", "10.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_215 = {
+    prefab : str = "MSWallCapsule02flip"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02flip.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02flip.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "4.500000", "10.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_210 = {
+    prefab : str = "MSWallCapsule01flip"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_01flip.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_01flip.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "4.500000", "12.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
+_125 = {
+    prefab : str = "MSWallCapsule02flip"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02flip.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02flip.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-0.500000", "0.500000", "8.000000"]
+    wall : Tag = ""
+    rotation : float = "90.000000"
+}
+_212 = {
+    prefab : str = "MSWallCapsule02flip"
+    texture_emissiveFilename : str = "res/textures/walls/meatspace_capsule_em_02flip.png"
+    primitiveBlock_size : float[3] = ["1.000000", "1.000000", "0.000000"]
+    texture_filename : str = "res/textures/walls/meatspace_capsule_02flip.png"
+    Saveable : Tag = ""
+    position : float[3] = ["-1.500000", "4.500000", "11.000000"]
+    wall : Tag = ""
+    rotation : float = "270.000000"
+}
