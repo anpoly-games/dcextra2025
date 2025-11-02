@@ -100,6 +100,16 @@ void register_triggers(eecs::Registry& reg)
     {
         eecs::query_components(reg, playerId, [&](vec3f& position)
         {
+            if (eecs::has_comp(reg, playerId, COMPID(Tag, player)))
+            {
+                eecs::query_components(reg, eid, [&](eecs::EntityId tele_sound)
+                {
+                    eecs::query_components(reg, tele_sound, [&](const Sound& sound)
+                    {
+                        PlaySound(sound);
+                    }, COMPID(const Sound, sound));
+                }, COMPID(eecs::EntityId, tele_sound));
+            }
             position = position + vec3f(0, ori_displacement.y, 0) +
                 vec3f(sinf(rotation * DEG2RAD), 0, cosf(rotation * DEG2RAD)) * ori_displacement.z +
                 vec3f(cosf(rotation * DEG2RAD), 0, -sinf(rotation * DEG2RAD)) * ori_displacement.x;
