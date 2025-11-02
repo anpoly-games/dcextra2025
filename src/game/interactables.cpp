@@ -64,10 +64,13 @@ void draw_interactables(eecs::Registry& reg, float top, float scrwidth, float he
                         draw_button_9rect(nrect, Rectangle(pos.x, pos.y, width, step), actionFont, finalText.c_str(), 8.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
                         [&]()
                         {
-                            if (is_ui_blocks_input(reg))
-                                return;
-                            eecs::emit_event(reg, fnv1StrHash(triggers.c_str()), act, plEid);
-                            eecs::emit_event(reg, FNV1(next_turn), eecs::invalid_eid, plEid);
+                            eecs::query_entities(reg, [&](eecs::EntityId, float& globalCd, float cooldownSplit)
+                            {
+                                if (is_ui_blocks_input(reg) || globalCd < cooldownSplit)
+                                    return;
+                                eecs::emit_event(reg, fnv1StrHash(triggers.c_str()), act, plEid);
+                                globalCd = 0.f;
+                            }, COMPID(float, globalCd), COMPID(const float, cooldownSplit));
                         });
                         //DrawLineEx({pos.x, pos.y + step * 0.5f}, {pos2d.x, pos2d.y}, 4.f, GetColor(0x63c74dff));
                         DrawLineEx({pos.x, pos.y + step * 0.5f}, {(float)cam_wh.x, pos.y + step * 0.5f}, 4.f, GetColor(0x63c74dff));
@@ -349,6 +352,24 @@ void register_interactables(eecs::Registry& reg)
             push_rolling_text(reg, TextFormat("%s: wears out", name), WHITE);
         }
     };
+
+    eecs::reg_system(reg, [&](eecs::EntityId, float& globalCd, float cooldownSplit)
+    {
+        float prevVal = globalCd;
+        globalCd += GetFrameTime();
+        if (prevVal < cooldownSplit && globalCd >= cooldownSplit)
+        {
+            eecs::query_entities(reg, [&](eecs::EntityId plEid, Tag player)
+            {
+                eecs::emit_event(reg, FNV1(next_turn), eecs::invalid_eid, plEid);
+            }, COMPID(Tag, player));
+        }
+    }, COMPID(float, globalCd), COMPID(const float, cooldownSplit));
+
+    eecs::on_event(reg, FNV1(next_turn), [&](eecs::EntityId, eecs::EntityId, float& globalCd, float cooldownSplit)
+    {
+        globalCd = cooldownSplit;
+    }, COMPID(float, globalCd), COMPID(const float, cooldownSplit));
 
     eecs::on_event(reg, FNV1(next_turn), [&](eecs::EntityId, eecs::EntityId, int& effect_bearSerkerTurns, int& attr_strength)
     {

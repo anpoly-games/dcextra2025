@@ -18,6 +18,7 @@ eecs::EntityId create_player(eecs::Registry& reg, float x, float z, float rot)
         .set(COMPID(int, attr_agility), 25)
         .set(COMPID(int, attr_mind), 25)
         .set(COMPID(int, attr_body), 50)
+        .set(COMPID(int, prevHitpoints), 50)
         .set(COMPID(int, hitpoints), 50)
         .set(COMPID(int, level), 1)
         .set(COMPID(int, pointsToSpend), 50)
@@ -27,7 +28,8 @@ eecs::EntityId create_player(eecs::Registry& reg, float x, float z, float rot)
         .set(COMPID(int, items_reflexxx), 0)
         .set(COMPID(int, items_mindDefoger), 0)
         .set(COMPID(int, items_genius), 0)
-        .set(COMPID(int, items_bandito), 0);
+        .set(COMPID(int, items_bandito), 0)
+        .set(COMPID(float, timeSinceHit), 10.f);
     eecs::create_entity_wrap(reg, "attr_strength")
         .set(COMPID(std::string, name), {"STR"});
     eecs::create_entity_wrap(reg, "attr_agility")
@@ -36,6 +38,9 @@ eecs::EntityId create_player(eecs::Registry& reg, float x, float z, float rot)
         .set(COMPID(std::string, name), {"MIND"});
     eecs::create_entity_wrap(reg, "attr_body")
         .set(COMPID(std::string, name), {"BODY"});
+    eecs::create_entity_wrap(reg)
+        .set(COMPID(float, globalCd), -1.f)
+        .set(COMPID(float, cooldownSplit), 0.2f);
     return player.eid;
 }
 

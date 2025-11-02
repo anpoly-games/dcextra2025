@@ -207,6 +207,22 @@ void draw_dialogue(eecs::Registry& reg, float width, float height, float scaleFa
     }, COMPID(const std::string, dialogue_title), COMPID(const std::vector<std::string>, dialogue_text), COMPID(const std::vector<eecs::EntityId>, dialogue_replies), COMPID(Tag, dialogue_active));
 }
 
+void draw_screen_change(float width, float height, float scaleFactor, float ratio)
+{
+    int psz = 32 * scaleFactor;
+    float incl = 0.1f;
+    for (int yy = 0; yy < height / psz; ++yy)
+    {
+        float offs = yy % 2 ? 0.f : (incl * (-width/psz));
+        float dir = yy % 2 ? -1.f : 1.f;
+        for (int xx = 0; xx < width / psz; ++xx)
+        {
+            Color col = ColorFromNormalized({0.f, 0.f, 0.f, clamp(offs + dir * xx * incl + ratio * 5.f, 0.f, 1.f)});
+            DrawRectangle(xx * psz, yy * psz, psz, psz, col);
+        }
+    }
+}
+
 void draw_ui(eecs::Registry& reg, float width, float height, float scaleFactor)
 {
     static Font headerFont = LoadFontEx("res/textures/ui/16px-IBM_VGA_8x16.ttf", 16, nullptr, 0);
@@ -260,18 +276,7 @@ void draw_ui(eecs::Registry& reg, float width, float height, float scaleFactor)
         timeFromChange += GetFrameTime();
         if (timeFromChange < timeToChange)
         {
-            int psz = 32 * scaleFactor;
-            float incl = 0.1f;
-            for (int yy = 0; yy < height / psz; ++yy)
-            {
-                float offs = yy % 2 ? 0.f : (incl * (-width/psz));
-                float dir = yy % 2 ? -1.f : 1.f;
-                for (int xx = 0; xx < width / psz; ++xx)
-                {
-                    Color col = ColorFromNormalized({0.f, 0.f, 0.f, clamp(offs + dir * xx * incl + timeFromChange / timeToChange * 5.f, 0.f, 1.f)});
-                    DrawRectangle(xx * psz, yy * psz, psz, psz, col);
-                }
-            }
+            draw_screen_change(width, height, scaleFactor, timeFromChange / timeToChange);
             return;
         }
         DrawRectangle(0, 0, width, height, BLACK);

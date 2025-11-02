@@ -1,5 +1,6 @@
 #include <eecs.h>
 #include <raylib.h>
+#include <random>
 
 #include "../math.h"
 #include "../tags.h"
@@ -115,6 +116,29 @@ void register_triggers(eecs::Registry& reg)
     {
         set_game_state(E_WIN);
     }, COMPID(Tag, winGame));
+
+    eecs::reg_system(reg, [&](eecs::EntityId, int& prevHitpoints, float& timeSinceHit, int hitpoints)
+    {
+        timeSinceHit += GetFrameTime();
+        if (prevHitpoints == hitpoints)
+            return;
+        if (hitpoints < prevHitpoints)
+            timeSinceHit = 0.f;
+        prevHitpoints = hitpoints;
+    }, COMPID(int, prevHitpoints), COMPID(float, timeSinceHit), COMPID(int, hitpoints));
+
+
+    eecs::reg_system(reg, [&](eecs::EntityId, vec3f& modelOffs, float timeSinceHit)
+    {
+        if (timeSinceHit > 0.2f)
+            return;
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_real_distribution<> dis(-1.0, 1.0);
+        const float mult = 0.2f - timeSinceHit;
+        modelOffs = mult * vec3f(dis(gen), dis(gen), dis(gen));
+    }, COMPID(vec3f, modelOffs), COMPID(const float, timeSinceHit));
+
     eecs::reg_system(reg, [&](eecs::EntityId, int hitpoints, Tag player)
     {
         if (hitpoints <= 0)

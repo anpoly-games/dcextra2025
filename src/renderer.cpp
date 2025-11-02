@@ -87,7 +87,8 @@ void register_renderer(eecs::Registry& reg)
         eecs::query_entities(reg, [&](eecs::EntityId eid, Model& model, const vec3f& position)
         {
             model.materials[0].shader = lightingShader;
-            DrawModelEx(model, toRLVec3(position), Vector3{0.f, 1.f, 0.f}, eecs::get_comp_or(reg, eid, COMPID(float, rotation), 0.f), Vector3{1.f, 1.f, 1.f}, WHITE);
+            vec3f moffs = eecs::get_comp_or(reg, eid, COMPID(vec3f, modelOffs), vec3f(0,0,0));
+            DrawModelEx(model, toRLVec3(position + moffs), Vector3{0.f, 1.f, 0.f}, eecs::get_comp_or(reg, eid, COMPID(float, rotation), 0.f), Vector3{1.f, 1.f, 1.f}, WHITE);
         }, COMPID(Model, model), COMPID(const vec3f, position));
     }, COMPID(const Camera, camera));
 }

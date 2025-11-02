@@ -16,15 +16,18 @@ void register_cam(eecs::Registry& reg)
 {
     eecs::reg_system(reg, [&](eecs::EntityId eid, vec3f& position, vec3f& direction, const Camera&)
     {
-        eecs::query_entities(reg, [&](eecs::EntityId, const vec3f& ppos, const vec3f& pdir, Tag player)
+        eecs::query_entities(reg, [&](eecs::EntityId plEid, const vec3f& ppos, const vec3f& pdir, Tag player)
         {
             position = move_to_vec<vec3f>(position, ppos + vec3f{0.f, 0.4f, 0.f}, GetFrameTime(), eecs::get_comp_or(reg, eid, COMPID(float, cam_moveSpeed), FLT_MAX));
+            const float maxTime = 0.2f;
+            float timeSinceHit = eecs::get_comp_or(reg, plEid, COMPID(float, timeSinceHit), maxTime);
+            float vAngle = timeSinceHit < maxTime ? sinf(timeSinceHit / maxTime * PI) * 0.2f : 0.f;
             float curAngle = atan2f(direction.x, direction.z);
             const float targAngle = atan2f(pdir.x, pdir.z);
             if (fabsf(targAngle - curAngle) > PI)
                 curAngle += sign(targAngle - curAngle) * PI * 2.f;
             curAngle = move_to(curAngle, targAngle, GetFrameTime(), eecs::get_comp_or(reg, eid, COMPID(float, cam_rotSpeed), FLT_MAX));
-            direction = vec3f{sinf(curAngle), 0.f, cosf(curAngle)};
+            direction = vec3f{sinf(curAngle) * cosf(vAngle), sinf(vAngle), cosf(curAngle) * cosf(vAngle)};
         }, COMPID(const vec3f, position), COMPID(const vec3f, direction), COMPID(const Tag, player));
     }, COMPID(vec3f, position), COMPID(vec3f, direction), COMPID(const Camera, camera));
 
