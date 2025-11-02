@@ -20,7 +20,7 @@ void set_game_state(GameState gs)
 
 bool is_ui_blocks_input(eecs::Registry& reg)
 {
-    bool res = false;
+    bool res = gameState != E_GAME;
     eecs::query_entities(reg, [&](eecs::EntityId, Tag dialogue_active)
     {
         res = true;
@@ -229,9 +229,38 @@ void draw_ui(eecs::Registry& reg, float width, float height, float scaleFactor)
     }
     else if (gameState == E_WIN)
     {
+        DrawRectangle(0, 0, width, height, BLACK);
+        draw_centered_font_with_shadow(headerFont, "YOU WON", torect(0, 0, width, height * 0.2f), 32.f * scaleFactor, 3, GetColor(0x3e8948ff));
+        const char* wonText[] =
+        {
+            "You escaped the facility",
+            "And maybe you're not in the dreamspace",
+            "But you don't know for sure",
+            "Actually..."
+        };
+        vec2f bsz = {width * 0.5f, 40.f * scaleFactor};
+        vec2f pos = {(width - bsz.x) * 0.5f, height * 0.3f};
+        for (int i = 0; i < sizeof(wonText) / sizeof(wonText[0]); ++i)
+        {
+            DrawTextEx(headerFont, wonText[i], toRLVec2(pos), 16.f * scaleFactor, 0, GetColor(0x3e8948ff));
+            pos.y += 16.f * scaleFactor + pad;
+        }
+        draw_button_9rect(nrect, Rectangle(pos.x, pos.y, bsz.x, bsz.y), headerFont, "Logout", 32.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
+        [&]()
+        {
+            eecs::create_entity_wrap(reg).set(COMPID(Tag, quitGame), Tag{});
+        });
     }
     else if (gameState == E_LOSE)
     {
+        DrawRectangle(0, 0, width, height, BLACK);
+        vec2f bsz = {width * 0.5f, 40.f * scaleFactor};
+        vec2f pos = {(width - bsz.x) * 0.5f, height * 0.3f};
+        draw_button_9rect(nrect, Rectangle(pos.x, pos.y, bsz.x, bsz.y), headerFont, "Logout", 32.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
+        [&]()
+        {
+            eecs::create_entity_wrap(reg).set(COMPID(Tag, quitGame), Tag{});
+        });
     }
     else if (gameState == E_GAME)
     {

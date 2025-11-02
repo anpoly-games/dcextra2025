@@ -4,6 +4,7 @@
 #include "../math.h"
 #include "../tags.h"
 #include "../level.h"
+#include "../game.h"
 #include "triggers.h"
 
 
@@ -109,5 +110,10 @@ void register_triggers(eecs::Registry& reg)
             }
         }, COMPID(vec3f, direction), COMPID(Tag, player));
     }, COMPID(const int, turns), COMPID(Tag, spinner));
+
+    eecs::on_event(reg, FNV1(enterTrigger), [&](eecs::EntityId, eecs::EntityId, Tag winGame)
+    {
+        set_game_state(E_WIN);
+    }, COMPID(Tag, winGame));
 }
 

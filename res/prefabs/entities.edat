@@ -1,5 +1,5 @@
 _BaseFakeWall = {
-    model_filename : str = "res/meshes/Door.glb"
+    primitiveBlock_size : float[3] = ["1", "1", "0.0"]
     relativePos : float[3] = ["0", "0.5", "-0.5"]
 }
 
@@ -8,7 +8,7 @@ StoneFakeWall <- _BaseFakeWall = {
 }
 
 DSPortal <- _BaseFakeWall = {
-    texture_filename : str = "res/textures/tiles/dreamspace_portal_01.png"
+    texture_filename : str = "res/textures/walls/dreamspace_portal_01.png"
 	texture_emissiveFilename : str = "res/textures/walls/dreamspace_portal_em_01.png"
 }
 
