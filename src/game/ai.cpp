@@ -21,7 +21,7 @@ void register_ai(eecs::Registry& reg)
             // try to move towards
             vec3f dir3d = position - epos;
             vec2f dirTo = dir3d.xz();
-            if (dirTo.mag2() <= 1.f && fabsf(dir3d.y) < 1.f)
+            if (dirTo.mag2() <= 1.1f && fabsf(dir3d.y) < 1.f)
             {
                 // Attack player!
                 hitpoints = std::max(hitpoints - attackDamage, 0);
@@ -44,9 +44,9 @@ void register_ai(eecs::Registry& reg)
             }
             const vec3f lmove3d = vec3f(longMove.x, 0, longMove.y);
             const vec3f smove3d = vec3f(shortMove.x, 0, shortMove.y);
-            if (!check_collision_dir(reg, epos, longMove) && check_floor(reg, epos + lmove3d))
+            if (!check_collision_dir(reg, epos, longMove) && check_floor(reg, epos + lmove3d) && !check_occupancy(reg, epos + lmove3d))
                 epos += vec3f(longMove.x, 0, longMove.y);
-            else if (!check_collision_dir(reg, epos, shortMove) && check_floor(reg, epos + smove3d))
+            else if (!check_collision_dir(reg, epos, shortMove) && check_floor(reg, epos + smove3d) && !check_occupancy(reg, epos + smove3d))
                 epos += vec3f(shortMove.x, 0, shortMove.y);
         }, COMPID(const vec3f, position), COMPID(int, hitpoints), COMPID(const int, team));
     }, COMPID(vec3f, position), COMPID(const int, attackDamage), COMPID(const Tag, ai), COMPID(const int, aggroesTeam));

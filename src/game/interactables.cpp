@@ -275,7 +275,7 @@ void register_interactables(eecs::Registry& reg)
     {
         if (hitpoints >= attr_body)
             return;
-        const int numHeal = 25;
+        const int numHeal = attr_body / 2;
         int prevHp = hitpoints;
         hitpoints = std::min(hitpoints + numHeal, attr_body);
         push_rolling_text(reg, TextFormat("RegenX: healed %d/%d hp", hitpoints - prevHp, numHeal), WHITE);

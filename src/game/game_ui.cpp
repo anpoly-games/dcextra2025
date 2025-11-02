@@ -74,7 +74,7 @@ void draw_character(eecs::Registry& reg, float top, float width, float height, f
                 drawPlus(5);
         }
     };
-    eecs::query_entities(reg, [&](eecs::EntityId, int& attr_strength, int& attr_agility, int& attr_mind, int& attr_body, int hitpoints, int level, int experience, int& pointsToSpend)
+    eecs::query_entities(reg, [&](eecs::EntityId, int& attr_strength, int& attr_agility, int& attr_mind, int& attr_body, int& hitpoints, int level, int experience, int& pointsToSpend)
     {
         int nextLevelExp = get_next_level_exp(level);
         const float pad = 2.f * scaleFactor;
@@ -121,8 +121,11 @@ void draw_character(eecs::Registry& reg, float top, float width, float height, f
         drawAttr("STR", pos, attr_strength, pointsToSpend);
         drawAttr("AGI", pos + vec2f(hzStep, 0), attr_agility, pointsToSpend); pos.y += step;
         drawAttr("MIND", pos, attr_mind, pointsToSpend);
+        int prevBody = attr_body;
         drawAttr("BODY", pos + vec2f(hzStep, 0), attr_body, pointsToSpend); pos.y += step;
-    }, COMPID(int, attr_strength), COMPID(int, attr_agility), COMPID(int, attr_mind), COMPID(int, attr_body), COMPID(const int, hitpoints),
+        if (attr_body > prevBody)
+            hitpoints += (attr_body - prevBody);
+    }, COMPID(int, attr_strength), COMPID(int, attr_agility), COMPID(int, attr_mind), COMPID(int, attr_body), COMPID(int, hitpoints),
         COMPID(const int, level), COMPID(const int, experience), COMPID(int, pointsToSpend));
 }
 

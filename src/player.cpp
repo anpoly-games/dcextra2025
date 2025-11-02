@@ -22,7 +22,7 @@ void register_player(eecs::Registry& reg)
         if (turnRight != 0.f)
             direction = rdir * turnRight;
         float forward = (IsKeyPressed(KEY_W) || IsKeyPressed(KEY_UP) || IsKeyPressed(KEY_KP_8) ? 1.f : 0.f) +
-                        (IsKeyPressed(KEY_S) || IsKeyPressed(KEY_DOWN) || IsKeyPressed(KEY_KP_2) ? -1.f  : 0.f);
+                        (IsKeyPressed(KEY_S) || IsKeyPressed(KEY_DOWN) || IsKeyPressed(KEY_KP_5) || IsKeyPressed(KEY_KP_2) ? -1.f  : 0.f);
         float right = (IsKeyPressed(KEY_A) || IsKeyPressed(KEY_LEFT) || IsKeyPressed(KEY_KP_4) ? -1.f : 0.f) +
                       (IsKeyPressed(KEY_D) || IsKeyPressed(KEY_RIGHT) || IsKeyPressed(KEY_KP_6) ? 1.f  : 0.f);
         if (eecs::has_comp(reg, eid, COMPID(Tag, allowVerticalMove)))

@@ -41,7 +41,7 @@ _HackAction = {
     action_experience : int = "50"
     action_successEvent : str = "open"
     action_failSound : eid = "_HackFailureSound"
-    action_failDamage : int = "10"
+    action_failDamage : int = "5"
     action_failMsg : str = "Electrocuted for %d dmg"
 }
 
