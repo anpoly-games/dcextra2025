@@ -186,6 +186,40 @@ void register_interactables(eecs::Registry& reg)
         }, COMPID(const int, attr_mind));
     }, COMPID(const eecs::EntityId, parent), COMPID(const int, action_experience), COMPID(const std::string, action_successEvent));
 
+    eecs::on_event(reg, FNV1(shove), [&](eecs::EntityId actEid, eecs::EntityId plEid, eecs::EntityId parent, const std::string& attribute, int shove_distance)
+    {
+        float attrMult = eecs::get_comp_or(reg, actEid, COMPID(float, attribute_modifier), 1.f);
+        if (eecs::has_comp(reg, plEid, COMPID(Tag, genius)))
+        {
+            attrMult *= 2.f;
+            push_rolling_text(reg, "GeniusInj: wears out", WHITE);
+            eecs::del_component(reg, plEid, COMPID(Tag, genius));
+        }
+        eecs::query_components(reg, plEid, [&](int attr, const vec3f& position)
+        {
+            std::string attrName = eecs::get_comp_or(reg, eecs::find_entity(reg, attribute.c_str()), COMPID(std::string, name), attribute);
+            if (attrRoll(reg, attrName.c_str(), attr, attrMult))
+            {
+                eecs::query_components(reg, parent, [&, &plPos = position](vec3f& position)
+                {
+                    vec2f dpos = (position - plPos).xz();
+                    vec2i delta = {int(roundf(dpos.x)), int(roundf(dpos.y))};
+                    if (fabsf(dpos.x) > fabsf(dpos.y))
+                        delta = vec2i(sign(delta.x), 0);
+                    else
+                        delta = vec2i(0, sign(delta.y));
+                    for (int i = 0; i < shove_distance; ++i)
+                    {
+                        vec3f pplus = position + vec3f(delta.x, 0, delta.y);
+                        if (check_collision_dir(reg, position, delta) || !check_floor(reg, pplus) || check_occupancy(reg, pplus))
+                            break;
+                        position = pplus;
+                    }
+                }, COMPID(vec3f, position));
+            }
+        }, eecs::ComponentId<int>(attribute.c_str()), COMPID(const vec3f, position));
+    }, COMPID(const eecs::EntityId, parent), COMPID(const std::string, attribute), COMPID(const int, shove_distance));
+
     static Sound enemyHit = LoadSound("res/audio/sfx/hit_06.ogg");
     auto procAttack = [attrRoll](eecs::Registry& reg, const char* attrName, int attrVal, float attrMult, int dmg, const char* desc, int& hitpoints, int expDrop,
                          eecs::EntityId enemy, eecs::EntityId pl)
