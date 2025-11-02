@@ -167,6 +167,14 @@ DSWoodenFence02 <- _BaseWall = {
     texture_filename : str = "res/textures/walls/dreamspace_wood_fence_02.png"
 }
 
+DSWoodInside_01 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/dreamspace_wood_wall_inside_01.png"
+}
+
+DSWoodOutside_01 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/dreamspace_wood_wall_outside_01.png"
+}
+
 CSWallLines01 <- _BaseWall = {
     texture_filename : str = "res/textures/walls/cyber_wall_01.png"
 	texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"

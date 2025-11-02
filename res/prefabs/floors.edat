@@ -43,6 +43,14 @@ DSCaveFloor01 <- _BaseFloor = {
     texture_filename : str = "res/textures/floors/dreamspace_cave_floor_01.png"
 }
 
+DSWoodFloor01 <- _BaseFloor = {
+    texture_filename : str = "res/textures/walls/dreamspace_wood_wall_inside_01.png"
+}
+
+DSLeafFloor01 <- _BaseFloor = {
+    texture_filename : str = "res/textures/walls/dreamspace_treewall_01.png"
+}
+
 CSFloorLines01 <- _BaseFloor = {
     texture_filename : str = "res/textures/floors/cyber_floor_01.png"
     texture_emissiveFilename : str = "res/textures/floors/cyber_floor_01_emm.png"

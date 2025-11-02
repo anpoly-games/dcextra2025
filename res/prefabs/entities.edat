@@ -148,6 +148,15 @@ MSMetalLadderTop <- _TopLadder = {
     texture_filename : str = "res/textures/walls/meatspace_metal_01.png"
 }
 
+DSWoodLadderBase <- _BaseLadder = {
+    texture_filename : str = "res/textures/walls/dreamspace_wood_wall_inside_01.png"
+}
+
+DSWoodLadderTop <- _TopLadder = {
+    texture_filename : str = "res/textures/walls/dreamspace_wood_wall_inside_01.png"
+}
+
+
 MedievalSun = {
     light_direction : float[3] = ["0.3", "0.5", "0.3"]
     light_strength : float = "1.0"
