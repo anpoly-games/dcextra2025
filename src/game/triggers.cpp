@@ -31,9 +31,9 @@ void register_triggers(eecs::Registry& reg)
         }, COMPID(const vec3f, position), COMPID(const vec2i, trigger_volume));
     }, COMPID(vec3i, prevPosition), COMPID(const vec3f, position));
 
-    eecs::on_event(reg, FNV1(enterTrigger), [&](eecs::EntityId eid, eecs::EntityId, const std::vector<std::string>& dialogue_text)
+    eecs::on_event(reg, FNV1(enterTrigger), [&](eecs::EntityId eid, eecs::EntityId plEid, const std::vector<std::string>& dialogue_text)
     {
-        if (!eecs::has_comp(reg, eid, COMPID(Tag, dialogue_active)))
+        if (!eecs::has_comp(reg, eid, COMPID(Tag, dialogue_active)) && eecs::has_comp(reg, plEid, COMPID(Tag, player)))
             eecs::set_component(reg, eid, COMPID(Tag, dialogue_active), Tag{});
     }, COMPID(const std::vector<std::string>, dialogue_text));
 
@@ -69,8 +69,10 @@ void register_triggers(eecs::Registry& reg)
         }, COMPID(Tag, player), COMPID(int, team));
     }, COMPID(const Tag, dialogue_active));
 
-    eecs::on_event(reg, FNV1(enterTrigger), [&](eecs::EntityId, eecs::EntityId, const std::string& level_switchTo)
+    eecs::on_event(reg, FNV1(enterTrigger), [&](eecs::EntityId, eecs::EntityId plEid, const std::string& level_switchTo)
     {
+        if (!eecs::has_comp(reg, plEid, COMPID(Tag, player)))
+            return;
         printf("switching to level %s\n", level_switchTo.c_str());
         //load_level(reg, level_switchTo.c_str());
         //change_level(reg, level_switchTo.c_str());
@@ -96,12 +98,12 @@ void register_triggers(eecs::Registry& reg)
 
     eecs::on_event(reg, FNV1(enterTrigger), [&](eecs::EntityId eid, eecs::EntityId playerId, const vec3f& ori_displacement, float rotation)
     {
-        eecs::query_components(reg, playerId, [&](vec3f& position, Tag player)
+        eecs::query_components(reg, playerId, [&](vec3f& position)
         {
             position = position + vec3f(0, ori_displacement.y, 0) +
                 vec3f(sinf(rotation * DEG2RAD), 0, cosf(rotation * DEG2RAD)) * ori_displacement.z +
                 vec3f(cosf(rotation * DEG2RAD), 0, -sinf(rotation * DEG2RAD)) * ori_displacement.x;
-        }, COMPID(vec3f, position), COMPID(Tag, player));
+        }, COMPID(vec3f, position));
     }, COMPID(const vec3f, ori_displacement), COMPID(const float, rotation));
 
     eecs::on_event(reg, FNV1(enterTrigger), [&](eecs::EntityId eid, eecs::EntityId playerId, const int turns, Tag spinner)
