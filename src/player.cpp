@@ -53,6 +53,8 @@ void register_player(eecs::Registry& reg)
             eecs::emit_event(reg, FNV1(next_turn), eecs::invalid_eid, eid);
         if (right != 0)
             eecs::emit_event(reg, FNV1(next_turn), eecs::invalid_eid, eid);
+        if (IsKeyPressed(KEY_SPACE))
+            eecs::emit_event(reg, FNV1(next_turn), eecs::invalid_eid, eid);
     }, COMPID(vec3f, position), COMPID(vec3f, direction), COMPID(const Tag, player));
 }
 

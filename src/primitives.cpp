@@ -42,11 +42,11 @@ static void fix_cube_coords(Mesh& mesh, const vec3f& tcMult)
         0.0f, 0.0f
     };
     for (int i = 0; i < 8 * 2 * 1; ++i)
-        texcoords[i] *= tcMult.x * tcMult.y;
+        texcoords[i] *= i % 2 ? tcMult.y : tcMult.x;
     for (int i = 8 * 2 * 1; i < 8 * 2 * 2; ++i)
-        texcoords[i] *= tcMult.x * tcMult.z;
+        texcoords[i] *= i % 2 ? tcMult.x : tcMult.z;
     for (int i = 8 * 2 * 2; i < 8 * 2 * 3; ++i)
-        texcoords[i] *= tcMult.y * tcMult.z;
+        texcoords[i] *= i % 2 ? tcMult.z : tcMult.y;
     memcpy(mesh.texcoords, texcoords, 24*2*sizeof(float));
     UpdateMeshBuffer(mesh, SHADER_LOC_VERTEX_TEXCOORD01, mesh.texcoords, sizeof(float) * 2 * mesh.vertexCount, 0);
   }
@@ -90,9 +90,9 @@ void register_primitives(eecs::Registry& reg)
         const float range = primitiveRamp_top - primitiveRamp_base;
         const float avgHt = (primitiveRamp_top + primitiveRamp_base) * 0.5f;
         const float ramp = range / primitiveRamp_length;
-        const float bottom = -avgHt - range * 0.5f;
-        const float base = -avgHt + primitiveRamp_base;
-        const float top = -avgHt + primitiveRamp_top;
+        const float bottom = -avgHt;
+        const float base = bottom + primitiveRamp_base;
+        const float top = bottom + primitiveRamp_top;
         vec3f inclination = {0.f, sqrtf(1.f - sqr(ramp)), ramp};
         float vertices[] = {
             -primitiveRamp_width * 0.5f, bottom, primitiveRamp_length * 0.5f,

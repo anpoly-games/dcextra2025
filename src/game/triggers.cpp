@@ -7,6 +7,7 @@
 #include "../level.h"
 #include "../game.h"
 #include "triggers.h"
+#include "game_ui.h"
 
 
 void register_triggers(eecs::Registry& reg)
@@ -123,6 +124,88 @@ void register_triggers(eecs::Registry& reg)
     {
         set_game_state(E_WIN);
     }, COMPID(Tag, winGame));
+
+    static Sound playerHit = LoadSound("res/audio/sfx/hit_07.ogg");
+    eecs::on_event(reg, FNV1(enterTrigger), [&](eecs::EntityId, eecs::EntityId plEid, int area_damage, Tag active)
+    {
+        eecs::query_components(reg, plEid, [&](int& hitpoints)
+        {
+            PlaySound(playerHit);
+            push_rolling_text(reg, TextFormat("Received %d dmg", area_damage), GetColor(0xff0044ff));
+            hitpoints = std::max(0, hitpoints - area_damage);
+        }, COMPID(int, hitpoints));
+    }, COMPID(const int, area_damage), COMPID(Tag, active));
+
+    eecs::reg_enter(reg, [&](eecs::EntityId eid, const vec3f& particles_volume, Tag active)
+    {
+        eecs::set_component(reg, eid, eecs::ComponentId<std::vector<std::pair<vec3f, vec3f>>>("particles"), std::vector<std::pair<vec3f, vec3f>>());
+    }, COMPID(const vec3f, particles_volume), COMPID(Tag, active));
+
+    eecs::reg_exit(reg, [&](eecs::EntityId eid, const vec3f& particles_volume, Tag active)
+    {
+        eecs::del_component(reg, eid, eecs::ComponentId<std::vector<std::pair<vec3f, vec3f>>>("particles"));
+    }, COMPID(const vec3f, particles_volume), COMPID(Tag, active));
+
+    eecs::reg_system(reg, [&](eecs::EntityId, const vec3f& position, const vec3f& particles_volume, int particles_num, float particles_speed, std::vector<std::pair<vec3f, vec3f>>& particles)
+    {
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_real_distribution<> dis(-1.0, 1.0);
+        while (particles.size() < particles_num)
+        {
+            vec3f p = position + 0.5f * vec3f(dis(gen), dis(gen), dis(gen)) * particles_volume + vec3f(0, 0.5f, 0);
+            vec3f vel = particles_speed * vec3f(dis(gen), dis(gen), dis(gen)).normalized();
+            particles.push_back(std::make_pair(p, vel));
+        }
+        const vec3f lb = position - 0.5f * particles_volume + vec3f(0, 0.5f, 0);
+        const vec3f hb = position + 0.5f * particles_volume + vec3f(0, 0.5f, 0);
+        for (int i = int(particles.size()) - 1; i >= 0; --i)
+        {
+            vec3f& pos = particles[i].first;
+            vec3f& vel = particles[i].second;
+            pos += GetFrameTime() * vel;
+            if (pos.x < lb.x || pos.y < lb.y || pos.z < lb.z || pos.x > hb.x || pos.y > hb.y || pos.z > hb.z)
+                particles.erase(particles.begin() + i);
+        }
+    }, COMPID(const vec3f, position), COMPID(const vec3f, particles_volume), COMPID(const int, particles_num), COMPID(const float, particles_speed), eecs::ComponentId<const std::vector<std::pair<vec3f, vec3f>>>("particles"));
+
+    eecs::reg_system(reg, [&](eecs::EntityId, const std::vector<std::pair<vec3f, vec3f>>& particles, const vec4f& particles_color)
+    {
+        Color col = ColorFromNormalized(toRLVec4(particles_color));
+        const float cubeSz = 0.05f;
+        for (auto& particle : particles)
+            DrawCube(toRLVec3(particle.first), cubeSz, cubeSz, cubeSz, col);
+    }, eecs::ComponentId<const std::vector<std::pair<vec3f, vec3f>>>("particles"), COMPID(const vec4f, particles_color));
+
+    eecs::on_event(reg, FNV1(next_turn), [&](eecs::EntityId eid, eecs::EntityId, int& turnsTillActive, int turnCycle, int turnsActive)
+    {
+        turnsTillActive--;
+        if (turnsTillActive == 0)
+        {
+            eecs::set_component(reg, eid, COMPID(Tag, active), Tag{});
+        }
+        if (turnsTillActive <= -turnsActive)
+        {
+            turnsTillActive = turnCycle;
+            eecs::del_component(reg, eid, COMPID(Tag, active));
+        }
+    }, COMPID(int, turnsTillActive), COMPID(const int, turnCycle), COMPID(const int, turnsActive));
+
+    eecs::on_event(reg, FNV1(next_turn), [&](eecs::EntityId eid, eecs::EntityId, const vec3f& position, int area_damage, Tag active, const vec2i& trigger_volume)
+    {
+        vec3i triggerPos = pos_to_grid3d(position);
+        eecs::query_entities(reg, [&](eecs::EntityId playerEid, const vec3f& position, Tag player)
+        {
+            vec3i curPosition = pos_to_grid3d(position);
+            vec2i volExt = vec2i((trigger_volume.x - 1) / 2, (trigger_volume.y - 1) / 2);
+            if (triggerPos.y == curPosition.y &&
+                curPosition.x >= triggerPos.x - volExt.x && curPosition.x <= triggerPos.x + volExt.x &&
+                curPosition.z >= triggerPos.z - volExt.y && curPosition.z <= triggerPos.z + volExt.y)
+            {
+                eecs::emit_event(reg, FNV1(enterTrigger), eid, playerEid);
+            }
+        }, COMPID(const vec3f, position), COMPID(Tag, player));
+    }, COMPID(const vec3f, position), COMPID(const int, area_damage), COMPID(Tag, active), COMPID(const vec2i, trigger_volume));
 
     eecs::reg_system(reg, [&](eecs::EntityId, int& prevHitpoints, float& timeSinceHit, int hitpoints)
     {

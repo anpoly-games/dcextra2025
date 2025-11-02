@@ -180,8 +180,32 @@ CSWallLines01 <- _BaseWall = {
 	texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
 }
 
+CSWallLinesTall01 <- _BaseWall = {
+    primitiveBlock_size : float[3] = ["1", "3", "0.0"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+	texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+}
+
+CSWallLinesTallWide01 <- _BaseWall = {
+    primitiveBlock_size : float[3] = ["3", "3", "0.0"]
+    texture_filename : str = "res/textures/walls/cyber_wall_01.png"
+	texture_emissiveFilename : str = "res/textures/walls/cyber_wall_01_emm.png"
+}
+
 CSWallLines02 <- _BaseWall = {
     texture_filename : str = "res/textures/walls/cyber_wall_02.png"
 }
+
+CSWallLinesTall02 <- _BaseWall = {
+    primitiveBlock_size : float[3] = ["1", "3", "0.0"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+}
+
+CSWallLinesTallWide02 <- _BaseWall = {
+    primitiveBlock_size : float[3] = ["3", "3", "0.0"]
+    texture_filename : str = "res/textures/walls/cyber_wall_02.png"
+}
+
+
 
 

@@ -1,1 +1,1 @@
-levels : str[] = ["Meatspace_Main", "cyberspace", "dreamspace_1"]
+levels : str[] = ["Meatspace_Main", "cyberspace", "dreamspace_1", "dreamspace_2", "dreamspace_3"]

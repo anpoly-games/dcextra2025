@@ -83,9 +83,24 @@ _SwitchToCS1 = {
 _SwitchToDS1 = {
     text : str = "Access dreamspace"
     triggers : str = "switch_level"
-    distance : float = "1.0"
+    distance : float = "1.1"
     level_name : str = "dreamspace_1"
 }
+
+_SwitchToDS2 = {
+    text : str = "Access dreamspace"
+    triggers : str = "switch_level"
+    distance : float = "1.1"
+    level_name : str = "dreamspace_2"
+}
+
+_SwitchToDS3 = {
+    text : str = "Access dreamspace"
+    triggers : str = "switch_level"
+    distance : float = "1.1"
+    level_name : str = "dreamspace_3"
+}
+
 
 _SwitchToMS = {
     text : str = "Wake up"
@@ -118,6 +133,38 @@ SwitchToDS1 = {
     dbox_size : float[3] = ["0.25", "0.25", "0.25"]
     dbox_color : float[3] = ["0", "1", "0"]
     dbox_name : str = "DS1"
+}
+
+SwitchToDS2 = {
+    actionPrefabs : str[] = ["_SwitchToDS2"]
+    relativePos : float[3] = ["0", "0.3", "0"]
+    occupiesCell : Tag = ""
+    dbox_offset : float[3] = ["0", "0.125", "0"]
+    dbox_size : float[3] = ["0.25", "0.25", "0.25"]
+    dbox_color : float[3] = ["0", "1", "0"]
+    dbox_name : str = "DS2"
+}
+
+SwitchToDS2Term <- SwitchToDS2 = {
+    billboard : Tag = ""
+    billboard_size : float = "0.6"
+    texture_filename : str = "res/textures/objects/terminal.png"
+}
+
+SwitchToDS3 = {
+    actionPrefabs : str[] = ["_SwitchToDS3"]
+    relativePos : float[3] = ["0", "0.3", "0"]
+    occupiesCell : Tag = ""
+    dbox_offset : float[3] = ["0", "0.125", "0"]
+    dbox_size : float[3] = ["0.25", "0.25", "0.25"]
+    dbox_color : float[3] = ["0", "1", "0"]
+    dbox_name : str = "DS3"
+}
+
+SwitchToDS3Term <- SwitchToDS3 = {
+    billboard : Tag = ""
+    billboard_size : float = "0.6"
+    texture_filename : str = "res/textures/objects/terminal.png"
 }
 
 SwitchToMS = {
@@ -261,6 +308,16 @@ DS1DialogueKnights = {
     dialogue_replies : eid[] = ["_AIJoin1", "_AIDeny1", "_NeedTimeToThink"]
 }
 
+DS2DialogueMages = {
+    trigger_volume : int[2] = ["1", "1"]
+    trigger_debugName : str = "dial DS2 mages"
+    Saveable : Tag = ""
+    dialogue_title : str = "Wizard_bobby"
+    dialogue_text : str[] = ["Ahem, may I have your attention please?", "You certainly need to destroy those pesky monsters down there.", "I heard, that there's a portal near them.", "Now begone!"]
+    dialogue_replies : eid[] = ["_AIJoin2", "_AIDeny2", "_NeedTimeToThink"]
+}
+
+
 DS2Jump_4_1 = {
     ori_displacement : float[3] = ["0", "1", "4"]
     trigger_volume : int[2] = ["1", "1"]
@@ -308,3 +365,75 @@ WinGame = {
     winGame : Tag = ""
 	trigger_debugName : str = "win game"
 }
+
+CSAreaDamage_minus_10 = {
+    trigger_volume : int[2] = ["1", "1"]
+    area_damage : int = "10"
+	trigger_debugName : str = "area damage 10"
+    particles_volume : float[3] = ["1", "1", "1"]
+    particles_num : int = "20"
+    particles_speed : float = "5"
+    particles_color : float[4] = ["1.0", "0.0", "0.26666666666666666", "1"]
+    turnsTillActive : int = "5"
+    turnCycle : int = "10"
+    turnsActive : int = "2"
+}
+
+CSAreaDamage_minus_9 <- CSAreaDamage_minus_10 = {
+    turnsTillActive : int = "9"
+	trigger_debugName : str = "area damage 9"
+}
+
+CSAreaDamage_minus_8 <- CSAreaDamage_minus_10 = {
+    turnsTillActive : int = "8"
+	trigger_debugName : str = "area damage 8"
+}
+
+CSAreaDamage_minus_7 <- CSAreaDamage_minus_10 = {
+    turnsTillActive : int = "7"
+	trigger_debugName : str = "area damage 7"
+}
+
+CSAreaDamage_minus_6 <- CSAreaDamage_minus_10 = {
+    turnsTillActive : int = "6"
+	trigger_debugName : str = "area damage 6"
+}
+
+CSAreaDamage_minus_5 <- CSAreaDamage_minus_10 = {
+    turnsTillActive : int = "5"
+	trigger_debugName : str = "area damage 5"
+}
+
+CSAreaDamage_minus_4 <- CSAreaDamage_minus_10 = {
+    turnsTillActive : int = "4"
+	trigger_debugName : str = "area damage 4"
+}
+
+
+CSAreaDamage_minus_4 <- CSAreaDamage_minus_10 = {
+    turnsTillActive : int = "4"
+	trigger_debugName : str = "area damage 4"
+}
+
+CSAreaDamage_minus_3 <- CSAreaDamage_minus_10 = {
+    turnsTillActive : int = "3"
+	trigger_debugName : str = "area damage 3"
+}
+
+CSAreaDamage_minus_2 <- CSAreaDamage_minus_10 = {
+    turnsTillActive : int = "2"
+	trigger_debugName : str = "area damage 2"
+}
+
+CSAreaDamage_minus_1 <- CSAreaDamage_minus_10 = {
+    turnsTillActive : int = "1"
+	trigger_debugName : str = "area damage 1"
+}
+
+CSAreaDamage_minus_0 <- CSAreaDamage_minus_10 = {
+    turnsTillActive : int = "0"
+    active : Tag = ""
+	trigger_debugName : str = "area damage 0"
+}
+
+

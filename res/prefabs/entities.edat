@@ -1,6 +1,7 @@
 _BaseFakeWall = {
     primitiveBlock_size : float[3] = ["1", "1", "0.0"]
     relativePos : float[3] = ["0", "0.5", "-0.5"]
+    rayTransparent : Tag = ""
 }
 
 StoneFakeWall <- _BaseFakeWall = {
@@ -44,6 +45,7 @@ _SwingAction = {
     attribute : str = "attr_strength"
     attr_dmgMult : float = "0.2"
     action_sound : eid = "_SwooshSound"
+    attribute_modifier : float = "2.0"
 }
 
 _ShoveAction = {
