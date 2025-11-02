@@ -286,7 +286,25 @@ CSDialogueWarden1 = {
     trigger_debugName : str = "dial AI 1"
     Saveable : Tag = ""
     dialogue_title : str = "AI_Warden"
-    dialogue_text : str[] = ["Oh hi", "didn't think I would see someone", "Well I'm lying"]
+    dialogue_text : str[] = ["intruder, listen up.", "your presence is not welcome here."]
+    dialogue_replies : eid[] = ["_OkReply"]
+}
+
+CSDialogueWarden2 = {
+    trigger_volume : int[2] = ["1", "1"]
+    trigger_debugName : str = "dial AI 2"
+    Saveable : Tag = ""
+    dialogue_title : str = "AI_Warden"
+    dialogue_text : str[] = ["however I might utilize you.", "say it would be a win-win arrangement", "how do you feel about it?"]
+    dialogue_replies : eid[] = ["_OkReply"]
+}
+
+CSDialogueWarden3 = {
+    trigger_volume : int[2] = ["1", "1"]
+    trigger_debugName : str = "dial AI 3"
+    Saveable : Tag = ""
+    dialogue_title : str = "AI_Warden"
+    dialogue_text : str[] = ["there're several access points from this space and", "from meatspace from which you can enter dreamspaces.", "I have a slight problem in there, you should lend a hand", "to my subjects there."]
     dialogue_replies : eid[] = ["_OkReply"]
 }
 
