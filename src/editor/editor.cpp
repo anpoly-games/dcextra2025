@@ -567,6 +567,14 @@ void save_level(eecs::Registry& reg, const char* filename)
             "\"" + std::to_string(val.z) + "\""
             "]\n";
     });
+    handlers.addTypeHandler<vec3i>([&](const std::string_view& view, vec3i val)
+    {
+        edat += std::string("    ") + std::string(view) + " : int[3] = [" +
+            "\"" + std::to_string(val.x) + "\", "
+            "\"" + std::to_string(val.y) + "\", "
+            "\"" + std::to_string(val.z) + "\""
+            "]\n";
+    });
     handlers.addTypeHandler<vec2f>([&](const std::string_view& view, vec2f val)
     {
         edat += std::string("    ") + std::string(view) + " : float[2] = [" +
