@@ -99,16 +99,59 @@ ShroomBlob <- _BaseCreature = {
 MonsterMushroom01 <- _BaseCreature = {
     texture_filename : str = "res/textures/creatures/monster_mushroom_01.png"
     aggroesTeam : int = "2"
+    hitpoints : int = "5"
+    prevHitpoints : int = "5"
+}
+
+MSMonsterMushroom01 <- MonsterMushroom01 = {
+    aggroesTeam : int = "0"
 }
 
 MonsterMushroom02 <- _BaseCreature = {
     texture_filename : str = "res/textures/creatures/monster_mushroom_02.png"
     aggroesTeam : int = "2"
+    hitpoints : int = "10"
+    prevHitpoints : int = "10"
+    attackDamage : int = "10"
+}
+
+MSMonsterMushroom02 <- MonsterMushroom02 = {
+    aggroesTeam : int = "0"
 }
 
 MonsterMushroomOrc <- _BaseCreature = {
     texture_filename : str = "res/textures/creatures/mushroom_orc_01.png"
     aggroesTeam : int = "2"
+    hitpoints : int = "20"
+    prevHitpoints : int = "20"
+    attackDamage : int = "20"
+}
+
+MSMonsterMushroomOrc <- MonsterMushroomOrc = {
+    aggroesTeam : int = "0"
+}
+
+DSMonsterKnight <- _BaseCreature = {
+    texture_filename : str = "res/textures/creatures/crystalwarriors-16.png"
+    aggroesTeam : int = "1"
+    hitpoints : int = "5"
+    prevHitpoints : int = "5"
+}
+
+DSMonsterWizard <- _BaseCreature = {
+    texture_filename : str = "res/textures/creatures/monsters-53.png"
+    aggroesTeam : int = "1"
+    hitpoints : int = "10"
+    prevHitpoints : int = "10"
+    attackDamage : int = "10"
+}
+
+DSMonsterElf <- _BaseCreature = {
+    texture_filename : str = "res/textures/creatures/crystalwarriors-6.png"
+    aggroesTeam : int = "1"
+    hitpoints : int = "10"
+    prevHitpoints : int = "10"
+    attackDamage : int = "10"
 }
 
 _BaseDecor = {
@@ -148,6 +191,14 @@ MSMetalLadderTop <- _TopLadder = {
     texture_filename : str = "res/textures/walls/meatspace_metal_01.png"
 }
 
+DSStoneLadderBase <- _BaseLadder = {
+    texture_filename : str = "res/textures/walls/dreamspace_stonewall_01.png"
+}
+
+DSStoneLadderTop <- _TopLadder = {
+    texture_filename : str = "res/textures/walls/dreamspace_stonewall_01.png"
+}
+
 DSWoodLadderBase <- _BaseLadder = {
     texture_filename : str = "res/textures/walls/dreamspace_wood_wall_inside_01.png"
 }
@@ -158,6 +209,30 @@ DSWoodLadderTop <- _TopLadder = {
 
 
 MedievalSun = {
+    light_direction : float[3] = ["0.3", "0.5", "0.3"]
+    light_strength : float = "1.0"
+    clear_color : float[4] = ["0.172", "0.909", "0.960", "1"]
+    fog_params : float[4] = ["0.172", "0.909", "0.960", "0.05"]
+
+    dbox_offset : float[3] = ["0", "0.125", "0"]
+    dbox_size : float[3] = ["0.25", "0.25", "0.25"]
+    dbox_color : float[3] = ["0", "1", "0"]
+    dbox_name : str = "sun"
+}
+
+IslandSun = {
+    light_direction : float[3] = ["0.3", "0.5", "0.3"]
+    light_strength : float = "1.0"
+    clear_color : float[4] = ["0.40784313725490196", "0.2196078431372549", "0.4235294117647059", "1"]
+    fog_params : float[4] = ["0.40784313725490196", "0.2196078431372549", "0.4235294117647059", "0.08"]
+
+    dbox_offset : float[3] = ["0", "0.125", "0"]
+    dbox_size : float[3] = ["0.25", "0.25", "0.25"]
+    dbox_color : float[3] = ["0", "1", "0"]
+    dbox_name : str = "sun"
+}
+
+ForestSun = {
     light_direction : float[3] = ["0.3", "0.5", "0.3"]
     light_strength : float = "1.0"
     clear_color : float[4] = ["0.172", "0.909", "0.960", "1"]

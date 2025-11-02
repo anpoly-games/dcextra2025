@@ -94,6 +94,13 @@ _SwitchToMS = {
     level_name : str = "Meatspace_Main"
 }
 
+_SwitchToCS = {
+    text : str = "Wake up"
+    triggers : str = "switch_level"
+    distance : float = "1.1"
+    level_name : str = "cyberspace"
+}
+
 SwitchToCS1 = {
     billboard : Tag = ""
     billboard_size : float = "0.6"
@@ -123,6 +130,16 @@ SwitchToMS = {
     dbox_name : str = "Back to MS"
 }
 
+SwitchToCS = {
+    actionPrefabs : str[] = ["_SwitchToCS"]
+    relativePos : float[3] = ["0", "0.3", "0"]
+    occupiesCell : Tag = ""
+    dbox_offset : float[3] = ["0", "0.125", "0"]
+    dbox_size : float[3] = ["0.25", "0.25", "0.25"]
+    dbox_color : float[3] = ["0", "1", "0"]
+    dbox_name : str = "Back to CS"
+}
+
 _OkReply = {
     text : str = "OK"
     reply_triggers : str[] = ["kill_dialogue"]
@@ -130,84 +147,84 @@ _OkReply = {
 
 _ShroomJoin1 = {
     text : str = "I'll aid you"
-    reply_triggers : str[] = ["join_team_1", "open_remote", "kill_dialogue"]
+    reply_triggers : str[] = ["join_team_1", "open_remote", "kill_all_dialogues"]
     level_name : str = "cyberspace"
     door_tags : str[] = ["1->2"]
 }
 
 _ShroomDeny1 = {
     text : str = "I'll kill you"
-    reply_triggers : str[] = ["join_team_2", "open_remote", "kill_dialogue"]
+    reply_triggers : str[] = ["join_team_2", "open_remote", "kill_all_dialogues"]
     level_name : str = "Meatspace_Main"
     door_tags : str[] = ["1->2"]
 }
 
 _AIJoin1 = {
     text : str = "I'll aid you"
-    reply_triggers : str[] = ["join_team_2", "open_remote", "kill_dialogue"]
+    reply_triggers : str[] = ["join_team_2", "open_remote", "kill_all_dialogues"]
     level_name : str = "Meatspace_Main"
     door_tags : str[] = ["1->2"]
 }
 
 _AIDeny1 = {
     text : str = "I'll kill you"
-    reply_triggers : str[] = ["join_team_1", "open_remote", "kill_dialogue"]
+    reply_triggers : str[] = ["join_team_1", "open_remote", "kill_all_dialogues"]
     level_name : str = "cyberspace"
     door_tags : str[] = ["1->2"]
 }
 
 _ShroomJoin2 = {
     text : str = "I'll aid you"
-    reply_triggers : str[] = ["join_team_1", "open_remote", "kill_dialogue"]
+    reply_triggers : str[] = ["join_team_1", "open_remote", "kill_all_dialogues"]
     level_name : str = "cyberspace"
     door_tags : str[] = ["1->2", "2->3"]
 }
 
 _ShroomDeny2 = {
     text : str = "I'll kill you"
-    reply_triggers : str[] = ["join_team_2", "open_remote", "kill_dialogue"]
+    reply_triggers : str[] = ["join_team_2", "open_remote", "kill_all_dialogues"]
     level_name : str = "Meatspace_Main"
     door_tags : str[] = ["1->2", "2->3"]
 }
 
 _AIJoin2 = {
     text : str = "I'll aid you"
-    reply_triggers : str[] = ["join_team_2", "open_remote", "kill_dialogue"]
+    reply_triggers : str[] = ["join_team_2", "open_remote", "kill_all_dialogues"]
     level_name : str = "Meatspace_Main"
     door_tags : str[] = ["1->2", "2->3"]
 }
 
 _AIDeny2 = {
     text : str = "I'll kill you"
-    reply_triggers : str[] = ["join_team_1", "open_remote", "kill_dialogue"]
+    reply_triggers : str[] = ["join_team_1", "open_remote", "kill_all_dialogues"]
     level_name : str = "cyberspace"
     door_tags : str[] = ["1->2", "2->3"]
 }
 
 _ShroomJoin3 = {
     text : str = "I'll aid you"
-    reply_triggers : str[] = ["join_team_1", "open_remote", "kill_dialogue"]
+    reply_triggers : str[] = ["join_team_1", "open_remote", "kill_all_dialogues"]
     level_name : str = "cyberspace"
     door_tags : str[] = ["1->2", "2->3", "3->4"]
 }
 
 _ShroomDeny3 = {
     text : str = "I'll kill you"
-    reply_triggers : str[] = ["join_team_2", "open_remote", "kill_dialogue"]
+    reply_triggers : str[] = ["join_team_2", "open_remote", "kill_all_dialogues"]
     level_name : str = "Meatspace_Main"
     door_tags : str[] = ["1->2", "2->3", "3->4"]
 }
 
 _AIJoin3 = {
     text : str = "I'll aid you"
-    reply_triggers : str[] = ["join_team_2", "open_remote", "kill_dialogue"]
+    reply_triggers : str[] = ["join_team_2", "open_remote", "kill_all_dialogues"]
     level_name : str = "Meatspace_Main"
     door_tags : str[] = ["1->2", "2->3", "3->4"]
 }
 
 _AIDeny3 = {
     text : str = "I'll kill you"
-    reply_triggers : str[] = ["join_team_1", "open_remote", "kill_dialogue"]
+    reply_triggers : str[] = ["join_team_1", "open_remote", "kill_all_dialogues"]
     level_name : str = "cyberspace"
     door_tags : str[] = ["1->2", "2->3", "3->4"]
 }
@@ -233,6 +250,15 @@ DS1Dialogue = {
     dialogue_title : str = "Fungus_Cogitans"
     dialogue_text : str[] = ["Well finally", "Why the hell it took so long?", "Ah, you don't understand what's going on, do you?", "Well, I'm trapped by this filthy AI warden", "So it can use me to simulate this space", "Would you mind killing invaders for me please?", "I'll let you out if you help me"]
     dialogue_replies : eid[] = ["_ShroomJoin1", "_ShroomDeny1", "_NeedTimeToThink"]
+}
+
+DS1DialogueKnights = {
+    trigger_volume : int[2] = ["1", "1"]
+    trigger_debugName : str = "dial DS1 knights"
+    Saveable : Tag = ""
+    dialogue_title : str = "Knight_Larry"
+    dialogue_text : str[] = ["Hello there stranger!", "We have a situation here.", "You see we cannot leave the castle right now,", "but we must get rid of monsters in the cave.", "That's our highest goal", "Would you lend us a hand and clean up that cave?", "Our scrolls says that if you do, you can find a path", "to a strange world from the end of that cave."]
+    dialogue_replies : eid[] = ["_AIJoin1", "_AIDeny1", "_NeedTimeToThink"]
 }
 
 DS2Jump_4_1 = {

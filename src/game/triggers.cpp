@@ -40,6 +40,13 @@ void register_triggers(eecs::Registry& reg)
     {
         eecs::del_entity(reg, eid);
     }, COMPID(const Tag, dialogue_active));
+    eecs::on_event(reg, FNV1(kill_all_dialogues), [&](eecs::EntityId eid, eecs::EntityId, Tag dialogue_active)
+    {
+        eecs::query_entities(reg, [&](eecs::EntityId deid, const std::vector<std::string>& dialogue_text)
+        {
+            eecs::del_entity(reg, deid);
+        }, COMPID(const std::vector<std::string>, dialogue_text));
+    }, COMPID(const Tag, dialogue_active));
     eecs::on_event(reg, FNV1(close_dialogue), [&](eecs::EntityId eid, eecs::EntityId, Tag dialogue_active)
     {
         eecs::del_component(reg, eid, COMPID(Tag, dialogue_active));

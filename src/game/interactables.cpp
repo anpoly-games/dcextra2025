@@ -224,56 +224,6 @@ void register_interactables(eecs::Registry& reg)
             }, eecs::ComponentId<int>(attribute.c_str()));
         }, COMPID(int, hitpoints), COMPID(const int, expDrop));
     }, COMPID(const eecs::EntityId, parent), COMPID(const std::string, attribute), COMPID(const float, attr_dmgMult), COMPID(const eecs::EntityId, action_sound));
-    /*
-    eecs::on_event(reg, FNV1(swing), [&](eecs::EntityId actEid, eecs::EntityId pl, eecs::EntityId parent)
-    {
-        const float attrMult = eecs::get_comp_or(reg, actEid, COMPID(float, attribute_modifier), 1.f);
-        eecs::query_components(reg, parent, [&](int& hitpoints, int expDrop)
-        {
-            eecs::query_components(reg, pl, [&](int attr_strength)
-            {
-                PlaySound(swoosh);
-                procAttack(reg, "STR", attr_strength, attrMult, attr_strength / 5, "(STR/5)", hitpoints, expDrop, parent, pl);
-            }, COMPID(const int, attr_strength));
-        }, COMPID(int, hitpoints), COMPID(const int, expDrop));
-    }, COMPID(const eecs::EntityId, parent));
-    eecs::on_event(reg, FNV1(shot), [&](eecs::EntityId actEid, eecs::EntityId pl, eecs::EntityId parent)
-    {
-        const float attrMult = eecs::get_comp_or(reg, actEid, COMPID(float, attribute_modifier), 1.f);
-        eecs::query_components(reg, parent, [&](int& hitpoints, int expDrop)
-        {
-            PlaySound(shot);
-            eecs::query_components(reg, pl, [&](int attr_agility)
-            {
-                procAttack(reg, "AGI", attr_agility, attrMult, attr_agility / 10, "(AGI/10)", hitpoints, expDrop, parent, pl);
-            }, COMPID(const int, attr_agility));
-        }, COMPID(int, hitpoints), COMPID(const int, expDrop));
-    }, COMPID(const eecs::EntityId, parent));
-    eecs::on_event(reg, FNV1(aimed_shot), [&](eecs::EntityId actEid, eecs::EntityId pl, eecs::EntityId parent)
-    {
-        const float attrMult = eecs::get_comp_or(reg, actEid, COMPID(float, attribute_modifier), 1.f);
-        eecs::query_components(reg, parent, [&](int& hitpoints, int expDrop)
-        {
-            PlaySound(aimedShot);
-            eecs::query_components(reg, pl, [&](int attr_agility)
-            {
-                procAttack(reg, "AGI", attr_agility, attrMult, attr_agility / 20, "(AGI/20)", hitpoints, expDrop, parent, pl);
-            }, COMPID(const int, attr_agility));
-        }, COMPID(int, hitpoints), COMPID(const int, expDrop));
-    }, COMPID(const eecs::EntityId, parent));
-    eecs::on_event(reg, FNV1(burst_shot), [&](eecs::EntityId actEid, eecs::EntityId pl, eecs::EntityId parent)
-    {
-        const float attrMult = eecs::get_comp_or(reg, actEid, COMPID(float, attribute_modifier), 1.f);
-        eecs::query_components(reg, parent, [&](int& hitpoints, int expDrop)
-        {
-            PlaySound(burstShot);
-            eecs::query_components(reg, pl, [&](int attr_agility)
-            {
-                procAttack(reg, "AGI", attr_agility, attrMult, attr_agility / 5, "(AGI/5)", hitpoints, expDrop, parent, pl);
-            }, COMPID(const int, attr_agility));
-        }, COMPID(int, hitpoints), COMPID(const int, expDrop));
-    }, COMPID(const eecs::EntityId, parent));
-    */
 
     eecs::on_event(reg, FNV1(add_item), [&](eecs::EntityId actEid, eecs::EntityId pl, eecs::EntityId parent, const std::string& compName)
     {

@@ -3,7 +3,7 @@ _CameraLighting = {
 }
 
 _DefaultCamera <- _CameraLighting = {
-    cam_normalAngle : float = "60"
+    cam_normalAngle : float = "70"
     cam_backOffset : float = "0.3"
 }
 
