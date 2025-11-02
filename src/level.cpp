@@ -151,7 +151,7 @@ eecs::Registry* change_level(eecs::Registry& reg, std::unordered_map<std::string
                 const char* compsToCopy[] =
                 {
                     "attr_strength", "attr_agility", "attr_mind", "attr_body",
-                    "hitpoints", "level", "pointsToSpend", "experience",
+                    "prevHitpoints", "hitpoints", "level", "pointsToSpend", "experience",
                     "items_regenX", "items_bearserker", "items_reflexxx", "items_mindDefoger", "items_genius", "items_bandito"
                 };
                 eecs::query_entities(reg, [&](eecs::EntityId rhs, Tag player)
