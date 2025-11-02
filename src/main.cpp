@@ -38,14 +38,14 @@ int main(int argc, char** argv)
 
     ChangeDirectory(TextFormat("%s/../Resources/", GetApplicationDirectory()));
 
-    InitWindow(width, height, "DC Extra Jam 2025");
+    InitWindow(width, height, "The Hidden Facility");
     const int scrWidth = GetMonitorWidth(0);
     const int scrHeight = GetMonitorHeight(0);
     CloseWindow();
 
     int scaleFactor = std::max(1, std::min((scrWidth - 50) / width, (scrHeight - 50) / height));
 
-    InitWindow(width * scaleFactor, height * scaleFactor, "DC Extra Jam 2025");
+    InitWindow(width * scaleFactor, height * scaleFactor, "The Hidden Facility");
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 

@@ -302,9 +302,11 @@ void draw_ui(eecs::Registry& reg, float width, float height, float scaleFactor)
     static Font headerFont = LoadFontEx("res/textures/ui/16px-IBM_VGA_8x16.ttf", 16, nullptr, 0);
     static Font logFont = LoadFontEx("res/textures/ui/8px-IBM_BIOS_8x8.ttf", 8, nullptr, 0);
     static NineRect nrect = create_9rect(LoadImage("res/textures/ui/button_rect.png"), 2);
+    static Texture2D logo = LoadTexture("res/textures/logo.png");
     const float pad = 4.f * scaleFactor;
     if (gameState == E_MAIN_MENU)
     {
+        draw_centered_texture(logo, torect(0, 0, width, height * 0.5f), scaleFactor);
         vec2f bsz = {width * 0.5f, 40.f * scaleFactor};
         vec2f pos = {(width - bsz.x) * 0.5f, height * 0.5f};
         draw_button_9rect(nrect, Rectangle(pos.x, pos.y, bsz.x, bsz.y), headerFont, "Begin", 32.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
@@ -323,13 +325,16 @@ void draw_ui(eecs::Registry& reg, float width, float height, float scaleFactor)
     else if (gameState == E_WIN)
     {
         DrawRectangle(0, 0, width, height, BLACK);
-        draw_centered_font_with_shadow(headerFont, "YOU WON", torect(0, 0, width, height * 0.2f), 32.f * scaleFactor, 3, GetColor(0x3e8948ff));
+        draw_centered_font_with_shadow(headerFont, "YOU ESCAPED", torect(0, 0, width, height * 0.2f), 32.f * scaleFactor, 3, GetColor(0x3e8948ff));
         const char* wonText[] =
         {
-            "You escaped the facility",
-            "And maybe you're not in the dreamspace",
-            "But you don't know for sure",
-            "Actually..."
+            "You leave the facility behind",
+            "With its strange masters and an unresolved conflict",
+            "However a strange feeling doesn't leave you anymore",
+            "Like you're still in the dreamspace, even if it looks quite the same as your old life",
+            "Well that feeling is based on some pecularities you started noticing",
+            "So you might need to explore these pecularities further in order to be sure",
+            "But that's another story..."
         };
         vec2f bsz = {width * 0.5f, 40.f * scaleFactor};
         vec2f pos = {(width - bsz.x) * 0.5f, height * 0.3f};
@@ -357,11 +362,12 @@ void draw_ui(eecs::Registry& reg, float width, float height, float scaleFactor)
         draw_centered_font_with_shadow(headerFont, "YOU ARE FOREVER LOST", torect(0, 0, width, height * 0.2f), 32.f * scaleFactor, 3, GetColor(0x3e8948ff));
         const char* loseText[] =
         {
-            "You were forever lost in the facility.",
-            "Nobody knows if your body is being utilized by masters of the facility.",
+            "You are forever lost in the facility.",
+            "Nobody knows if your body is being utilized by masters of the facility or you just rot.",
             "Maybe you're feeding the resident programs in the cyberspace.",
-            "Or you're part of the dreamspace now, feeding the warden.",
-            "Maybe someone else will meet you there..."
+            "Or you're now a part of the dreamspace now, feeding the warden with your consciousness.",
+            "Maybe someone else will discover what happened to you...",
+            "Or you might be forever forgotten..."
         };
         vec2f bsz = {width * 0.5f, 40.f * scaleFactor};
         vec2f pos = {(width - bsz.x) * 0.5f, height * 0.3f};
