@@ -21,6 +21,9 @@ void draw_interactables(eecs::Registry& reg, float top, float scrwidth, float he
     {
         const vec2i cam_wh = get_cam_wh(reg);
         vec2f pos = {cam_wh.x + 50.f * scaleFactor, top};
+        vec2f initialPos = pos;
+        const float step = 16.f * scaleFactor;
+        const float width = scrwidth - pos.x - 4.f * 4.f * scaleFactor;
         eecs::query_entities(reg, [&](eecs::EntityId plEid, const vec3f& position, Tag player, int team)
         {
             eecs::query_entities(reg, [&, &ppos = position](eecs::EntityId obj, const vec3f& position, const std::vector<eecs::EntityId>& actionList)
@@ -38,8 +41,6 @@ void draw_interactables(eecs::Registry& reg, float top, float scrwidth, float he
                 }, COMPID(const int, aggroesTeam));
                 if (shouldSkip)
                     return;
-                const float step = 16.f * scaleFactor;
-                const float width = scrwidth - pos.x - 4.f * 4.f * scaleFactor;
                 //pos2d.x -= cam_wh.x * 0.5f;
                 bool haveActions = false;
                 for (eecs::EntityId act : actionList)
@@ -75,13 +76,18 @@ void draw_interactables(eecs::Registry& reg, float top, float scrwidth, float he
                         //DrawLineEx({pos.x, pos.y + step * 0.5f}, {pos2d.x, pos2d.y}, 4.f, GetColor(0x63c74dff));
                         DrawLineEx({pos.x, pos.y + step * 0.5f}, {(float)cam_wh.x, pos.y + step * 0.5f}, 4.f, GetColor(0x63c74dff));
                         DrawLineEx({(float)cam_wh.x + 4.f, pos.y + step * 0.5f}, {pos2d.x, pos2d.y}, 4.f, GetColor(0x63c74dff));
-                        pos.y += step + scaleFactor * 4.f;;
+                        pos.y += step + scaleFactor * 4.f;
                     }, COMPID(const float, distance), COMPID(const std::string, triggers), COMPID(const std::string, text));
                 }
                 if (!haveActions)
                 {
                 }
             }, COMPID(const vec3f, position), COMPID(const std::vector<eecs::EntityId>, actionList));
+            draw_button_9rect(nrect, Rectangle(initialPos.x, initialPos.y + (step + scaleFactor * 4.f) * 7, width, step), actionFont, "Skip turn", 8.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
+            [&]()
+            {
+                eecs::emit_event(reg, FNV1(next_turn), eecs::invalid_eid, plEid);
+            });
         }, COMPID(const vec3f, position), COMPID(const Tag, player), COMPID(const int, team));
     }, COMPID(const Camera, camera));
 }
