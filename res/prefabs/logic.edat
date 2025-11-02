@@ -517,4 +517,27 @@ CSAreaDamage_minus_0 <- CSAreaDamage_minus_10 = {
 	trigger_debugName : str = "area damage 0"
 }
 
+MSAudioNoise01 = {
+    sound_filename : str = "res/audio/sfx/noise_01.ogg"
+    audio_timeFrom : float = "5"
+    audio_timeTo : float = "10"
+    audio_volumeRange : float[2] = ["0.5", "1"]
+    dbox_offset : float[3] = ["0", "0.125", "0"]
+    dbox_size : float[3] = ["0.25", "0.25", "0.25"]
+    dbox_color : float[3] = ["0", "1", "0"]
+    dbox_name : str = "swoosh"
+}
+
+MSAudioNoise02 = {
+    sound_filename : str = "res/audio/sfx/water_drop_01.ogg"
+    audio_timeFrom : float = "2"
+    audio_timeTo : float = "5"
+    audio_volumeRange : float[2] = ["0.25", "0.5"]
+
+    dbox_offset : float[3] = ["0", "0.125", "0"]
+    dbox_size : float[3] = ["0.25", "0.25", "0.25"]
+    dbox_color : float[3] = ["0", "1", "0"]
+    dbox_name : str = "water drops"
+}
+
 
