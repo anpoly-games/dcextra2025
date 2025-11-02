@@ -115,5 +115,10 @@ void register_triggers(eecs::Registry& reg)
     {
         set_game_state(E_WIN);
     }, COMPID(Tag, winGame));
+    eecs::reg_system(reg, [&](eecs::EntityId, int hitpoints, Tag player)
+    {
+        if (hitpoints <= 0)
+            set_game_state(E_LOSE);
+    }, COMPID(const int, hitpoints), COMPID(const Tag, player));
 }
 

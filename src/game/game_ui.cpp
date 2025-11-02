@@ -11,9 +11,12 @@
 #include "advancement.h"
 
 static GameState gameState = E_MAIN_MENU;
+static float timeFromChange = 0.f;
 
 void set_game_state(GameState gs)
 {
+    if (gs != gameState)
+        timeFromChange = 0.f;
     gameState = gs;
 }
 
@@ -253,9 +256,42 @@ void draw_ui(eecs::Registry& reg, float width, float height, float scaleFactor)
     }
     else if (gameState == E_LOSE)
     {
+        const float timeToChange = 1.f;
+        timeFromChange += GetFrameTime();
+        if (timeFromChange < timeToChange)
+        {
+            int psz = 32 * scaleFactor;
+            float incl = 0.1f;
+            for (int yy = 0; yy < height / psz; ++yy)
+            {
+                float offs = yy % 2 ? 0.f : (incl * (-width/psz));
+                float dir = yy % 2 ? -1.f : 1.f;
+                for (int xx = 0; xx < width / psz; ++xx)
+                {
+                    Color col = ColorFromNormalized({0.f, 0.f, 0.f, clamp(offs + dir * xx * incl + timeFromChange / timeToChange * 5.f, 0.f, 1.f)});
+                    DrawRectangle(xx * psz, yy * psz, psz, psz, col);
+                }
+            }
+            return;
+        }
         DrawRectangle(0, 0, width, height, BLACK);
+        draw_centered_font_with_shadow(headerFont, "YOU ARE FOREVER LOST", torect(0, 0, width, height * 0.2f), 32.f * scaleFactor, 3, GetColor(0x3e8948ff));
+        const char* loseText[] =
+        {
+            "You were forever lost in the facility.",
+            "Nobody knows if your body is being utilized by masters of the facility.",
+            "Maybe you're feeding the resident programs in the cyberspace.",
+            "Or you're part of the dreamspace now, feeding the warden.",
+            "Maybe someone else will meet you there..."
+        };
         vec2f bsz = {width * 0.5f, 40.f * scaleFactor};
         vec2f pos = {(width - bsz.x) * 0.5f, height * 0.3f};
+        for (int i = 0; i < sizeof(loseText) / sizeof(loseText[0]); ++i)
+        {
+            DrawTextEx(headerFont, loseText[i], toRLVec2(pos), 16.f * scaleFactor, 0, GetColor(0x3e8948ff));
+            pos.y += 16.f * scaleFactor + pad;
+        }
+        pos.y += 16.f * scaleFactor + pad;
         draw_button_9rect(nrect, Rectangle(pos.x, pos.y, bsz.x, bsz.y), headerFont, "Logout", 32.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
         [&]()
         {
