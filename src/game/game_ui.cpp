@@ -348,7 +348,8 @@ void draw_ui(eecs::Registry& reg, float width, float height, float scaleFactor)
         const float uiPxScale = 4.f * scaleFactor;
         const float borderHt = uiPxScale * 8.f;
         const float actEnd = charEnd + borderHt + headerSize + pad + 20.f * scaleFactor * 8;
-        const float itmEnd = height - 180 * scaleFactor;
+        const float itmEnd = actEnd + borderHt + headerSize + pad + 3 * 20.f * scaleFactor;
+        const float menuEnd = height - 180 * scaleFactor;
 
         eecs::query_entities(reg, [&](eecs::EntityId, int cam_resWidth, float cam_resMult)
         {
@@ -357,11 +358,13 @@ void draw_ui(eecs::Registry& reg, float width, float height, float scaleFactor)
             draw_tiled_tex(horzborder, torect(0, 0, width, 12), torect(leftSideTrue, charEnd, width, 12 * scaleFactor), uiPxScale, WHITE);
             draw_tiled_tex(horzborder, torect(0, 0, width, 12), torect(leftSideTrue, actEnd, width, 12 * scaleFactor), uiPxScale, WHITE);
             draw_tiled_tex(horzborder, torect(0, 0, width, 12), torect(leftSideTrue, itmEnd, width, 12 * scaleFactor), uiPxScale, WHITE);
+            draw_tiled_tex(horzborder, torect(0, 0, width, 12), torect(leftSideTrue, menuEnd, width, 12 * scaleFactor), uiPxScale, WHITE);
 
             draw_centered_font_with_shadow(headerFont, "CHARACTER", torect(leftSide + 12.f * uiPxScale, 16.f * scaleFactor, width - (leftSide + 12.f * uiPxScale), headerSize), headerSize, 3, GetColor(0x3e8948ff));
             draw_centered_font_with_shadow(headerFont, "ACTIONS", torect(leftSide + 12.f * uiPxScale, charEnd + borderHt, width - (leftSide + 12.f * uiPxScale), headerSize), headerSize, 3, GetColor(0x3e8948ff));
             draw_centered_font_with_shadow(headerFont, "ITEMS", torect(leftSide + 12.f * uiPxScale, actEnd + borderHt, width - (leftSide + 12.f * uiPxScale), headerSize), headerSize, 3, GetColor(0x3e8948ff));
-            draw_centered_font_with_shadow(headerFont, "SYSLOG", torect(leftSide + 12.f * uiPxScale, itmEnd + borderHt, width - (leftSide + 12.f * uiPxScale), headerSize), headerSize, 3, GetColor(0x3e8948ff));
+            draw_centered_font_with_shadow(headerFont, "MENU", torect(leftSide + 12.f * uiPxScale, itmEnd + borderHt, width - (leftSide + 12.f * uiPxScale), headerSize), headerSize, 3, GetColor(0x3e8948ff));
+            draw_centered_font_with_shadow(headerFont, "SYSLOG", torect(leftSide + 12.f * uiPxScale, menuEnd + borderHt, width - (leftSide + 12.f * uiPxScale), headerSize), headerSize, 3, GetColor(0x3e8948ff));
 
             draw_tiled_tex(border, torect(0, 0, 12, height), torect(leftSide, 0.f, 12 * scaleFactor, height), uiPxScale, WHITE);
         }, COMPID(const int, cam_resWidth), COMPID(const float, cam_resMult));
@@ -373,7 +376,7 @@ void draw_ui(eecs::Registry& reg, float width, float height, float scaleFactor)
         draw_items(reg, actEnd + borderHt + headerSize + pad, width, height, scaleFactor);
 
         const vec2i cam_wh = get_cam_wh(reg);
-        vec2f pos = {cam_wh.x + 50.f * scaleFactor, itmEnd + borderHt + headerSize + pad};
+        vec2f pos = {cam_wh.x + 50.f * scaleFactor, menuEnd + borderHt + headerSize + pad};
         const float spacing = 12.f * scaleFactor;
         eecs::query_entities(reg, [&](eecs::EntityId, std::vector<ColoredText>& rollingText)
         {
