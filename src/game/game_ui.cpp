@@ -177,6 +177,38 @@ void draw_items(eecs::Registry& reg, float top, float scrwidth, float height, fl
        COMPID(int, items_mindDefoger), COMPID(int, items_genius), COMPID(int, items_bandito));
 }
 
+void draw_menu(eecs::Registry& reg, float top, float scrwidth, float height, float scaleFactor)
+{
+    static Font itmFont = LoadFontEx("res/textures/ui/8px-IBM_BIOS_8x8.ttf", 8, nullptr, 0);
+    static NineRect nrect = create_9rect(LoadImage("res/textures/ui/button_rect.png"), 2);
+    const vec2i cam_wh = get_cam_wh(reg);
+    vec2f pos = {cam_wh.x + 50.f * scaleFactor, top};
+    const float pad = 4.f * scaleFactor;
+
+    const float width = (scrwidth - pos.x - 4.f * 4.f * scaleFactor - pad) * 0.5f;
+    const float step = 16.f * scaleFactor;
+    auto drawItem = [&](const char* name, const Texture2D& icon, int& count, const vec2f& pos)
+    {
+        float vpos = pos.y + (step - icon.height * scaleFactor) * 0.5f;
+        float hpos = pos.x + pad;
+        DrawTextureEx(icon, {hpos, vpos}, 0.f, scaleFactor, WHITE);
+        std::string finalText = std::string(name) + ": " + std::to_string(count);
+        draw_centered_font_with_shadow(itmFont, finalText.c_str(), torect(hpos + icon.width * scaleFactor + pad, pos.y, width, step), 8.f * scaleFactor, 0, WHITE, EFC_VCENTER);
+    };
+    draw_button_9rect(nrect, Rectangle(pos.x, pos.y, width, step), itmFont, "Save", 8.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
+    [&]()
+    {
+        save_registries(reg);
+        push_rolling_text(reg, "Progress saved", WHITE);
+    });
+    draw_button_9rect(nrect, Rectangle(pos.x + width + pad, pos.y, width, step), itmFont, "Exit", 8.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
+    [&]()
+    {
+        eecs::create_entity_wrap(reg).set(COMPID(Tag, quitGame), Tag{});
+    });
+}
+
+
 void draw_dialogue(eecs::Registry& reg, float width, float height, float scaleFactor)
 {
     //static Texture2D border = LoadTexture("res/textures/ui/border.png");
@@ -331,6 +363,16 @@ void draw_ui(eecs::Registry& reg, float width, float height, float scaleFactor)
             pos.y += 16.f * scaleFactor + pad;
         }
         pos.y += 16.f * scaleFactor + pad;
+        if (has_saved())
+        {
+            draw_button_9rect(nrect, Rectangle(pos.x, pos.y, bsz.x, bsz.y), headerFont, "Load saved", 32.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
+            [&]()
+            {
+                load_registries(reg);
+                gameState = E_GAME;
+            });
+            pos.y += bsz.y + pad;
+        }
         draw_button_9rect(nrect, Rectangle(pos.x, pos.y, bsz.x, bsz.y), headerFont, "Logout", 32.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
         [&]()
         {
@@ -349,7 +391,7 @@ void draw_ui(eecs::Registry& reg, float width, float height, float scaleFactor)
         const float borderHt = uiPxScale * 8.f;
         const float actEnd = charEnd + borderHt + headerSize + pad + 20.f * scaleFactor * 8;
         const float itmEnd = actEnd + borderHt + headerSize + pad + 3 * 20.f * scaleFactor;
-        const float menuEnd = height - 180 * scaleFactor;
+        const float menuEnd = itmEnd + borderHt + headerSize + pad + 20.f * scaleFactor;
 
         eecs::query_entities(reg, [&](eecs::EntityId, int cam_resWidth, float cam_resMult)
         {
@@ -374,6 +416,8 @@ void draw_ui(eecs::Registry& reg, float width, float height, float scaleFactor)
         draw_interactables(reg, charEnd + borderHt + headerSize + pad, width, height, scaleFactor);
 
         draw_items(reg, actEnd + borderHt + headerSize + pad, width, height, scaleFactor);
+
+        draw_menu(reg, itmEnd + borderHt + headerSize + pad, width, height, scaleFactor);
 
         const vec2i cam_wh = get_cam_wh(reg);
         vec2f pos = {cam_wh.x + 50.f * scaleFactor, menuEnd + borderHt + headerSize + pad};

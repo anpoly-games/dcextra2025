@@ -14,6 +14,8 @@
 
 static std::unordered_map<std::string, eecs::Registry*> registries;
 
+eecs::Registry* load_saved_registries(eecs::Registry& reg);
+
 int main(int argc, char** argv)
 {
     int width = 1280;
@@ -93,6 +95,7 @@ int main(int argc, char** argv)
                 draw_ui(*reg, width * scaleFactor, height * scaleFactor, scaleFactor);
             end_postcam(*reg);
         reg = change_level(*reg, registries); // look for a change level request and execute it.
+        reg = load_saved_registries(*reg);
         bool shouldQuit = false;
         eecs::query_entities(*reg, [&](eecs::EntityId, Tag quitGame)
         {
@@ -125,5 +128,67 @@ eecs::Registry& get_registry(const std::string& name)
         return temp;
     }
     return *itf->second;
+}
+
+static std::unordered_map<std::string, eecs::Registry*> savedRegistries;
+static std::string savedLevel;
+
+void save_registries(eecs::Registry& reg)
+{
+    std::string currentName;
+    for (auto &[name, r] : registries)
+        if (r == &reg)
+            currentName = name;
+    savedLevel = currentName;
+    eecs::query_entities(reg, [&](eecs::EntityId, float window_width, float window_height, float window_scaleFactor)
+    {
+        preload_levels(savedRegistries, window_width, window_height, window_scaleFactor);
+        for (auto &[name, r] : registries)
+        {
+            auto itf = savedRegistries.find(name);
+            if (itf == savedRegistries.end())
+                continue;
+            eecs::Registry& dest = *itf->second;
+            dest.entityToName = r->entityToName;
+            dest.entityNames = r->entityNames;
+            dest.freeEidsList = r->freeEidsList;
+            dest.lastValidEid = r->lastValidEid;
+            for (auto &[hash, holder] : r->holders)
+            {
+                auto iitf = dest.holders.find(hash);
+                if (iitf == dest.holders.end())
+                    dest.holders.emplace(hash, eecs::SparseSetHolder(holder.typeHash, holder.name.c_str(), holder.set->createClone()));
+                else
+                {
+                    delete iitf->second.set;
+                    iitf->second.set =  holder.set->createClone();
+                }
+            }
+        }
+    }, COMPID(float, window_width), COMPID(float, window_height), COMPID(float, window_scaleFactor));
+}
+
+eecs::Registry* load_saved_registries(eecs::Registry& reg)
+{
+    if (eecs::find_entity(reg, "trigger_load") == eecs::invalid_eid)
+        return &reg;
+
+    for (auto &[name, r] : registries)
+        delete r;
+    registries.clear();
+    registries = savedRegistries;
+    save_registries(*registries[savedLevel]);
+    return registries[savedLevel];
+}
+
+void load_registries(eecs::Registry& reg)
+{
+    eecs::create_entity_wrap(reg, "trigger_load")
+        .set(COMPID(Tag, load_registries), Tag{});
+}
+
+bool has_saved()
+{
+    return savedRegistries.size();
 }
 
