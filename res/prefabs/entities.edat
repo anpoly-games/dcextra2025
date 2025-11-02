@@ -7,6 +7,12 @@ StoneFakeWall <- _BaseFakeWall = {
     texture_filename : str = "res/textures/tiles/biomes-9.png"
 }
 
+DSPortal <- _BaseFakeWall = {
+    texture_filename : str = "res/textures/tiles/dreamspace_portal_01.png"
+	texture_emissiveFilename : str = "res/textures/walls/dreamspace_portal_em_01.png"
+}
+
+
 SpawnPoint = {
     spawn : Tag = ""
     dbox_offset : float[3] = ["0", "0.125", "0"]

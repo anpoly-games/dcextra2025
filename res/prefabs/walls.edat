@@ -143,6 +143,22 @@ DSCaveeOutside04 <- _BaseWall = {
     texture_filename : str = "res/textures/walls/dreamspace_cave_outside_04.png"
 }
 
+DSCaveeOutsideGrass01 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/dreamspace_cave_grass_outside_01.png"
+}
+
+DSCaveeOutsideGrass02 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/dreamspace_cave_grass_outside_02.png"
+}
+
+DSCaveeOutsideGrass03 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/dreamspace_cave_grass_outside_03.png"
+}
+
+DSCaveeOutsideGrass04 <- _BaseWall = {
+    texture_filename : str = "res/textures/walls/dreamspace_cave_grass_outside_04.png"
+}
+
 DSWoodenFence01 <- _BaseWall = {
     texture_filename : str = "res/textures/walls/dreamspace_wood_fence_01.png"
 }
