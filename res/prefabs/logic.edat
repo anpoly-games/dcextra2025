@@ -352,6 +352,15 @@ DS1DialogueKnights = {
     dialogue_replies : eid[] = ["_AIJoin1", "_AIDeny1", "_NeedTimeToThink"]
 }
 
+DS2Dialogue = {
+    trigger_volume : int[2] = ["1", "1"]
+    trigger_debugName : str = "dial DS2"
+    Saveable : Tag = ""
+    dialogue_title : str = "Fungus_Cogitans"
+    dialogue_text : str[] = ["Well you've reached my second prison", "My consciousness is used by that pesky AI warden", "So they can improve their simulation", "Get rid of those mages up there", "That will help a lot"]
+    dialogue_replies : eid[] = ["_ShroomJoin2", "_ShroomDeny2", "_NeedTimeToThink"]
+}
+
 DS2DialogueMages = {
     trigger_volume : int[2] = ["1", "1"]
     trigger_debugName : str = "dial DS2 mages"
@@ -360,6 +369,16 @@ DS2DialogueMages = {
     dialogue_text : str[] = ["Ahem, may I have your attention please?", "You certainly need to destroy those pesky monsters down there.", "I heard, that there's a portal near them.", "Now begone!"]
     dialogue_replies : eid[] = ["_AIJoin2", "_AIDeny2", "_NeedTimeToThink"]
 }
+
+DS3Dialogue = {
+    trigger_volume : int[2] = ["1", "1"]
+    trigger_debugName : str = "dial DS3"
+    Saveable : Tag = ""
+    dialogue_title : str = "Fungus_Cogitans"
+    dialogue_text : str[] = ["That's the final prison for my consciousness", "That warden decided to use meat bodies to power itself", "And I don't really love that idea", "Do you?"]
+    dialogue_replies : eid[] = ["_ShroomJoin3", "_ShroomDeny3", "_NeedTimeToThink"]
+}
+
 
 DS3DialogueElves = {
     trigger_volume : int[2] = ["1", "1"]
