@@ -31,10 +31,14 @@ void register_triggers(eecs::Registry& reg)
         }, COMPID(const vec3f, position), COMPID(const vec2i, trigger_volume));
     }, COMPID(vec3i, prevPosition), COMPID(const vec3f, position));
 
+    static Sound dialogueSound = LoadSound("res/audio/sfx/error.ogg");
     eecs::on_event(reg, FNV1(enterTrigger), [&](eecs::EntityId eid, eecs::EntityId plEid, const std::vector<std::string>& dialogue_text)
     {
         if (!eecs::has_comp(reg, eid, COMPID(Tag, dialogue_active)) && eecs::has_comp(reg, plEid, COMPID(Tag, player)))
+        {
+            PlaySound(dialogueSound);
             eecs::set_component(reg, eid, COMPID(Tag, dialogue_active), Tag{});
+        }
     }, COMPID(const std::vector<std::string>, dialogue_text));
 
     eecs::on_event(reg, FNV1(kill_dialogue), [&](eecs::EntityId eid, eecs::EntityId, Tag dialogue_active)
