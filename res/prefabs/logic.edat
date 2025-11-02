@@ -291,8 +291,8 @@ MSInnerDialogue1 = {
     trigger_volume : int[2] = ["1", "1"]
     trigger_debugName : str = "dial MS 1"
     Saveable : Tag = ""
-    dialogue_title : str = "SELF"
-    dialogue_text : str[] = ["So this is it, this place was like a hole in a network fabric.", "No signals passing through here, which makes me wonder"]
+    dialogue_title : str = "Narrator"
+    dialogue_text : str[] = ["You enter a strange facility which was hiding in a plain sight.", "You only discovered it because it was like a black hole.", "Nothing was coming in, nothing was coming out", "An anomaly in the busy landscape", "Fortunatelly your body is young and you are full of potential", "Which you should spread between strengh, agility, mind and body", "Whatever awaits you, don't forget to save often", "Bon courage!"]
     dialogue_replies : eid[] = ["_ContinueReply"]
 }
 
@@ -301,7 +301,7 @@ MSInnerDialogue2 = {
     trigger_debugName : str = "dial MS 2"
     Saveable : Tag = ""
     dialogue_title : str = "SELF"
-    dialogue_text : str[] = ["Unfortunatelly door closed right behind me.", "I'll need to find another way out.", "Fortunatelly I still have some unspent boosters, might come really handy."]
+    dialogue_text : str[] = ["Damn!", "The door closed right behind me.", "I'll need to find another way out."]
     dialogue_replies : eid[] = ["_ContinueReply"]
 }
 
