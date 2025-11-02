@@ -111,9 +111,27 @@ void register_interactables(eecs::Registry& reg)
         }
         eecs::set_component(reg, eid, COMPID(std::vector<eecs::EntityId>, actionList), actionList);
     }, COMPID(const std::vector<std::string>, actionPrefabs));
+    eecs::reg_system(reg, [&](eecs::EntityId eid, float& timeToChangeLevel, const std::string& nextLevel)
+    {
+        timeToChangeLevel -= GetFrameTime();
+        if (timeToChangeLevel < 0.f)
+        {
+            eecs::create_or_find_entity_wrap(reg, "Switch_Level").set(COMPID(std::string, nextLevel), nextLevel);
+            eecs::del_entity(reg, eid);
+        }
+    }, COMPID(float, timeToChangeLevel), COMPID(const std::string, nextLevel));
+    eecs::reg_system(reg, [&](eecs::EntityId eid, float& timeFromLevelChange)
+    {
+        timeFromLevelChange -= GetFrameTime();
+        if (timeFromLevelChange < 0.f)
+            eecs::del_entity(reg, eid);
+    }, COMPID(float, timeFromLevelChange));
+    static Sound levelChangeSound = LoadSound("res/audio/sfx/effect_10.ogg");
     eecs::on_event(reg, FNV1(switch_level), [&](eecs::EntityId actEid, eecs::EntityId plEid, const std::string& level_name)
     {
-        eecs::create_or_find_entity_wrap(reg, "Switch_Level").set(COMPID(std::string, nextLevel), level_name);
+        PlaySound(levelChangeSound);
+        eecs::create_entity_wrap(reg).set(COMPID(std::string, nextLevel), level_name).set(COMPID(float, timeToChangeLevel), 0.5f);
+        //eecs::create_or_find_entity_wrap(reg, "Switch_Level").set(COMPID(std::string, nextLevel), level_name);
     }, COMPID(const std::string, level_name));
     eecs::on_event(reg, FNV1(toggle), [&](eecs::EntityId actEid, eecs::EntityId plEid, eecs::EntityId parent)
     {

@@ -165,6 +165,7 @@ eecs::Registry* change_level(eecs::Registry& reg, std::unordered_map<std::string
                         }
                     }, COMPID(Tag, player));
                 }, COMPID(Tag, player));
+                eecs::create_entity_wrap(*nReg).set(COMPID(float, timeFromLevelChange), 0.5f);
                 /*
                 eecs::query_entities(*nReg, [&](eecs::EntityId eid, const vec3f& pos, const float rot, Tag spawn){
                     eecs::query_entities(*nReg, [&](eecs::EntityId pid, vec3f& position, vec3f& direction, vec3i& prevPosition, Tag player)

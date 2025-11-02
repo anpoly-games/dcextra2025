@@ -28,6 +28,14 @@ bool is_ui_blocks_input(eecs::Registry& reg)
     {
         res = true;
     }, COMPID(Tag, dialogue_active));
+    eecs::query_entities(reg, [&](eecs::EntityId, float timeFromLevelChange)
+    {
+        res = true;
+    }, COMPID(float, timeFromLevelChange));
+    eecs::query_entities(reg, [&](eecs::EntityId, float timeToChangeLevel)
+    {
+        res = true;
+    }, COMPID(float, timeToChangeLevel));
     return res;
 }
 
@@ -435,6 +443,14 @@ void draw_ui(eecs::Registry& reg, float width, float height, float scaleFactor)
         }, COMPID(const std::vector<ColoredText>, rollingText));
 
         draw_dialogue(reg, width, height, scaleFactor);
+        eecs::query_entities(reg, [&](eecs::EntityId, float timeToChangeLevel)
+        {
+            draw_screen_change(width, height, scaleFactor, 1.f - timeToChangeLevel * 2.f);
+        }, COMPID(const float, timeToChangeLevel));
+        eecs::query_entities(reg, [&](eecs::EntityId, float timeFromLevelChange)
+        {
+            draw_screen_change(width, height, scaleFactor, timeFromLevelChange * 2.f);
+        }, COMPID(const float, timeFromLevelChange));
     }
 }
 
