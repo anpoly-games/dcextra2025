@@ -65,7 +65,7 @@ void draw_interactables(eecs::Registry& reg, float top, float scrwidth, float he
                             if (attrDmgMult > 0.f)
                                 finalText += " " + std::to_string(int(attrVal * attrDmgMult)) + "dmg";
                         }, COMPID(const std::string, attribute));
-                        draw_button_9rect(nrect, Rectangle(pos.x, pos.y, width, step), actionFont, finalText.c_str(), 8.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
+                        draw_button_9rect(nrect, torect(pos.x, pos.y, width, step), actionFont, finalText.c_str(), 8.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
                         [&]()
                         {
                             eecs::query_entities(reg, [&](eecs::EntityId, float& globalCd, float cooldownSplit)
@@ -86,7 +86,7 @@ void draw_interactables(eecs::Registry& reg, float top, float scrwidth, float he
                 {
                 }
             }, COMPID(const vec3f, position), COMPID(const std::vector<eecs::EntityId>, actionList));
-            draw_button_9rect(nrect, Rectangle(initialPos.x, initialPos.y + (step + scaleFactor * 4.f) * 7, width, step), actionFont, "Skip turn", 8.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
+            draw_button_9rect(nrect, torect(initialPos.x, initialPos.y + (step + scaleFactor * 4.f) * 7, width, step), actionFont, "Skip turn", 8.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
             [&]()
             {
                 eecs::emit_event(reg, FNV1(next_turn), eecs::invalid_eid, plEid);

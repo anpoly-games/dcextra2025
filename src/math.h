@@ -129,6 +129,13 @@ template<typename T>
 struct vec4
 {
   T x, y, z, w;
+
+  vec4<T>() = default;
+  vec4<T>(const vec4<T>& rhs) = default;
+  vec4<T>(vec4<T>&& rhs) = default;
+  vec4<T>(T _x, T _y, T _z, T _w) : x(_x), y(_y), z(_z), w(_w) {}
+
+  vec4<T>& operator=(const vec4<T>& rhs) = default;
 };
 
 

@@ -158,7 +158,7 @@ void draw_items(eecs::Registry& reg, float top, float scrwidth, float height, fl
         const float step = 16.f * scaleFactor;
         auto drawItem = [&](const char* name, const Texture2D& icon, int& count, const vec2f& pos)
         {
-            draw_button_9rect(nrect, Rectangle(pos.x, pos.y, width, step), itmFont, "", 8.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
+            draw_button_9rect(nrect, torect(pos.x, pos.y, width, step), itmFont, "", 8.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
             [&]()
             {
                 if (count > 0)
@@ -203,13 +203,13 @@ void draw_menu(eecs::Registry& reg, float top, float scrwidth, float height, flo
         std::string finalText = std::string(name) + ": " + std::to_string(count);
         draw_centered_font_with_shadow(itmFont, finalText.c_str(), torect(hpos + icon.width * scaleFactor + pad, pos.y, width, step), 8.f * scaleFactor, 0, WHITE, EFC_VCENTER);
     };
-    draw_button_9rect(nrect, Rectangle(pos.x, pos.y, width, step), itmFont, "Save", 8.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
+    draw_button_9rect(nrect, torect(pos.x, pos.y, width, step), itmFont, "Save", 8.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
     [&]()
     {
         save_registries(reg);
         push_rolling_text(reg, "Progress saved", WHITE);
     });
-    draw_button_9rect(nrect, Rectangle(pos.x + width + pad, pos.y, width, step), itmFont, "Exit", 8.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
+    draw_button_9rect(nrect, torect(pos.x + width + pad, pos.y, width, step), itmFont, "Exit", 8.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
     [&]()
     {
         eecs::create_entity_wrap(reg).set(COMPID(Tag, quitGame), Tag{});
@@ -268,7 +268,7 @@ void draw_dialogue(eecs::Registry& reg, float width, float height, float scaleFa
             {
                 eecs::query_components(reg, reply, [&](const std::string& text, const std::vector<std::string>& reply_triggers)
                 {
-                    draw_button_9rect(nrect, Rectangle(textPos.x, textPos.y, sz.x * 0.3f, step), textFont, text.c_str(), 16.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
+                    draw_button_9rect(nrect, torect(textPos.x, textPos.y, sz.x * 0.3f, step), textFont, text.c_str(), 16.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
                     [&]()
                     {
                         for (const std::string& trName : reply_triggers)
@@ -309,14 +309,14 @@ void draw_ui(eecs::Registry& reg, float width, float height, float scaleFactor)
         draw_centered_texture(logo, torect(0, 0, width, height * 0.5f), scaleFactor);
         vec2f bsz = {width * 0.5f, 40.f * scaleFactor};
         vec2f pos = {(width - bsz.x) * 0.5f, height * 0.5f};
-        draw_button_9rect(nrect, Rectangle(pos.x, pos.y, bsz.x, bsz.y), headerFont, "Begin", 32.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
+        draw_button_9rect(nrect, torect(pos.x, pos.y, bsz.x, bsz.y), headerFont, "Begin", 32.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
         [&]()
         {
             eecs::create_or_find_entity_wrap(reg, "Switch_Level").set(COMPID(std::string, nextLevel), std::string("Meatspace_Main"));
             gameState = E_GAME;
         });
         pos.y += bsz.y + pad;
-        draw_button_9rect(nrect, Rectangle(pos.x, pos.y, bsz.x, bsz.y), headerFont, "Logout", 32.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
+        draw_button_9rect(nrect, torect(pos.x, pos.y, bsz.x, bsz.y), headerFont, "Logout", 32.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
         [&]()
         {
             eecs::create_entity_wrap(reg).set(COMPID(Tag, quitGame), Tag{});
@@ -343,7 +343,7 @@ void draw_ui(eecs::Registry& reg, float width, float height, float scaleFactor)
             DrawTextEx(headerFont, wonText[i], toRLVec2(pos), 16.f * scaleFactor, 0, GetColor(0x3e8948ff));
             pos.y += 16.f * scaleFactor + pad;
         }
-        draw_button_9rect(nrect, Rectangle(pos.x, pos.y, bsz.x, bsz.y), headerFont, "Logout", 32.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
+        draw_button_9rect(nrect, torect(pos.x, pos.y, bsz.x, bsz.y), headerFont, "Logout", 32.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
         [&]()
         {
             eecs::create_entity_wrap(reg).set(COMPID(Tag, quitGame), Tag{});
@@ -379,7 +379,7 @@ void draw_ui(eecs::Registry& reg, float width, float height, float scaleFactor)
         pos.y += 16.f * scaleFactor + pad;
         if (has_saved())
         {
-            draw_button_9rect(nrect, Rectangle(pos.x, pos.y, bsz.x, bsz.y), headerFont, "Load saved", 32.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
+            draw_button_9rect(nrect, torect(pos.x, pos.y, bsz.x, bsz.y), headerFont, "Load saved", 32.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
             [&]()
             {
                 load_registries(reg);
@@ -387,7 +387,7 @@ void draw_ui(eecs::Registry& reg, float width, float height, float scaleFactor)
             });
             pos.y += bsz.y + pad;
         }
-        draw_button_9rect(nrect, Rectangle(pos.x, pos.y, bsz.x, bsz.y), headerFont, "Logout", 32.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
+        draw_button_9rect(nrect, torect(pos.x, pos.y, bsz.x, bsz.y), headerFont, "Logout", 32.f, 0, scaleFactor, ColorFromHSV(0, 0, 0.7f),
         [&]()
         {
             eecs::create_entity_wrap(reg).set(COMPID(Tag, quitGame), Tag{});
