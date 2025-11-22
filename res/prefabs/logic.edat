@@ -76,7 +76,7 @@ Spin_3 <- _Trigger = {
 _SwitchToCS1 = {
     text : str = "Access cyberspace"
     triggers : str = "switch_level"
-    distance : float = "1.0"
+    distance : float = "1.1"
     level_name : str = "cyberspace"
 }
 
