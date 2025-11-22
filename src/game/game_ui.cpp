@@ -48,6 +48,9 @@ void draw_character(eecs::Registry& reg, float top, float width, float height, f
     float hzStep = 140 * scaleFactor;
     const float textSize = 8.f * scaleFactor;
     static Sound press = LoadSound("res/audio/sfx/press_01.ogg");
+    bool blinkAttributes = false;
+    static float attrtimer = 0.f;
+    attrtimer += GetFrameTime();
     auto drawAttr = [&](const char* str, vec2f pos, int& val, int& pointsToSpend)
     {
         DrawTextEx(charFont, TextFormat("%s: %d", str, val), toRLVec2(pos), textSize, 0, GetColor(0x3e8948ff));
@@ -74,7 +77,14 @@ void draw_character(eecs::Registry& reg, float top, float width, float height, f
                     }
                 }
                 else
-                    DrawTextEx(charFont, text.c_str(), toRLVec2(upgPos), textSize, 0, GetColor(0xfeae34ff));
+                {
+                    Color textColor = GetColor(0xfeae34ff);
+                    Color bgColor = BLACK;
+                    if (blinkAttributes && int(attrtimer * 6.f) % 3 == 0)
+                        std::swap(textColor, bgColor);
+                    DrawRectangleRec(upgRect, bgColor);
+                    DrawTextEx(charFont, text.c_str(), toRLVec2(upgPos), textSize, 0, textColor);
+                }
                 upgPos.x += upgSz.x + 4.f * scaleFactor;
             };
             drawPlus(1);
@@ -118,10 +128,14 @@ void draw_character(eecs::Registry& reg, float top, float width, float height, f
         {
             Color fgColor = GetColor(0xfeae34ff);
             Color bgColor = BLACK;
-            if (int(timer * 2.0f) % 2)
-                std::swap(fgColor, bgColor);
+            Vector2 mp = GetMousePosition();
             Vector2 tsz = MeasureTextEx(charFont, TextFormat("PTS: %d", pointsToSpend), textSize, 0);
-            DrawRectangle(pos.x - pad, pos.y - pad, tsz.x + pad * 2, tsz.y + pad * 2, bgColor);
+            Rectangle ptsRect = torect(pos.x - pad, pos.y - pad, tsz.x + pad * 2, tsz.y + pad * 2);
+            if (is_vec_in_rect(mp, ptsRect))
+                blinkAttributes = true;
+            if (!blinkAttributes && int(timer * 2.0f) % 2)
+                std::swap(fgColor, bgColor);
+            DrawRectangleRec(ptsRect, bgColor);
             DrawTextEx(charFont, TextFormat("PTS: %d", pointsToSpend), toRLVec2(pos), textSize, 0, fgColor);
             pos.y += step;
         }
