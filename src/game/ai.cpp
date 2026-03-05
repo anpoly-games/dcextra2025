@@ -1,9 +1,9 @@
 #include <eecs.h>
 #include <raylib.h>
 
-#include "../math.h"
-#include "../tags.h"
-#include "../level.h"
+#include "dcengine/math.h"
+#include "dcengine/tags.h"
+#include "dcengine/level.h"
 #include "game_ui.h"
 #include "ai.h"
 

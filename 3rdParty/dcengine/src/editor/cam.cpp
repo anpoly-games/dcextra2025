@@ -1,8 +1,8 @@
 #include <eecs.h>
 #include <raylib.h>
 
-#include "../math.h"
-#include "../cam.h"
+#include "dcengine/math.h"
+#include "dcengine/cam.h"
 
 eecs::EntityId create_cam(eecs::Registry& reg)
 {

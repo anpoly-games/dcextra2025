@@ -4,14 +4,14 @@
 #include <random>
 #include <cstring>
 
-#include "renderer.h"
+#include "dcengine/renderer.h"
 #include "raymath.h"
-#include "level.h"
-#include "game.h"
-#include "tags.h"
+#include "dcengine/level.h"
+#include "dcengine/game.h"
+#include "dcengine/tags.h"
 
 #define RLIGHTS_IMPLEMENTATION
-#include "rlights.h"
+#include "dcengine/rlights.h"
 
 #if defined(PLATFORM_DESKTOP)
     #define GLSL_VERSION            330

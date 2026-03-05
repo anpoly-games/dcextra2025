@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 
-project(dcjam2025)
+project(dcengine)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -9,22 +9,26 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 SET(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(SOURCES
-    main.cpp
+    primitives.cpp
+    math.cpp
+    textures.cpp
+    level.cpp
+    cam.cpp
+    renderer.cpp
+    prefabs.cpp
+    ui.cpp
+    audio.cpp
+    player.cpp
+    settings.cpp
     )
 
-set(GAME_SOURCES
-    game/game.cpp
-    game/game_ui.cpp
-    game/cam.cpp
-    game/player.cpp
-    game/spawn.cpp
-    game/triggers.cpp
-    game/debug.cpp
-    game/interactables.cpp
-    game/advancement.cpp
-    game/ai.cpp
+set(EDITOR_SOURCES
+    editor/editor.cpp
+    editor/editor_ui.cpp
+    editor/cam.cpp
+    editor/player.cpp
+    editor/editor_main.cpp
     )
-
 
 if(MSVC)
   # https://github.com/raysan5/raylib/issues/857
@@ -36,7 +40,10 @@ if (EMSCRIPTEN)
   set(CMAKE_EXECUTABLE_SUFFIX ".html") # This line is used to set your executable to build with the emscripten html template so taht you can directly open it.
 endif ()
     
-add_executable(game ${SOURCES} ${GAME_SOURCES})
-#target_include_directories(dcjam2025 PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/../../src)
-target_link_libraries(game PUBLIC dcengine)
+add_executable(editor ${SOURCES} ${EDITOR_SOURCES})
+add_library(dcengine ${SOURCES})
+target_link_libraries(editor PUBLIC raylib glfw eecs edat)
+target_link_libraries(dcengine PUBLIC raylib glfw eecs edat)
+target_include_directories(editor PUBLIC include)
+target_include_directories(dcengine PUBLIC include)
 

@@ -1,7 +1,7 @@
 #include <eecs.h>
 #include <string>
 
-#include "settings.h"
+#include "dcengine/settings.h"
 
 void create_settings(eecs::Registry& reg)
 {

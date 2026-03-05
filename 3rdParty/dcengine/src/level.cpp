@@ -7,13 +7,12 @@
 
 #include <filesystem>
 
-#include "level.h"
-#include "math.h"
-#include "tags.h"
-#include "editor/editor_ui.h"
-#include "game.h"
-#include "prefabs.h"
-#include "ui.h"
+#include "dcengine/level.h"
+#include "dcengine/math.h"
+#include "dcengine/tags.h"
+#include "dcengine/game.h"
+#include "dcengine/prefabs.h"
+#include "dcengine/ui.h"
 
 namespace fs = std::filesystem;
 

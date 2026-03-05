@@ -28,7 +28,7 @@ int main(int argc, char** argv)
             levelToLoad = argv[++i];
             printf("Loading level %s\n", levelToLoad);
         }
-        
+
         if (strncmp(argv[i], "-d", 2)==0)
         {
           debugMode = true;

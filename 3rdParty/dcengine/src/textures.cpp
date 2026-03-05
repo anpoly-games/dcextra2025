@@ -1,7 +1,7 @@
 #include <eecs.h>
 #include <raylib.h>
 
-#include "textures.h"
+#include "dcengine/textures.h"
 
 void register_textures(eecs::Registry& reg)
 {

@@ -1,9 +1,9 @@
 #include <eecs.h>
 #include <raylib.h>
 
-#include "../math.h"
-#include "../cam.h"
-#include "../tags.h"
+#include "dcengine/math.h"
+#include "dcengine/cam.h"
+#include "dcengine/tags.h"
 
 eecs::EntityId create_cam(eecs::Registry& reg)
 {

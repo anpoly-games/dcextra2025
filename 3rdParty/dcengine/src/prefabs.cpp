@@ -1,9 +1,9 @@
 #include <eecs.h>
 #include <edat.h>
 #include <parsers.h>
-#include "prefabs.h"
-#include "tags.h"
-#include "math.h"
+#include "dcengine/prefabs.h"
+#include "dcengine/tags.h"
+#include "dcengine/math.h"
 #include "component.h"
 
 namespace fs = std::filesystem;

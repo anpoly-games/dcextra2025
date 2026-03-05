@@ -4,8 +4,8 @@
 #include <algorithm>
 #include <string>
 
-#include "ui.h"
-#include "math.h"
+#include "dcengine/ui.h"
+#include "dcengine/math.h"
 
 void draw_centered_texture(Texture2D tex, Rectangle rect, float scale)
 {

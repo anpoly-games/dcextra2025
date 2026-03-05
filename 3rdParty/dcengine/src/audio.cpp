@@ -3,8 +3,8 @@
 #include <string>
 #include <random>
 
-#include "audio.h"
-#include "math.h"
+#include "dcengine/audio.h"
+#include "dcengine/math.h"
 
 void register_audio(eecs::Registry& reg)
 {

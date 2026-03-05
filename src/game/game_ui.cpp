@@ -1,11 +1,11 @@
 #include <eecs.h>
 #include <raylib.h>
 
-#include "../math.h"
-#include "../cam.h"
-#include "../ui.h"
-#include "../tags.h"
-#include "../game.h"
+#include "dcengine/math.h"
+#include "dcengine/cam.h"
+#include "dcengine/ui.h"
+#include "dcengine/tags.h"
+#include "dcengine/game.h"
 #include "game_ui.h"
 #include "interactables.h"
 #include "advancement.h"

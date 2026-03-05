@@ -1,10 +1,10 @@
 #include <eecs.h>
 #include <raylib.h>
 
-#include "../math.h"
-#include "../tags.h"
-#include "../player.h"
-#include "../cam.h"
+#include "dcengine/math.h"
+#include "dcengine/tags.h"
+#include "dcengine/player.h"
+#include "dcengine/cam.h"
 #include "spawn.h"
 
 void register_spawn(eecs::Registry& reg)

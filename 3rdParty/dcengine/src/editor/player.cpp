@@ -1,9 +1,9 @@
 #include <eecs.h>
 #include <raylib.h>
 
-#include "../player.h"
-#include "../math.h"
-#include "../tags.h"
+#include "dcengine/player.h"
+#include "dcengine/math.h"
+#include "dcengine/tags.h"
 
 eecs::EntityId create_player(eecs::Registry& reg, float x, float z, float rot)
 {

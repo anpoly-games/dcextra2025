@@ -2,10 +2,10 @@
 #include <raylib.h>
 #include <random>
 
-#include "../math.h"
-#include "../tags.h"
-#include "../level.h"
-#include "../game.h"
+#include "dcengine/math.h"
+#include "dcengine/tags.h"
+#include "dcengine/level.h"
+#include "dcengine/game.h"
 #include "triggers.h"
 #include "game_ui.h"
 

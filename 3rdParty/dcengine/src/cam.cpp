@@ -6,11 +6,11 @@
 #include <parsers.h>
 #include <float.h>
 
-#include "math.h"
-#include "cam.h"
-#include "tags.h"
-#include "renderer.h"
-#include "prefabs.h"
+#include "dcengine/math.h"
+#include "dcengine/cam.h"
+#include "dcengine/tags.h"
+#include "dcengine/renderer.h"
+#include "dcengine/prefabs.h"
 
 void register_cam(eecs::Registry& reg)
 {

@@ -3,12 +3,12 @@
 #include <raymath.h>
 #include <reflection.h>
 
-#include "../math.h"
-#include "../tags.h"
-#include "../ui.h"
-#include "../cam.h"
-#include "../level.h"
-#include "../game.h"
+#include "dcengine/math.h"
+#include "dcengine/tags.h"
+#include "dcengine/ui.h"
+#include "dcengine/cam.h"
+#include "dcengine/level.h"
+#include "dcengine/game.h"
 #include "interactables.h"
 #include "advancement.h"
 #include "game_ui.h"

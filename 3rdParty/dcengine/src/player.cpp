@@ -1,12 +1,12 @@
 #include <raylib.h>
 #include <eecs.h>
 
-#include "player.h"
-#include "tags.h"
-#include "ui.h"
-#include "level.h"
-#include "game.h"
-#include "audio.h"
+#include "dcengine/player.h"
+#include "dcengine/tags.h"
+#include "dcengine/ui.h"
+#include "dcengine/level.h"
+#include "dcengine/game.h"
+#include "dcengine/audio.h"
 
 void register_player(eecs::Registry& reg)
 {

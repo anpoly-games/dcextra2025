@@ -2,9 +2,9 @@
 #include <eecs.h>
 #include <cstring>
 
-#include "primitives.h"
-#include "textures.h"
-#include "math.h"
+#include "dcengine/primitives.h"
+#include "dcengine/textures.h"
+#include "dcengine/math.h"
 
 static void fix_cube_coords(Mesh& mesh, const vec3f& tcMult)
 {

@@ -10,10 +10,10 @@ struct vec2
 {
   T x, y;
 
-  vec2<T>() = default;
-  vec2<T>(const vec2<T>& rhs) = default;
-  vec2<T>(vec2<T>&& rhs) = default;
-  vec2<T>(T _x, T _y) : x(_x), y(_y) {}
+  vec2() = default;
+  vec2(const vec2<T>& rhs) = default;
+  vec2(vec2<T>&& rhs) = default;
+  vec2(T _x, T _y) : x(_x), y(_y) {}
 
   vec2<T>& operator=(const vec2<T>& rhs) = default;
   vec2<T>& operator=(vec2<T>&& rhs) = default;
@@ -77,10 +77,10 @@ struct vec3
 {
   T x, y, z;
 
-  vec3<T>() = default;
-  vec3<T>(const vec3<T>& rhs) = default;
-  vec3<T>(vec3<T>&& rhs) = default;
-  vec3<T>(T _x, T _y, T _z) : x(_x), y(_y), z(_z) {}
+  vec3() = default;
+  vec3(const vec3<T>& rhs) = default;
+  vec3(vec3<T>&& rhs) = default;
+  vec3(T _x, T _y, T _z) : x(_x), y(_y), z(_z) {}
 
   vec3<T>& operator=(const vec3<T>& rhs) = default;
   bool operator==(const vec3<T>& rhs) const { return x == rhs.x && y == rhs.y && z == rhs.z; }
@@ -130,10 +130,10 @@ struct vec4
 {
   T x, y, z, w;
 
-  vec4<T>() = default;
-  vec4<T>(const vec4<T>& rhs) = default;
-  vec4<T>(vec4<T>&& rhs) = default;
-  vec4<T>(T _x, T _y, T _z, T _w) : x(_x), y(_y), z(_z), w(_w) {}
+  vec4() = default;
+  vec4(const vec4<T>& rhs) = default;
+  vec4(vec4<T>&& rhs) = default;
+  vec4(T _x, T _y, T _z, T _w) : x(_x), y(_y), z(_z), w(_w) {}
 
   vec4<T>& operator=(const vec4<T>& rhs) = default;
 };

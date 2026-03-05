@@ -5,10 +5,10 @@
 
 #include "editor_ui.h"
 #include "editor.h"
-#include "../math.h"
-#include "../game.h"
-#include "../ui.h"
-#include "../level.h"
+#include "dcengine/math.h"
+#include "dcengine/game.h"
+#include "dcengine/ui.h"
+#include "dcengine/level.h"
 
 enum EditorState
 {

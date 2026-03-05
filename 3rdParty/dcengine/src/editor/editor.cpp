@@ -10,17 +10,17 @@
 
 #include "editor.h"
 #include "editor_ui.h"
-#include "../game.h"
-#include "../math.h"
-#include "../renderer.h"
-#include "../primitives.h"
-#include "../player.h"
-#include "../level.h"
-#include "../ui.h"
-#include "../cam.h"
-#include "../textures.h"
-#include "../tags.h"
-#include "../audio.h"
+#include "dcengine/game.h"
+#include "dcengine/math.h"
+#include "dcengine/renderer.h"
+#include "dcengine/primitives.h"
+#include "dcengine/player.h"
+#include "dcengine/level.h"
+#include "dcengine/ui.h"
+#include "dcengine/cam.h"
+#include "dcengine/textures.h"
+#include "dcengine/tags.h"
+#include "dcengine/audio.h"
 
 namespace fs = std::filesystem;
 

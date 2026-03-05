@@ -5,7 +5,6 @@
 #include <vector>
 #include <unordered_map>
 
-#include "editor/editor_ui.h"
 #include "math.h"
 
 void register_level(eecs::Registry& reg);

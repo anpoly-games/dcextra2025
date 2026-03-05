@@ -2,10 +2,10 @@
 #include <eecs.h>
 #include "debug.h"
 #include "raymath.h"
-#include "../tags.h"
-#include "../math.h"
-#include "../cam.h"
-#include "../ui.h"
+#include "dcengine/tags.h"
+#include "dcengine/math.h"
+#include "dcengine/cam.h"
+#include "dcengine/ui.h"
 
 void register_debug(eecs::Registry& reg)
 {
