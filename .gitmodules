@@ -1,12 +1,3 @@
-[submodule "3rdParty/eecs"]
-	path = 3rdParty/dcengine/3rdParty/eecs
-	url = git@github.com:AlexanderPolyakov/eecs.git
-[submodule "3rdParty/edat"]
-	path = 3rdParty/dcengine/3rdParty/edat
-	url = git@github.com:AlexanderPolyakov/edat.git
-[submodule "3rdParty/raylib"]
-	path = 3rdParty/dcengine/3rdParty/raylib
-	url = git@github.com:raysan5/raylib.git
 [submodule "3rdParty/dcengine"]
 	path = 3rdParty/dcengine
 	url = git@github.com:anpoly-games/dcengine.git
